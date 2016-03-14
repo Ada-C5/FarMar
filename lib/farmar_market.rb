@@ -1,4 +1,5 @@
 require_relative '../farmar'
+require_relative'./farmar_vendor'
 
 class FarMar::Market
 
@@ -37,6 +38,11 @@ class FarMar::Market
         return self.new(individual_array[0], individual_array[1], individual_array[2], individual_array[3], individual_array[4], individual_array[5], individual_array[6])
       end
     end
+  end
+
+  #vendors: returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field.
+  def self.vendors(market_id)
+    FarMar::Vendor.market_vendors(market_id)
   end
 
 

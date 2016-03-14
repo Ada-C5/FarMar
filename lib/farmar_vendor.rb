@@ -1,4 +1,5 @@
 require_relative '../farmar'
+require_relative './farmar_market'
 
 class FarMar::Vendor
   def initialize(vendor_id, vendor_name, employees, market_id)
@@ -11,7 +12,7 @@ class FarMar::Vendor
   def self.all
     all_vendors = CSV.read("./support/vendors.csv", "r")
 
-    all_vendors.collect do |individual_array|      #change to collect
+    all_vendors.collect do |individual_array|
       @vendor_id    = individual_array[0].to_f
       @vendor_name  = individual_array[1].to_s
       @employees    = individual_array[2]
@@ -28,6 +29,19 @@ class FarMar::Vendor
        individual_array[0].to_f == id.to_f
         return self.new(individual_array[0].to_f, individual_array[1], individual_array[2].to_f, individual_array[3].to_f)
     end
+  end
+
+  private
+  def self.market_vendors(market_id)
+    market_vendors_array = []
+    all_vendors = CSV.read("./support/vendors.csv", "r")
+
+    all_vendors.map do |individual_array|
+      if individual_array[3].to_f == market_id.to_f
+      market_vendors_array << individual_array
+      end
+    end
+    return market_vendors_array
   end
 
 end #class end
