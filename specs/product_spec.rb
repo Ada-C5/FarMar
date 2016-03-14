@@ -23,7 +23,7 @@ describe FarMar::Product do
 		FarMar::Product.find('./support/products.csv').wont_be_nil
 	end
 
-	it "returns the correct market when self#find is called" do
+	it "returns the correct product when self#find is called" do
 		FarMar::Product.find(5).name.must_equal("Green Apples")
 	end
 
