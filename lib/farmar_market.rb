@@ -1,3 +1,4 @@
+#get rid of this after done with IRB testing
 require_relative '../far_mar.rb'
 
 class FarMar::Market
@@ -29,7 +30,9 @@ class FarMar::Market
         return FarMar::Market.new(n)
       end
     end
+
   end
+
 end
 
 # n = {:id=>"500", :name=>"Montefiore Medical Center Farmers Market_Thursday", :address=>"111 E. 210th Street", :city=>"Bronx", :county=>"Bronx", :state=>"New York", :zip=>"10467"}
