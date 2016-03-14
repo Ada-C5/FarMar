@@ -5,3 +5,21 @@ describe FarMar::Market do
     FarMar::Market.wont_be_nil
   end
 end
+
+describe "FarMar::Market#self.all" do
+  it "should return an instance with attributes that are the same as the values
+    in the first line of the CSV file" do
+    # should return the same name
+      FarMar::Market.all[0].name.must_equal "People's Co-op Farmers Market"
+  end
+end
+
+describe "FarMar::Market#self.find(id)" do
+  it "should return an instance of FarMar::Market" do
+    FarMar::Market.find("9").must_be_instance_of FarMar::Market
+  end
+
+  it "should return the name of the instance of FarMar::Market that has the ID 11" do
+    FarMar::Market.find("11").name.must_equal "Charles Square"
+  end
+end
