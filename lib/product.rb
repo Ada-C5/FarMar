@@ -1,6 +1,6 @@
 class FarMar::Product
   attr_reader 
-  attr_accessor :name, :prod_id
+  attr_accessor :name, :prod_id, :ven_id
   #csv with product info
   FILE = './support/products.csv'
 

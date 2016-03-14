@@ -27,4 +27,11 @@ describe FarMar::Vendor do
     vendor.market(vendor.mar_id).wont_be_nil
     vendor.market(vendor.mar_id).name.must_equal "People's Co-op Farmers Market"
   end
+
+  # test the products method
+  it "Should return all product instances for certain vendor" do
+    vendors = FarMar::Vendor.all
+    vendor = vendors[25]
+    vendor.products(vendor.ven_id).length.must_equal 3
+  end
 end

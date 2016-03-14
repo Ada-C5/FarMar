@@ -27,8 +27,6 @@ describe FarMar::Market do
   it "should return all vendor instances in specific market" do
     markets = FarMar::Market.all
     market = markets[0]
-    # market_instance = market[0]
-#    market1.must_equal.class.must_equal 4
     market.vendors(market.mar_id).length.must_equal 6
   end
 

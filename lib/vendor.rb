@@ -36,4 +36,9 @@ class FarMar::Vendor
     markets.find { |market| market.mar_id == mar_id}
     end
 
+  # returns product instances for vendor_id as array
+  def products(vendor_id)
+    FarMar::Product.all.select { |product| product.ven_id == vendor_id}
+  end
+
 end
