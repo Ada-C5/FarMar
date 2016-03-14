@@ -11,6 +11,15 @@ module FarMar
 
     end
 
+    def products(product_data_file = './support/products.csv')
+      all_products = Product.all(product_data_file)
+      matched_products = all_products.find_all do |product|
+        product.vendor_id == id
+      end
+      return matched_products
+    end
+
+
     def markets(market_data_file = './support/markets.csv')
       all_markets = Market.all(market_data_file)
       matched_markets = all_markets.find_all do |market|

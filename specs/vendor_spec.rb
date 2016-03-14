@@ -19,7 +19,7 @@ describe FarMar::Vendor do
     end
   end
 
-  describe "FarMar::Vendor#market" do
+  describe "FarMar::Vendor#markets" do
     it "returns a collection of FarMar::Market instances that are associated with the vendor by the market_id field." do
     #we have Market IDs 1-500, and will test at random!
     market_id = (1..500).to_a.sample
@@ -31,6 +31,21 @@ describe FarMar::Vendor do
     number_of_markets = markets_collection.length
     random_market = (0...number_of_markets).to_a.sample
     markets_collection[random_market].must_be_instance_of(FarMar::Market)
+    end
+  end
+
+  describe "FarMar::Vendor#products" do
+    it "returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field." do
+    #we have Vendor IDs 1-2690, and will test at random!
+    id = (1..2690).to_a.sample
+    test_vendor = FarMar::Vendor.new( id: id )
+    products_collection = test_vendor.products
+    products_collection.must_be_kind_of(Array)
+
+    #any item in the Array will be an instance of FarMar::Product
+    number_of_products = products_collection.length
+    random_product = (0...number_of_products).to_a.sample
+    products_collection[random_product].must_be_instance_of(FarMar::Product)
     end
   end
 
