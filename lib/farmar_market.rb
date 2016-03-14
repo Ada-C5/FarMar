@@ -1,7 +1,7 @@
 
 class FarMar::Market
-  attr_reader :market_id, :nam, :address, :city, :county, :state, :zip
-  def initialize(market_info) #for all, csv length -1?
+  attr_reader :market_id, :name, :address, :city, :county, :state, :zip
+  def initialize(market_hash) #for all, csv length -1?
     @market_id = market_hash[:id]
     @name = market_hash[:name]
     @address = market_hash[:address]
