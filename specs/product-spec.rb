@@ -1,2 +1,2 @@
-require_relative './spec_helper'
-require_relative '../lib/product'
+require_relative './spec-helper'
+require_relative '../lib/farmar_product'
