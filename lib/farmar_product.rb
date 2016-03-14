@@ -31,9 +31,16 @@ class FarMar::Product
     products_to_search = FarMar::Product.all("./support/products.csv")
 
     products_to_search.each do |product|
-        if product.id == id.to_s
-            return product
-        end
+      if product.id == id.to_s
+        return product
+      end
     end
   end
+
+#vendor: returns the FarMar::Vendor instance that is associated with this vendor using the FarMar::Product vendor_id field
+#sales: returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
+#number_of_sales: returns the number of times this product has been sold.
+#self.by_vendor(vendor_id): returns all of the products with the given vendor_id
+
+
 end
