@@ -21,13 +21,13 @@
         1,
         1,
         1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
-        1,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
+        2,
         null,
         null,
         1,
@@ -153,12 +153,28 @@
         null
       ],
       "/Users/nicosaki/Dropbox/Ada/C5/projects/FarMar/specs/product_spec.rb": [
-        1
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null
       ],
       "/Users/nicosaki/Dropbox/Ada/C5/projects/FarMar/specs/sale_spec.rb": [
         1
       ]
     },
-    "timestamp": 1457988722
+    "timestamp": 1457988966
   }
 }
