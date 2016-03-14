@@ -34,4 +34,11 @@ class FarMar::Market
       return market if market.mar_id == id
     end
   end
+
+  # return array of vendors in a specific market
+  def self.vendors(mar_id)
+    vendors = FarMar::Vendor.all 
+    vendors.select { |vendor| vendor.mar_id == mar_id }
+  end
+
 end

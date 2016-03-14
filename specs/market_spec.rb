@@ -22,4 +22,14 @@ describe FarMar::Market do
   it "is the right market corresponding with passed id?" do
     FarMar::Market.find(23).name.must_equal "Farmers Market on the Westford Common"
   end
+
+  # tests vendor method
+  it "should return all vendor instances in specific market" do
+    FarMar::Market.vendors(18).length.must_equal 10
+  end
+
+  # tests vendor method
+  it "should return all vendor instances in specific market" do
+    FarMar::Market.vendors(1).length.must_equal 6
+  end
 end
