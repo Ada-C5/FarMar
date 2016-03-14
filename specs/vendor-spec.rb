@@ -37,3 +37,17 @@ describe "#market" do
     new_vendor.market(5).must_be_instance_of FarMar::Market
   end
 end
+
+# describe "#products" do
+#   it "Does it return a collection of products?" do
+#     new_market = FarMar::Market.new(market_id: 5)
+#     new_market.products.length.must_equal(2)
+#   end
+# end
+# 
+# describe "#products" do
+#   it "Are the items in the collection instances of FarMar::Vendor?" do
+#     new_market = FarMar::Market.new(market_id: 5)
+#     new_market.products[0].must_be_instance_of FarMar::Vendor
+#   end
+# end
