@@ -18,3 +18,15 @@ describe "Market#all" do
     # The csv contains 500 markets.
   end
 end
+
+describe "Market#find(id)" do
+  it "Does it exist?" do
+    FarMar::Market.find(1).wont_be_nil
+  end
+end
+
+describe "Market#find(id)" do
+  it "Does it exist?" do
+    FarMar::Market.find(20).length.must_equal(1)
+  end
+end
