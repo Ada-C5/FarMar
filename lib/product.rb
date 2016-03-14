@@ -1,3 +1,5 @@
+require 'csv'
+
 class FarMar::Product
 
   attr_reader :id, :name, :vendor_id

@@ -1,3 +1,5 @@
+require 'csv'
+
 class FarMar::Sale
   attr_reader :id, :amount, :purchase_time, :vendor_id, :product_id
 
@@ -35,5 +37,5 @@ class FarMar::Sale
       return found_id
     end
   end
-  
+
 end

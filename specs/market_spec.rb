@@ -21,4 +21,11 @@ describe FarMar::Market do
     end
 
   end
+
+  describe "FarMar::Market#self.vendors" do
+    it "should return list of vendors associated with market id 1, and list should have 6 markets" do
+      FarMar::Market.vendors(1).length.must_equal 6
+    end
+  end
+
 end
