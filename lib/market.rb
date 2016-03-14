@@ -5,7 +5,8 @@ class FarMar::Market
     CSV.read(file, 'r')
   end
 
-  MARKET_CSV = FarMar::Market.read_csv("./support/markets.csv")
+  FILE = "./support/markets.csv"
+  MARKET_CSV = FarMar::Market.read_csv(FILE)
 
   def initialize(csv_index)
     @market_id = MARKET_CSV[csv_index][0]
@@ -21,7 +22,7 @@ class FarMar::Market
     MARKET_CSV.length.times do |index|
       allmarkets << FarMar::Market.new(index)
     end
-    ap allmarkets
+    return allmarkets
   end
 
 end
