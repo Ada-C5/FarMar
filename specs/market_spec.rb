@@ -11,8 +11,12 @@ describe FarMar::Market do
 		markets.wont_be_empty
 	end
 
-	it "" do
-				
+	it "populates each object with data from the CSV when #all is called" do
+		markets = FarMar::Market.all('./support/markets.csv')
+		market_to_test = rand(1..(markets.length - 1))
+
+		markets[market_to_test].id.wont_be_empty
+		markets[market_to_test].name.wont_be_empty
 	end
 
 end
