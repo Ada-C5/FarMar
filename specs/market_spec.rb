@@ -25,11 +25,15 @@ describe FarMar::Market do
 
   # tests vendor method
   it "should return all vendor instances in specific market" do
-    FarMar::Market.vendors(18).length.must_equal 10
+    markets = FarMar::Market.all
+    market = markets[0]
+    # market_instance = market[0]
+#    market1.must_equal.class.must_equal 4
+    market.vendors(market.mar_id).length.must_equal 6
   end
 
-  # tests vendor method
-  it "should return all vendor instances in specific market" do
-    FarMar::Market.vendors(1).length.must_equal 6
-  end
+  # # tests vendor method
+  # it "should return all vendor instances in specific market" do
+  #   FarMar::Market.vendors(1).length.must_equal 6
+  # end
 end

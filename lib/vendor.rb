@@ -30,16 +30,10 @@ class FarMar::Vendor
     end
   end  
 
-  # return array of vendors in a specific market
-  def self.find_market(mar_id)
-    vendors = self.all 
-    in_market = []
-    vendors.each do |vendor|
-      if vendor.mar_id == mar_id
-        in_market << vendor
-      end
+  # returns instance of market related to this vendor
+  def self.market(mar_id)
+    markets = FarMar::Markets.all
+    markets.collect{ |market| market.id == mar_id}
     end
-    return in_market
-  end
 
 end
