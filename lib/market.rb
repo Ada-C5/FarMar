@@ -5,26 +5,23 @@ class FarMar::Market
     CSV.read(file, 'r')
   end
 
+  MARKET_CSV = FarMar::Market.read_csv("./support/markets.csv")
 
   def initialize(csv_index)
-    csv = FarMar::Market.read_csv("./support/markets.csv")
-
-    @market_id = csv[csv_index][0]
-    @name = csv[csv_index][1]
-    @address = csv[csv_index][2]
-    @city = csv[csv_index][3]
-    @state = csv[csv_index][4]
-    @zip = csv[csv_index][5]
+    @market_id = MARKET_CSV[csv_index][0]
+    @name =      MARKET_CSV[csv_index][1]
+    @address =   MARKET_CSV[csv_index][2]
+    @city =      MARKET_CSV[csv_index][3]
+    @state =     MARKET_CSV[csv_index][4]
+    @zip =       MARKET_CSV[csv_index][5]
   end
 
-  # def self.all
-  #   all = []
-  #   all_csv = read_csv("./support/markets.csv")
-  #   all_csv.each do |index|
-  #   all << FarMar::Market.new(index)
-  #   end
-  # end
-
-
+  def self.all
+    allmarkets = []
+    MARKET_CSV.length.times do |index|
+      allmarkets << FarMar::Market.new(index)
+    end
+    ap allmarkets
+  end
 
 end
