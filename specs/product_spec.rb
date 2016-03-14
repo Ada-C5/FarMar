@@ -12,4 +12,14 @@ describe FarMar::Product do
     end
   end
 
+  describe "Product#self.find(find_id)" do
+    it "returns the Product object with matching id" do
+      this_id = FarMar::Product.all[13].id
+
+      FarMar::Product.find(14).must_be_instance_of FarMar::Product
+      FarMar::Product.find(14).id.must_equal this_id
+      FarMar::Product.find(14).name.must_equal "Stupendous Carrots"
+    end
+  end
+
 end

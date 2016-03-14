@@ -1,13 +1,15 @@
 class FarMar::Market
 
-  def initialize(market)
-    @id      = market[:id]
-    @name    = market[:name]
-    @address = market[:address]
-    @city    = market[:city]
-    @county  = market[:county]
-    @state   = market[:state]
-    @zip     = market[:zip]
+  attr_reader :id, :name
+
+  def initialize(market_hash)
+    @id      = market_hash[:id]
+    @name    = market_hash[:name]
+    @address = market_hash[:address]
+    @city    = market_hash[:city]
+    @county  = market_hash[:county]
+    @state   = market_hash[:state]
+    @zip     = market_hash[:zip]
   end
 
   def self.all
@@ -17,8 +19,17 @@ class FarMar::Market
     market_hash.each do |market|
       all_markets << self.new(market)
     end
-    ap all_markets
+    return all_markets
   end
 
+  def self.find(find_id)
+    self.all.each do |market|
+      return market if market.id == find_id.to_s
+    end
+  end
+
+  # def vendors
+  #   self.all.find_all { |id| id == FarMar::Vendor.market_id }
+  # end
 
 end

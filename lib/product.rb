@@ -18,4 +18,10 @@ class FarMar::Product
     return all_products
   end
 
+  def self.find(find_id)
+    self.all.each do |product|
+      return product if product.id == find_id.to_s
+    end
+  end
+
 end

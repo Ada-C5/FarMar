@@ -12,4 +12,18 @@ describe FarMar::Market do
     end
   end
 
+  describe "Market#self.find(find_id)" do
+    it "returns the Market object with matching id" do
+      this_id = FarMar::Market.all[13].id
+
+      FarMar::Market.find(14).must_be_instance_of FarMar::Market
+      FarMar::Market.find(14).id.must_equal this_id
+      FarMar::Market.find(14).name.must_equal "Hartford Farmers Market"
+    end
+  end
+
+  # describe "Market#vendor" do
+  #
+  # end
+
 end
