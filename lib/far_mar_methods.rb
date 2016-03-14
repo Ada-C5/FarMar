@@ -16,5 +16,13 @@ module FarMar::FarMarMethods
 
     return instance_array
   end
+
+  def self.find(id, class_name)
+    class_name.all.each do |instance|
+      return instance if id == instance.id
+    end
+
+    nil
+  end
   
 end

@@ -1,4 +1,7 @@
 class FarMar::Market
+  CLASS_NAME = FarMar::Market
+
+  attr_reader :id, :name
 
   def initialize(info_hash)
     @id = info_hash[:id].to_i
@@ -13,9 +16,12 @@ class FarMar::Market
   def self.all
     file_name = './support/markets.csv'
     market_keys = [:id, :name, :address, :city, :county, :state, :zip]
-    class_name = FarMar::Market
 
-    FarMar::FarMarMethods.make_all(file_name, market_keys, class_name)
+    FarMar::FarMarMethods.make_all(file_name, market_keys, CLASS_NAME)
+  end
+
+  def self.find(id)
+    FarMar::FarMarMethods.find(id, CLASS_NAME)
   end
 
 end
