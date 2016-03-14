@@ -1,4 +1,6 @@
-class Sale
+module FarMar
+	class Sale
 
 	
+	end
 end
