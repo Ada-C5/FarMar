@@ -11,3 +11,13 @@ describe "FarMar::Product#all" do
     FarMar::Product.all.class.must_equal Array
   end
 end
+
+describe "FarMar::Product#find" do
+  it "should return an instance of FarMar::Product for FarMar::Product.find(1)" do
+    FarMar::Product.find(1).must_be_instance_of FarMar::Product
+  end
+
+  it "should return 'Dry Beets' for instance of FarMar::Product.find(1)" do
+    FarMar::Product.find(1).name.must_equal "Dry Beets"
+  end
+end

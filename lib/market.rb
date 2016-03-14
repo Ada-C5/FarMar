@@ -20,7 +20,7 @@ class FarMar::Market
     markets_csv_info = CSV.read("./support/markets.csv")  # an array of each line as an element
 
     markets_csv_info.each do |line|
-      markets_info << self.new( id: line[0], name: line[1], address: line[2], city: line[3], county: line[4],
+      markets_info << self.new( id: line[0].to_i, name: line[1], address: line[2], city: line[3], county: line[4],
                               state: line[5], zip: line[6] )
     end
     return markets_info
@@ -30,7 +30,7 @@ class FarMar::Market
     markets_all = FarMar::Market.all
 
     markets_all.each do |market|
-      if id.to_i == market.id.to_i
+      if id.to_i == market.id
         return market
       end
     end
