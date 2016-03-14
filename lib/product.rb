@@ -3,6 +3,7 @@ class FarMar::Product
   attr_accessor :name, :prod_id
   #csv with product info
   FILE = './support/products.csv'
+
   def initialize(id, name, ven_id)
     @prod_id = id
     @name = name
@@ -22,9 +23,9 @@ class FarMar::Product
     return products
   end
 
+  # return an instance with same id
   def self.find(id)
     sought_product = nil
-    temp = []
     products = self.all
     products.each do |product|
       if product.prod_id == id
