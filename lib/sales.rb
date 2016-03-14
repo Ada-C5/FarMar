@@ -1,3 +1,3 @@
-class Sales
+class FarMar::Sales
 
 end

@@ -1,3 +1,3 @@
-class Markets
+class FarMar::Markets
 
 end
