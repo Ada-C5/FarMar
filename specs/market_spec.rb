@@ -31,6 +31,13 @@ describe FarMar::Market do
 		market = FarMar::Market.new(id: 8)
 
 		market.must_respond_to(:vendors)
+	end
+
+	it "returns all the vendors associated with the market it's called for" do
+		market_to_test = FarMar::Market.new({id: 5})
+
+		market_to_test.vendors.must_include("Langosh, Krajcik and Langosh")
+		market_to_test.vendors.must_include("Von-Hamill")
 
 	end
 
