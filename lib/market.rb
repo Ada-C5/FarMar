@@ -42,8 +42,7 @@ class FarMar::Market
   end
 
   def vendors(id)
-    vendors = FarMar::Vendor.all
-    vendors.select { |vendor| vendor.market_id == id }
+    FarMar::Vendor.all.select { |vendor| vendor.market_id == id }
   end
 
 
