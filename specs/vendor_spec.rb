@@ -5,17 +5,31 @@ describe FarMar::Vendor do
     FarMar::Vendor.wont_be_nil
   end
 
-  describe "FarMar::Vendor#all" do
+  describe "FarMar::Vendor.all" do
     it "returns an array of instances" do
     FarMar::Vendor.all.must_be_kind_of(Array)
     end
   end
 
-  describe "FarMar::Vendor#find" do
+  describe "FarMar::Vendor.find" do
     it "can find a product instance based on ID" do
     #we have Vendor IDs 1-2690, and will test at random!
     id = (1..2690).to_a.sample
     FarMar::Vendor.find(id).must_be_instance_of(FarMar::Vendor)
+    end
+  end
+
+  describe "FarMar::Vendor.by_market" do
+    it "returns *all* of the vendors with the given market_id" do
+    #we have Market IDs 1-500, and will test at random!
+    market_id = (1..500).to_a.sample
+    #will return an array of Vendor Instances
+    vendors_collection = FarMar::Vendor.by_market(market_id)
+    vendors_collection.must_be_kind_of(Array)
+
+    number_of_vendors = vendors_collection.length
+    random_vendor = (0...number_of_vendors).to_a.sample
+    vendors_collection[random_vendor].must_be_instance_of(FarMar::Vendor)
     end
   end
 
