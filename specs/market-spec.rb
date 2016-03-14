@@ -14,6 +14,7 @@ end
 
 describe "Market#all" do
   it "return all instances of Market class?" do
-    FarMar::Market.all.length.must_equal(2)
+    FarMar::Market.all.length.must_equal(500)
+    # The csv contains 500 markets.
   end
 end
