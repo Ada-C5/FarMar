@@ -1,11 +1,11 @@
 
 class FarMar::Vendor
   attr_reader :market_id, :name, :vendor_id, :employees
-  def initialize(market_hash) #for all, csv length -1?
-    @vendor_id = market_hash[:vid],
-    @name = market_hash[:name],
-    @market_id = market_hash[:mid],
-    @employees = market_hash[:employees]
+  def initialize(vendor_hash) #for all, csv length -1?
+    @vendor_id = vendor_hash[:vid],
+    @name = vendor_hash[:name],
+    @market_id = vendor_hash[:mid],
+    @employees = vendor_hash[:employees]
   end
 
   def read_csv
