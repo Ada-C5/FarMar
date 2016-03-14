@@ -30,3 +30,10 @@ describe "Vendor#find(id)" do
     FarMar::Vendor.find(20).length.must_equal(1)
   end
 end
+
+describe "#market" do
+  it "Does it return an instance of FarMar::Market?" do
+    new_vendor = FarMar::Vendor.new(market_id: 5)
+    new_vendor.market(5).must_be_instance_of FarMar::Market
+  end
+end
