@@ -11,6 +11,23 @@ module FarMar
 
     end
 
+    def revenue
+    #we need the zero!!! (otherwise it starts with the first instance)
+        total_revenue = sales.reduce(0) do |total, sale|
+          sale_amount = sale.amount
+          total += sale_amount
+        end
+        return total_revenue
+    end
+
+    def sales(sale_data_file = './support/sales.csv')
+      all_sales = Sale.all(sale_data_file)
+      matched_sales = all_sales.find_all do |sale|
+        sale.vendor_id == id
+      end
+      return matched_sales
+    end
+
     def products(product_data_file = './support/products.csv')
       all_products = Product.all(product_data_file)
       matched_products = all_products.find_all do |product|

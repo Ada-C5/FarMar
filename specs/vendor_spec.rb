@@ -49,4 +49,30 @@ describe FarMar::Vendor do
     end
   end
 
+  describe "FarMar::Vendor#sales" do
+    it "returns a collection of FarMar::Sale instances that are associated by the vendor_id field." do
+    #we have Vendor IDs 1-2690, and will test at random!
+    id = (1..2690).to_a.sample
+    test_vendor = FarMar::Vendor.new( id: id )
+    sales_collection = test_vendor.sales
+    sales_collection.must_be_kind_of(Array)
+
+    #any item in the Array will be an instance of FarMar::Product
+    number_of_sales = sales_collection.length
+    random_sale = (0...number_of_sales).to_a.sample
+    sales_collection[random_sale].must_be_instance_of(FarMar::Sale)
+    end
+  end
+
+  describe "FarMar::Vendor#revenue" do
+    it "returns the the sum of all of the vendor's sales (in cents)" do
+    #we have Vendor IDs 1-2690, and will test at random!
+    id = (1..2690).to_a.sample
+    test_vendor = FarMar::Vendor.new( id: id )
+    test_vendor.revenue.must_be_kind_of(Float) #we want the number back in cents!
+
+    end
+  end
+
+
 end
