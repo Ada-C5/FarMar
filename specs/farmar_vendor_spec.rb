@@ -15,14 +15,20 @@ describe FarMar::Vendor do
   end
 
   # check the .find(id) method
-  it "should return the id of the instance if .find(id = 1)" do
+  it "should return the id of the instance if .find(id: 1)" do
     FarMar::Vendor.find(1).id.must_equal(1)
   end
 
   # check the vendor method
-  it "should return the markets associated with the vendor 1" do
+  it "should return the num of markets (2) associated with the vendor id: 9" do
     vendors = FarMar::Vendor.find(9) # market_id = 2
     vendors.market.id.must_equal(2)
+  end
+
+  # check the products method
+  it "should return the num of products (4) associated with vendor id: 9" do
+    vendors = FarMar::Vendor.find(9) # market_id = 2
+    vendors.products.length.must_equal(4)
   end
 
 end

@@ -36,15 +36,18 @@ class FarMar::Vendor
 
   def market
     FarMar::Market.all.find {|instance| instance.id == market_id}
-    # OLD METHOD below
-    # mar = FarMar::Market.all
-    # matched_info = []
-    # mar.each do |market|
-    #   if market.id == market_id
-    #     return market
-    #     matched_info << market
-    #   end
-    # end
-    # return matched_info
+  end
+
+  def products
+    FarMar::Product.all.find_all {|instance| instance.vendor_id == id}
+  end
+
+  def sales
+  end
+
+  def revenue
+  end
+
+  def self.by_market(market_id)
   end
 end
