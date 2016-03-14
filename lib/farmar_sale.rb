@@ -38,7 +38,7 @@ class FarMar::Sale
 
     sales_to_search.each do |sale|
       if sale.id == id.to_s
-          return sale
+        return sale
       end
     end
   end
