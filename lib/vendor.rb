@@ -1,5 +1,4 @@
-module FarMar
-	class Vendor
+class Vendor
 
-	end
+
 end

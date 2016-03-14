@@ -1,5 +1,4 @@
-module FarMar
-	class Product
+class Product
 
-	end
+
 end

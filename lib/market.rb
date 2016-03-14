@@ -1,5 +1,4 @@
-module FarMar
-	class Market
+class Market
 
-	end
+
 end
