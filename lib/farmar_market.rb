@@ -1,6 +1,6 @@
 class FarMar::Market
 
-	attr_reader :id, :name
+	attr_reader :id, :name, :address, :city, :county, :state, :zip_code
 
 	def initialize(market_hash)
 	# ID - (Fixnum) a unique identifier for that market
