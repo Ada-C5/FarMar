@@ -1,0 +1,73 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/sakne/C5/projects/FarMar/far_mar.rb": [
+        null,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1
+      ],
+      "/Users/sakne/C5/projects/FarMar/lib/market.rb": [
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/sakne/C5/projects/FarMar/lib/product.rb": [
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/sakne/C5/projects/FarMar/lib/vendor.rb": [
+        null,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/sakne/C5/projects/FarMar/lib/sale.rb": [
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/sakne/C5/projects/FarMar/spec/product_spec.rb": [
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/sakne/C5/projects/FarMar/spec/sale_spec.rb": [
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/sakne/C5/projects/FarMar/spec/vendor_spec.rb": [
+        1,
+        null,
+        1,
+        null,
+        1,
+        1,
+        null,
+        null
+      ]
+    },
+    "timestamp": 1457984382
+  }
+}
