@@ -4,11 +4,13 @@ class FarMar::Sale
   end
 
   def initialize(csv_index)
-    @sale_id = read_csv("./support/sales.csv")[csv_index][0]
-    @amount = read_csv("./support/sales.csv")[csv_index][1]
-    @sales_time = read_csv("./support/sales.csv")[csv_index][2]
-    @vendor_id = read_csv("./support/sales.csv")[csv_index][3]
-    @product_id = read_csv("./support/sales.csv")[csv_index][4]
+    csv = FarMar::Market.read_csv("./support/sales.csv")
+
+    @sale_id = csv[csv_index][0]
+    @amount = csv[csv_index][1]
+    @sales_time = csv[csv_index][2]
+    @vendor_id = csv[csv_index][3]
+    @product_id = csv[csv_index][4]
 
   end
 end

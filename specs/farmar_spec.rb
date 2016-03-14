@@ -1,9 +1,6 @@
 require_relative './spec_helper'
 require_relative '../farmar'
 
-require 'simplecov'
-SimpleCov.start
-
 describe FarMar do
   it "has a class Market" do
     FarMar::Market.wont_be_nil

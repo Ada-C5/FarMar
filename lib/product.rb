@@ -4,8 +4,10 @@ class FarMar::Product
   end
 
   def initialize(csv_index)
-    @product_id = read_csv("./support/products.csv")[csv_index][0]
-    @name = read_csv("./support/products.csv")[csv_index][1]
-    @vendor_id = read_csv("./support/products.csv")[csv_index][2]
+    csv = FarMar::Market.read_csv("./support/products.csv")
+
+    @product_id = csv[csv_index][0]
+    @name = csv[csv_index][1]
+    @vendor_id = csv[csv_index][2]
   end
 end
