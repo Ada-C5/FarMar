@@ -17,7 +17,6 @@ class FarMar::Product
       id = line[0].to_i
       name = line[1]
       ven_id = line[2].to_i
-      #TEST OUTPUT return "#{id} #{name} #{ven_id}"
       products << self.new(id, name, ven_id)
     end
     return products
@@ -25,13 +24,9 @@ class FarMar::Product
 
   # return an instance with same id
   def self.find(id)
-    sought_product = nil
     products = self.all
     products.each do |product|
-      if product.prod_id == id
-        sought_product = product
-        return sought_product.name
-      end
+      return product if product.prod_id == id
     end
   end
 end

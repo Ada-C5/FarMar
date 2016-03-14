@@ -19,6 +19,6 @@ describe FarMar::Product do
 
   # test the self.find(id) returns correct instance
   it "self.find(id) returns its corresponding instance" do
-    FarMar::Product.find(36).must_equal "Mute Beef"
+    FarMar::Product.find(36).name.must_equal "Mute Beef"
   end
 end

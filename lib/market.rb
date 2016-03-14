@@ -31,9 +31,7 @@ class FarMar::Market
   def self.find(id)
     markets = self.all
     markets.each do |market|
-      if market.mar_id == id
-        return market
-      end
+      return market if market.mar_id == id
     end
   end
 end

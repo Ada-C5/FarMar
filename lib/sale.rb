@@ -26,9 +26,7 @@ class FarMar::Sale
   def self.find(id)
     sales = self.all 
     sales.each do |sale|
-      if sale.sale_id == id
-        return sale
-      end
+      return sale if sale.sale_id == id
     end
   end  
 end
