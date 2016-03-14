@@ -16,6 +16,10 @@ describe FarMar::Vendor do
 		FarMar::Vendor.find(2690).wont_be_nil
 	end
 
+	it "returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id field" do
+		FarMar::Vendor.market(1).wont_be_nil
+	end
+
 
 
 end
