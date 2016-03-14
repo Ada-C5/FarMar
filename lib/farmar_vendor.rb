@@ -1,5 +1,5 @@
 module FarMar
-  class Vendor
+  class Vendor < DataClass
 
     attr_reader :id, :market_id
 
@@ -20,29 +20,17 @@ module FarMar
         return total_revenue
     end
 
-    def sales(sale_data_file = './support/sales.csv')
-      all_sales = Sale.all(sale_data_file)
-      matched_sales = all_sales.find_all do |sale|
-        sale.vendor_id == id
-      end
-      return matched_sales
+    def sales
+      super('./support/sales.csv', FarMar::Sale)
     end
 
-    def products(product_data_file = './support/products.csv')
-      all_products = Product.all(product_data_file)
-      matched_products = all_products.find_all do |product|
-        product.vendor_id == id
-      end
-      return matched_products
+    def products
+      super('./support/products.csv', FarMar::Product)
     end
 
 
     def markets(market_data_file = './support/markets.csv')
-      all_markets = Market.all(market_data_file)
-      matched_markets = all_markets.find_all do |market|
-        market.id == market_id
-      end
-      return matched_markets
+      super('./support/markets.csv', FarMar::Market)
     end
 
     def self.by_market(data_file = './support/vendors.csv', given_market_id)

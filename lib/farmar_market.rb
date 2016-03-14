@@ -1,5 +1,5 @@
 module FarMar
-  class Market #< DataClass
+  class Market < DataClass
 
     attr_reader :id
 
@@ -14,14 +14,9 @@ module FarMar
 
     end
 
-    def vendors(vendor_data_file = './support/vendors.csv')
-      all_vendors = Vendor.all(vendor_data_file)
-      matched_vendors = all_vendors.find_all do |vendor|
-        vendor.market_id == id
-      end
-      return matched_vendors
+    def vendors
+      super('./support/vendors.csv', FarMar::Vendor)
     end
-
 
     def self.find(data_file = './support/markets.csv', id) # returns an instance of Market where the value of the id field in the CSV matches the passed parameter. Will this be different?  There can be multiple with same ID potentially?
       markets = self.all(data_file)
