@@ -13,7 +13,7 @@ class FarMar::Product
   def self.all
     products = []
     CSV.foreach(PRODUCT_FILE) do |row|
-      products << FarMar::Market.new(id: row[0].to_i, name: row[1], vendor_id: row[2].to_i)
+      products << FarMar::Product.new(id: row[0].to_i, name: row[1], vendor_id: row[2].to_i)
     end
     return products
 
@@ -22,7 +22,7 @@ class FarMar::Product
   def self.find(id)
     products = self.all
     found_id = nil
-    products.each do |market|
+    products.each do |product|
       if product.id == id
         found_id = product
       end
@@ -32,4 +32,5 @@ class FarMar::Product
     else
       return found_id
     end
+  end
 end
