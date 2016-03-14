@@ -27,30 +27,27 @@ class FarMar::Market
     
     # this iterates through the CSV and assigns values to variables to be used in the account initialization.
     CSV.foreach(path_to_csv) do |row|
-        id = row[0]
-        name = row[1]
-        address = row[2]
-        city = row[3]
-        county = row[4]
-        state = row[5]
-        zip_code = row[6]
+      id = row[0]
+      name = row[1]
+      address = row[2]
+      city = row[3]
+      county = row[4]
+      state = row[5]
+      zip_code = row[6]
 
-        market_hash = {id: id, name: name, address: address, city: city, county: county, state: state, zip_code: zip_code}
-        market_list << self.new(market_hash)
+      market_hash = {id: id, name: name, address: address, city: city, county: county, state: state, zip_code: zip_code}
+      market_list << self.new(market_hash)
     end
     market_list
 	end
 
   def self.find(id)
-      markets_to_search = FarMar::Market.all("./support/markets.csv")
+    markets_to_search = FarMar::Market.all("./support/markets.csv")
 
-      markets_to_search.each do |market|
-          if market.id == id.to_s
-              return market
-          end
+    markets_to_search.each do |market|
+      if market.id == id.to_s
+        return market
       end
+    end
   end
-
-
-
 end
