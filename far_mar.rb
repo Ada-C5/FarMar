@@ -1,5 +1,7 @@
 # gems your project needs
 require 'csv'
+require 'awesome_print'
+
 
 module FarMar
 
