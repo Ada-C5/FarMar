@@ -7,4 +7,9 @@ describe FarMar::Sale do
 	it  "is an object we have access to" do
 		FarMar::Sale.wont_be_nil
 	end
+
+	it "returns a collection of instances representing all objects described in the CSV" do
+		FarMar::Sale.all.wont_be_nil
+	end
+
 end

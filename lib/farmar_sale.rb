@@ -11,29 +11,25 @@ class FarMar::Sale
   end
 
   def self.all
-    require "CSV"
     all_sales = CSV.read("./support/sales.csv", "r")
 
-    all_sales.each do |individual_array|
+    all_sales.collect do |individual_array|
       @id                   = individual_array[0]
       @transaction_amount   = individual_array[1]
       @purchase_time        = individual_array[2]
       @vendor_id            = individual_array[3]
       @product_id           = individual_array[4]
+
+      self.new(@id, @transaction_amount, @purchase_time, @vendor_id, @product_id)
     end
   end
 
   def self.find(id)
-    require "CSV"
     all_sales = CSV.read("./support/sales.csv", "r")
 
     all_sales.each do |individual_array|
       if individual_array[0].to_f == id.to_f
-        puts "Sale ID:             #{individual_array[0]}"
-        puts "Transaction Amount:  #{individual_array[1]}"
-        puts "Purchase Time:       #{individual_array[2]}"
-        puts "Vendor ID:           #{individual_array[3]}"
-        puts "Product ID:          #{individual_array[4]}"
+        return self.new(individual_array[0], individual_array[1], individual_array[2], individual_array[3], individual_array[4])
       end
     end
   end

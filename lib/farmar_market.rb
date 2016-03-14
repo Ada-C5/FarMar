@@ -13,10 +13,9 @@ class FarMar::Market
   end
 
   def self.all
-    require "CSV"
     all_markets = CSV.read("./support/markets.csv", "r")
 
-    all_markets.each do |individual_array|
+    all_markets.collect do |individual_array|
       @id         = individual_array[0]
       @name       = individual_array[1]
       @address    = individual_array[2]
@@ -24,23 +23,18 @@ class FarMar::Market
       @county     = individual_array[4]
       @state      = individual_array[5]
       @zip        = individual_array[6]
+
+      self.new(@id, @name, @address, @city, @county, @state, @zip)
     end
   end
 
   # self.find(id) - returns an instance of Market where the value of the id field in the CSV matches the passed parameter
   def self.find(id)
-    require "CSV"
     all_markets = CSV.read("./support/markets.csv", "r")
 
     all_markets.each do |individual_array|
       if individual_array[0].to_f == id.to_f
-        puts "ID:           #{individual_array[0]}"
-        puts "Market Name:  #{individual_array[1]}"
-        puts "Address:      #{individual_array[2]}"
-        puts "City:         #{individual_array[3]}"
-        puts "County:       #{individual_array[4]}"
-        puts "State:        #{individual_array[5]}"
-        puts "Zip Code:     #{individual_array[6]}"
+        return self.new(individual_array[0], individual_array[1], individual_array[2], individual_array[3], individual_array[4], individual_array[5], individual_array[6])
       end
     end
   end
