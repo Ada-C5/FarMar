@@ -1,0 +1,2 @@
+class FarMar::Product
+end
