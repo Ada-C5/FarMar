@@ -15,8 +15,8 @@ describe FarMar::Product do
 	end
 
 	it "Product.find(id) returns something" do 
-		market = "Tamale Time"
-		assert_equal market, FarMar::Product.find(market)
+		product = "Tamales"
+		assert_equal market, FarMar::Product.find(product)
 	end
 
 end

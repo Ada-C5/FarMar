@@ -14,7 +14,7 @@ describe FarMar::Sale do
 	end
 
 	it "Sale.find(id) returns something" do 
-		market = "Tamale Time"
-		assert_equal market, FarMar::Sale.find(market)
+		sales = "Dollars"
+		assert_equal market, FarMar::Sale.find(sales)
 	end
 end

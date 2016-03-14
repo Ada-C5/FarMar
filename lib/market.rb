@@ -1,4 +1,3 @@
-# require 'CSV' 
 
 class FarMar::Market
 	def initialize(csv_data)
