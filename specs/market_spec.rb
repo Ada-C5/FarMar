@@ -22,7 +22,7 @@ describe FarMar::Market do
 
   end
 
-  describe "FarMar::Market#self.vendors" do
+  describe "FarMar::Market#vendors" do
     market1 = FarMar::Market.new(id: 1)
     it "should return list of vendors associated with market id 1, and list should have 6 markets" do
       market1.vendors(1).length.must_equal 6
