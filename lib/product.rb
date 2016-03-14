@@ -1,13 +1,22 @@
 class FarMar::Product
-  def read_csv(file)
+  def self.read_csv(file)
     CSV.read(file, 'r')
   end
 
-  def initialize(csv_index)
-    csv = FarMar::Market.read_csv("./support/products.csv")
+  FILE = "./support/products.csv"
+  PRODUCT_CSV = FarMar::Product.read_csv(FILE)
 
-    @product_id = csv[csv_index][0]
-    @name = csv[csv_index][1]
-    @vendor_id = csv[csv_index][2]
+  def initialize(csv_index)
+    @product_id = PRODUCT_CSV[csv_index][0]
+    @name = PRODUCT_CSV[csv_index][1]
+    @vendor_id = PRODUCT_CSV[csv_index][2]
+  end
+
+  def self.all
+    allproducts = []
+    PRODUCT_CSV.length.times do |index|
+      allproducts << FarMar::Product.new(index)
+    end
+    return allproducts
   end
 end
