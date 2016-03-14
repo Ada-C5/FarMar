@@ -1,5 +1,3 @@
-require_relative '../far_mar'
-
 class FarMar::Sale
   attr_reader :id, :amount, :purchase_time, :vendor_id, :product_id
 
