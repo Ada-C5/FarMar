@@ -28,17 +28,17 @@ class FarMar::Market
 
   def self.find(id)
     markets = self.all
-      found_id = nil
-      markets.each do |market|
-        if market.id == id
-          found_id = market
-        end
+    found_id = nil
+    markets.each do |market|
+      if market.id == id
+        found_id = market
       end
-      if found_id == nil
-        return "ID not found!"
-      else
-        return found_id
-      end
+    end
+    if found_id == nil
+      return "ID not found!"
+    else
+      return found_id
+    end
 
   end
 

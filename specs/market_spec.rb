@@ -15,5 +15,10 @@ describe FarMar::Market do
     it "should return 'People's Co-op Farmers Market' as market name when self.find called by id 1" do
       FarMar::Market.find(1).name.must_equal "People's Co-op Farmers Market"
     end
+
+    it "should return 'ID not found!' when self.find called by id 550 (doesn't exist)" do
+      FarMar::Market.find(550).must_equal "ID not found!"
+    end
+
   end
 end
