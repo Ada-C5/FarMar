@@ -30,7 +30,13 @@ class FarMar::Market
     CSV.foreach(path_to_csv) do |row|
         id = row[0]
         name = row[1]
-        market_hash = {id: id, name: name}
+        address = row[2]
+        city = row[3]
+        county = row[4]
+        state = row[5]
+        zip_code = row[6]
+
+        market_hash = {id: id, name: name, address: address, city: city, county: county, state: state, zip_code: zip_code}
         market_list << self.new(market_hash)
     end
     market_list
