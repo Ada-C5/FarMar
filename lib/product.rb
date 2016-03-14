@@ -2,7 +2,7 @@
 require 'CSV'
 class FarMar::Product
   include FarMar
-
+attr_reader :id, :name, :vendor
   def initialize(id=nil,name=nil,vendor_id=nil)
     @id = id
     @name = name.to_s
