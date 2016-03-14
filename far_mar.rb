@@ -1,3 +1,6 @@
+# gems your project needs
+require 'csv'
+
 module FarMar
 
 end
