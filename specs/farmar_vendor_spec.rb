@@ -22,11 +22,18 @@ describe FarMar::Vendor do
   # check the vendor method
   it "should return the num of markets (2) associated with the vendor id: 9" do
     vendors = FarMar::Vendor.find(9) # market_id = 2
+    #9,"Quigley, Breitenberg and Schuster",2,2
     vendors.market.id.must_equal(2)
   end
 
   # check the products method
   it "should return the num of products (4) associated with vendor id: 9" do
+    vendors = FarMar::Vendor.find(9) # market_id = 2
+    vendors.products.length.must_equal(4)
+  end
+
+  # check the sales method
+  it "should return the num of sales (4) associated with vendor id: 9" do
     vendors = FarMar::Vendor.find(9) # market_id = 2
     vendors.products.length.must_equal(4)
   end
