@@ -19,4 +19,9 @@ describe FarMar::Market do
 		markets[market_to_test].name.wont_be_empty
 	end
 
+	it "has a find method" do
+		FarMar::Market.find.wont_be_nil
+
+	end
+
 end
