@@ -1,4 +1,4 @@
-class FarMar::Vendors
+class FarMar::Vendor
   attr_accessor :vendor_id, :vendor_name, :num_employees, :market_id
 
   def initialize(id, name, employees, market_id)
@@ -16,7 +16,7 @@ class FarMar::Vendors
   end
 
   def self.find(id)
-    FarMar::Markets.all
+    FarMar::Vendor.all
     @all_vendors.each do |vendor|
       if vendor.vendor_id == id.to_i
         return vendor

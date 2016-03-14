@@ -1,28 +1,28 @@
 require_relative './spec_helper'
 require_relative '../far_mar'
 
-describe FarMar::Vendors do
+describe FarMar::Vendor do
   it "is an object that isn't empty" do
-    FarMar::Vendors.wont_be_nil
+    FarMar::Vendor.wont_be_nil
   end
 
-  describe "FarMar::Vendors#self.all" do
+  describe "FarMar::Vendor#self.all" do
     it "should return an array with all vendors" do
-      FarMar::Vendors.all.must_be_instance_of Array
+      FarMar::Vendor.all.must_be_instance_of Array
     end
 
     it "should return an array with all 2690 vendors" do
-      FarMar::Vendors.all.length.must_equal 2690
+      FarMar::Vendor.all.length.must_equal 2690
     end
   end
 
-  describe "FarMar::Vendors#self.find" do
+  describe "FarMar::Vendor#self.find" do
     it "should return object's city Cruickshank Group" do
-      FarMar::Vendors.find("2676").vendor_name.must_equal "Cruickshank Group"
+      FarMar::Vendor.find("2676").vendor_name.must_equal "Cruickshank Group"
     end
 
-    it "should return an object of the class Vendors" do
-      FarMar::Vendors.find("142").must_be_instance_of FarMar::Vendors
+    it "should return an object of the class Vendor" do
+      FarMar::Vendor.find("142").must_be_instance_of FarMar::Vendor
     end
 
   end

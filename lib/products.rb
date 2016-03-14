@@ -1,4 +1,4 @@
-class FarMar::Products
+class FarMar::Product
   attr_accessor :product_id, :product_name, :vendor_id
 
   def initialize(id, name, vendor_id)
@@ -17,7 +17,7 @@ class FarMar::Products
 
 
   def self.find(id)
-    FarMar::Products.all
+    FarMar::Product.all
     @all_products.each do |product|
       if product.product_id == id.to_i
         return product

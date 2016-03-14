@@ -1,4 +1,4 @@
-class FarMar::Sales
+class FarMar::Sale
   attr_accessor :sale_id, :ammount, :purchase_time,
                 :vendor_id, :product_id
 
@@ -18,7 +18,7 @@ class FarMar::Sales
   end
 
   def self.find(id)
-    FarMar::Sales.all
+    FarMar::Sale.all
     @all_sales.each do |sale|
       if sale.sale_id == id.to_i
         return sale

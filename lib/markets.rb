@@ -1,4 +1,4 @@
-class FarMar::Markets
+class FarMar::Market
   attr_accessor :market_id, :market_name, :market_address, :market_city,
                 :market_county, :market_state, :market_zip
 
@@ -20,7 +20,7 @@ class FarMar::Markets
 
 
   def self.find(id)
-    FarMar::Markets.all
+    FarMar::Market.all
     @all_markets.each do |market|
       if market.market_id == id.to_i
         return market
