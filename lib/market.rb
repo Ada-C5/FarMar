@@ -28,8 +28,8 @@ class FarMar::Market
     end
   end
 
-  # def vendors
-  #   self.all.find_all { |id| id == FarMar::Vendor.market_id }
-  # end
+  def vendors
+    FarMar::Vendor.all.find_all { |ven| ven.market_id == self.id }
+  end
 
 end
