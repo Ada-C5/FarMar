@@ -24,9 +24,10 @@ describe FarMar::Market do
 
   describe "Market#vendors" do
     it "should return all instances of Vendor that match the Market's id" do
-      FarMar::Market.all[13].vendors.must_be_instance_of Array
-      FarMar::Market.all[13].vendors.length.must_equal 8
-      ap FarMar::Market.all[13].vendors
+      FarMar::Market.find(14).vendors.must_be_instance_of Array
+      FarMar::Market.find(14).vendors.length.must_equal 8
+      FarMar::Market.find(14).vendors[0].market_id.must_equal "14"
+      ap FarMar::Market.find(14).vendors
     end
   end
 
