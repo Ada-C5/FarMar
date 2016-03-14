@@ -31,9 +31,9 @@ class FarMar::Vendor
   end  
 
   # returns instance of market related to this vendor
-  def self.market(mar_id)
-    markets = FarMar::Markets.all
-    markets.collect{ |market| market.id == mar_id}
+  def market(mar_id)
+    markets = FarMar::Market.all
+    markets.find { |market| market.mar_id == mar_id}
     end
 
 end
