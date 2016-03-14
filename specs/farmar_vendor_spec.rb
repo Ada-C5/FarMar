@@ -12,6 +12,9 @@ describe FarMar::Vendor do
 		FarMar::Vendor.all.wont_be_nil
 	end
 
+	it "returns an instance of Vendor where the value of the id field in the CSV matches the passed parameter" do
+		FarMar::Vendor.find(2690).wont_be_nil
+	end
 
 
 

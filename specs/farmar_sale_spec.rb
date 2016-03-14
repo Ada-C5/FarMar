@@ -12,4 +12,8 @@ describe FarMar::Sale do
 		FarMar::Sale.all.wont_be_nil
 	end
 
+	it "returns an instance of Sale where the value of the id field in the CSV matches the passed parameter" do
+		FarMar::Sale.find(10).wont_be_nil
+	end
+
 end

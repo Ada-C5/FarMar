@@ -11,4 +11,9 @@ describe FarMar::Product do
 	it "returns a collection of instances representing all objects described in the CSV" do
 		FarMar::Product.all.wont_be_nil
 	end
+
+	it "returns an instance of Product where the value of the id field in the CSV matches the passed parameter" do
+		FarMar::Product.find(10).wont_be_nil
+	end
+
 end
