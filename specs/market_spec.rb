@@ -7,3 +7,25 @@ describe FarMar::Market do
     FarMar::Market.wont_be_nil
   end
 end
+
+describe "FarMar#Market" do
+
+    before do
+    market_data = {
+      id: 24,
+      name: "Suzanne Harrison"
+    }
+    @market = FarMar::Market.new(market_data)
+    end
+
+      it "an instance of class Market'" do
+    	 @market.must_be_instance_of(FarMar::Market)
+      end
+
+      it "should return number of all markets" do
+        all_markets = FarMar::Market.all
+        all_markets.length.must_equal 500
+      end
+
+
+end

@@ -7,3 +7,24 @@ describe FarMar::Vendor do
     FarMar::Vendor.wont_be_nil
   end
 end
+
+describe "FarMar#Vendor" do
+
+  before do
+    vendor_data = {
+      vendor_id: 92,
+      name: "Gary",
+      no_of_employees: 7
+    }
+    @vendor = FarMar::Vendor.new(vendor_data)
+  end
+
+      it "an instance of class Vendor'" do
+    	 @vendor.must_be_instance_of(FarMar::Vendor)
+      end
+
+      it "should return number of all vendors" do
+        all_vendors = FarMar::Vendor.all
+        all_vendors.length.must_equal 2690
+      end
+end
