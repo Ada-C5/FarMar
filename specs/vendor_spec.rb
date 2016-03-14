@@ -22,4 +22,9 @@ describe FarMar::Vendor do
     end
   end
 
+  describe "Vendor#market" do
+    it "finds the Market that the Vendor is goes to" do
+      FarMar::Vendor.all[13].market.must_be_instance_of FarMar::Market
+    end
+  end
 end
