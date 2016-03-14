@@ -31,4 +31,15 @@ class FarMar::Market
     end
     return markets_info
   end
+
+  def self.find(id)
+    self.all.each do |instance|
+      if instance.id == id.to_i
+        return instance
+      end
+    end
+  end
+
+
+
 end

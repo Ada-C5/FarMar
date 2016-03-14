@@ -1,10 +1,10 @@
 # lib/farmar_product.rb
 class FarMar::Product
-  attr_reader
+  attr_reader :id, :name, :vendor_id
   def initialize(hash)
     @id = hash[:id]
     @name = hash[:name]
-    @vendor_id = hash[:name]
+    @vendor_id = hash[:vendor_id]
   end
 
   # ID - (Fixnum) uniquely identifies the product
@@ -20,5 +20,13 @@ class FarMar::Product
       products_info << info
     end
     return products_info
+  end
+
+  def self.find(id)
+    self.all.each do |instance|
+      if instance.id == id
+        return instance
+      end
+    end
   end
 end

@@ -13,5 +13,11 @@ describe FarMar::Market do
     markets.length.must_equal(500)
   end
 
+  # check the .find(id) method
+  it "should return the id of the instance if .find(id = 1)" do
+    FarMar::Market.find(1).id.must_equal(1)
+  end
+
+
 
 end

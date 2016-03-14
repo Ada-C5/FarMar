@@ -26,4 +26,12 @@ class FarMar::Sale
     end
     return sales_info
   end
+
+  def self.find(id)
+    self.all.each do |instance|
+      if instance.id == id
+        return instance
+      end
+    end
+  end
 end
