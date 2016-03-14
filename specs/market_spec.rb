@@ -22,4 +22,8 @@ describe FarMar::Market do
   it "is the right market corresponding with passed id?" do
     FarMar::Market.find(23).name.must_equal "Farmers Market on the Westford Common"
   end
+
+  it "should do the thing" do 
+    FarMar::Market.markets(200).length.must_equal 5
+  end
 end

@@ -1,5 +1,5 @@
 class FarMar::Vendor
-  attr_accessor :name, :ven_id
+  attr_accessor :name, :ven_id, :mar_id
   FILE = './support/vendors.csv'
 
   def initialize(id, name, num_of_employees, mar_id)
@@ -9,6 +9,7 @@ class FarMar::Vendor
     @mar_id = mar_id
   end
 
+  # return instances from csv information
   def self.all
     vendors = []
     CSV.foreach(FILE) do |line|
@@ -21,6 +22,7 @@ class FarMar::Vendor
     return vendors
   end
 
+  # return one vendor with a specific id
   def self.find(id)
     vendors = self.all 
     vendors.each do |vendor|
@@ -29,4 +31,17 @@ class FarMar::Vendor
       end
     end
   end  
+
+  # return array of vendors in a specific market
+  def self.find_market(mar_id)
+    vendors = self.all 
+    in_market = []
+    vendors.each do |vendor|
+      if vendor.mar_id == mar_id
+        in_market << vendor
+      end
+    end
+    return in_market
+  end
+
 end
