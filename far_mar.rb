@@ -6,7 +6,7 @@ module FarMar
 
 end
 
-require_relative './lib/markets'
-require_relative './lib/products'
-require_relative './lib/sales'
-require_relative './lib/vendors'
+require_relative './lib/market'
+require_relative './lib/product'
+require_relative './lib/sale'
+require_relative './lib/vendor'
