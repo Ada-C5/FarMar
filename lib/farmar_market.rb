@@ -22,7 +22,6 @@ class FarMar::Market
 	end
 
 	def self.all(path_to_csv)
-    id = nil
 
     market_list = []
     
