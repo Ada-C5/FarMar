@@ -4,6 +4,7 @@ require 'csv'
 
 class FarMar::Market
 
+  attr_reader :id, :name, :address, :city, :county, :state, :zip
   def initialize(market_info)
     @id       = market_info [ :id ]         # (Fixnum) a unique identifier for that market
     @name     = market_info [ :name]        # (String) the name of the market (not guaranteed unique)
@@ -24,5 +25,15 @@ class FarMar::Market
     end
     return markets_info
   end
-  
+
+  def self.find(id)
+    markets_all = FarMar::Market.all
+
+    markets_all.each do |market|
+      if id.to_i == market.id.to_i
+        return market
+      end
+    end
+  end
+
 end
