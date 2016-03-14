@@ -1,5 +1,7 @@
 class FarMar::Market
 
+	attr_reader :id, :name
+
 	def initialize(market_hash)
 	# ID - (Fixnum) a unique identifier for that market
 	# Name - (String) the name of the market (not guaranteed unique)
@@ -27,7 +29,8 @@ class FarMar::Market
     # this iterates through the CSV and assigns values to variables to be used in the account initialization.
     CSV.foreach(path_to_csv) do |row|
         id = row[0]
-        market_hash = {id: id}
+        name = row[1]
+        market_hash = {id: id, name: name}
         market_list << self.new(market_hash)
     end
     market_list
