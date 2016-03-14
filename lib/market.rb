@@ -41,9 +41,7 @@ class FarMar::Market
     end
   end
 
-  # pass in id from the market class, match to market_id in Vendor class
-  # return instances of vendors that match the id
-  def self.vendors(id)
+  def vendors(id)
     vendors = FarMar::Vendor.all
     vendors.select { |vendor| vendor.market_id == id }
   end
