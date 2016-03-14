@@ -25,20 +25,6 @@ class FarMar::Market
     return all_market_info
   end
 
-
-# self.find(id): returns an instance of the object where the value of the id field in the CSV matches
-# the passed parameter.
-  # def self.find(id)
-  #   all_markets = self.all
-  #   market_to_find = nil
-  #   all_markets.each do |market|
-  #     if market.market_id == id
-  #       market_to_find = market
-  #     end
-  #   end
-  #   return market_to_find
-  # end
-
   def self.find(id)
     all_markets = self.all
     all_markets.each do |market|
@@ -47,17 +33,4 @@ class FarMar::Market
       end
     end
   end
-
-  # def self.find(owner_id)
-  #     all_owners = self.all
-  #     owner_to_find = nil
-  #     all_owners.each do |owner|
-  #       if owner.owner_id == owner_id
-  #         owner_to_find = owner
-  #       end
-  #     end
-  #     return owner_to_find
-  #   end
-
-
 end

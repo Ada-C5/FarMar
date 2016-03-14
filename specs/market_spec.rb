@@ -1,7 +1,5 @@
 require_relative './spec_helper'
 require_relative '../far_mar'
-# market_data = CSV.read(../support/market.csv)
-
 
 
 describe FarMar::Market do
