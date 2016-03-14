@@ -11,6 +11,14 @@ module FarMar
 
     end
 
+    def markets(market_data_file = './support/markets.csv')
+      all_markets = Market.all(market_data_file)
+      matched_markets = all_markets.find_all do |market|
+        market.id == market_id
+      end
+      return matched_markets
+    end
+
     def self.find(data_file = './support/vendors.csv', id) # returns an instance of Sale where the value of the id field in the CSV matches the passed parameter. Will this be different?  There can be multiple with same ID potentially?
       vendors = self.all(data_file)
       vendors.each do |vendor|
