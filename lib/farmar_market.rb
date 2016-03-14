@@ -21,7 +21,6 @@ module FarMar
       end
     end
 
-
     def self.all(data_file = './support/markets.csv') #returns a collection of FarMar::"DataClass" instances, representing all of the Markets described in the CSV.
 
       data_class_instances = [] #start as an empty array. We will fill with instances from our data file.
