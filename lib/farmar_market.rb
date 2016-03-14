@@ -33,4 +33,16 @@ class FarMar::Market
       end
     end
   end
+
+  def vendors
+    market_vendors = []
+    CSV.open("./support/vendors.csv", 'r') do |csv|
+      csv.read.each do |row|
+        if row[3].to_i == @market_id
+          market_vendors << FarMar::Vendor.new(vendor_id: row[0].to_i, vendor_name: row[1].to_s, num_of_employees: row[2].to_i, market_id: row[3].to_i)
+        end
+      end
+      return market_vendors
+    end
+  end
 end
