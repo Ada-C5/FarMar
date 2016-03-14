@@ -29,8 +29,21 @@ class FarMar::Vendor
   def self.find(id)
     self.all.each do |instance|
       if instance.id == id.to_i
+        # @mar_id = instance.market_id
         return instance
       end
     end
+  end
+
+  def market
+    mar = FarMar::Market.all
+    matched_info = []
+    mar.each do |market|
+      if market.id == @market_id
+        return market
+        matched_info << market
+      end
+    end
+    return matched_info
   end
 end

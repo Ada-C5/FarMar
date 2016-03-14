@@ -40,6 +40,9 @@ class FarMar::Market
     end
   end
 
+  def vendors
+    FarMar::Vendor.all.find_all {|instance| instance.market_id == id}
+  end
 
 
 end

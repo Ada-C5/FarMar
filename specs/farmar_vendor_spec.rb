@@ -19,5 +19,10 @@ describe FarMar::Vendor do
     FarMar::Vendor.find(1).id.must_equal(1)
   end
 
+  # check the vendor method
+  it "should return the markets associated with the vendor 1" do
+    vendors = FarMar::Vendor.find(1)
+    vendors.market.must_equal(3)
+  end
 
 end
