@@ -1,3 +1,3 @@
-class FarMar::Vendors
+class FarMar::Vendor
 
 end

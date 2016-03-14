@@ -1,3 +1,3 @@
-class FarMar::Products
+class FarMar::Product
 
 end
