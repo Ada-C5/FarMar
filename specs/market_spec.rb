@@ -27,4 +27,11 @@ describe FarMar::Market do
 		FarMar::Market.find(12).name.must_equal("Coxsackie Farmers' Market")
 	end
 
+	it "has a vendors method" do
+		market = FarMar::Market.new(id: 8)
+
+		market.must_respond_to(:vendors)
+
+	end
+
 end
