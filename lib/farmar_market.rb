@@ -41,4 +41,11 @@ class FarMar::Market
     end
     market_list
 	end
+
+	def self.find
+		return "a value"
+	end
+
+
+
 end
