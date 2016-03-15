@@ -34,4 +34,14 @@ describe FarMar::Product do
     end
   end
 
+  describe "Product#sales" do
+    it "returns all instances of Sale that match the Product's id" do
+      # uncomment the following line to see the sales array
+      # ap product.sales
+      product.sales.must_be_instance_of Array
+      product.sales.length.must_equal 7
+      product.sales[0].product_id.must_equal "14"
+    end
+  end
+
 end
