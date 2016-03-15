@@ -22,7 +22,6 @@ describe FarMar::Product do
 	end
 
 	it "returns nil when no product exists for specified id" do
-		skip
 		FarMar::Product.find(90180).must_be_nil
 	end
 
