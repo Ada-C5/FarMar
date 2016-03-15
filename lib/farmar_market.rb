@@ -25,7 +25,7 @@ class FarMar::Market
   def self.all(path_to_csv)
 
     market_list = []
-    
+
     # this iterates through the CSV and assigns values to variables to be used in the market initialization.
     CSV.foreach(path_to_csv) do |row|
       id = row[0]
@@ -40,7 +40,7 @@ class FarMar::Market
       market_list << self.new(market_hash)
     end
     market_list
-	end
+  end
 
 
   def self.find(id)
