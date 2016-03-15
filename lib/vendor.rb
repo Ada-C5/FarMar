@@ -1,5 +1,5 @@
 class FarMar::Vendor
-  attr_reader :id, :name
+  attr_reader :id, :name, :market_id
 
   extend FarMar::FarMarMethods
   
@@ -16,4 +16,18 @@ class FarMar::Vendor
     make_all(file_name, vendor_keys)
   end
 
+  def market
+    FarMar::Market.find(market_id)
+  end
+
+  def products
+    product_list = []
+
+    products = FarMar::Product.all
+    products.each do |product|
+      product_list << product if id == product.vendor_id
+    end
+
+    return product_list
+  end
 end

@@ -1,5 +1,5 @@
 class FarMar::Product
-  attr_reader :id, :name
+  attr_reader :id, :name, :vendor_id
 
   extend FarMar::FarMarMethods
 
