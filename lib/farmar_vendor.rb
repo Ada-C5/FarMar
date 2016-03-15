@@ -10,6 +10,7 @@ class FarMar::Vendor
   end
 
   def self.all
+
     all_vendors = CSV.read("./support/vendors.csv", "r")
 
     all_vendors.collect do |individual_array|
@@ -35,27 +36,42 @@ class FarMar::Vendor
   def self.market(market_id)
     FarMar::Market.find(market_id)
   end
+
   #products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
+  def self.products(vendor_id)
+    products_array = []
+    all_products = CSV.read("./support/products.csv", "r")
+
+    all_products.map do |individual_array|
+      if individual_array[2].to_f == vendor_id.to_f
+      self.new(individual_array[0], individual_array[1], individual_array[2], individual_array[3])
+      end                                  #methods are returning arrays, not instances
+    end
+  end
+
 
   #sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
 
   #revenue: returns the the sum of all of the vendor's sales (in cents)
+
   # self.by_market(market_id): returns all of the vendors with the given market_id
 
 
 
 
   private
+  # Used by the Market.vendors method
   def self.market_vendors(market_id)
     market_vendors_array = []
     all_vendors = CSV.read("./support/vendors.csv", "r")
 
-    all_vendors.map do |individual_array|
+    all_vendors.collect do |individual_array|
       if individual_array[3].to_f == market_id.to_f
-      market_vendors_array << individual_array
+        vendor_object = self.new(individual_array[0], individual_array[1], individual_array[2], individual_array[3])
+        market_vendors_array << vendor_object
       end
     end
-    return market_vendors_array
+    market_vendors_array.compact
   end
 
 
