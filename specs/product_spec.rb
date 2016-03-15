@@ -1,10 +1,8 @@
 require_relative './spec_helper'
 
-describe FarMar::Product do 
+describe FarMar::Product do
 
-	it "exists" do
-		FarMar::Product.wont_be_nil
-	end
+	let(:product_one) {FarMar::Product.new({id: "1", name: "Dry Beets", vendor_id: "1"})}
 
 	it "has an 'all' method that returns an array of products" do
 		products = FarMar::Product.all('./support/products.csv')
@@ -19,12 +17,17 @@ describe FarMar::Product do
 		products[product_to_test].name.wont_be_empty
 	end
 
-	it "has a find method" do
-		FarMar::Product.find('./support/products.csv').wont_be_nil
-	end
-
 	it "returns the correct product when self#find is called" do
 		FarMar::Product.find(5).name.must_equal("Green Apples")
+	end
+
+	it "returns nil when no product exists for specified id" do
+		skip
+		FarMar::Product.find(90180).must_be_nil
+	end
+
+	it "returns the correct vendor when the instance asks who sells it" do
+		product_one.vendor.name.must_equal("Feil-Farrell")
 	end
 
 end
