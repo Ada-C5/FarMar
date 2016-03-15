@@ -1,4 +1,3 @@
-require 'csv'
 
 class FarMar::Vendor
   attr_reader :id, :name, :num_employees, :market_id
@@ -33,6 +32,18 @@ class FarMar::Vendor
 
   def products(id)
     FarMar::Product.all.select { |product| product.vendor_id == id }
+  end
+
+  def sales(id)
+    FarMar::Sale.all.select { |sale| sale.vendor_id == id }
+  end
+
+  def revenue(id)
+    all_sales = []
+    sales(id).each do |sale|
+      all_sales << sale.amount
+    end
+    all_sales.reduce(0, :+)
   end
 
 end

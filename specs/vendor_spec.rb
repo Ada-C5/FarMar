@@ -36,4 +36,18 @@ describe FarMar::Vendor do
     end
   end
 
+  describe "FarMar::Vendor#sales" do
+    vendor3 = FarMar::Vendor.new(id: 14)
+    it "should return 3 sales for vendor_id 14" do
+      vendor3.sales(14).length.must_equal 3
+    end
+  end
+
+  describe "FarMar::Vendor#revenue" do
+    vendor4 = FarMar::Vendor.new(id: 15)
+    it "should return total reveue for sales per vendor id" do
+      vendor4.revenue(15).must_equal 43414
+    end
+  end
+
 end
