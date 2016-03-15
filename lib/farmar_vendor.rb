@@ -47,4 +47,18 @@ class FarMar::Vendor
     # the FarMar::Product vendor_id field.
     FarMar::Product.all.find_all {|product| product.vendor_id == id}
   end
+
+  def sales
+    # returns a collection of FarMar::Sale instances that are associated by the
+    # vendor_id field.
+    FarMar::Sale.all.find_all {|sale| sale.vendor_id == id}
+  end
+
+  def revenue
+    #returns the sum of all of the vendor's sales (in cents)
+    all_sale_amounts = sales.collect do |sale|
+      sale.amount
+    end
+    all_sale_amounts.reduce {|sum, n| sum + n }
+  end
 end

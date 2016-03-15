@@ -39,3 +39,15 @@ describe "FarMar::Vendor#products" do
     FarMar::Vendor.find(20).products[0].must_be_instance_of FarMar::Product
   end
 end
+
+describe "FarMar::Vendor#sales" do
+  it "should return an array of instances of FarMar::Sale" do
+    FarMar::Vendor.find(20).sales[0].must_be_instance_of FarMar::Sale
+  end
+end
+
+describe "FarMar::Vendor#revenue" do
+  it "should return the revenue as a fixnum" do
+    FarMar::Vendor.find(13).revenue.is_a? Fixnum
+  end
+end
