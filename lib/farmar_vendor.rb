@@ -49,7 +49,7 @@ class FarMar::Vendor
   # products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
   def products
     products_to_search = FarMar::Product.all("./support/products.csv")
-    products_belonging_to_vendor = products_to_search.select {|product| product.vendor_id == self.id}
+    products_to_search.select {|product| product.vendor_id == self.id}
   end
 
   # sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
