@@ -40,7 +40,7 @@ class FarMar::Vendor
     end
   end
 
-# market: returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id field
+  # market: returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id field
   def market
     FarMar::Market.find(self.market_id)
   end
