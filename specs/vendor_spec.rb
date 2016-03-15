@@ -2,6 +2,9 @@ require_relative './spec_helper'
 
 describe FarMar::Vendor do 
 
+	let(:vendor_test_one) { vendor_test_one = FarMar::Vendor.new({id: "1", name: "Feil-Farrell", num_of_employees: "8", market_id: "1"})
+ }
+
 	it "exists" do
 		FarMar::Vendor.wont_be_nil
 	end
@@ -24,8 +27,7 @@ describe FarMar::Vendor do
 	end
 
 	it "has a market method that will return the market this vendor is associated with" do 
-		vendor_to_test = FarMar::Vendor.new({id: "1", name: "Feil-Farrell", num_of_employees: "8", market_id: "1"})
-		market = vendor_to_test.market
+		market = vendor_test_one.market
 
 		market.name.must_equal("People's Co-op Farmers Market")
 		market.id.must_equal("1")
@@ -40,8 +42,7 @@ describe FarMar::Vendor do
 	end
 
 	it "returns a collection of FarMar::Product instances associated by FarMar::Product vendor_id field" do
-		vendor_to_test = FarMar::Vendor.new({id: "1", name: "Feil-Farrell", num_of_employees: "8", market_id: "1"})
-		vendors_product = vendor_to_test.products
+		vendors_product = vendor_test_one.products
 
 		vendors_product[0].name.must_equal("Dry Beets")
 	end
@@ -51,6 +52,11 @@ describe FarMar::Vendor do
 		vendors_product = vendor_to_test.products
 
 		vendors_product.must_be_empty
+		vendors_product.must_be_instance_of(Array)
+	end
+
+	it "has a #sales method" do
+
 	end
 
 
