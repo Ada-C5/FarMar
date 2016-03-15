@@ -30,14 +30,21 @@ describe FarMar::Product do
     end
   end
 
-  describe "FarMar::Product#sales" do
+  describe "FarMar::Product sales methods" do
     let(:sales) { product_ten.sales }
+    let(:sales_of_id_ten) { product_ten.number_of_sales }
+    let(:sales_of_id_four) { FarMar::Product.find(4).number_of_sales }
 
-    it "should return an Array of sales associated with the product id" do
+    it "should return an Array of sales associated with the product id when #sales is called" do
       sales.must_be_instance_of Array
       sales.length.must_equal 1
       sales.first.id.must_equal 27
       sales.first.amount.must_equal 2851
+    end
+
+    it "should return the number of times a product has been sold when #number_of_sales is called" do
+      sales_of_id_ten.must_equal 1
+      sales_of_id_four.must_equal 8
     end
   end
 end

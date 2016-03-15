@@ -28,4 +28,8 @@ class FarMar::Product
   def sales
     FarMar::Sale.by_product(id)
   end
+
+  def number_of_sales
+    sales.length
+  end
 end
