@@ -21,4 +21,12 @@ describe FarMar::Product do
   it "should return instance of vendor associated with product" do 
     FarMar::Product.all[35].vendor(1).must_be_instance_of FarMar::Vendor
   end
+
+  # test sales method
+  it "should return a collection of sale instances for a product id" do 
+    FarMar::Product.all[1].sales(132).class.must_equal Array
+    FarMar::Product.all[5].sales(1).length.must_equal 7
+    FarMar::Product.all[66].sales(5).length.must_equal 2
+    FarMar::Product.all[1].sales(132)[0].must_be_instance_of FarMar::Sale
+  end
 end
