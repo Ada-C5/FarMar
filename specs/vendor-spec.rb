@@ -21,13 +21,14 @@ end
 
 describe "Vendor#find(id)" do
   it "Does it exist?" do
-    FarMar::Vendor.find(1).wont_be_nil
+    new_vendor = FarMar::Vendor.new(vendor_id: 5)
+    FarMar::Vendor.find(5).wont_be_nil
   end
 end
 
-describe "Vendor#find(id)" do
-  it "Does it return the found vendor?" do
-    FarMar::Vendor.find(20).length.must_equal(1)
+describe "Vendor#by_market" do
+  it "Does this return a collection of vendors?" do
+    FarMar::Vendor.by_market(1).length.must_equal(6)
   end
 end
 
@@ -38,16 +39,37 @@ describe "#market" do
   end
 end
 
-# describe "#products" do
-#   it "Does it return a collection of products?" do
-#     new_market = FarMar::Market.new(market_id: 5)
-#     new_market.products.length.must_equal(2)
-#   end
-# end
-# 
-# describe "#products" do
-#   it "Are the items in the collection instances of FarMar::Vendor?" do
-#     new_market = FarMar::Market.new(market_id: 5)
-#     new_market.products[0].must_be_instance_of FarMar::Vendor
-#   end
-# end
+describe "#products" do
+  it "Does it return a collection of products?" do
+    new_vendor = FarMar::Vendor.new(vendor_id: 5)
+    new_vendor.products(5).must_be_instance_of Array
+  end
+end
+
+describe "#products" do
+  it "Are the items in the collection instances of FarMar::Product?" do
+    new_vendor = FarMar::Vendor.new(vendor_id: 1)
+    new_vendor.products(1)[0].must_be_instance_of FarMar::Product
+  end
+end
+
+describe "#sales" do
+  it "Does it return a collection of sales?" do
+    new_vendor = FarMar::Vendor.new(vendor_id: 1)
+    new_vendor.sales(1).length.must_equal(7)
+  end
+end
+
+describe "#sales" do
+  it "Are the items in the collection instances of FarMar::Sale?" do
+    new_vendor = FarMar::Vendor.new(vendor_id: 1)
+    new_vendor.sales(1)[0].must_be_instance_of FarMar::Sale
+  end
+end
+
+describe "#revenue" do
+  it "Does this return the total revenue of a given vendor (in cents)?" do
+    new_vendor = FarMar::Vendor.new(vendor_id: 1)
+    new_vendor.revenue.must_equal(38259)
+  end
+end
