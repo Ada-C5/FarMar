@@ -46,8 +46,21 @@ describe FarMar::Market do
 
 	describe "self.vendors" do
 		it "exists" do
-			FarMar::Market.vendors.wont_be_nil
+			FarMar::Market.vendors(1).wont_be_nil
 		end
+
+		it "returns an array" do
+			FarMar::Market.vendors(1).must_be_instance_of Array
+		end
+
+		it "returns an array containing FarMar::Vendor instance(s)" do
+			FarMar::Market.vendors(1)[0].must_be_instance_of FarMar::Vendor
+		end
+
+		it "returns the correct instances of FarMar::Vendor" do
+			###
+		end
+		
 	end
 
 end

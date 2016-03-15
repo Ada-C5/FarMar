@@ -1,5 +1,5 @@
 #get rid of ln2 after done with IRB testing
-require_relative '../far_mar.rb'
+# require_relative '../far_mar.rb'
 
 class FarMar::Product
   attr_reader :id, :name, :vendor_id
@@ -11,7 +11,7 @@ def initialize(product_hash)
 end
 
   def self.all
-    all_products = CSVHasher.hashify('../support/products.csv')
+    all_products = CSVHasher.hashify('./support/products.csv')
       all_products.collect do |n|
         FarMar::Product.new(n)
       end
