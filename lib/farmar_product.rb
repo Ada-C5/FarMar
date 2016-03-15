@@ -1,26 +1,29 @@
 class FarMar::Product
   attr_reader :name, :vendor_id, :product_id
-  def initialize(product_hash) #for all, csv length -1?
-    @vendor_id = product_hash[:vid],
-    @name = product_hash[:name],
-    @product_id = product_hash[:pid]
+  def initialize(line) #for all, csv length -1?
+    @product_id = line[0].to_i
+    @name = line[1].to_s
+    @vendor_id = line[2].to_i
   end
 
-  def read_csv
-    CSV.open('../support/products.csv')
+  def self.pull_from_csv
+    CSV.read('./support/products.csv')
   end
 
   def self.all
-    product_instances = []
+    product_instances = {}
     self.pull_from_csv.each do |product|
-      product_info = {
-        pid: product[0],
-        name: product[1],
-        vid: product[2]
-      }
-      new_product = FarMar::Product.new(product_info)
-      product_instances << new_product
+      product_instances[product[0]] = FarMar::Product(product)
     end
       product_instances
+  end
+
+  def self.find(id) #find by product id
+    self.pull_from_csv.each do |product_instance|
+      if product_instance[0].to_i == id.to_i
+        return FarMar::Product.new(product_instance)
+      end
+    end
+    return "no instance found"
   end
 end

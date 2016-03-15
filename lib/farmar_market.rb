@@ -1,43 +1,33 @@
-
 class FarMar::Market
-  attr_reader :market_id, :name, :address, :city, :county, :state, :zip
-  def initialize(market_hash) #for all, csv length -1?
-    @market_id = market_hash[:id]
-    @name = market_hash[:name]
-    @address = market_hash[:address]
-    @city = market_hash[:city]
-    @county = market_hash[:county]
-    @state = market_hash[:state]
-    @zip = market_hash[:zip]
+  attr_reader :name, :address, :county, :state, :zip, :market_id, :city
+  def initialize(line) #for all, csv length -1?
+    @market_id = line[0].to_i
+    @name = line[1].to_s
+    @address = line[2].to_s
+    @city = line[3].to_s
+    @county = line[4].to_s
+    @state = line[5].to_s
+    @zip = line[6].to_i
   end
 
-  def read_csv
-    CSV.open('../support/markets.csv')
+  def self.pull_from_csv
+    CSV.read('./support/markets.csv')
   end
 
   def self.all
-    market_instances = []
+    market_instances = {}
     self.pull_from_csv.each do |market|
-      market_info = {
-        id: market[0],
-        name: market[1],
-        address: market[2],
-        city: market[3],
-        county: market[4],
-        state: market[5],
-        zip: market[6]
-      }
-      new_market = FarMar::Market.new(market_info)
-      market_instances << new_market
+      market_instances[market[0]] = FarMar::Market.new(market)
     end
       market_instances
   end
-end
 
-# ID - (Fixnum) a unique identifier for that market
-# Name - (String) the name of the market (not guaranteed unique)
-# Address - (String) street address of the market
-# City - (String) city in which the market is located
-# County - (String) county in which the market is located
-# State - (String) state in which the market is located
-# Zip - (String) zipcode in which the market is located
+  def self.find(id) #search by market id
+    self.pull_from_csv.each do |market_instance|
+      if market_instance[0].to_i == id.to_i
+        return FarMar::Market.new(market_instance)
+      end
+    end
+    return "No instance found"
+  end
+end
