@@ -41,6 +41,13 @@ describe FarMar::Vendor do
 		market.id.must_equal("1")
 	end
 
+	it "has a market method that will return nil if no market is found" do
+		vendor_to_test = FarMar::Vendor.new({id: "90180", market_id: "10000"})
+		market = vendor_to_test.market
+
+		market.must_be_nil
+	end
+
 
 
 end
