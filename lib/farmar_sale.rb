@@ -2,11 +2,11 @@
 class FarMar::Sale
   attr_reader :id, :amount, :purchase_time, :vendor_id, :product_id
   def initialize(hash)
-    @id = hash[:id]
-    @amount = hash[:amount]
+    @id = hash[:id].to_i
+    @amount = hash[:amount].to_i
     @purchase_time = hash[:purchase_time]
-    @vendor_id = hash[:vendor_id]
-    @product_id = hash[:product_id]
+    @vendor_id = hash[:vendor_id].to_i
+    @product_id = hash[:product_id].to_i
   end
 
   # ID - (Fixnum) uniquely identifies the sale
@@ -20,8 +20,8 @@ class FarMar::Sale
   def self.all
     sales_info = []
     CSV.foreach("support/sales.csv") do |row|
-      info = self.new(id: row[0].to_i, amount: row[1].to_i,
-      purchase_time: row[2], vendor_id: row[3].to_i, product_id: row[4].to_i)
+      info = self.new(id: row[0], amount: row[1], purchase_time: row[2],
+      vendor_id: row[3], product_id: row[4])
       sales_info << info
     end
     return sales_info

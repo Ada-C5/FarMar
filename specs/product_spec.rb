@@ -26,4 +26,10 @@ describe FarMar::Product do
     # <FarMar::Vendor:0xXXXXXX @id=1, @name="Feil-Farrell", @employees=8,
     # @market_id=1>
   end
+
+  # check the sales method
+  it "should return the num of sales associated with the product vendor_id:1" do
+    products = FarMar::Product.find(1)
+    products.sales.length.must_equal(7)
+  end
 end

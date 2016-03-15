@@ -2,9 +2,9 @@
 class FarMar::Product
   attr_reader :id, :name, :vendor_id
   def initialize(hash)
-    @id = hash[:id]
+    @id = hash[:id].to_i
     @name = hash[:name]
-    @vendor_id = hash[:vendor_id]
+    @vendor_id = hash[:vendor_id].to_i
   end
 
   # ID - (Fixnum) uniquely identifies the product
@@ -16,7 +16,7 @@ class FarMar::Product
   def self.all
     products_info = []
     CSV.foreach("support/products.csv") do |row|
-      info = self.new(id: row[0].to_i, name: row[1], vendor_id: row[2].to_i)
+      info = self.new(id: row[0], name: row[1], vendor_id: row[2])
       products_info << info
     end
     return products_info
@@ -34,5 +34,12 @@ class FarMar::Product
     FarMar::Vendor.all.find {|instance| instance.id == vendor_id}
   end
 
+  # returns all of the sales that match the id
+  def sales
+    FarMar::Sale.all.find_all {|instance| instance.product_id == id}
+  end
 
+  def number_of_sales
+    sales.length
+  end
 end

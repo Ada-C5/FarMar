@@ -2,10 +2,10 @@
 class FarMar::Vendor
   attr_reader :id, :name, :employees, :market_id
   def initialize(hash)
-    @id = hash[:id]
+    @id = hash[:id].to_i
     @name = hash[:name]
-    @employees = hash[:employees]
-    @market_id = hash[:market_id]
+    @employees = hash[:employees].to_i
+    @market_id = hash[:market_id].to_i
     # @vendors = CSV.read('../support/vendors.csv')
   end
 
@@ -19,8 +19,8 @@ class FarMar::Vendor
   def self.all
     vendors_info = []
     CSV.foreach("support/vendors.csv") do |row|
-      info = self.new(id: row[0].to_i, name: row[1], employees: row[2].to_i,
-      market_id: row[3].to_i)
+      info = self.new(id: row[0], name: row[1], employees: row[2],
+      market_id: row[3])
       vendors_info << info
     end
     return vendors_info
@@ -28,7 +28,7 @@ class FarMar::Vendor
 
   def self.find(id)
     self.all.each do |instance|
-      if instance.id == id.to_i
+      if instance.id == id
         return instance
       end
     end
