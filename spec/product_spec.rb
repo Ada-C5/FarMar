@@ -8,7 +8,24 @@ describe FarMar::Product do
   it "is an object we have access to" do
     @product.wont_be_nil
   end
+
+  describe " FarMar::Product#vendor" do
+    it "should return the FarMar::Vendor instances that are associated with this vendor" do
+    FarMar::Product.new.vendors.must_be_instance_of Array
+    end
+  end
+
+  
+
+
 end
+
+
+
+
+
+
+
 
 describe FarMar::Product do
   before do

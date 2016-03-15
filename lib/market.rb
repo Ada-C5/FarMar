@@ -31,6 +31,16 @@ class FarMar::Market
       end
   end
 
+  def vendors
+        vendor_list= []
+        CSV.read("./support/vendors.csv").each do |line|
+          if line[3] == @id
+            vendor_list<< FarMar::Vendor.new(line[0],line[1],line[2],line[3])
+          end
+      end
+      return vendor_list #just as a reminder out side of loop
+
+  end
 
 
 
