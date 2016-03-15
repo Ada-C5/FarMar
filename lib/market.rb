@@ -36,4 +36,16 @@ class FarMar::Market
     end
   end
 
+  # return a list of vendor instances (FarMar::Vendor) by matching market_id
+  def vendor
+    vendor_list = []
+
+    vendor_list_all = FarMar::Vendor.all
+
+    vendor_list_all.each do |vendor|
+      vendor_list << vendor if id.to_i == vendor.market_id.to_i
+    end
+    return vendor_list
+  end
+
 end

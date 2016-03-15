@@ -26,3 +26,11 @@
 #     FarMar::Market.find(1).must_be_instance_of FarMar::Market
 #   end
 # end
+#
+# describe "FarMar::Market#vendor" do
+#   it "should return a collection of vendor instances that are associated with market.id = 12" do
+#     # create an instance of market with id = 12
+#     market_12 = FarMar::Market.new(id: 12, name: "Coxsackie Farmers' Market")
+#     market_12.vendor.length > 10
+#   end
+# end

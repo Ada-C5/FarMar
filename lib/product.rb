@@ -1,7 +1,7 @@
 #require_relative '../far_mar'
 
 class FarMar::Product
-  attr_reader :id, :name, :total_employees, :market_id
+  attr_reader :id, :name, :total_employees, :market_id, :vendor_id
 
   def initialize(product_info)
     @id              = product_info [ :id ]              # (Fixnum) uniquely identifies the product
@@ -15,7 +15,7 @@ class FarMar::Product
     products_from_csv = CSV.read("./support/products.csv") # creates an array with each line as element
 
     products_from_csv.each do |line|
-      all_products << self.new(id: line[0].to_i, name: line[1], total_employees: line[2], market_id: line[3])
+      all_products << self.new(id: line[0].to_i, name: line[1], vendor_id: line[2])
     end
     return all_products
   end
