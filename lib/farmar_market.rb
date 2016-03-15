@@ -43,12 +43,15 @@ class FarMar::Market
 
   def self.find(id)
     markets_to_search = FarMar::Market.all("./support/markets.csv")
+    found_market = nil
 
     markets_to_search.each do |market|
       if market.id == id.to_s
-        return market
+        found_market = market
       end
     end
+
+    found_market
   end
 
   def vendors
