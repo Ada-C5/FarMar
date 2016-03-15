@@ -20,6 +20,11 @@ describe FarMar::Market do
     FarMar::Market.all.class.must_equal(Array)
   end
 
+  it "creates instances of market from csv file" do
+    classes = FarMar::Market.all.map { |market| market.class }
+    classes.uniq.must_equal [FarMar::Market]
+  end
+
   it "creates an instance of FarMar::Market" do
     @happy_market.must_be_instance_of(FarMar::Market)
   end
@@ -36,7 +41,7 @@ describe FarMar::Market do
 
   end
 
-  describe "vendors" do
+  describe ".vendors" do
     let(:market_one) {FarMar::Market.find(1)}
 
     it "should return an array of that market's vendors" do
@@ -46,7 +51,7 @@ describe FarMar::Market do
     it "vendors should have same market_id as the market" do
       market_one.market_id.must_equal(market_one.vendors[1].market_id)
     end
-    
+
   end
 
 end

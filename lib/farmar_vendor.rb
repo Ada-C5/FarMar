@@ -9,6 +9,7 @@ class FarMar::Vendor
     @market_id = vendor_info[:market_id].to_i
   end
 
+
   def self.all
     all_vendor_info = []
     CSV.open("./support/vendors.csv", 'r') do |csv|
@@ -34,14 +35,31 @@ class FarMar::Vendor
     FarMar::Market.all.select { |market| market.market_id == market_id }
   end
 
+  #products: returns a collection of FarMar::Product instances that are associated by
+  #the FarMar::Product vendor_id field.
+
+  def products
+    FarMar::Product.all.select { |product| product.vendor_id == vendor_id}
+  end
+
+  #sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
+  def sales
+    FarMar::Sale.all.select { |sale| sale.vendor_id == vendor_id}
+  end
+
+  #revenue: returns the the sum of all of the vendor's sales (in cents)
+  def revenue
+    all_money = sales.collect { |sale| sale.amount}
+    all_money.reduce(0, :+)
+  end
+
+  #self.by_market(market_id): returns all of the vendors with the given market_id
+  def self.by_market(market_id)
+    FarMar::Vendor.all.select { |vendor| vendor.market_id == market_id}
+  end
+
 
 end
-
-
-#products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
-#sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
-#revenue: returns the the sum of all of the vendor's sales (in cents)
-#self.by_market(market_id): returns all of the vendors with the given market_id
 
 
 

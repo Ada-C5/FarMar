@@ -34,16 +34,59 @@ describe FarMar::Vendor do
 
   end
 
-  describe "market" do
+  describe ".market" do
     let(:vendor_five) { FarMar::Vendor.find(5)}
 
     it "should return the market where the vendor sells" do
       vendor_five.market[0].market_id.must_equal(1)
     end
 
-    # it "vendors should have same market_id as the market" do
-      # market_one.market_id.must_equal(market_one.vendors[1].market_id)
-    # end
+  end
+
+  describe '.products' do
+    let(:adam) {FarMar::Vendor.find(8)}
+    let(:adams_products) {adam.products}
+
+    it "should return array of products that the vendor sells" do
+      adams_products.must_be_instance_of Array
+    end
+
+    it "should return array of instances of FarMar::Product" do
+      classes = adams_products.map { |product| product.class}
+      classes.uniq.must_equal [FarMar::Product]
+    end
+  end
+
+  describe '.sales' do
+    let(:johnny_sales) {FarMar::Vendor.find(6).sales}
+
+    it "should return array of sales instances belonging to vendor" do
+      classes = johnny_sales.map { |sale| sale.class}
+      classes.uniq.must_equal [FarMar::Sale]
+    end
+
+  end
+
+  describe '.revenue' do
+    let(:mark) {FarMar::Vendor.find(10)}
+
+    it "should return sum of all vendor's sales" do
+      mark.revenue.class.must_equal Fixnum
+    end
+
+  end
+
+  describe 'self.by_market' do
+    let(:market_one_vendors) {FarMar::Vendor.by_market(2)}
+
+    it "should array of vendors with the given market_id" do
+      market_one_vendors.class.must_equal Array
+    end
+
+    it "should return array of vendor instances" do
+      classes = market_one_vendors.map { |vendor| vendor.class}
+      classes.uniq.must_equal [FarMar::Vendor]
+    end
 
   end
 
