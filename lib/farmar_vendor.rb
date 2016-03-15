@@ -21,16 +21,15 @@ module FarMar
     end
 
     def sales
-      super('./support/sales.csv', FarMar::Sale)
+      super('./support/sales.csv', FarMar::Sale, id, "vendor_id")
     end
 
     def products
-      super('./support/products.csv', FarMar::Product)
+      super('./support/products.csv', FarMar::Product, id, "vendor_id")
     end
 
-
-    def markets(market_data_file = './support/markets.csv')
-      super('./support/markets.csv', FarMar::Market)
+    def markets
+      super('./support/markets.csv', FarMar::Market, market_id, "id")
     end
 
     def self.by_market(data_file = './support/vendors.csv', given_market_id)

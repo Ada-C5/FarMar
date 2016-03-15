@@ -15,7 +15,7 @@ module FarMar
     end
 
     def vendors
-      super('./support/vendors.csv', FarMar::Vendor)
+      super('./support/vendors.csv', FarMar::Vendor, id, "market_id")
     end
 
     def self.find(data_file = './support/markets.csv', id) # returns an instance of Market where the value of the id field in the CSV matches the passed parameter. Will this be different?  There can be multiple with same ID potentially?
