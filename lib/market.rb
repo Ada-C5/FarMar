@@ -19,7 +19,16 @@ class FarMar::Market
     make_all(file_name, market_keys)
   end
 
-  def vendor
+  def vendors
     FarMar::Vendor.by_market(id)
+  end
+
+  def products
+    products = []
+    vendors.collect do |vendor|
+      products.push *FarMar::Product.by_vendor(vendor.id)
+    end
+
+    return products
   end
 end

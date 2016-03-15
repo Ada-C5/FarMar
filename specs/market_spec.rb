@@ -25,13 +25,23 @@ describe FarMar::Market do
   end
 
   describe "FarMar::Market#vendor" do
-    let(:vendor_list) {market_found.vendor }
+    let(:vendor_list) {market_found.vendors }
 
     it "should return an Array of vendors that are associated with the given market" do
       vendor_list.must_be_instance_of Array
       vendor_list[0].id.must_equal 2662
       vendor_list.last.id.must_equal 2666
       vendor_list.length.must_equal 5
+    end
+  end
+
+  describe "FarMar::Market#products" do
+    let(:product_list) { market_found.products }
+
+    it "should return an Array of FarMar::Product instances" do
+      product_list.must_be_instance_of Array
+      product_list.first.must_be_instance_of FarMar::Product
+      product_list[0].id.must_equal 8103
     end
   end
 end
