@@ -33,7 +33,12 @@ describe FarMar::Sale do
     it "returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id field" do
     sale_by_vendor_id_test.vendor.must_be_instance_of(FarMar::Vendor)
     end
+  end
 
+  describe "#product" do
+    it "#returns the FarMar::Product instance that is associated with this sale using the FarMar::Sale product_id field" do
+      sale_by_product_id_test.product.must_be_instance_of(FarMar::Product)
+    end
   end
 
 end

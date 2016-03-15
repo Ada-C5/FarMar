@@ -8,6 +8,10 @@ module FarMar
 
     end
 
+    def product
+      super('./support/products.csv', FarMar::Product, product_id, "id")
+    end
+
     def vendor
       super('./support/vendors.csv', FarMar::Vendor, vendor_id, "id")
     end

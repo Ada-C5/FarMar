@@ -14,6 +14,11 @@ module FarMar
       match_to_instance_by(data_file, data_class, id_to_match, method_name)
     end
 
+    def product(data_file, data_class, id_to_match, method_name)
+    # returns an instance
+      match_to_instance_by(data_file, data_class, id_to_match, method_name)
+    end
+
     def products(data_file, data_class, id_to_match, method_name)
       match_to_collection_by(data_file, data_class, id_to_match, method_name)
     end
