@@ -21,11 +21,12 @@ class FarMar::Market
 
 	end
 
-	def self.all(path_to_csv)
+	
+  def self.all(path_to_csv)
 
     market_list = []
     
-    # this iterates through the CSV and assigns values to variables to be used in the account initialization.
+    # this iterates through the CSV and assigns values to variables to be used in the market initialization.
     CSV.foreach(path_to_csv) do |row|
       id = row[0]
       name = row[1]
@@ -40,6 +41,7 @@ class FarMar::Market
     end
     market_list
 	end
+
 
   def self.find(id)
     markets_to_search = FarMar::Market.all("./support/markets.csv")
@@ -58,12 +60,10 @@ class FarMar::Market
     # returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field.
     vendors = FarMar::Vendor.all('./support/vendors.csv')
     market_to_match = self
+
     vendors_at_market = vendors.select { |vendor| vendor.market_id == market_to_match.id }
 
-#     vendors.each do |vendor|
-#       if vendor.market_id == "5" # writing jerk code until I can get my test case to pass
-#         vendors_at_market << vendor
-#       end
-      vendors_at_market
+    # making sure the last thing I return is vendors_at_market in case this code changes again.
+    vendors_at_market
   end
 end
