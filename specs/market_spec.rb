@@ -43,7 +43,14 @@ describe FarMar::Market do
 
 		market_vendors[0].name.must_include("Langosh, Krajcik and Langosh")
 		market_vendors[1].name.must_include("Von-Hamill")
-
 	end
+
+	it "returns an empty array if it doesn't find any vendors for the market" do
+		market_to_test = FarMar::Market.new({id: 8000})
+		market_vendors = market_to_test.vendors
+
+		market_vendors.must_be_empty
+	end
+
 
 end
