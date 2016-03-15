@@ -33,4 +33,16 @@ describe FarMar::Product do
     end
   end
 
+  describe "#sales" do
+    it "will return a collection of FarMar::Sale instances that are associated by the product_id field." do
+      sales_collection = product_by_product_id_test.sales
+      sales_collection.must_be_kind_of(Array)
+
+      # any item in the Array will be an instance of FarMar::Sale
+      number_of_sales = sales_collection.length
+      random_sale = (0...number_of_sales).to_a.sample
+      sales_collection[random_sale].must_be_instance_of(FarMar::Sale)
+    end
+  end
+
 end

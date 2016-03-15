@@ -5,28 +5,28 @@ module FarMar
     end
 
     def market(data_file, data_class, id_to_match, method_name)
-    # returns an instance - thing in position one
-      match_by(data_file, data_class, id_to_match, method_name)[0]
+    # returns an instance
+      match_to_instance_by(data_file, data_class, id_to_match, method_name)
     end
 
     def vendor(data_file, data_class, id_to_match, method_name)
-    # returns an instance - thing in position one
-      match_by(data_file, data_class, id_to_match, method_name)[0]
+    # returns an instance
+      match_to_instance_by(data_file, data_class, id_to_match, method_name)
     end
 
     def products(data_file, data_class, id_to_match, method_name)
-      match_by(data_file, data_class, id_to_match, method_name)
+      match_to_collection_by(data_file, data_class, id_to_match, method_name)
     end
 
     def sales(data_file, data_class, id_to_match, method_name)
-      match_by(data_file, data_class, id_to_match, method_name)
+      match_to_collection_by(data_file, data_class, id_to_match, method_name)
     end
 
     def vendors(data_file, data_class, id_to_match, method_name)
-      match_by(data_file, data_class, id_to_match, method_name)
+      match_to_collection_by(data_file, data_class, id_to_match, method_name)
     end
 
-    def match_by(data_file, data_class, id_to_match, method_name)
+    def match_to_collection_by(data_file, data_class, id_to_match, method_name)
     # returns an instance where the value of the id field for the instance of data_class (Market, Product, Sale, or Vendor) matches the passed id_to_match parameter.  The method_name returns the ID are trying to match, because it can be market_id, vendor_id, product_id, etc.
 
       all = data_class.all(data_file)
@@ -35,6 +35,16 @@ module FarMar
       end
 
       return matched
+    end
+
+    def match_to_instance_by(data_file, data_class, id_to_match, method_name)
+    # returns an instance where the value of the id field for the instance of data_class (Market, Product, Sale, or Vendor) matches the passed id_to_match parameter.  The method_name returns the ID are trying to match, because it can be market_id, vendor_id, product_id, etc.
+
+      all = data_class.all(data_file)
+      all.find do |instance|
+        id_to_match == instance.send(method_name) # need to do this with send(string) and not just .method_name because otherwise it thinks there is a method called .method name :(
+        return instance
+      end
     end
 
     def self.find(data_file, id_to_match)
