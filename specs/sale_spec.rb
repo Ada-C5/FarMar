@@ -21,4 +21,11 @@ describe FarMar::Sale do
     end
 
   end
+
+  describe "FarMar::Sale#vendor(vendor_id)" do
+    sale1 = FarMar::Sale.new(id: 1)
+    it "should return 'Kertzmann LLC' vendor name for vendor_id" do
+      sale1.vendor(10).name.must_equal "Kertzmann LLC"
+    end
+  end
 end
