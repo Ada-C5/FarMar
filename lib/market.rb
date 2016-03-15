@@ -19,4 +19,14 @@ class FarMar::Market
     make_all(file_name, market_keys)
   end
 
+  def vendor
+    vendor_list = []
+
+    vendors = FarMar::Vendor.all
+    vendors.each do |vendor|
+      vendor_list << vendor if id == vendor.market_id
+    end
+
+    return vendor_list
+  end
 end
