@@ -29,7 +29,6 @@ class FarMar::Sale
     beginning_time = Time.parse(beginning_time)
     end_time = Time.parse(end_time)
     self.all.find_all { |sale| (beginning_time..end_time).include?(sale.purchase_time) }
-
   end
 
   def vendor(vendor_id)
