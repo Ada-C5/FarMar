@@ -24,4 +24,13 @@ describe FarMar::Sale do
       sal.product_id.must_equal 1
     end
 
+    # checks the vendor method
+    it "verifies the vendor is associated with sale_id: 1" do
+      pro_sal = sales_find.vendor
+      pro_sal.id.must_equal 1
+      pro_sal.name.must_equal "Feil-Farrell"
+      pro_sal.employees.must_equal 8
+      pro_sal.market_id.must_equal 1
+    end
+
 end
