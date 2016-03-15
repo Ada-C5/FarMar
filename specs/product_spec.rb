@@ -14,9 +14,9 @@ describe FarMar::Product do
 		assert_equal Array, FarMar::Product.all.class
 	end
 
-	it "Product.find(id) returns something" do 
+	it "Product.find(id) returns a value" do 
 		product = "Tamales"
-		assert_equal market, FarMar::Product.find(product)
+		assert_equal product, FarMar::Product.find(product)
 	end
 
 end

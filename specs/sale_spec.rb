@@ -13,8 +13,8 @@ describe FarMar::Sale do
 		assert_equal Array, FarMar::Sale.all.class
 	end
 
-	it "Sale.find(id) returns something" do 
+	it "Sale.find(id) returns a value" do 
 		sales = "Dollars"
-		assert_equal market, FarMar::Sale.find(sales)
+		assert_equal sales, FarMar::Sale.find(sales)
 	end
 end

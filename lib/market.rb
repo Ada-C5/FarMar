@@ -1,7 +1,7 @@
 class FarMar::Market
 	CSV_DATA = './support/markets.csv'
 
-	attr_reader :market_id, :market_name, :address, :city,
+	attr_reader :market_id, :market_name, :address, 	:city,
 							:county,		:state,				:zip_code
 
 	def initialize(all_markets)
@@ -21,12 +21,12 @@ class FarMar::Market
 		all_markets.collect do |row|
 	   	individual_market =	{
 	   	market_id: 		row[0].to_i,
-	   	market_name: 	row[1].to_s,
-	   	address: 			row[2].to_s,
-	   	city:  				row[3].to_s,
-	   	county: 			row[4].to_s,
-	   	state: 				row[5].to_s,
-	   	zip_code:			row[6].to_s
+	   	market_name: 	row[1],
+	   	address: 			row[2],
+	   	city:  				row[3],
+	   	county: 			row[4],
+	   	state: 				row[5],
+	   	zip_code:			row[6]
 	   }
 		self.new(individual_market)
 		end
@@ -41,4 +41,10 @@ class FarMar::Market
 			end 
 		end
 	end 
+
+	def get_vendors # is an instance method and already has reference to the market id
+
+		FarMar::Vendor.all.find_all {|vendor| vendor.market_id == market_id}
+
+	end
 end 

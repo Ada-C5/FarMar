@@ -3,7 +3,7 @@ require_relative './spec_helper'
 describe FarMar::Market do
 
 	let(:all_markets) {FarMar::Market.all}
-	let(:market) {FarMar::Market.find(56)}
+	let(:market_test) {FarMar::Market.find(56)}
 
 	it "exists" do 
 		FarMar::Market.wont_be_nil 
@@ -18,13 +18,25 @@ describe FarMar::Market do
 	end
 
 	it "Market.find returns an instance of Market" do 
-		assert_equal FarMar::Market, market.class
+		assert_equal FarMar::Market, market_test.class
 	end
 
-	it "Returns an instance of FarMar::Market" do 
-		market.must_be_instance_of FarMar::Market
+	it "Find returns an instance of FarMar::Market" do 
+		market_test.must_be_instance_of FarMar::Market
 	end
-	
+
+	it "Find returns a given market name" do 
+		market_test.market_name.must_equal "Carefree Farmers Market"
+	end
+
+	it "returns an instance of FarMar::Vendor" do
+		market_test.get_vendors[0].must_be_instance_of FarMar::Vendor
+	end 
+
+	it "returns an array of vendors based on market ID" do
+		market_test.get_vendors.must_be_instance_of Array
+	end 
+
 end
 
 

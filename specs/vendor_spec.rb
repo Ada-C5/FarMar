@@ -2,21 +2,27 @@ require_relative './spec_helper'
 
 describe FarMar::Vendor do
 
-	it "is an object we have access to" do 
+	let(:all_vendors) {FarMar::Vendor.all}
+	let(:vendor) {FarMar::Vendor.find(56)}
+
+	it "exists" do 
 		FarMar::Vendor.wont_be_nil 
 	end
 
-	it "Vendor.all is a class method" do 
-		FarMar::Vendor.all.wont_be_nil
+	it "Vendor.all is not nil" do 
+		all_vendors.wont_be_nil
 	end
 
-	it "Vendor.all returns an array" do 
-		assert_equal Array, FarMar::Vendor.all.class
+	it "Vendor.all returns Array Class" do 
+		assert_equal Array, all_vendors.class
 	end
 
-	it "Vendor.find(id) returns something" do 
-		vendor = "Tamale Tom"
-		assert_equal market, FarMar::Vendor.find(vendor)
+	it "Vendor.find returns an instance of Vendor" do 
+		assert_equal FarMar::Vendor, vendor.class
+	end
+
+	it "Returns an instance of FarMar::Vendor" do 
+		vendor.must_be_instance_of FarMar::Vendor
 	end
 
 end 
