@@ -29,15 +29,15 @@ class FarMar::Vendor
   end
 
   def market
-    vendor = FarMar::Vendor.find(@vendor_id)
-    market_id = vendor.market_id
-    return FarMar::Market.find(market_id)
+    return FarMar::Market.find(@market_id)
   end
 
-  #products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
   def products
-    products = []
-    vendor = FarMar::Vendor.find(@vendor_id)
-
+    vendor_products = []
+    products = FarMar::Product::PRODUCT_CSV.find_all { |product| product.last.to_i == @vendor_id }
+    products.each do |product|
+      vendor_products << FarMar::Product.new(product[0].to_i)
+    end
+    return vendor_products
   end
 end
