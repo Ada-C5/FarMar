@@ -16,6 +16,12 @@ class FarMar::Vendor
     make_all(file_name, vendor_keys)
   end
 
+  def self.by_market(id_of_market)
+    market_list = self.all.find_all do |vendor|
+      vendor.market_id == id_of_market
+    end
+  end
+
   def market
     FarMar::Market.find(market_id)
   end

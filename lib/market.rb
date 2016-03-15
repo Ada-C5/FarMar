@@ -20,13 +20,6 @@ class FarMar::Market
   end
 
   def vendor
-    vendor_list = []
-
-    vendors = FarMar::Vendor.all
-    vendors.each do |vendor|
-      vendor_list << vendor if id == vendor.market_id
-    end
-
-    return vendor_list
+    FarMar::Vendor.by_market(id)
   end
 end
