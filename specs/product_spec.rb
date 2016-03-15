@@ -27,4 +27,12 @@ describe FarMar::Product do
       products1.vendor(86).name.must_equal "Purdy-Kerluke"
     end
   end
+
+  describe "FarMar::Product#sales" do
+    products2 = FarMar::Product.new(id: 1)
+    it "should return array of sales associated w/product_id" do
+      products2.sales(58).length.must_equal 5
+    end
+  end
+
 end
