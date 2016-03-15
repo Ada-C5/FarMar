@@ -22,12 +22,33 @@ describe FarMar::Sale do
     FarMar::Sale.all.must_be_instance_of(Array)
   end
 
-  it "can find a specific sale based on sale_id" do
-    FarMar::Sale.find(10).amount.must_equal(5160)
+  describe 'find' do
+
+    it "can find a specific sale based on sale_id" do
+      FarMar::Sale.find(10).amount.must_equal(5160)
+    end
   end
 
-  it "should convert purchase time to datetime" do
-    FarMar::Sale.all[0].purchase_time.day.must_equal(7)
+  describe 'datetime conversion with new' do
+
+    it "should convert purchase time to datetime" do
+      FarMar::Sale.all[0].purchase_time.day.must_equal(7)
+    end
+
+  end
+
+  describe '.vendor' do
+    it "should return vendor instance that made that sale" do
+      this_sale = FarMar::Sale.find(30)
+      this_sale.vendor[0].class.must_equal FarMar::Vendor
+    end
+  end
+
+  describe '.product' do
+    it "should return product instance" do
+      this_sale = FarMar::Sale.find(30)
+      this_sale.product[0].class.must_equal FarMar::Product
+    end
   end
 
 end

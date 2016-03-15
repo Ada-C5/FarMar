@@ -29,6 +29,25 @@ class FarMar::Sale
     nil
   end
 
+  # vendor: returns the FarMar::Vendor instance that is associated with this sale using the
+  # FarMar::Sale vendor_id field
+  def vendor
+    FarMar::Vendor.all.select { |vendor| vendor.vendor_id == vendor_id }
+  end
+
+  # product: returns the FarMar::Product instance that is associated with this sale using
+  # the FarMar::Sale product_id field
+  def product
+    FarMar::Product.all.select { |product| product.product_id == product_id }
+  end
+
+
+  # self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where
+  # the purchase time is between the two times given as arguments
+  def self.between
+  end
+
+
 end
 
 

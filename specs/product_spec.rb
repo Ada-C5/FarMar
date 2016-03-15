@@ -62,8 +62,9 @@ describe FarMar::Product do
 
   describe 'self.by_vendor' do
     it "should return all products with given vendor_id" do
-      mr_vendor = FarMar::Product.by_vendor(20)
-      
+      goods = FarMar::Product.by_vendor(30)
+      classes = goods.map { |product| product.class}
+      classes.uniq.must_equal [FarMar::Product]
     end
 
   end
