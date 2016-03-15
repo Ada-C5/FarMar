@@ -27,7 +27,8 @@ describe FarMar::Sale do
     it "returns the Sale object with matching id" do
       this_id = all_sales[13].id
 
-      ap sale
+      # uncomment the following line to see an an instance of sale with id 14
+      # ap sale
       sale.must_be_instance_of FarMar::Sale
       sale.id.must_equal this_id
       sale.purchase_time.must_equal "2013-11-10 01:51:24 -0800"
