@@ -31,8 +31,8 @@ describe FarMar::Sale do
 
   describe "self.between(beginning_time, end_time)" do
     it "returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments" do
-      #for now, I've made the skelleton and will figure out the between aspect later.  I expect an empty array.
-      FarMar::Sale.between(1, 2).must_be_instance_of(Array)
+     #parameters must be year-month-day
+      FarMar::Sale.between("2013-11-1", "2013-11-1").must_be_instance_of(Array)
 
     end
   end

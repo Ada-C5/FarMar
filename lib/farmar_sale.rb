@@ -17,13 +17,16 @@ module FarMar
     end
 
     def self.between(beginning_time, end_time)
+      # we will probably get user input as a string - need to parse.
+      date1 = Date.parse(beginning_time)
+      date2 = Date.parse(end_time)
+
       # get all the Sale instances
       all_sales = self.all
 
-      #check sale_instance.purchase_time is between our times
-      #collect these in an array
       sales_between_times = all_sales.find_all do |sale|
-        sale.purchase_time == nil
+        sale_date = Date.parse(sale.purchase_time)
+        (date2..date1).cover?(sale_date)
       end
 
     end
