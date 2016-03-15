@@ -39,7 +39,14 @@ class FarMar::Product
     FarMar::Sale.all.find_all {|instance| instance.product_id == id}
   end
 
+  # returns the num of times this product has been sold
   def number_of_sales
     sales.length
   end
+
+  # returns all products associated with the ven_id
+  def self.by_vendor(ven_id)
+    self.all.find_all {|instance| instance.vendor_id == ven_id}
+  end
+
 end

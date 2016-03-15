@@ -46,5 +46,11 @@ describe FarMar::Product do
       products_find.number_of_sales.must_equal 7
     end
 
+    # check the self.by_vendor method
+    it "should verify all products (1) found have the vendor_id: 1" do
+      FarMar::Product.by_vendor(1).each do |instance|
+         instance.vendor_id.must_equal 1
+       end
+    end
   end
 end
