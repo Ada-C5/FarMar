@@ -48,11 +48,9 @@ class FarMar::Vendor
   def revenue
     @sume = 0
     all_sales = []
-
     FarMar::Sale.all.each do |sale_info|
       all_sales << sale_info.ammount
     end
-
     all_sales.reduce(:+)
 
   end

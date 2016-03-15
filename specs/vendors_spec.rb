@@ -27,6 +27,24 @@ describe FarMar::Vendor do
 
   end
 
+  describe "FarMar::Vendor#market" do
+    let(:vendor_test) { FarMar::Vendor.new("20","Ledner Group","7","6") }
+
+    it "should return an array the market(s) that of that vendor" do
+      vendor_test.market.must_be_instance_of Array
+    end
+
+    it "should wont be nil " do
+      vendor_test.market.wont_equal nil
+    end
+
+    it "should return an object of the class Product" do
+      classes = vendor_test.market.map { |m| m.class }
+      classes.uniq.must_equal [FarMar::Market]
+    end
+
+  end
+
   describe "FarMar::Vendor#products" do
     let(:vendor_test) { FarMar::Vendor.new("20","Ledner Group","7","6") }
 
@@ -44,6 +62,7 @@ describe FarMar::Vendor do
     end
 
   end
+
 
   describe "FarMar::Vendor#sales" do
     let(:vendor_test) { FarMar::Vendor.new("20","Ledner Group","7","6") }
