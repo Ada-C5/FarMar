@@ -1,14 +1,14 @@
 require_relative './spec_helper'
 
 describe FarMar::Vendor do
+  let (:vendor) { FarMar::Vendor }
   let(:vendor_11) { FarMar::Vendor.new(id: 11, name: "Donnelly-Quigley", total_employees: 7, market_id: 3 )}
-  # let(:vendor_12) { FarMar::Vendor.find(12) } # create an instance of vendor that I can use
 
   it "should be an object we have access to" do
     FarMar::Vendor.wont_be_nil
   end
 
-  describe "FarMar::Vendor#all" do
+  describe "self#all" do
     it "returns an array of instances of vendors" do
       FarMar::Vendor.all.class.must_equal Array
     end
@@ -19,7 +19,7 @@ describe FarMar::Vendor do
     end
   end
 
-  describe "FarMar::Vendor#find(id)" do
+  describe "self#find(id)" do
     it "returns an instance of FarMar::Vendor given vendor_id(11)" do
       vendor_11.must_be_instance_of FarMar::Vendor #.must_be_instance_of FarMar::Vendor
     end
@@ -62,7 +62,20 @@ describe FarMar::Vendor do
 
   #revenue: returns the the sum of all of the vendor's sales (in cents)
   describe "FarMar::Vendor#revenue" do
-    it "returns the sum of all vendor(11) sales (in cents)"
-      vendor_11.revenue.must_be_instance_of Fixnum
+    it "returns a fixnum value" do
+      vendor_11.revenue.class.must_equal Fixnum
+    end
+  end
+
+  # self.by_market(market_id): returns all of the vendors with the given market_id
+  describe "self#by_market(market_id)" do
+    it "returns all the vendors with given market id" do
+      vendor.by_market(3).class.must_equal Array
+    end
+
+    it "return market_id '3' for all vendors given market id '3' " do
+      vendors_market_ids = vendor.by_market("3").map {|vendor| vendor.market_id}
+      vendors_market_ids.uniq.must_equal ["3"]
+    end
   end
 end

@@ -31,6 +31,17 @@ class FarMar::Vendor
     end
   end
 
+  # self.by_market(market_id): returns all of the vendors with the given market_id
+  def self.by_market(market_id)
+    vendors = self.all
+
+    vendor_list = []
+
+    vendors.each do |vendor|
+      vendor_list << vendor if market_id.to_i == vendor.market_id.to_i
+    end
+    vendor_list
+  end
  # return a list of market instances (FarMar::Market.id) by matching market_id
   def market
     market_list_all = FarMar::Market.all
@@ -70,24 +81,10 @@ class FarMar::Vendor
 
   #revenue: returns the the sum of all of the vendor's sales (in cents)
   def revenue
-    # access all the sales for the vendor. Revenue = sum the total number of sales 
+    # access all the sales for the vendor. Revenue = sum the total number of sales
     # revenue = sales.amount.reduce(0,:+)
-    revenue = sales.amount.reduce(0,:+)
-    return revenue
+    revenue = sales.map {|sale| sale.amount }
+    revenue.reduce(0,:+)
   end
 
 end
-
-#matching(sales_list_all, "id", "vendor_id" )
-
-# def matching(list, value, matching_value)
-#
-#   matching_list = []
-#
-#   list.each do |instance|
-#     matching_list << instance if instance.matching_value.to_i == value.to_i
-#   end
-#
-#   return matching_list
-#
-# end

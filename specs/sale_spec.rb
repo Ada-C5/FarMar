@@ -24,6 +24,6 @@ describe "FarMar::Sale#find(id)" do
 
   # check if the amount being passed is converted from 4978 cents to 49.78
   it "should return 'Dry Beets' for instance of FarMar::Product.find(1)" do
-    FarMar::Sale.find(14).amount.must_equal 49.78
+    FarMar::Sale.find(14).amount.must_equal 4978
   end
 end
