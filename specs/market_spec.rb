@@ -2,20 +2,36 @@ require_relative './spec_helper'
 
 describe FarMar::Market do
 
-	it "is an object we have access to" do 
+	let(:all_markets) {FarMar::Market.all}
+	let(:market) {FarMar::Market.find(56)}
+
+	it "exists" do 
 		FarMar::Market.wont_be_nil 
 	end
 
-	it "Market.all is a class method" do 
-		FarMar::Market.all.wont_be_nil
+	it "Market.all is not nil" do 
+		all_markets.wont_be_nil
 	end
 
-	it "Market.all returns an array" do 
-		assert_equal Array, FarMar::Market.all.class
+	it "Market.all returns Array Class" do 
+		assert_equal Array, all_markets.class
 	end
 
-	it "Market.find(id) returns something" do 
-		market = "Tamale Time"
-		assert_equal market, FarMar::Market.find(market)
+	it "Market.find returns an instance of Market" do 
+		assert_equal FarMar::Market, market.class
 	end
+
+	it "Returns an instance of FarMar::Market" do 
+		market.must_be_instance_of FarMar::Market
+	end
+	
 end
+
+
+	# market.market_id_assert_equal 56
+	# market.market_name_assert_equal "Carefree Farmers Market"
+	# market.address_assert_equal "1 Sundial Circle"
+	# market.city_assert_equal "Carefree"
+	# market.county_assert_equal "Maricopa"
+	# market.state_assert_equal "Arizona"
+	# market.zip_code_assert_equal "85377"
