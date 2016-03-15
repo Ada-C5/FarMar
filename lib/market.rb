@@ -22,13 +22,17 @@ class FarMar::Market
     MARKET_CSV.length.times do |index|
       markets << FarMar::Market.new(index)
     end
+    return markets
   end
 
   def self.find(id)
+    the_market = []
     MARKET_CSV.each do |market|
       if market[0].to_i == id.to_i
-        return market
+        the_market = market
       end
     end
+    index = MARKET_CSV.index(the_market)
+    return FarMar::Market.new(index)
   end
 end

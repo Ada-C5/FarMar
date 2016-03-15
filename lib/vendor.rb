@@ -1,4 +1,6 @@
 class FarMar::Vendor
+  attr_reader :vendor_id, :name, :no_of_empl, :market_id
+
   def self.read_csv(file)
     CSV.read(file, 'r')
   end
@@ -19,6 +21,17 @@ class FarMar::Vendor
       allvendors << FarMar::Vendor.new(index)
     end
     return allvendors
+  end
+
+  def self.find(id)
+    the_vendor = []
+    VENDOR_CSV.each do |vendor|
+      if vendor[0].to_i == id.to_i
+        the_vendor = vendor
+      end
+    end
+    index = VENDOR_CSV.index(the_vendor)
+    return FarMar::Vendor.new(index)
   end
 
 end

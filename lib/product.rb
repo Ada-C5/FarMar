@@ -1,4 +1,6 @@
 class FarMar::Product
+  attr_reader :product_id, :name, :vendor_id
+  
   def self.read_csv(file)
     CSV.read(file, 'r')
   end
@@ -18,5 +20,16 @@ class FarMar::Product
       allproducts << FarMar::Product.new(index)
     end
     return allproducts
+  end
+
+  def self.find(id)
+    the_product = []
+    PRODUCT_CSV.each do |product|
+      if product[0].to_i == id.to_i
+        the_product = product
+      end
+    end
+    index = PRODUCT_CSV.index(the_product)
+    return FarMar::Product.new(index)
   end
 end
