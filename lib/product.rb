@@ -31,7 +31,8 @@ class FarMar::Product
   end
 
   # return vendor instance associated with product/vendor_id
-  def vendor(ven_id)
-    
+  def vendor(vendor_id)
+    vendors = FarMar::Vendor.all 
+    vendors.find { |vendor| vendor.ven_id == vendor_id}
   end
 end
