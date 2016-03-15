@@ -40,4 +40,7 @@ class FarMar::Vendor
     end
     return vendor_products
   end
+
+  #sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
+
 end

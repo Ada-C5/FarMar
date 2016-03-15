@@ -28,8 +28,11 @@ class FarMar::Product
   end
 
   #vendor: returns the FarMar::Vendor instance that is associated with this product using the FarMar::Product vendor_id field
-  def self.find_by_vendor(vendor_id)
-    products = PRODUCT_CSV.find_all { |product| product.last.to_i == vendor_id }
-    return FarMar::Vendor.new(products.last.last)
+  def vendor
+    product = FarMar::Product.find(@product_id)
+    product.vendor_id
+    FarMar::Vendor.find(vendor_id)
   end
+
+
 end
