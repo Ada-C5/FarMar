@@ -33,10 +33,10 @@ describe FarMar::Market do
       market_test.vendors.length.must_equal 10
     end
 
-    # it "should return an object of the class Market" do
-    #   market_test2 = FarMar::Market.new(121, "Grand Valley State University Farmers Market", "1 Campus Drive, Parking Lot F", "Allendale", "Ottawa", "Michigan", "49504")
-    #   market_test2.vendors.must_be_instance_of Array
-    #
-    # end
+    it "should return an object of the class Market" do
+      market_test2 = FarMar::Market.new(121, "Grand Valley State University Farmers Market", "1 Campus Drive, Parking Lot F", "Allendale", "Ottawa", "Michigan", "49504")
+      market_test2.vendors.must_be_instance_of Array
+
+    end
   end
 end

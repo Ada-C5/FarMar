@@ -26,4 +26,18 @@ describe FarMar::Vendor do
     end
 
   end
+
+  describe "FarMar::Vendor#market" do
+    it "should return object vendor that matches the market_id" do
+      vendor_test = FarMar::Vendor.new("18", "David Jimison", "1", "404")
+      vendor_test.market.length.must_equal 1
+    end
+
+    # it "should return an object of the class Market" do
+    #   vendor_test2 = FarMar::Vendor.new("18", "David Jimison", "1", "404")
+    #   vendor_test2.market.must_be_instance_of Array
+    #
+    # end
+  end
+
 end

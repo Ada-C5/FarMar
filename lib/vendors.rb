@@ -27,6 +27,15 @@ class FarMar::Vendor
   end
 
   def market
+    #vendor_test = FarMar::Vendor.new("18", "David Jimison", "1", "404")
+
+    the_vendors_market = []
+    FarMar::Market.all.each do |market|
+      if market.market_id == market_id.to_i
+        the_vendors_market << market
+      end
+    end
+    return the_vendors_market
 
   end
 end
