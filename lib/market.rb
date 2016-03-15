@@ -25,7 +25,7 @@ class FarMar::Market
 
   def products
     products = []
-    vendors.collect do |vendor|
+    vendors.each do |vendor|
       products.push *FarMar::Product.by_vendor(vendor.id)
     end
 
