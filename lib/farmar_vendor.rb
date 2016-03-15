@@ -28,7 +28,7 @@ module FarMar
       super('./support/products.csv', FarMar::Product, id, "vendor_id")
     end
 
-    def markets
+    def market
       super('./support/markets.csv', FarMar::Market, market_id, "id")
     end
 

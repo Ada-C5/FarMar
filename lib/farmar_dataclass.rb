@@ -4,8 +4,14 @@ module FarMar
     def initialize
     end
 
-    def markets(data_file, data_class, id_to_match, method_name)
-      match_by(data_file, data_class, id_to_match, method_name)
+    def market(data_file, data_class, id_to_match, method_name)
+    # returns an instance - thing in position one
+      match_by(data_file, data_class, id_to_match, method_name)[0]
+    end
+
+    def vendor(data_file, data_class, id_to_match, method_name)
+    # returns an instance - thing in position one
+      match_by(data_file, data_class, id_to_match, method_name)[0]
     end
 
     def products(data_file, data_class, id_to_match, method_name)
@@ -40,7 +46,6 @@ module FarMar
         id_to_match == instance.id
         return instance
       end
-
     end
 
     def self.all(data_file)

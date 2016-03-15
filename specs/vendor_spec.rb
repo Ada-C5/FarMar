@@ -38,15 +38,10 @@ describe FarMar::Vendor do
     end
   end
 
-  describe "FarMar::Vendor#markets" do
-    it "returns a collection of FarMar::Market instances that are associated with the vendor by the market_id field." do
-    markets_collection = vendor_by_market_id_test.markets
-    markets_collection.must_be_kind_of(Array)
-
-    # any item in the Array will be an instance of FarMar::Market
-    number_of_markets = markets_collection.length
-    random_market = (0...number_of_markets).to_a.sample
-    markets_collection[random_market].must_be_instance_of(FarMar::Market)
+  describe "FarMar::Vendor#market" do
+    it "returns a FarMar::Market instance that is associated with the vendor by the market_id field." do
+    market = vendor_by_market_id_test.market
+    market.must_be_instance_of(FarMar::Market)
     end
   end
 
