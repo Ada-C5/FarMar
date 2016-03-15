@@ -42,5 +42,15 @@ describe FarMar::Vendor do
     vendor.sales(vendor.ven_id).class.must_equal Array
     vendor.sales(vendor.ven_id).length.must_equal 6
     vendor.sales(vendor.ven_id)[0].must_be_instance_of FarMar::Sale
+    vendor.sales(vendor.ven_id)[0].amount.must_equal 6509
   end
+
+  # test revenue method
+  it "should return SUM of all sales for certain vendor" do
+    vendors = FarMar::Vendor.all
+    vendor = vendors[25]
+    vendor.revenue(vendor.ven_id).must_equal 28014
+  end
+
+
 end

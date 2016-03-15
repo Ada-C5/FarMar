@@ -46,4 +46,10 @@ class FarMar::Vendor
     FarMar::Sale.all.select { |sale| sale.ven_id == vendor_id}
   end
 
+  # returns sum of all vendors sales in cents
+  def revenue(vendor_id)
+    sale_instances = sales(vendor_id)
+    sale_instances.reduce(0) { |total, sale| total += sale.amount }
+  end
+
 end
