@@ -31,8 +31,10 @@ class FarMar::Product
   end
 
   # return vendor instance associated with product/vendor_id
+  # I don't get why this method is useful in real life!?!?!?!
   def vendor(vendor_id)
-    vendors = FarMar::Vendor.all 
-    vendors.find { |vendor| vendor.ven_id == vendor_id}
+    FarMar::Vendor.all.find { |vendor| vendor.ven_id == vendor_id}
   end
+
+  
 end
