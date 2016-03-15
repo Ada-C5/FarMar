@@ -39,10 +39,19 @@ describe FarMar::Vendor do
 		market.must_be_nil
 	end
 
-	it "has a products method" do
+	it "returns a collection of FarMar::Product instances associated by FarMar::Product vendor_id field" do
 		vendor_to_test = FarMar::Vendor.new({id: "1", name: "Feil-Farrell", num_of_employees: "8", market_id: "1"})
+		vendors_product = vendor_to_test.products
 
-		vendor_to_test.must_respond_to(:products)
+		vendors_product[0].name.must_equal("Dry Beets")
 	end
+
+	it "returns an empty array when no products are found" do
+		vendor_to_test = FarMar::Vendor.new({id: "90180", market_id: "10000"})
+		vendors_product = vendor_to_test.products
+
+		vendors_product.must_be_empty
+	end
+
 
 end
