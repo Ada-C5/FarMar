@@ -20,7 +20,7 @@ describe FarMar::Market do
 	end
 
 	it "has a find method" do
-		FarMar::Market.find('./support/markets.csv').wont_be_nil
+		FarMar::Market.must_respond_to(:find)
 	end
 
 	it "returns the correct market when self#find is called" do
