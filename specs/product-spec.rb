@@ -27,6 +27,27 @@ end
 
 describe "Product#find(id)" do
   it "Does it return the found product?" do
-    FarMar::Product.find(20).length.must_equal(1)
+    FarMar::Product.find(20).must_be_instance_of FarMar::Product
+  end
+end
+
+describe "#vendor" do
+  it "Does it return the product's vendor?" do
+    new_product = FarMar::Product.new(vendor_id: 1)
+    new_product.vendor.must_be_instance_of FarMar::Vendor
+  end
+end
+
+describe "#sales" do
+  it "Does it return the sales of the product?" do
+    new_product = FarMar::Product.new(product_id: 1)
+    new_product.sales.must_be_instance_of Array
+  end
+end
+
+describe "#number_of_sales" do
+  it "Does it return the sales of the product?" do
+    new_product = FarMar::Product.new(product_id: 1)
+    new_product.sales.length.must_equal(7)
   end
 end

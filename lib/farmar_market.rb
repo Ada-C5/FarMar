@@ -13,6 +13,8 @@ class FarMar::Market
     @zip = market_hash[:zip]
   end
 
+  # self.all: returns a collection of instances, representing all of the objects described in the CSV
+
   def self.all
     csv_market_array = []
     CSV.open("./support/markets.csv", 'r') do |csv|
@@ -23,26 +25,16 @@ class FarMar::Market
     end
   end
 
+  # self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
+
   def self.find(id)
-    CSV.open("./support/markets.csv", 'r') do |csv|
-      csv.read.each do |row|
-        if row[0].to_i == id
-          found_account = FarMar::Market.new(market_id: row[0].to_i, name: row[1].to_s, address: row[2].to_s, city: row[3].to_s, county: row[4].to_s, state: row[5].to_s, zip: row[6].to_i)
-          return [found_account]
-        end
-      end
-    end
+    found = self.all.find_all { |market| market.market_id == id}
+    return found[0]
   end
 
+#vendors: returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field.
+
   def vendors
-    market_vendors = []
-    CSV.open("./support/vendors.csv", 'r') do |csv|
-      csv.read.each do |row|
-        if row[3].to_i == @market_id
-          market_vendors << FarMar::Vendor.new(vendor_id: row[0].to_i, vendor_name: row[1].to_s, num_of_employees: row[2].to_i, market_id: row[3].to_i)
-        end
-      end
-      return market_vendors
-    end
+    FarMar::Vendor.all.find_all { |vendor| vendor.market_id == @market_id }
   end
 end

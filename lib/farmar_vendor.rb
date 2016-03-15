@@ -10,6 +10,8 @@ class FarMar::Vendor
     @market_id = vendor_hash[:market_id]
   end
 
+  # self.all: returns a collection of instances, representing all of the objects described in the CSV
+
   def self.all
     csv_vendors_array = []
     CSV.open("./support/vendors.csv", 'r') do |csv|
@@ -20,44 +22,46 @@ class FarMar::Vendor
     end
   end
 
+  # self.find(id): returns an instance of the object where the value of the id field in the CSV matches the passed parameter.
+
   def self.find(id)
-    CSV.open("./support/vendors.csv", 'r') do |csv|
-      csv.read.each do |row|
-        if row[0].to_i == id
-          found_account = FarMar::Vendor.new(vendor_id: row[0].to_i, vendor_name: row[1].to_s, num_of_employees: row[2].to_i, market_id: row[3].to_i)
-          return [found_account]
-        end
-      end
-    end
+    found = self.all.find_all { |vendor| vendor.vendor_id == id}
+    return found[0]
   end
 
-  def market(mar_id = @market_id)
-    CSV.open("./support/markets.csv", 'r') do |csv|
-      csv.read.each do |row|
-        if row[0].to_i == mar_id
-          found_market = FarMar::Market.new(market_id: row[0].to_i, name: row[1].to_s, address: row[2].to_s, city: row[3].to_s, county: row[4].to_s, state: row[5].to_s, zip: row[6].to_i)
-          return found_market
-        end
-      end
-    end
+  # self.by_market(market_id): returns all of the vendors with the given market_id
+
+  def self.by_market(this_market_id)
+    self.all.find_all { |vendor| vendor.market_id == this_market_id}
+  end
+
+  #market: returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id field
+
+  def market(mar_id)
+    FarMar::Market.find(mar_id)
   end
 
   # products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
 
-  def products(ven_id = @vendor_id)
-    CSV.open("./support/products.csv", 'r') do |csv|
-      csv.read.each do |row|
-        if row[2].to_i == ven_id
-          found_products << FarMar::Product.new(product_id: row[0].to_i, product_name: row[1].to_s, vendor_id: row[3].to_i)
-          return [found_products]
-        end
-      end
+  def products(ven_id)
+    FarMar::Product.all.find_all { |product| product.vendor_id == ven_id }
+  end
+
+  # sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
+
+  def sales(ven_id)
+    FarMar::Sale.all.find_all { |sale_item| sale_item.vendor_id == ven_id }
+  end
+
+  # revenue: returns the the sum of all of the vendor's sales (in cents)
+
+  def revenue
+    vend_id = @vendor_id
+    found_sale_items = self.sales(vend_id)
+    total_revenue = 0
+    found_sale_items.each do |sale|
+      total_revenue += sale.amount
     end
+    return total_revenue
   end
 end
-
-
-
-# sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
-# revenue: returns the the sum of all of the vendor's sales (in cents)
-# self.by_market(market_id): returns all of the vendors with the given market_id

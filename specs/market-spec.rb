@@ -27,7 +27,7 @@ end
 
 describe "Market#find(id)" do
   it "Does it exist?" do
-    FarMar::Market.find(20).length.must_equal(1)
+    FarMar::Market.find(20).must_be_instance_of FarMar::Market
   end
 end
 
