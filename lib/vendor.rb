@@ -60,4 +60,9 @@ class FarMar::Vendor
     end
     return vendor_sales.reduce(0, :+)
   end
+
+  # self.by_market(market_id): returns all of the vendors with the given market_id
+  def self.by_market(market_id)
+    FarMar::Market.vendors(market_id)
+  end
 end
