@@ -27,6 +27,20 @@ describe FarMar::Product do
     end
   end
 
+  describe "self.by_vendor(vendor_id)" do
+    it "returns all of the products with the given vendor_id" do
+      products_collection = FarMar::Product.by_vendor(random_vendor_id)
+      products_collection.must_be_kind_of(Array)
+
+      # any item in the Array will be an instance of FarMar::Vendor
+      number_of_products = products_collection.length
+      random_product = (0...number_of_products).to_a.sample
+      products_collection[random_product].must_be_instance_of(FarMar::Product)
+    end
+  end
+
+
+
   describe "#vendor" do
     it "will return the FarMar::Vendor instance associated with this vendor using the FarMar::Product vendor_id" do
       product_by_vendor_id_test.vendor.must_be_instance_of(FarMar::Vendor)
@@ -50,5 +64,6 @@ describe FarMar::Product do
     assert_operator(product_by_product_id_test.number_of_sales, :>, 0)
     end
   end
+
 
 end
