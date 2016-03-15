@@ -8,11 +8,8 @@ module FarMar
 
     end
 
-    def self.find(data_file = './support/sales.csv', id) # returns an instance of Sale where the value of the id field in the CSV matches the passed parameter. Will this be different?  There can be multiple with same ID potentially?
-      sales = self.all(data_file)
-      sales.each do |sale|
-        return sale if sale.id == id
-      end
+    def self.find(data_file = './support/sales.csv', id)
+      super(data_file, id)
     end
 
     def self.all(data_file = './support/sales.csv')

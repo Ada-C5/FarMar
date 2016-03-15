@@ -41,11 +41,8 @@ module FarMar
       return matched_vendors
     end
 
-    def self.find(data_file = './support/vendors.csv', id) # returns an instance of Sale where the value of the id field in the CSV matches the passed parameter. Will this be different?  There can be multiple with same ID potentially?
-      vendors = self.all(data_file)
-      vendors.each do |vendor|
-        return vendor if vendor.id == id
-      end
+    def self.find(data_file = './support/vendors.csv', id)
+      super(data_file, id)
     end
 
     def self.all(data_file = './support/vendors.csv')

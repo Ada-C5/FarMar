@@ -29,6 +29,13 @@ module FarMar
       matched
     end
 
+    def self.find(data_file, id) # returns an instance where the value of the id field in the CSV matches the passed id parameter.
+      all = self.all(data_file)
+      all.each do |instance|
+        return instance if instance.id == id
+      end
+    end
+
     def self.all(data_file) #returns a collection of FarMar::"DataClass" instances, representing all of the Markets described in the CSV.
 
       data = []
