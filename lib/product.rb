@@ -29,4 +29,9 @@ class FarMar::Product
       return product if product.prod_id == id
     end
   end
+
+  # return vendor instance associated with product/vendor_id
+  def vendor(ven_id)
+    
+  end
 end

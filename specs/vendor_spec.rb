@@ -52,5 +52,11 @@ describe FarMar::Vendor do
     vendor.revenue(vendor.ven_id).must_equal 28014
   end
 
+  # test self.by_market method
+  it "should return collection of vendor instances with matching market_id" do
+    FarMar::Vendor.by_market(1).length.must_equal 6
+    FarMar::Vendor.by_market(1)[0].name.must_equal "Feil-Farrell"
+  end
+
 
 end
