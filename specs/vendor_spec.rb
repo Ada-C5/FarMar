@@ -50,4 +50,13 @@ describe FarMar::Vendor do
       sales.last.id.must_equal 60 
     end
   end
+
+  describe "FarMar::Vendor#revenue" do
+    let(:revenue) { vendor_ten.revenue }
+
+    it "should return a Fixnum" do
+      revenue.must_be_instance_of Fixnum
+      revenue.must_equal 32628
+    end
+  end
 end

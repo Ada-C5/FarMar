@@ -33,4 +33,8 @@ class FarMar::Vendor
   def sales
     FarMar::Sale.by_vendor(id)
   end
+
+  def revenue
+    sales.reduce(0) { |sum, sale| sum + sale.amount }
+  end
 end
