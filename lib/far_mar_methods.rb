@@ -1,7 +1,7 @@
 module FarMar::FarMarMethods
 
   # example key_array = [:id, :name, :address, :city, :county, :state, :zip]
-  def make_all(file, key_array, class_name = self)
+  def make_all(file, key_array)
     instance_array = []
 
     CSV.open(file, 'r').each do |line|
@@ -11,14 +11,14 @@ module FarMar::FarMarMethods
         instance_hash[key] = line[index]
       end
 
-      instance_array << class_name.new(instance_hash)
+      instance_array << self.new(instance_hash)
     end
 
     return instance_array
   end
 
-  def find(id, class_name = self)
-    class_name.all.each do |instance|
+  def find(id)
+    self.all.each do |instance|
       return instance if id == instance.id
     end
 
