@@ -28,10 +28,13 @@ class FarMar::Vendor
     return FarMar::Vendor.new(vendor_id)
   end
 
-  #market: returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id
-  def market(vendor_id)
-    vendor = self.find(vendor_id)
+  def market
+    vendor = FarMar::Vendor.find(@vendor_id)
     market_id = vendor.market_id
     return FarMar::Market.find(market_id)
   end
+
+  # def products
+  #   vendor = self.find
+  # end
 end

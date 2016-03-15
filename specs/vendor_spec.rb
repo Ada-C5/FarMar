@@ -32,4 +32,18 @@ describe "FarMar::Vendor" do
       assert_equal 1, market.market_id
     end
   end
+
+#products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
+  describe "FarMar::Vendor#products" do
+    # it "returns an array" do
+    #   products = first_vendor.products
+    #   products.must_be_instance_of Array
+    # end
+
+    it "returns instances of Product" do
+    end
+
+    it "returns products with the correct vendor_id" do
+    end
+  end
 end
