@@ -39,8 +39,6 @@ describe FarMar::Product do
     end
   end
 
-
-
   describe "#vendor" do
     it "will return the FarMar::Vendor instance associated with this vendor using the FarMar::Product vendor_id" do
       product_by_vendor_id_test.vendor.must_be_instance_of(FarMar::Vendor)
