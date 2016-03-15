@@ -34,9 +34,11 @@ describe FarMar::Vendor do
 	end
 
 	it "has a market method that will return the market this vendor is associated with" do 
+		vendor_to_test = FarMar::Vendor.new({id: "1", name: "Feil-Farrell", num_of_employees: "8", market_id: "1"})
+		market = vendor_to_test.market
 
-		# I think it might be time to use some let blocks to construct test cases because I am tired of doing them one by one
-		# plus it will make it easier when you need a fully detailed case.
+		market.name.must_equal("People's Co-op Farmers Market")
+		market.id.must_equal("1")
 	end
 
 
