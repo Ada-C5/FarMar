@@ -60,11 +60,13 @@ class FarMar::Vendor
 
   # revenue: returns the the sum of all of the vendor's sales (in cents)
   def revenue
-    
+
   end
 
   # self.by_market(market_id): returns all of the vendors with the given market_id
-  def self.by_market
+  def self.by_market(market_id)
+    vendors_to_search = FarMar::Vendor.all("./support/vendors.csv")
+    vendors_to_search.select {|vendor| vendor.market_id == market_id.to_s}
   end
 
 end
