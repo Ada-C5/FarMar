@@ -28,5 +28,15 @@ class FarMar::Sale
     sales.each do |sale|
       return sale if sale.sale_id == id
     end
-  end  
+  end
+
+  # return vendor instance related to sale
+  def vendor(ven_id)
+    FarMar::Vendor.all.find { |vendor| vendor.ven_id == ven_id }
+  end
+
+  # returns product instance associated with sale
+  def product(prod_id)
+    FarMar::Product.all.find { |product| product.prod_id == prod_id }
+  end
 end
