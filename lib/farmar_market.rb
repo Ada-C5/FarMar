@@ -57,7 +57,8 @@ class FarMar::Market
   def vendors
     # returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field.
     vendors = FarMar::Vendor.all('./support/vendors.csv')
-    vendors_at_market = vendors.select { |vendor| vendor.market_id == "5" }
+    market_to_match = self
+    vendors_at_market = vendors.select { |vendor| vendor.market_id == market_to_match.id }
 
 #     vendors.each do |vendor|
 #       if vendor.market_id == "5" # writing jerk code until I can get my test case to pass
