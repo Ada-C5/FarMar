@@ -26,11 +26,20 @@ describe FarMar::Sale do
 
     # checks the vendor method
     it "verifies the vendor is associated with sale_id: 1" do
-      pro_sal = sales_find.vendor
-      pro_sal.id.must_equal 1
-      pro_sal.name.must_equal "Feil-Farrell"
-      pro_sal.employees.must_equal 8
-      pro_sal.market_id.must_equal 1
+      sal_ven = sales_find.vendor
+      sal_ven.id.must_equal 1
+      sal_ven.name.must_equal "Feil-Farrell"
+      sal_ven.employees.must_equal 8
+      sal_ven.market_id.must_equal 1
     end
+
+    # checks the product method
+    it "should check first sale (/1) associated with the sales id: 1" do
+      sal_pro = sales_find.product[0]
+      sal_pro.id.must_equal 1
+      sal_pro.name.must_equal "Dry Beets"
+      sal_pro.vendor_id.must_equal 1 # it matches!
+    end
+    
 
 end

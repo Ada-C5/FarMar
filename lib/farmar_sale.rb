@@ -27,6 +27,7 @@ class FarMar::Sale
     return sales_info
   end
 
+  # finds all instances of sales that match the given id
   def self.find(id)
     self.all.each do |instance|
       if instance.id == id
@@ -35,8 +36,13 @@ class FarMar::Sale
     end
   end
 
-  def vendor
+  # finds instance of vendor that matches the vendor_id (based on given sale id)
+  def vendor #there should only be one right?
     FarMar::Vendor.all.find {|instance| instance.id == vendor_id}
   end
 
+  # finds all instances of product that match the given sale id
+  def product
+    FarMar::Product.all.find_all {|instance| instance.vendor_id == vendor_id}
+  end
 end

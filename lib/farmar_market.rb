@@ -2,7 +2,6 @@
 class FarMar::Market
   attr_reader :id, :name, :address, :city, :county, :state, :zip
   def initialize(hash)
-    # @markets = CSV.read('../support/markets.csv')
     @id = hash[:id].to_i
     @name = hash[:name]
     @address = hash[:address]
@@ -32,6 +31,7 @@ class FarMar::Market
     return markets_info
   end
 
+  # finds all instances of market that match the given id
   def self.find(id)
     self.all.each do |instance|
       if instance.id == id.to_i
@@ -40,6 +40,7 @@ class FarMar::Market
     end
   end
 
+  # returns all instances of vendors based on given market_id
   def vendors
     FarMar::Vendor.all.find_all {|instance| instance.market_id == id}
   end

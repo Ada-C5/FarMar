@@ -30,11 +30,12 @@ class FarMar::Product
     end
   end
 
+  # returns the instances that match vendor_id (based on given prod id)
   def vendor
     FarMar::Vendor.all.find {|instance| instance.id == vendor_id}
   end
 
-  # returns all of the sales that match the id
+  # returns all of the sales that match the given prod id
   def sales
     FarMar::Sale.all.find_all {|instance| instance.product_id == id}
   end
@@ -44,7 +45,7 @@ class FarMar::Product
     sales.length
   end
 
-  # returns all products associated with the ven_id
+  # returns all products associated with the given ven_id
   def self.by_vendor(ven_id)
     self.all.find_all {|instance| instance.vendor_id == ven_id}
   end
