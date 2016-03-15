@@ -25,6 +25,16 @@ describe FarMar::Product do
     end
   end
 
+  describe "Product#self.by_vendor(find_vendor_id)" do
+    it "should return an array of vendors with matching market id" do
+      # uncomment the following line to see array of vendors with market_id = 4
+      # ap FarMar::Product.by_vendor("4")
+      FarMar::Product.by_vendor("4").must_be_instance_of Array
+      FarMar::Product.by_vendor("4")[0].must_be_instance_of FarMar::Product
+      FarMar::Product.by_vendor("4")[1].name.must_equal "Smooth Mushrooms"
+    end
+  end
+
   describe "Product#vendor" do
     it "finds the Vendor that the Product belongs to" do
       # uncomment the following line to see the instance of vendor for this product
