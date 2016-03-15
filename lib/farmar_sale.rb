@@ -18,11 +18,11 @@ class FarMar::Sale
     all_sales.collect do |sale|
 
       single_sale_hash = {
-        id: sale[0],
-        amount: sale[1],
-        purchase_time: sale[2],
-        vendor_id: sale[3],
-        product_id: sale[4]
+        id: sale[0].to_i,
+        amount: sale[1].to_i,
+        purchase_time: sale[2], # this needs to be a DateTime at some point
+        vendor_id: sale[3].to_i,
+        product_id: sale[4].to_i
       }
       FarMar::Sale.new(single_sale_hash)
     end

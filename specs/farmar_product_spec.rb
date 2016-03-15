@@ -16,10 +16,10 @@ end
 
 describe "FarMar::Product#self.find(id)" do
   it "should return an instance of FarMar::Product" do
-    FarMar::Product.find("9").must_be_instance_of FarMar::Product
+    FarMar::Product.find(9).must_be_instance_of FarMar::Product
   end
 
   it "should return the name of the instance of FarMar::Product that has the ID 11" do
-    FarMar::Product.find("11").name.must_equal "Gigantic Bread"
+    FarMar::Product.find(11).name.must_equal "Gigantic Bread"
   end
 end

@@ -18,7 +18,7 @@ class FarMar::Vendor
 
       single_vendor_hash = {
         id: vendor[0].to_i,
-        name: vendor[1],
+        name: vendor[1], # needs method to remove "" characters
         number_of_employees: vendor[2],
         market_id: vendor[3].to_i
       }
@@ -34,5 +34,11 @@ class FarMar::Vendor
       end
     end
     found_vendor
+  end
+
+  def markets
+    #returns the FarMar::Market instance that is associated with this vendor
+    #using the FarMar::Vendor market_id field
+    FarMar::Market.all.find {|market| market.id == market_id}
   end
 end

@@ -16,9 +16,9 @@ class FarMar::Product
     all_products.collect do |product|
 
       single_product_hash = {
-        id: product[0],
+        id: product[0].to_i,
         name: product[1],
-        vendor_id: product[2]
+        vendor_id: product[2].to_i
       }
       FarMar::Product.new(single_product_hash)
     end

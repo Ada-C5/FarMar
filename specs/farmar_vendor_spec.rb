@@ -23,3 +23,9 @@ describe "FarMar::Vendor#self.find(id)" do
     FarMar::Vendor.find(11).name.must_equal "Donnelly-Quigley"
   end
 end
+
+describe "FarMar::Vendor#markets" do
+  it "should return an instance of FarMar::Market" do
+    FarMar::Vendor.find(20).markets.must_be_instance_of FarMar::Market
+  end
+end

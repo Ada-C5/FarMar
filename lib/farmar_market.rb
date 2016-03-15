@@ -1,5 +1,5 @@
 ## use this when testing in IRB, otherwise comment out
-require_relative '../far_mar'
+# require_relative '../far_mar'
 
 class FarMar::Market
   attr_reader :id, :name, :address, :city, :county, :state, :zip
@@ -12,7 +12,6 @@ class FarMar::Market
     @county = market_hash[:county]
     @state = market_hash[:state]
     @zip = market_hash[:zip]
-
   end
 
 # in charge of creating the instances.
