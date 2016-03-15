@@ -2,17 +2,20 @@ require_relative './spec_helper'
 require_relative '../far_mar'
 
 describe FarMar::Product do
+  let(:all_products) { FarMar::Product.all }
+  let(:product_test) { FarMar::Product.new("10","Black Apples","5") }
+
   it "is an object that isn't empty" do
     FarMar::Product.wont_be_nil
   end
 
   describe "FarMar::Product#self.all" do
     it "should return an array with all products" do
-      FarMar::Product.all.must_be_instance_of Array
+      all_products.must_be_instance_of Array
     end
 
     it "should return an array with all 8193 products" do
-      FarMar::Product.all.length.must_equal 8193
+      all_products.length.must_equal 8193
     end
   end
 
@@ -26,4 +29,32 @@ describe FarMar::Product do
     end
 
   end
+
+  describe "FarMar::Product#vendor" do
+    it "should return object's product name equal to Agreeable Beef" do
+      product_test.vendor.must_be_instance_of Array
+    end
+
+    it "should return to more one only vendor that sells that product" do
+      product_test.vendor.length.must_equal 1
+    end
+
+    it "should return an object of the class Vendor" do
+      classes = product_test.vendor.map { |m| m.class }
+      classes.uniq.must_equal [FarMar::Vendor]
+    end
+  end
+
+  describe "FarMar::Product#sales" do
+    it "should return object's product name equal to Agreeable Beef" do
+      product_test.sales.must_be_instance_of Array
+    end
+
+    it "should return an object of the class Vendor" do
+      classes = product_test.sales.map { |m| m.class }
+      classes.uniq.must_equal [FarMar::Sale]
+    end
+
+  end
+
 end

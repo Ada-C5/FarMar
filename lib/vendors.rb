@@ -9,7 +9,7 @@ class FarMar::Vendor
   end
 
   def self.all
-    CSV.read('support/vendors.csv').collect do |row|
+    all_vendors =CSV.read('support/vendors.csv').collect do |row|
       self.new(row[0].to_i,row[1],row[2],row[3].to_i)
     end
   end
