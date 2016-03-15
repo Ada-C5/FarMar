@@ -39,11 +39,7 @@ class FarMar::Vendor
   end
 
   def revenue(id)
-    all_sales = []
-    sales(id).each do |sale|
-      all_sales << sale.amount
-    end
-    all_sales.reduce(0, :+)
+    sales(id).reduce(0) { |sum, sale| sum += sale.amount }
   end
 
 end
