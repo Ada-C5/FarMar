@@ -46,5 +46,9 @@ class FarMar::Vendor
     return sum[0]
   end
 
+  def self.by_market(market_id)
+    self.all.reject{|vid, instances| instances.market_id != market_id}
+  end
+
 
 end

@@ -46,4 +46,11 @@ describe FarMar::Vendor do
       vendor.revenue.must_be_instance_of Fixnum
     end
   end
+
+  describe "Vendor by_market" do
+    it "can find all instances of vendor with by associated market" do
+      FarMar::Vendor.by_market(1).must_be_instance_of Hash
+      FarMar::Vendor.by_market(1).length.must_equal 6
+    end
+  end
 end
