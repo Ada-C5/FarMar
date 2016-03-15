@@ -32,7 +32,6 @@ class FarMar::Market
   end
 
   def vendors #search by market id
-    market_id = self.market_id
-    FarMar::Vendor.all.select {|vendor_id, instance| instance.market_id == market_id}
+    FarMar::Vendor.all.select {|vendor_id, instance| instance.market_id == self.market_id}
   end
 end

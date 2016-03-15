@@ -26,4 +26,22 @@ class FarMar::Product
     end
     return "no instance found"
   end
+
+  def vendor
+    vendor = FarMar::Vendor.all.select {|vendor_id, instance| instance.vendor_id == self.vendor_id}
+    return vendor.values[0]
+  end
+
+  def sales
+    FarMar::Sale.all.select{|sid, instance| instance.product_id == self.product_id}
+  end
+
+  def number_of_sales
+    sales.length
+  end
+
+  def self.by_vendor(vendor_id)
+    FarMar::Product.all.select{|vid, instance| instance.vendor_id == vendor_id}
+  end
+
 end
