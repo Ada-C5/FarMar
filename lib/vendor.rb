@@ -26,7 +26,7 @@ class FarMar::Vendor
   end
 
   def self.by_market(find_market_id)
-    FarMar::Vendor.all.find_all { |ven| ven.market_id == find_market_id }
+    self.all.find_all { |ven| ven.market_id == find_market_id }
   end
 
   def market
