@@ -37,10 +37,18 @@ class FarMar::Product
     end
   end
 
-#vendor: returns the FarMar::Vendor instance that is associated with this vendor using the FarMar::Product vendor_id field
-#sales: returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
-#number_of_sales: returns the number of times this product has been sold.
-#self.by_vendor(vendor_id): returns all of the products with the given vendor_id
+  # vendor: returns the FarMar::Vendor instance that is associated with this vendor using the 
+  # FarMar::Product vendor_id field
+  def vendor
+    FarMar::Vendor.find(self.vendor_id)
+  end
+
+  # sales: returns a collection of FarMar::Sale instances that are associated using the 
+  # FarMar::Sale product_id field.
+
+  # number_of_sales: returns the number of times this product has been sold.
+
+  # self.by_vendor(vendor_id): returns all of the products with the given vendor_id
 
 
 end
