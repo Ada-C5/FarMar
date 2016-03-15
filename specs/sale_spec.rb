@@ -36,4 +36,10 @@ describe FarMar::Sale do
     end
   end
 
+  describe "FarMar::Sale#self.between" do
+    it "should return 'Bad Chicken' product associated with sale" do
+      FarMar::Sale.between("2013-11-10 05:19:05", "2013-11-10 11:31:16").length.must_equal 471
+    end
+  end
+
 end
