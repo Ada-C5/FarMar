@@ -32,5 +32,8 @@ describe FarMar::Sale do
     sale.product(sale.prod_id).class.must_equal FarMar::Product
   end
 
-
+  # test self.between method
+  it "returns array of sale instances with purchase_time in range" do
+    FarMar::Sale.between("06:00:00", "08:00:00").length.must_equal 1116
+  end
 end

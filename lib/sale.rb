@@ -30,6 +30,28 @@ class FarMar::Sale
     end
   end
 
+  # time must be in military time
+  # time does not account for user timezone
+  # range time1 cannot be before midnight if time2 is after midnight
+  def self.between(time1, time2)
+    sales = self.all
+    time1 = time1.tr('^0-9', '').to_i
+    time2 = time2.tr('^0-9', '').to_i
+    #range = (time1-time2)
+    temp = []
+    sales.each do |sale|
+      #2013-11-10 01:51:24 -0800
+      time = sale.purchase_time
+      time = time.split(" ")
+      time = time[1]
+      time = time.tr('^0-9', '').to_i
+      if time.between?(time1, time2)
+        temp << sale
+      end
+    end
+    return temp
+  end
+
   # return vendor instance related to sale
   def vendor(ven_id)
     FarMar::Vendor.all.find { |vendor| vendor.ven_id == ven_id }
