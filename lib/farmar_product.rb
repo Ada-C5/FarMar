@@ -12,8 +12,8 @@ class FarMar::Product
 
   def self.all
     product_instances = {}
-    self.pull_from_csv.each do |product|
-      product_instances[product[0]] = FarMar::Product(product)
+    self.pull_from_csv.each do |line|
+      product_instances[line[0]] = FarMar::Product.new(line)
     end
       product_instances
   end

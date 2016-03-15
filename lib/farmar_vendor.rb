@@ -1,4 +1,3 @@
-
 class FarMar::Vendor
   attr_reader :market_id, :name, :vendor_id, :employees
   def initialize(line)
@@ -28,4 +27,24 @@ class FarMar::Vendor
     end
     return "no instance found"
   end
+
+  def market #find market instance of vendor instance
+    FarMar::Market.find(market_id)
+  end
+
+  def products
+    FarMar::Product.all.reject{|pid, instance| instance.vendor_id != self.vendor_id}
+  end
+
+  def sales
+    FarMar::Sale.all.reject{|sid, instance| instance.vendor_id != self.vendor_id}
+  end
+
+  def revenue
+    individual_revenues = sales.map {|sid, instance| instance.amount}
+    sum = individual_revenues.inject(:+) #sum
+    return sum[0]
+  end
+
+
 end
