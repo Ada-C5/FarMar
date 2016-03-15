@@ -33,7 +33,6 @@ describe "FarMar::Vendor" do
     end
   end
 
-#products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
   describe "FarMar::Vendor#products" do
     let(:products) { first_vendor.products }
     it "returns an array" do
