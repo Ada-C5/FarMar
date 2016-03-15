@@ -44,5 +44,6 @@ class FarMar::Sale
 
   #self.between(beginning_time, end_time): returns a collection
   #of FarMar::Sale objects where the purchase time is between the two times given as arguments
-  
+
+  #http://stackoverflow.com/questions/4521921/how-to-know-if-todays-date-is-in-a-date-range/7176956#7176956
 end

@@ -36,20 +36,35 @@ def market
   all_markets.select { |m| m.id == @market_id}
 end
 
-#products: returns a collection of FarMar::Product instances that
-#are associated by the FarMar::Product vendor_id field.
-
 def self.by_market(market_id)
   market_id = market_id.to_s
   all_vendors = FarMar::Vendor.all
   all_vendors.select { |v| v.market_id == market_id }
 end
 
-#sales: returns a collection of FarMar::Sale instances
-#that are associated by the vendor_id field.
-#need to do far_mar sale first
+def products
+  all_products = FarMar::Product.all
+  all_products.select { |p| p.vendor_id == @id}
+end
 
+def sales
+  all_sales = FarMar::Sale.all
+  all_sales.select { |s| s.vendor_id == @id}
+end
+
+#FINALLY NEED TO TURN STUFF INTO FIXNUMS INSTEAD OF STRINGS ONLY.
+def revenue
+  vendor_sales = sales
+  amount_array = []
+
+  vendor_sales.each do |sale|
+    amount_array << sale.amount
+  end
+
+amount_array.reduce(0, :+)
+
+end
 #revenue: returns the the sum of
 #all of the vendor's sales (in cents)
-
+# [1,2,3]
 end
