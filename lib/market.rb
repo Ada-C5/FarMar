@@ -8,13 +8,13 @@ class FarMar::Market
   FILE = "./support/markets.csv"
   MARKET_CSV = FarMar::Market.read_csv(FILE)
 
-  def initialize(csv_index)
-    @market_id = MARKET_CSV[csv_index][0].to_i
-    @name =      MARKET_CSV[csv_index][1]
-    @address =   MARKET_CSV[csv_index][2]
-    @city =      MARKET_CSV[csv_index][3]
-    @state =     MARKET_CSV[csv_index][4]
-    @zip =       MARKET_CSV[csv_index][5]
+  def initialize(market_id)
+    @market_id = MARKET_CSV[market_id][0].to_i
+    @name =      MARKET_CSV[market_id][1]
+    @address =   MARKET_CSV[market_id][2]
+    @city =      MARKET_CSV[market_id][3]
+    @state =     MARKET_CSV[market_id][4]
+    @zip =       MARKET_CSV[market_id][5]
   end
 
   def self.all
@@ -34,5 +34,16 @@ class FarMar::Market
     end
     index = MARKET_CSV.index(the_market)
     return FarMar::Market.new(index)
+  end
+
+  def self.vendors(market_id)
+    vendor_instances = []
+    FarMar::Vendor::VENDOR_CSV.collect do |vendor|
+      vendor_id = vendor[-1].to_i
+      if vendor_id == market_id
+        vendor_instances << FarMar::Vendor.new(vendor[0].to_i)
+      end
+    end
+    return vendor_instances
   end
 end

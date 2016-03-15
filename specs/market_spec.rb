@@ -30,4 +30,22 @@ describe "FarMar::Market" do
       assert_equal 2, market.market_id
     end
   end
+
+  describe "FarMar::Market#vendors" do
+    it "returns a collection" do
+      vendors = FarMar::Market.vendors(2)
+      vendors.must_be_instance_of Array
+    end
+
+    it "collection consists of Vendor instances" do
+      vendor_instances = FarMar::Market.vendors(2)
+      vendor_instances[0].must_be_instance_of FarMar::Vendor
+    end
+
+    it "Vendor instances have requested market_id" do
+      vendors = FarMar::Market.vendors(2)
+      print vendors
+      assert_equal 2, vendors[0].market_id
+    end
+  end
 end

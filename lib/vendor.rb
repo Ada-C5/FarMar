@@ -8,11 +8,11 @@ class FarMar::Vendor
   FILE = "./support/vendors.csv"
   VENDOR_CSV = FarMar::Vendor.read_csv(FILE)
 
-  def initialize(csv_index)
-    @vendor_id = VENDOR_CSV[csv_index][0].to_i
-    @name = VENDOR_CSV[csv_index][1]
-    @no_of_empl = VENDOR_CSV[csv_index][2].to_i
-    @market_id = VENDOR_CSV[csv_index][3].to_i
+  def initialize(vendor_id)
+    @vendor_id = VENDOR_CSV[vendor_id][0].to_i
+    @name = VENDOR_CSV[vendor_id][1]
+    @no_of_empl = VENDOR_CSV[vendor_id][2].to_i
+    @market_id = VENDOR_CSV[vendor_id][3].to_i
   end
 
   def self.all
@@ -32,6 +32,11 @@ class FarMar::Vendor
     end
     index = VENDOR_CSV.index(the_vendor)
     return FarMar::Vendor.new(index)
+  end
+
+  #market: returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id
+  def self.market(market_id)
+
   end
 
 end
