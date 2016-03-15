@@ -30,6 +30,28 @@ class FarMar::Sale
     end
   end
 
+##### DateTime.strptime("2013-11-11 06:21:52 -0800" "formatted version here")
+##### DateTime.strptime("2013-11-11 06:21:52 -0800" "%Y-%m-%d %H:%M:%S %z")
+  # def self.between(beginning_time, end_time)
+  #   between_times = []
+  #   beginning_time = DateTime.strptime(beginning_time, "%Y-%m-%d %H:%M:%S %z")
+  #   end_time = DateTime.strptime(end_time, "%Y-%m-%d %H:%M:%S %z")
+  #   self.all.each do |sale|
+  #     if (end_time - DateTime.strptime(sale.purchase_time, "%Y-%m-%d %H:%M:%S %z")) < (end_time - beginning_time) && (end_time - DateTime.strptime(sale.purchase_time, "%Y-%m-%d %H:%M:%S %z")) >= 0
+  #       between_times << sale
+  #     end
+  #   end
+  # end
+
+  # same as above but using an enumerable instead of an each loop
+  def self.between(beginning_time, end_time)
+    beginning_time = DateTime.strptime(beginning_time, "%Y-%m-%d %H:%M:%S %z")
+    end_time = DateTime.strptime(end_time, "%Y-%m-%d %H:%M:%S %z")
+    self.all.find_all {
+      |sale| (end_time - DateTime.strptime(sale.purchase_time, "%Y-%m-%d %H:%M:%S %z")) < (end_time - beginning_time) && (end_time - DateTime.strptime(sale.purchase_time, "%Y-%m-%d %H:%M:%S %z")) >= 0
+    }
+  end
+
   def vendor
     FarMar::Vendor.all.find { |ven| ven.id == self.vendor_id }
   end

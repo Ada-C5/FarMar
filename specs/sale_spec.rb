@@ -35,6 +35,13 @@ describe FarMar::Sale do
     end
   end
 
+  describe "Sale#self.between" do
+    it "returns an array of Sales with purchase times within the given range" do
+      FarMar::Sale.between("2013-11-09 22:35:57 -0800", "2013-11-09 22:38:00 -0800")[0].must_be_instance_of FarMar::Sale
+      FarMar::Sale.between("2013-11-08 05:00:00 -0800", "2013-11-08 11:00:00 -0800").length.must_equal 479
+    end
+  end
+
   describe "Sale#vendor" do
     it "finds the Vendor that the Sale belongs to" do
       # uncomment the following line to see the instance of vendor for this product
@@ -52,5 +59,6 @@ describe FarMar::Sale do
       sale.product.name.must_equal "Yummy Fruit"
     end
   end
+
 
 end
