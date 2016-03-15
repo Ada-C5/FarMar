@@ -19,18 +19,8 @@ describe FarMar::Vendor do
 		vendors[vendor_to_test].name.wont_be_empty
 	end
 
-	it "has a find method" do
-		FarMar::Vendor.must_respond_to(:find)
-	end
-
 	it "returns the correct sale when self#find is called" do
 		FarMar::Vendor.find(18).name.must_equal("Von-Hamill")
-	end
-
-	it "has a market instance method" do
-		vendor = FarMar::Vendor.new({id: "2001", market_id: "12"})
-
-		vendor.must_respond_to(:market)
 	end
 
 	it "has a market method that will return the market this vendor is associated with" do 
@@ -49,6 +39,10 @@ describe FarMar::Vendor do
 		market.must_be_nil
 	end
 
+	it "has a products method" do
+		vendor_to_test = FarMar::Vendor.new({id: "1", name: "Feil-Farrell", num_of_employees: "8", market_id: "1"})
 
+		vendor_to_test.must_respond_to(:products)
+	end
 
 end
