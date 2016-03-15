@@ -4,7 +4,7 @@ require_relative '../farmar'
 describe "FarMar::Vendor" do
   let(:first_vendor) {FarMar::Vendor.new(1)}
 
-  describe "FarMar::Vendor#all" do
+  describe "FarMar::Vendor#self.all" do
     it "returns new instances of Vendor for each entry in csv" do
       assert_equal (FarMar::Vendor.all).length, FarMar::Vendor::VENDOR_CSV.length
     end
@@ -14,7 +14,7 @@ describe "FarMar::Vendor" do
     end
   end
 
-  describe "FarMar::Vendor#find" do
+  describe "FarMar::Vendor#self.find" do
     it "returns an instance of Vendor" do
       vendor = FarMar::Vendor.find(2)
       vendor.must_be_instance_of FarMar::Vendor
@@ -34,7 +34,8 @@ describe "FarMar::Vendor" do
   end
 
   describe "FarMar::Vendor#products" do
-    let(:products) { first_vendor.products }
+  let(:products) { first_vendor.products }
+
     it "returns an array" do
       products.must_be_instance_of Array
     end
@@ -45,6 +46,13 @@ describe "FarMar::Vendor" do
 
     it "returns products with the correct vendor_id" do
       assert_equal 1, products.first.vendor_id.to_i
+    end
+  end
+
+  describe "FarMar::Vendor#sales" do
+  let(:sales_made) {first_vendor.sales}
+    it "returns instances of Sale" do
+      sales_made.first.must_be_instance_of FarMar::Sale
     end
   end
 end
