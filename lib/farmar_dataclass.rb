@@ -29,5 +29,20 @@ module FarMar
       matched
     end
 
+    def self.all(data_file) #returns a collection of FarMar::"DataClass" instances, representing all of the Markets described in the CSV.
+
+      data = []
+
+      CSV.foreach(data_file) do |row|
+        data << row
+      end
+
+      instances = data.collect do |array|
+        self.new(array)
+      end
+
+      return instances
+    end
+
   end
 end
