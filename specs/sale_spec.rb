@@ -35,4 +35,22 @@ describe FarMar::Sale do
     end
   end
 
+  describe "Sale#vendor" do
+    it "finds the Vendor that the Sale belongs to" do
+      # uncomment the following line to see the instance of vendor for this product
+      # p sale.vendor
+      sale.vendor.must_be_instance_of FarMar::Vendor
+      sale.vendor.name.must_equal "Breitenberg Inc"
+    end
+  end
+
+  describe "Sale#product" do
+    it "finds the Product that the Sale belongs to" do
+      # uncomment the following line to see the instance of product for this product
+      # p sale.product
+      sale.product.must_be_instance_of FarMar::Product
+      sale.product.name.must_equal "Yummy Fruit"
+    end
+  end
+
 end
