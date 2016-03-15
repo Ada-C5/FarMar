@@ -29,4 +29,8 @@ class FarMar::Vendor
   def products
     FarMar::Product.by_vendor(id)
   end
+
+  def sales
+    FarMar::Sale.by_vendor(id)
+  end
 end
