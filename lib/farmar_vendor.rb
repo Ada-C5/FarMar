@@ -54,6 +54,8 @@ class FarMar::Vendor
 
   # sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
   def sales
+    sales_to_search = FarMar::Sale.all("./support/sales.csv")
+    sales_to_search.select {|sale| sale.vendor_id == self.id}
   end
 
   # revenue: returns the the sum of all of the vendor's sales (in cents)
