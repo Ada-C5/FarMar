@@ -26,4 +26,9 @@ describe "FarMar#Product" do
         all_products = FarMar::Product.all
         all_products.length.must_equal 8193
       end
+
+      it "should return information for particular product" do
+        selected_product = FarMar::Product.find(5)
+        selected_product.product_name.must_equal "Green Apples"
+      end
 end

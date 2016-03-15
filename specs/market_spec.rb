@@ -27,5 +27,8 @@ describe "FarMar#Market" do
         all_markets.length.must_equal 500
       end
 
-
+      it "should return information for particular market" do
+        selected_market = FarMar::Market.find(99)
+        selected_market.name.must_equal "State Center Farmers Market"
+      end
 end

@@ -1,6 +1,6 @@
 require 'csv'
 require_relative "../far_mar"
-##NEED GEM FOR DATETIME
+require 'date'
 
 class FarMar::Sale
 #   ID - (Fixnum) uniquely identifies the sale
@@ -27,5 +27,15 @@ attr_reader :sale_id, :amount, :purchase_time, :vendor_id, :product_info
       end
     end
     return all_sales
+  end
+
+  def self.find(sale_id, filename = "./support/sales.csv")
+    CSV.foreach(filename, 'r') do |line|
+    #csv.read.each do |line|
+        if line[0] == sale_id.to_s
+          selected_sale = self.new(sale_id: line[0], amount: line[1], purchase_time: line[2], vendor_id: line[3], product_info: line[4])
+          return selected_sale
+        end
+      end
   end
 end

@@ -24,4 +24,14 @@ attr_accessor
     end
     return all_products
   end
+
+  def self.find(product_id, filename = "./support/products.csv")
+    CSV.foreach(filename, 'r') do |line|
+    #csv.read.each do |line|
+        if line[0] == product_id.to_s
+          selected_product = self.new(product_id: line[0], product_name: line[1], vendor_id: line[2])
+          return selected_product
+        end
+      end
+  end
 end

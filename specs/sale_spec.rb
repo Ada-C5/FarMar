@@ -27,4 +27,9 @@ describe "FarMar#Sale" do
         all_sales = FarMar::Sale.all
         all_sales.length.must_equal 12798
       end
+
+      it "should return information for particular sale" do
+        selected_sale = FarMar::Sale.find(78)
+        selected_sale.product_info.must_equal "44"
+      end
 end

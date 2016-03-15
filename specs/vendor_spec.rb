@@ -27,4 +27,9 @@ describe "FarMar#Vendor" do
         all_vendors = FarMar::Vendor.all
         all_vendors.length.must_equal 2690
       end
+
+      it "should return information for particular sale" do
+        selected_sale = FarMar::Sale.find(78)
+        selected_sale.product_info.must_equal "44"
+      end
 end

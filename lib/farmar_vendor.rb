@@ -25,4 +25,14 @@ attr_reader :vendor_id, :name, :no_of_employees, :vendor_id
     end
     return all_vendors
   end
+
+  def self.find(vendor_id, filename = "./support/vendors.csv")
+    CSV.foreach(filename, 'r') do |line|
+    #csv.read.each do |line|
+        if line[0] == vendor_id.to_s
+          selected_vendor = self.new(vendor_id: line[0], name: line[1], no_of_employees: line[2], market_id: line[3])
+          return selected_vendor
+        end
+      end
+  end
 end
