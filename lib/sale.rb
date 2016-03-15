@@ -33,4 +33,13 @@ class FarMar::Sale
     end
     return nil
   end
+
+  def self.by_vendor(vendor_id)
+    sale = []
+    sales = self.all
+    sales.each do |found_sale|
+      sale << found_sale if vendor_id == found_sale.vendor_id
+    end
+    return sale
+  end
 end

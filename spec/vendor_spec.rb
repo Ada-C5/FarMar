@@ -60,4 +60,12 @@ describe FarMar::Vendor do
     end
   end
 
+  describe "#sales" do
+    let(:vendor) {FarMar::Vendor.find(16)}
+    it "Returns a collection of FarMar::Sale instances that are associated by the vendor_id field." do
+      sale = vendor.sales
+      sale.length.must_equal(7)
+    end
+  end
+
 end
