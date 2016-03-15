@@ -32,7 +32,6 @@ module FarMar
     end
 
     def self.find(data_file, id_to_match)
-    # set to true if there is no passed :return_instance option and translate it to the boolean variable...
     # returns an instance where the value of the id field in the CSV matches the passed id parameter.
 
       all = self.all(data_file)

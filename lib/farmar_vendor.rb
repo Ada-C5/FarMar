@@ -9,7 +9,6 @@ module FarMar
       #need to convert objects that came through as strings in parallel assignment...
       #other problems with parallel assignment is what if row is incomplete? :(
 
-
     end
 
     def revenue
@@ -35,6 +34,7 @@ module FarMar
 
 
     def self.by_market(data_file = './support/vendors.csv', given_market_id)
+    # returns a collection of FarMar::Market instance where the value of the market_id field passed given_market_id parameter.
       vendors = self.all(data_file)
       matched_vendors = vendors.find_all do |vendor|
         vendor.market_id == given_market_id
