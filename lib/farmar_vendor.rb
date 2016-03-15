@@ -41,13 +41,25 @@ class FarMar::Vendor
   end
 
 # market: returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id field
+  def market
+  
+  end
 
-# products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
 
-# sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
+  # products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
+  def products
+  end
 
-# revenue: returns the the sum of all of the vendor's sales (in cents)
+  # sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
+  def sales
+  end
 
-# self.by_market(market_id): returns all of the vendors with the given market_id
+  # revenue: returns the the sum of all of the vendor's sales (in cents)
+  def revenue
+  end
+
+  # self.by_market(market_id): returns all of the vendors with the given market_id
+  def self.by_market
+  end
 
 end
