@@ -29,4 +29,15 @@ describe FarMar::Product do
       vendor.name.must_equal "Reynolds, Schmitt and Klocko"
     end
   end
+
+  describe "FarMar::Product#sales" do
+    let(:sales) { product_ten.sales }
+
+    it "should return an Array of sales associated with the product id" do
+      sales.must_be_instance_of Array
+      sales.length.must_equal 1
+      sales.first.id.must_equal 27
+      sales.first.amount.must_equal 2851
+    end
+  end
 end
