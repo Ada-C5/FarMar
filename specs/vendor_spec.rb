@@ -17,7 +17,7 @@ describe FarMar::Vendor do
 		all_vendors[vendor_to_test].name.wont_be_empty
 	end
 
-	it "returns the correct sale when self#find is called" do
+	it "returns the correct vendor when self#find is called" do
 		FarMar::Vendor.find(18).name.must_equal("Von-Hamill")
 	end
 
@@ -53,5 +53,10 @@ describe FarMar::Vendor do
 		vendor_test_two.products.must_be_instance_of(Array)
 	end
 
+	it "returns a collection of vendors for a given market_id" do
+		market_one_vendors = FarMar::Vendor.by_market(1)
+
+		market_one_vendors.length.must_equal(6)
+	end
 
 end
