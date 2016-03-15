@@ -17,13 +17,17 @@ describe FarMar::Vendor do
   # check the .find(id) method
   it "should return the id of the instance if .find(id: 1)" do
     FarMar::Vendor.find(1).id.must_equal(1)
+    # <FarMar::Vendor:0xXXXXXX @id=1, @name="Feil-Farrell", @employees=8,
+    #  @market_id=1>
   end
 
-  # check the vendor method
+  # check the market method
   it "should return the num of markets (2) associated with the vendor id: 9" do
-    vendors = FarMar::Vendor.find(9) # market_id = 2
-    #9,"Quigley, Breitenberg and Schuster",2,2
-    vendors.market.id.must_equal(2)
+    vendors = FarMar::Vendor.find(1) # market_id = 2
+    vendors.market.zip.must_equal("97202")
+    # <FarMar::Market:0xXXXXXX @id=1, @name="People's Co-op Farmers Market",
+    # @address ="30th and Burnside", @city="Portland", @county="Multnomah",
+    # @state="Oregon", @zip="97202">
   end
 
   # check the products method

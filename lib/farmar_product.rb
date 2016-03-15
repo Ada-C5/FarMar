@@ -29,4 +29,10 @@ class FarMar::Product
       end
     end
   end
+
+  def vendor
+    FarMar::Vendor.all.find {|instance| instance.id == vendor_id}
+  end
+
+
 end
