@@ -18,12 +18,14 @@ class FarMar::Vendor
         market_id: row[3].to_i)
     end
     return vendors
-
   end
 
   def self.find(id)
-    find_vendors = self.all
-    find_vendors.find { |vendor| vendor.id == id }
+    self.all.find { |vendor| vendor.id == id }
+  end
+
+  def self.by_market(market_id)
+    self.all.find_all { |market| market.market_id == market_id }
   end
 
   def markets(market_id)
