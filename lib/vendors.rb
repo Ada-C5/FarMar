@@ -9,17 +9,13 @@ class FarMar::Vendor
   end
 
   def self.all
-    csv_array = CSV.read('support/vendors.csv')
-    @all_vendors = csv_array.collect do |row|
+    CSV.read('support/vendors.csv').collect do |row|
       self.new(row[0].to_i,row[1],row[2],row[3].to_i)
     end
-    #return to the array  @all_vendors with all the vendors in the file instanciated
-    # Array of objects
   end
 
   def self.find(id)
-    FarMar::Vendor.all
-    @all_vendors.each do |vendor|
+    FarMar::Vendor.all.each do |vendor|
       if vendor.vendor_id == id.to_i
         return vendor
       end
@@ -27,22 +23,18 @@ class FarMar::Vendor
   end
 
   def market
-    #vendor_test = FarMar::Vendor.new("18", "David Jimison", "1", "404")
-    the_vendors_market = []
-    FarMar::Market.all.each do |market|
-      if market.market_id == market_id.to_i
-        the_vendors_market << market
-      end
-    end
+    the_vendors_market = FarMar::Market.all.select { |market| market.market_id == market_id.to_i }
     return the_vendors_market
   end
 
   def products
     the_vendors_product = FarMar::Product.all.select { |product| product.vendor_id == vendor_id.to_i }
+    return the_vendors_product
   end
 
   def sales
     the_vendors_sale = FarMar::Sale.all.select { |sale| sale.vendor_id == vendor_id.to_i }
+    return the_vendors_sale
   end
 
   def revenue
@@ -53,6 +45,14 @@ class FarMar::Vendor
     end
     all_sales.reduce(:+)
 
+  end
+
+  def self.by_market(market_id)
+    FarMar::Vendor.all.each do |vendor|
+      if vendor.market_id == market_id.to_i
+        return vendor
+      end
+    end
   end
 
 end

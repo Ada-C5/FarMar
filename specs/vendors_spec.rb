@@ -2,6 +2,8 @@ require_relative './spec_helper'
 require_relative '../far_mar'
 
 describe FarMar::Vendor do
+  # let(:finder_test) { FarMar::Market.new("18", "Grand Valley State University Farmers Market", "1 Campus Drive, Parking Lot F", "Allendale", "Ottawa", "Michigan", "49504") }
+
   it "is an object that isn't empty" do
     FarMar::Vendor.wont_be_nil
   end
@@ -96,6 +98,20 @@ describe FarMar::Vendor do
 
     it "all the sales should be tons of money like 100.000" do
       vendor_test.revenue.must_be :>, 100000
+    end
+
+  end
+
+  describe "FarMar::Vendor#self.by_market" do
+    it "should return object's city Cruickshank Group" do
+      FarMar::Vendor.by_market("276").vendor_id.must_be_same_as 1494
+      FarMar::Vendor.by_market("276").vendor_name.must_equal "Schulist Inc"
+      FarMar::Vendor.by_market("276").num_employees.must_equal "7"
+      FarMar::Vendor.by_market("276").market_id.must_be_same_as 276
+    end
+
+    it "should return an object of the class Vendor" do
+      FarMar::Vendor.by_market("12").must_be_instance_of FarMar::Vendor
     end
 
   end
