@@ -18,12 +18,19 @@ class FarMar::Product
       single_product_hash = {
         id: product[0],
         name: product[1],
-        number_of_employees: product[2],
-        market_id: product[3]
+        vendor_id: product[2]
       }
       FarMar::Product.new(single_product_hash)
     end
   end
 
+  def self.find(given_id)
+    found_product = nil
+    self.all.each do |product|
+      if product.id == given_id
+        found_product = product
+      end
+    end
+    found_product
   end
 end
