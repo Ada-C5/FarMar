@@ -35,7 +35,13 @@ describe FarMar::Vendor do
   # check the sales method
   it "should return the num of sales (4) associated with vendor id: 9" do
     vendors = FarMar::Vendor.find(9) # market_id = 2
-    vendors.products.length.must_equal(4)
+    vendors.sales.length.must_equal(5)
   end
+
+  # check the revenue method
+  # it ".." do
+  #   vendors = FarMar::Vendor.find(9) # market_id = 2
+  #   vendors.revenue.must_equal(4)
+  # end
 
 end

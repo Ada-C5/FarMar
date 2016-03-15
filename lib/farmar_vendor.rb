@@ -43,11 +43,13 @@ class FarMar::Vendor
   end
 
   def sales
+
     FarMar::Sale.all.find_all {|instance| instance.vendor_id == id}
   end
 
-  def revenue
-  end
+  # def revenue
+  #   return sales #  .each {|instance| instance.amount/100}
+  # end
 
   def self.by_market(market_id)
   end

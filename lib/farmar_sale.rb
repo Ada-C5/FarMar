@@ -21,7 +21,7 @@ class FarMar::Sale
     sales_info = []
     CSV.foreach("support/sales.csv") do |row|
       info = self.new(id: row[0].to_i, amount: row[1].to_i,
-      purchase_time: row[2], vendor_id: row[3], product_id: row[4])
+      purchase_time: row[2], vendor_id: row[3].to_i, product_id: row[4].to_i)
       sales_info << info
     end
     return sales_info
