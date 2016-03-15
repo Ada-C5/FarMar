@@ -62,6 +62,9 @@ describe FarMar::Market do
 			test[0].name.must_equal "Gleichner and Sons"
 		end
 
+		# it "returns all correct instances of FarMar::Vendor"
+		# tests a vendor id that has multiple matches somehow.
+		
 	end
 
 end

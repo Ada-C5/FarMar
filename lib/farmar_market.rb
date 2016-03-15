@@ -1,5 +1,5 @@
 #get rid of ln2 after done with IRB testing
-# require_relative '../far_mar.rb'
+require_relative '../far_mar.rb'
 
 class FarMar::Market
   attr_reader :id, :name, :address, :city, :county, :state, :zip
@@ -15,7 +15,7 @@ class FarMar::Market
   end
 
   def self.all
-    all_markets = CSVHasher.hashify('./support/markets.csv')
+    all_markets = CSVHasher.hashify('../support/markets.csv')
       all_markets.collect do |n|
         FarMar::Market.new(n)
       end
@@ -34,10 +34,9 @@ class FarMar::Market
       return nil
   end
 
-  def self.vendors(market_id)
-    market_id = market_id.to_s
+  def vendors
     all_vendors = FarMar::Vendor.all
-    all_vendors.select { |v| v.market_id == market_id }
+    all_vendors.select { |v| @id == v.market_id }
   end
 
 end
