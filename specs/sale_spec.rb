@@ -8,6 +8,8 @@ describe FarMar::Sale do
   end
 
   describe "FarMar::Sale class methods" do
+    let(:sales_between) { FarMar::Sale.between("2013-11-06 20:40:00 -0800", "2013-11-06 20:45:00 -0800") }
+    let(:more_sales_between) { FarMar::Sale.between("2013-11-11 11:29:00 -0800", "2013-11-11 11:35:00 -0800") }
 
     it "should return an instance of array using self.all method" do
       FarMar::Sale.all.must_be_instance_of Array
@@ -17,6 +19,17 @@ describe FarMar::Sale do
       sale_ten.must_be_instance_of FarMar::Sale
       sale_ten.id.must_equal 10
       sale_ten.amount.must_equal 5160
+    end
+
+    it "should return an array of instances within a time range using self.between method" do
+      sales_between.must_be_instance_of Array
+    end
+
+    it "should include specific instances within this time period using the self.between method" do
+      sales_between.first.id.must_equal 4
+      sales_between.first.amount.must_equal 1634
+      more_sales_between.first.id.must_equal 6
+      more_sales_between.first.amount.must_equal 6950
     end
   end
 
