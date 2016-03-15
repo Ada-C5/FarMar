@@ -38,7 +38,8 @@ class FarMar::Vendor
   end
 
   def revenue
-    sales = self.sales
+    my_sales = self.sales
+    my_sales.map { |sale| sale.amount }.reduce(0,:+)
   end
 
 end
