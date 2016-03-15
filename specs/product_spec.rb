@@ -7,34 +7,44 @@ describe FarMar::Product do
   end
 
   let(:products_all) {FarMar::Product.all}
-  let(:products_find) {FarMar::Product.find(1)}
+  let(:products_find) {FarMar::Product.find 1}
 
-  # checks the length
+
+  # runs the .all method to create instances for each row in products.csv
   it "returns total number of products => 8193 instances" do
-    products_all.length.must_equal(8193)
+    products_all.length.must_equal 8193   # checks the length
   end
 
   # check all methods that can be called after finding the product id
-  describe FarMar::Product do
+  describe FarMar::Product do  #how do I correctly name this to a method?!?!?
     # check the .find(id) method
     it "should return the id of the instance if .find(id = 1)" do
-      var = FarMar::Product.find(1)
-      var.id.must_equal(1)
-      var.name.must_equal("Dry Beets")
-      var.vendor_id.must_equal(1)
-      #<FarMar::Product:0xXXXXXX @id=1, @name="Dry Beets", @vendor_id=1>
+      pro = products_find
+      pro.id.must_equal 1
+      pro.name.must_equal "Dry Beets"
+      pro.vendor_id.must_equal 1
     end
 
     # check the vendor method
     it "should return the vendor associated with the product vendor_id: 1" do
-      products_find.vendor.id.must_equal(1)
-      # <FarMar::Vendor:0xXXXXXX @id=1, @name="Feil-Farrell", @employees=8,
-      # @market_id=1>
+      pro_ven = products_find.vendor
+      pro_ven.id.must_equal 1
+      pro_ven.name.must_equal "Feil-Farrell"
+      pro_ven.employees.must_equal 8
+      pro_ven.market_id.must_equal 1
     end
 
     # check the sales method
-    it "should return the num of sales associated with the product vendor_id:1" do
-      products_find.sales.length.must_equal(7)
+    it "should verify all sales (7) match the vendor_id:1" do
+      products_find.sales.each do |instance|
+        instance.vendor_id.must_equal 1
+      end
     end
+
+    # check the number_of_sales method
+    it "should return 7" do
+      products_find.number_of_sales.must_equal 7
+    end
+
   end
 end

@@ -7,18 +7,21 @@ describe FarMar::Sale do
   end
 
   let(:sales_all) {FarMar::Sale.all}
-  let(:sales_find) {FarMar::Sale.find(1)}
+  let(:sales_find) {FarMar::Sale.find 1}
 
     # runs the .all method to create instances for each row in products.csv
-    # checks the length
     it "returns total number of sales => 12798 instances" do
-      sales_all.length.must_equal(12798)
+      sales_all.length.must_equal 12798 # checks the length
     end
 
     # check the .find(id) method
-    it "should return the id of the instance if .find(id = 1)" do
-      sales_find.id.must_equal(1)
+    it "verifies the .find(id = 1) with info from line 1 in csv (id = 1) " do
+      sal = sales_find
+      sal.id.must_equal 1
+      sal.amount.must_equal 9290
+      sal.purchase_time.must_equal %q[2013-11-07 04:34:56 -0800]
+      sal.vendor_id.must_equal 1
+      sal.product_id.must_equal 1
     end
-
 
 end
