@@ -39,9 +39,9 @@ describe FarMar::Vendor do
   end
 
   # check the revenue method
-  # it ".." do
-  #   vendors = FarMar::Vendor.find(9) # market_id = 2
-  #   vendors.revenue.must_equal(4)
-  # end
+  it "should return the sum of all of the vendors sales in cents" do
+    vendors = FarMar::Vendor.find(9) # market_id = 2
+    vendors.revenue.must_equal(24429)
+  end
 
 end

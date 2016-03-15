@@ -43,13 +43,14 @@ class FarMar::Vendor
   end
 
   def sales
-
     FarMar::Sale.all.find_all {|instance| instance.vendor_id == id}
   end
 
-  # def revenue
-  #   return sales #  .each {|instance| instance.amount/100}
-  # end
+  def revenue
+    amounts = sales.map {|instance| instance.amount}
+    amounts.inject(:+)
+    # sprintf("%0.02f", amounts.inject(:+))
+  end
 
   def self.by_market(market_id)
   end
