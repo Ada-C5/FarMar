@@ -34,4 +34,17 @@ describe FarMar::Vendor do
 
   end
 
+  describe "market" do
+    let(:vendor_five) { FarMar::Vendor.find(5)}
+
+    it "should return the market where the vendor sells" do
+      vendor_five.market[0].market_id.must_equal(1)
+    end
+
+    # it "vendors should have same market_id as the market" do
+      # market_one.market_id.must_equal(market_one.vendors[1].market_id)
+    # end
+
+  end
+
 end

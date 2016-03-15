@@ -1,6 +1,6 @@
 #require_relative "../far_mar"
 
-#require File.dirname(__FILE__) + ".."
+
 
 class FarMar::Market
   attr_reader :market_id, :name, :address, :city, :county, :state, :zip
@@ -28,11 +28,16 @@ class FarMar::Market
   def self.find(id)
     all_markets = self.all
     all_markets.each do |market|
-      if market.market_id == id
-        return market
-      end
+      return market if market.market_id == id
     end
     nil
+  end
+
+  # vendors: returns a collection of FarMar::Vendor instances that are associated with
+  # the market by the market_id field.
+
+  def vendors
+    FarMar::Vendor.all.select { |vendor| vendor.market_id == market_id}
   end
 
 end

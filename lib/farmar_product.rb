@@ -22,9 +22,7 @@ class FarMar::Product
   def self.find(id)
     all_products = self.all
     all_products.each do |product|
-      if product.product_id == id
-        return product
-      end
+      return product if product.product_id == id
     end
     nil
   end

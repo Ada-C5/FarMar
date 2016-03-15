@@ -22,14 +22,26 @@ class FarMar::Vendor
   def self.find(id)
     all_vendors = self.all
     all_vendors.each do |vendor|
-      if vendor.vendor_id == id
-        return vendor
-      end
+      return vendor if vendor.vendor_id == id
     end
     nil
   end
 
+  #market: returns the FarMar::Market instance that is associated with this vendor using
+  #the FarMar::Vendor market_id field
+
+  def market
+    FarMar::Market.all.select { |market| market.market_id == market_id }
+  end
+
+
 end
+
+
+#products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
+#sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
+#revenue: returns the the sum of all of the vendor's sales (in cents)
+#self.by_market(market_id): returns all of the vendors with the given market_id
 
 
 

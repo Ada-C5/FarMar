@@ -36,4 +36,17 @@ describe FarMar::Market do
 
   end
 
+  describe "vendors" do
+    let(:market_one) {FarMar::Market.find(1)}
+
+    it "should return an array of that market's vendors" do
+      market_one.vendors.must_be_instance_of(Array)
+    end
+
+    it "vendors should have same market_id as the market" do
+      market_one.market_id.must_equal(market_one.vendors[1].market_id)
+    end
+    
+  end
+
 end
