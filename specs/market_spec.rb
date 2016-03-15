@@ -15,11 +15,11 @@ describe FarMar::Market do
   end
 
   describe "FarMar::Market#self.find" do
-    it "should return 'People's Co-op Farmers Market' as market name" do
+    it "should return 'People's Co-op Farmers Market' as name" do
       market.name.must_equal "People's Co-op Farmers Market"
     end
 
-    it "should return 'ID not found!' when self.find called by id 550" do
+    it "should return nil when self.find called by id 550" do
       FarMar::Market.find(550).must_equal nil
     end
 

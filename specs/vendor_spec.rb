@@ -16,8 +16,8 @@ describe FarMar::Vendor do
       FarMar::Vendor.find(32).name.must_equal "Jakubowski-Robel"
     end
 
-    it "should return 'ID not found!' when self.find called by id 3000" do
-      FarMar::Vendor.find(3000).must_equal "ID not found!"
+    it "should return nil when self.find called by id 3000" do
+      FarMar::Vendor.find(3000).must_equal nil
     end
 
   end

@@ -24,18 +24,8 @@ class FarMar::Sale
   end
 
   def self.find(id)
-    sales = self.all
-    found_id = nil
-    sales.each do |sale|
-      if sale.id == id
-        found_id = sale
-      end
-    end
-    if found_id == nil
-      return "ID not found!"
-    else
-      return found_id
-    end
+    find_sales = self.all
+    find_sales.find { |sale| sale.id == id }
   end
 
 end

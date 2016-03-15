@@ -23,18 +23,8 @@ class FarMar::Vendor
   end
 
   def self.find(id)
-    vendors = self.all
-    found_id = nil
-    vendors.each do |vendor|
-      if vendor.id == id
-        found_id = vendor
-      end
-    end
-    if found_id == nil
-      return "ID not found!"
-    else
-      return found_id
-    end
+    find_vendors = self.all
+    find_vendors.find { |vendor| vendor.id == id }
   end
 
   def markets(market_id)

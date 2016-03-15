@@ -16,8 +16,8 @@ describe FarMar::Sale do
       FarMar::Sale.find(15).amount.must_equal 8924
     end
 
-    it "should return 'ID not found!' when self.find called by id 13000" do
-      FarMar::Sale.find(13000).must_equal "ID not found!"
+    it "should return nil when self.find called by id 13000" do
+      FarMar::Sale.find(13000).must_equal nil
     end
 
   end
