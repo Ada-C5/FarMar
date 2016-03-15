@@ -29,6 +29,14 @@ describe FarMar::Sale do
     end
   end
 
+  describe "self.between(beginning_time, end_time)" do
+    it "returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments" do
+      #for now, I've made the skelleton and will figure out the between aspect later.  I expect an empty array.
+      FarMar::Sale.between(1, 2).must_be_instance_of(Array)
+
+    end
+  end
+
   describe "#vendor" do
     it "returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id field" do
     sale_by_vendor_id_test.vendor.must_be_instance_of(FarMar::Vendor)
