@@ -36,11 +36,6 @@ def market
   all_markets.select { |m| m.id == @market_id}
 end
 
-# def vendors
-#   all_vendors = FarMar::Vendor.all
-#   all_vendors.select { |v| @id == v.market_id }
-# end
-
 #products: returns a collection of FarMar::Product instances that
 #are associated by the FarMar::Product vendor_id field.
 
