@@ -6,10 +6,6 @@ describe FarMar::Vendor do
 	let(:vendor_test_two) { FarMar::Vendor.new({id: "90180", market_id: "10000"}) }
 	let(:all_vendors) { FarMar::Vendor.all('./support/vendors.csv') }
 
-	it "exists" do
-		FarMar::Vendor.wont_be_nil
-	end
-
 	it "has an 'all' method that returns an array of vendors" do
 		all_vendors.wont_be_empty
 	end
@@ -47,14 +43,14 @@ describe FarMar::Vendor do
 		vendor_test_two.products.must_be_instance_of(Array)
 	end
 
-	it "has a #sales method" do
-		vendor_test_one.must_respond_to(:sales)
+	it "returns a collection of sales by this vendor when #sales is called" do
+		vendor_test_one.sales.wont_be_empty
+		vendor_test_one.sales.must_be_instance_of(Array)
 	end
 
-	it "returns a collection of sales by this vendor when #sales is called" do
-		sales_test = vendor_test_one.sales
-
-		sales_test.wont_be_empty
+	it "returns an empty collection if #sales is called on a vendor with no sales" do
+		vendor_test_two.products.must_be_empty
+		vendor_test_two.products.must_be_instance_of(Array)
 	end
 
 
