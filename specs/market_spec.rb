@@ -24,8 +24,16 @@ describe FarMar::Market do
     @happy_market.must_be_instance_of(FarMar::Market)
   end
 
-   it "should find instance of market with matching id" do
-     FarMar::Market.find(1).name.must_equal("People's Co-op Farmers Market")
-   end
+  describe "self.find" do
+
+     it "should find instance of market with matching id" do
+       FarMar::Market.find(1).name.must_equal("People's Co-op Farmers Market")
+     end
+
+     it "should return nil when it can't find a matching market id" do
+       FarMar::Market.find(2727272727).must_equal(nil)
+     end
+
+  end
 
 end

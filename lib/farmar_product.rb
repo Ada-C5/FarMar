@@ -26,6 +26,7 @@ class FarMar::Product
         return product
       end
     end
+    nil
   end
 
 

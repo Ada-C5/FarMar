@@ -19,21 +19,6 @@ class FarMar::Vendor
     return all_vendor_info
   end
 
-
-
-
-
-
-  # def self.all
-  #   all_vendor_info = []
-  #   CSV.open("./support/vendors.csv", 'r') do |csv|
-  #     csv.read.each do |line|
-  #       all_vendor_info.push(self.new(vendor_id: line[0], name: line[1], number_of_employees: line[2], market_id: line[3]))
-  #     end
-  #   end
-  #   return all_vendor_info
-  # end
-
   def self.find(id)
     all_vendors = self.all
     all_vendors.each do |vendor|
@@ -41,6 +26,7 @@ class FarMar::Vendor
         return vendor
       end
     end
+    nil
   end
 
 end

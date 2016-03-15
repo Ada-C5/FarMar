@@ -28,6 +28,7 @@ class FarMar::Sale
         return sale
       end
     end
+    nil
   end
 
 end

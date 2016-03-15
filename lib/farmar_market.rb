@@ -32,5 +32,7 @@ class FarMar::Market
         return market
       end
     end
+    nil
   end
+
 end
