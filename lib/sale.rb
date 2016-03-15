@@ -28,4 +28,12 @@ class FarMar::Sale
       sale.product_id == id_of_product
     end
   end
+
+  def vendor
+    FarMar::Vendor.find(vendor_id)
+  end
+
+  def product
+    FarMar::Product.find(product_id)
+  end
 end
