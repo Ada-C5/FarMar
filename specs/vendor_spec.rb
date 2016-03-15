@@ -27,6 +27,12 @@ describe FarMar::Vendor do
 		FarMar::Vendor.find(18).name.must_equal("Von-Hamill")
 	end
 
+	it "has a market instance method" do
+		vendor = FarMar::Vendor.new({id: "2001", market_id: 12})
+
+		vendor.must_respond_to(:market)
+	end
+
 
 
 end
