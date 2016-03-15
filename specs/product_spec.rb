@@ -9,7 +9,7 @@ describe FarMar::Product do
   let(:random_market_id) { ("1".."500").to_a.sample }
 
   let(:product_by_vendor_id_test) { FarMar::Product.new( [nil, nil, random_vendor_id] ) }
-  let(:product_by_product_id_test) { FarMar::Vendor.new( [random_product_id, nil, nil] ) }
+  let(:product_by_product_id_test) { FarMar::Product.new( ["4", nil, nil] ) } # I think some products aren't sold I will look at this later.
 
   it "is an object we have access to" do
     FarMar::Product.wont_be_nil
@@ -42,6 +42,12 @@ describe FarMar::Product do
       number_of_sales = sales_collection.length
       random_sale = (0...number_of_sales).to_a.sample
       sales_collection[random_sale].must_be_instance_of(FarMar::Sale)
+    end
+  end
+
+  describe "#number_of_sales" do
+    it "will return the number of times this product has been sold." do
+    assert_operator(product_by_product_id_test.number_of_sales, :>, 0)
     end
   end
 

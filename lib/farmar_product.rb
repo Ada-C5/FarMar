@@ -11,8 +11,13 @@ module FarMar
       super('./support/products.csv', FarMar::Vendor, vendor_id, "id")
     end
 
+    def number_of_sales
+      self.sales.length #idk why I needed to put self. here... but it made the test pass?
+    end
+
+
     def sales
-      super('./support/sales.csv', FarMar::Sales, id, "product_id")
+      super('./support/sales.csv', FarMar::Sale, id, "product_id")
     end
 
     def self.find(data_file = './support/products.csv', id)

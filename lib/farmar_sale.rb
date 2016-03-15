@@ -1,7 +1,7 @@
 module FarMar
   class Sale < DataClass
 
-    attr_reader :id, :vendor_id, :amount
+    attr_reader :id, :vendor_id, :product_id, :amount
 
     def initialize(initialization_array)
       @id, @amount, @purchase_time, @vendor_id, @product_id = initialization_array
