@@ -33,4 +33,8 @@ class FarMar::Product
     FarMar::Sale.all.select { |sale| sale.product_id == id }
   end
 
+  def number_of_sales(id)
+    sales(id).count
+  end
+
 end
