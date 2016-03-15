@@ -52,7 +52,9 @@ describe FarMar::Vendor do
 	end
 
 	it "returns a collection of sales by this vendor when #sales is called" do
-		vendor_test_one.sales.wont_be_empty
+		sales_test = vendor_test_one.sales
+
+		sales_test.wont_be_empty
 	end
 
 
