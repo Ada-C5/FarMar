@@ -1,8 +1,6 @@
 #get rid of ln2 after done with IRB testing
 # require_relative '../far_mar.rb'
 
-#NEED TO UPDATE FILE PATH FOR CSV_HASHER... IT'S NOT AWESOME RIGHT NOW!
-
 class FarMar::Market
   attr_reader :id, :name, :address, :city, :county, :state, :zip
 
@@ -16,10 +14,8 @@ class FarMar::Market
     @zip = market_hash[:zip]
   end
 
-# ('../support/markets.csv') doesn't work with rake
-# Look at this file path later..... specs doesn't love it
   def self.all
-    all_markets = CSVHasher.hashify('/Users/annamason/C5/projects/FarMar/support/markets.csv')
+    all_markets = CSVHasher.hashify('./support/markets.csv')
       all_markets.collect do |n|
         FarMar::Market.new(n)
       end
