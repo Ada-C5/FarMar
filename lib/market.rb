@@ -13,8 +13,7 @@ class FarMar::Market
     @zip = info_hash[:zip]
   end
 
-  def self.all
-    file_name = './support/markets.csv'
+  def self.all(file_name = './support/markets.csv')
     market_keys = [:id, :name, :address, :city, :county, :state, :zip]
 
     make_all(file_name, market_keys)
