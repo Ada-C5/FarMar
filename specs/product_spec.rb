@@ -12,7 +12,7 @@ describe FarMar::Product do
     FarMar::Product.new(name: "super-toy").must_be_instance_of(FarMar::Product)
   end
 
-  it "can create array of all products" do
+  it "can create array of all products from csv file" do
     FarMar::Product.all.class.must_equal(Array)
   end
 

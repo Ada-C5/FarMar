@@ -26,4 +26,8 @@ describe FarMar::Sale do
     FarMar::Sale.find(10).amount.must_equal(5160)
   end
 
+  it "should convert purchase time to datetime" do
+    FarMar::Sale.all[0].purchase_time.day.must_equal(7)
+  end
+
 end
