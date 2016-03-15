@@ -33,6 +33,7 @@ module FarMar
       super('./support/markets.csv', FarMar::Market, market_id, "id")
     end
 
+
     def self.by_market(data_file = './support/vendors.csv', given_market_id)
       vendors = self.all(data_file)
       matched_vendors = vendors.find_all do |vendor|

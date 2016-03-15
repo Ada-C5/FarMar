@@ -31,14 +31,17 @@ module FarMar
       return matched
     end
 
-    def self.find(data_file, method_name = "id", id)
+    def self.find(data_file, id_to_match)
+    # set to true if there is no passed :return_instance option and translate it to the boolean variable...
     # returns an instance where the value of the id field in the CSV matches the passed id parameter.
-    # Uses method_name in the same ways as match_by so we can reuse this code more
 
       all = self.all(data_file)
-      all.each do |instance|
-        return instance if instance.send(method_name) == id
+
+      all.find do |instance|
+        id_to_match == instance.id
+        return instance
       end
+
     end
 
     def self.all(data_file)
@@ -49,8 +52,8 @@ module FarMar
         data << row
       end
 
-      instances = data.collect do |array|
-        self.new(array)
+      instances = data.collect do |data_array|
+        self.new(data_array)
       end
 
       return instances
