@@ -40,5 +40,4 @@ class FarMar::Market
     vendors = FarMar::Vendor.all 
     vendors.select { |vendor| vendor.mar_id == mar_id }
   end
-
 end

@@ -1,4 +1,3 @@
-# start tues in Additional FarMar::Vendor Methods #3
 require 'csv'
 
 module FarMar

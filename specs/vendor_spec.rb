@@ -34,4 +34,13 @@ describe FarMar::Vendor do
     vendor = vendors[25]
     vendor.products(vendor.ven_id).length.must_equal 3
   end
+
+  # test sale method
+  it "should return collection of sale instances for certain vendor" do
+    vendors = FarMar::Vendor.all
+    vendor = vendors[25]
+    vendor.sales(vendor.ven_id).class.must_equal Array
+    vendor.sales(vendor.ven_id).length.must_equal 6
+    vendor.sales(vendor.ven_id)[0].must_be_instance_of FarMar::Sale
+  end
 end

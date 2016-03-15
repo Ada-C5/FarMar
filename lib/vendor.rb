@@ -41,4 +41,9 @@ class FarMar::Vendor
     FarMar::Product.all.select { |product| product.ven_id == vendor_id}
   end
 
+  # returns collection of sale instances that go with vendor_id
+  def sales(vendor_id)
+    FarMar::Sale.all.select { |sale| sale.ven_id == vendor_id}
+  end
+
 end
