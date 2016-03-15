@@ -11,7 +11,7 @@ class FarMar::Product
   # Name - (String) the name of the product (not guaranteed unique)
   # Vendor_id - (Fixnum) a reference to which vendor sells this product
 
-  # creates instances (500) of each row of data in the csv
+  # creates instances (8193) of each row of data in the csv
   # and pushes them into an array -- *blank cells are nil
   def self.all
     products_info = []

@@ -6,16 +6,18 @@ describe FarMar::Sale do
     FarMar::Sale.wont_be_nil
   end
 
+  let(:sales_all) {FarMar::Sale.all}
+  let(:sales_find) {FarMar::Sale.find(1)}
+
     # runs the .all method to create instances for each row in products.csv
     # checks the length
     it "returns total number of sales => 12798 instances" do
-      sales = FarMar::Sale.all
-      sales.length.must_equal(12798)
+      sales_all.length.must_equal(12798)
     end
 
     # check the .find(id) method
     it "should return the id of the instance if .find(id = 1)" do
-      FarMar::Sale.find(1).id.must_equal(1)
+      sales_find.id.must_equal(1)
     end
 
 

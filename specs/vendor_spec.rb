@@ -6,51 +6,54 @@ describe FarMar::Vendor do
     FarMar::Vendor.wont_be_nil
   end
 
+  let(:vendors_all) {FarMar::Vendor.all}
+  let(:vendors_find) {FarMar::Vendor.find(1)}
 
   # runs the .all method to create instances for each row in vendors.csv
   # checks the length
   it "returns total number of vendors => 2690 instances" do
-    vendors = FarMar::Vendor.all
-    vendors.length.must_equal(2690)
+    vendors_all.length.must_equal(2690)
   end
 
   # check the .find(id) method
-  it "should return the id of the instance if .find(id: 1)" do
-    FarMar::Vendor.find(1).id.must_equal(1)
-    # <FarMar::Vendor:0xXXXXXX @id=1, @name="Feil-Farrell", @employees=8,
-    #  @market_id=1>
+  it "verifies that the find(id) method returns the correct thing" do
+    ven = vendors_find
+    ven.id.must_equal 1
+    ven.name.must_equal "Feil-Farrell"
+    ven.employees.must_equal 8
+    ven.market_id.must_equal 1
   end
 
   # check the market method
-  it "should return the num of markets (2) associated with the vendor id: 9" do
-    vendors = FarMar::Vendor.find(1) # market_id = 2
-    vendors.market.zip.must_equal("97202")
-    # <FarMar::Market:0xXXXXXX @id=1, @name="People's Co-op Farmers Market",
-    # @address ="30th and Burnside", @city="Portland", @county="Multnomah",
-    # @state="Oregon", @zip="97202">
+  it "verifies the market associated with vendor id: 1 (market_id: 1)" do
+    ven_mar = vendors_find.market
+    ven_mar.id.must_equal 1
+    ven_mar.name.must_equal %q[People's Co-op Farmers Market]
   end
 
   # check the products method
-  it "should return the num of products (4) associated with vendor id: 9" do
-    vendors = FarMar::Vendor.find(9) # market_id = 2
-    vendors.products.length.must_equal(4)
+  it "verifies the only product associated with vendor id: 1" do
+    ven_pro = vendors_find.products[0] # [0] to remove instance from array
+    ven_pro.id.must_equal 1
+    ven_pro.name.must_equal "Dry Beets"
+    ven_pro.vendor_id.must_equal 1
   end
 
   # check the sales method
-  it "should return the num of sales (4) associated with vendor id: 9" do
-    vendors = FarMar::Vendor.find(9) # market_id = 2
-    vendors.sales.length.must_equal(5)
+  it "should verify all sales (6) found have the vendor id: 1" do
+    vendors_find.sales.each do |instance|
+      instance.vendor_id.must_equal(1)
+    end
   end
 
   # check the revenue method
   it "should return the sum of all of the vendors sales in cents" do
-    vendors = FarMar::Vendor.find(9) # market_id = 2
-    vendors.revenue.must_equal(24429)
+    vendors_find.revenue.must_equal(38259)
   end
 
   # check the self.by_market method
-  it "should return all of the vendors with the given market_id: 1" do
-    FarMar::Vendor.by_market(1).length.must_equal(6)
+  it "verify vendors (6) found have the market_id: 1" do
+    FarMar::Vendor.by_market(1).each do |instance|
+      instance.market_id.must_equal(1)
   end
-
 end

@@ -15,7 +15,7 @@ class FarMar::Sale
   # Vendor_id - (Fixnum) a reference to which vendor completed the sale
   # Product_id - (Fixnum) a reference to which product was sold
 
-  # creates instances (500) of each row of data in the csv
+  # creates instances (12798) of each row of data in the csv
   # and pushes them into an array -- *blank cells are nil
   def self.all
     sales_info = []
