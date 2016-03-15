@@ -29,7 +29,7 @@ class FarMar::Market
         city: market[3],
         county: market[4],
         state: market[5],
-        zip: market[6],
+        zip: market[6]
       }
       FarMar::Market.new(single_market_hash)
     end

@@ -13,3 +13,13 @@ describe "FarMar::Vendor#self.all" do
       FarMar::Vendor.all[0].name.must_equal "Feil-Farrell"
   end
 end
+
+describe "FarMar::Vendor#self.find(id)" do
+  it "should return an instance of FarMar::Vendor" do
+    FarMar::Vendor.find("9").must_be_instance_of FarMar::Vendor
+  end
+
+  it "should return the name of the instance of FarMar::Vendor that has the ID 11" do
+    FarMar::Vendor.find("11").name.must_equal "Donnelly-Quigley"
+  end
+end
