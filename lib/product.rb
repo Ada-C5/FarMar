@@ -15,4 +15,10 @@ class FarMar::Product
     make_all(file, product_keys)
   end
 
+  def self.by_vendor(id_of_vendor)
+    self.all.find_all do |product|
+      product.vendor_id == id_of_vendor
+    end
+  end
+
 end

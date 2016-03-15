@@ -17,7 +17,7 @@ class FarMar::Vendor
   end
 
   def self.by_market(id_of_market)
-    market_list = self.all.find_all do |vendor|
+    self.all.find_all do |vendor|
       vendor.market_id == id_of_market
     end
   end
@@ -27,13 +27,6 @@ class FarMar::Vendor
   end
 
   def products
-    product_list = []
-
-    products = FarMar::Product.all
-    products.each do |product|
-      product_list << product if id == product.vendor_id
-    end
-
-    return product_list
+    FarMar::Product.by_vendor(id)
   end
 end
