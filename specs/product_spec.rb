@@ -35,7 +35,23 @@ describe FarMar::Product do
     it "will not be nil" do
       product.vendor.wont_be_nil
     end
+
+    it "will return the correct vendor for the product" do
+      product.vendor.id.must_equal "261"
+    end
   end
+
+  describe "FarMar::Product#sales" do
+    it "will return an array" do
+      product.sales.must_be_instance_of Array
+    end
+
+    it "will return the correct sales for the product" do
+      product.sales[0].amount.must_equal 6298.0
+    end
+  end
+
+
 
 
 end
