@@ -2,10 +2,9 @@ require_relative './spec_helper'
 
 describe FarMar::Vendor do 
 
-	let(:vendor_test_one) { vendor_test_one = FarMar::Vendor.new({id: "1", name: "Feil-Farrell", num_of_employees: "8", market_id: "1"})
- }
-	let(:vendor_test_two) { vendor_test_two = FarMar::Vendor.new({id: "90180", market_id: "10000"})}
-	let(:all_vendors) { all_vendors = FarMar::Vendor.all('./support/vendors.csv')}
+	let(:vendor_test_one) { FarMar::Vendor.new({id: "1", name: "Feil-Farrell", num_of_employees: "8", market_id: "1"}) }
+	let(:vendor_test_two) { FarMar::Vendor.new({id: "90180", market_id: "10000"}) }
+	let(:all_vendors) { FarMar::Vendor.all('./support/vendors.csv') }
 
 	it "exists" do
 		FarMar::Vendor.wont_be_nil
@@ -49,8 +48,11 @@ describe FarMar::Vendor do
 	end
 
 	it "has a #sales method" do
-		
+		vendor_test_one.must_respond_to(:sales)
+	end
 
+	it "returns a collection of sales by this vendor when #sales is called" do
+		vendor_test_one.sales.wont_be_empty
 	end
 
 
