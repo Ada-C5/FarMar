@@ -38,4 +38,8 @@ class FarMar::Product
     FarMar::Sale.all.find_all { |sale| sale.product_id == id }
   end
 
+  def number_of_sales
+    sales.length
+  end
+
 end

@@ -44,4 +44,10 @@ describe FarMar::Product do
     end
   end
 
+  describe "Product#number_of_sales" do
+    it "should sum the sale amounts" do
+      product.number_of_sales.must_equal 7
+    end
+  end
+
 end
