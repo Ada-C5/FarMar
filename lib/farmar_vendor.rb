@@ -52,6 +52,7 @@ class FarMar::Vendor
     # sprintf("%0.02f", amounts.inject(:+))
   end
 
-  def self.by_market(market_id)
+  def self.by_market(mar_id)
+    self.all.find_all {|instance| instance.market_id == mar_id}
   end
 end

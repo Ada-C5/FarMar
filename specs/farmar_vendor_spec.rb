@@ -44,4 +44,9 @@ describe FarMar::Vendor do
     vendors.revenue.must_equal(24429)
   end
 
+  # check the self.by_market method
+  it "should return all of the vendors with the given market_id: 1" do
+    FarMar::Vendor.by_market(1).length.must_equal(6)
+  end
+
 end
