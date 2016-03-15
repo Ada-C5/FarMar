@@ -37,4 +37,8 @@ class FarMar::Vendor
     FarMar::Sale.all.find_all { |sale| sale.vendor_id == id }
   end
 
+  def revenue
+    sales = self.sales
+  end
+
 end

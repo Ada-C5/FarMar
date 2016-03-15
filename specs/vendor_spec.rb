@@ -44,7 +44,7 @@ describe FarMar::Vendor do
   describe "Vendor#sales" do
     it "should return all instances of Vendor that match the Vendor's id" do
       # uncomment the following line to see the sales array
-      # ap vendor.sales
+      ap vendor.sales
       vendor.sales.must_be_instance_of Array
       vendor.sales.length.must_equal 3
       vendor.sales[0].vendor_id.must_equal "14"
