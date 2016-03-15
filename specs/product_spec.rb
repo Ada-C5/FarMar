@@ -29,4 +29,10 @@ describe FarMar::Product do
     FarMar::Product.all[66].sales(5).length.must_equal 2
     FarMar::Product.all[1].sales(132)[0].must_be_instance_of FarMar::Sale
   end
+
+  # tests number_of_sales method
+  it "should return number of sales for a certain product" do
+    FarMar::Product.all[5].number_of_sales(1).class.must_equal Fixnum
+    FarMar::Product.all[5].number_of_sales(1).must_equal 7
+  end  
 end

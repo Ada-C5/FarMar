@@ -40,4 +40,16 @@ class FarMar::Product
   def sales(product_id)
     FarMar::Sale.all.select { |sale| sale.prod_id == product_id}
   end
+
+    # returns the number of times this product has been sold
+    def number_of_sales(product_id)
+      sales(product_id).length
+      # sales = 0
+      # FarMar::Sale.all.each do |sale|
+      #   if sale.prod_id == product_id
+      #     sales += 1
+      #   end
+      # end
+      # return sales
+    end
 end
