@@ -1,5 +1,4 @@
 require_relative './spec_helper'
-require_relative '../far_mar'
 
 describe FarMar::Market do
 
@@ -40,6 +39,15 @@ describe FarMar::Market do
 			FarMar::Market.find(9999999).must_be_nil
 		end
 
+		it "returns the correct instance when given a valid id" do
+			FarMar::Market.find(1).city.must_equal "Portland"
+		end
+	end
+
+	describe "self.vendors" do
+		it "exists" do
+			FarMar::Market.vendors.wont_be_nil
+		end
 	end
 
 end
