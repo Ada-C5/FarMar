@@ -47,4 +47,14 @@ class FarMar::Vendor
     return the_vendors_product
   end
 
+  def sales
+    the_vendors_sale = []
+    FarMar::Sale.all.each do |sale|
+      if sale.vendor_id == vendor_id.to_i
+        the_vendors_sale << sale
+      end
+    end
+    return the_vendors_sale
+  end
+
 end

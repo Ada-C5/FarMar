@@ -42,8 +42,27 @@ describe FarMar::Vendor do
       classes = vendor_test.products.map { |m| m.class }
       classes.uniq.must_equal [FarMar::Product]
     end
+
   end
 
+  describe "FarMar::Vendor#sales" do
+    let(:vendor_test) { FarMar::Vendor.new("20","Ledner Group","7","6") }
+
+    it "should return an array the sale(s) that of that vendor" do
+      vendor_test.sales.must_be_instance_of Array
+    end
+
+    it "should wont be nil " do
+      vendor_test.sales.wont_equal nil
+    end
+
+    it "should return an object of the class Sales" do
+      classes = vendor_test.sales.map { |m| m.class }
+      classes.uniq.must_equal [FarMar::Sale]
+    end
+
+
+  end
 
 
 end
