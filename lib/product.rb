@@ -24,13 +24,13 @@ class FarMar::Product
   end
 
   def self.find(product_id)
-    # the_product = []
-    # PRODUCT_CSV.each do |product|
-    #   if product[0].to_i == id.to_i
-    #     the_product = product
-    #   end
-    # end
-    # index = PRODUCT_CSV.index(the_product)
     return FarMar::Product.new(product_id)
+  end
+
+  #vendor: returns the FarMar::Vendor instance that is associated with this product using the FarMar::Product vendor_id field
+  def vendor
+    product = FarMar::Product.find(@product_id)
+    vendor_id = product.vendor_id
+    return FarMar::Vendor.find(vendor_id)
   end
 end

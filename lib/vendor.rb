@@ -34,7 +34,10 @@ class FarMar::Vendor
     return FarMar::Market.find(market_id)
   end
 
-  # def products
-  #   vendor = self.find
-  # end
+  #products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
+  def products
+    products = []
+    vendor = FarMar::Vendor.find(@vendor_id)
+
+  end
 end
