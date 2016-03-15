@@ -39,4 +39,15 @@ describe FarMar::Vendor do
       products.last.id.must_equal 27
     end
   end
+
+  describe "FarMar::Vendor#sales" do
+    let(:sales) { vendor_ten.sales }
+
+    it "should return an array of sales associated with vendor by vendor_id" do
+      sales.must_be_instance_of Array
+      sales.length.must_equal 8
+      sales.first.id.must_equal 53
+      sales.last.id.must_equal 60 
+    end
+  end
 end
