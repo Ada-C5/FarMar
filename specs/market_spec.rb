@@ -1,6 +1,5 @@
 require_relative "./spec_helper"
-require_relative "../far_mar"
-#require_relative "../farmar_market"
+
 
 describe FarMar::Market do
   it "it is an object we have acccess to" do
@@ -31,4 +30,17 @@ describe "FarMar#Market" do
         selected_market = FarMar::Market.find(99)
         selected_market.name.must_equal "State Center Farmers Market"
       end
+
+      it "should return the number of vendors in a particular market" do
+        vendors_array = FarMar::Market.find(9)
+        vendors_array.vendors.length.must_equal 10
+      end
+
+#DO SOME OTHER TestTaskit "can't find themarket"
+#FarMar::Market.find(2_000).must_equal nil
+    #
+    # it "returns an array full of FarMar::Market instances" do
+    #   classes = FarMar::Market.all.map { |m| m.class }#asking what class everythign in the array is
+    #   classes.uniq.must_equal[farmer::market]
+    # end
 end

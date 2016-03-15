@@ -10,9 +10,9 @@ attr_accessor
 
   def initialize(product_info)
     # if market_data != nil
-      @product_id       = product_info[:product_id]
+      @product_id       = product_info[:product_id].to_i
       @product_name     = product_info[:product_name]
-      @vendor_id        = product_info[:vendor_id]
+      @vendor_id        = product_info[:vendor_id].to_i
   end
 
   def self.all(filename = "./support/products.csv")

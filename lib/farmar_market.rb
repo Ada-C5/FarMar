@@ -14,7 +14,7 @@ attr_accessor
 
   def initialize(market_data)
     # if market_data != nil
-      @id             = market_data[:id] #Fixnum
+      @id             = market_data[:id].to_i #Fixnum
       @name           = market_data[:name] #String
       @address        = market_data[:address]#String
       @city           = market_data[:city]#String
@@ -25,8 +25,8 @@ attr_accessor
 
   def self.all(filename = "./support/markets.csv")
     all_markets = []
-    CSV.open(filename, 'r') do |csv|
-      csv.read.each do |line|
+    CSV.open(filename, 'r') do |csv|#CSV.read(file).map do |line|
+      csv.read.each do |line|#above comment gets rid of line above
       all_markets << self.new(id: line[0], name: line[1], address: line[2], city: line[3], county: line[4], state: line[5], zip: line[6])
       end
     end

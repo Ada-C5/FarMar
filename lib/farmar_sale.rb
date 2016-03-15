@@ -12,11 +12,11 @@ attr_reader :sale_id, :amount, :purchase_time, :vendor_id, :product_info
 
   def initialize(sale_data)
     # if market_data != nil
-      @sale_id         = sale_data[:sale_id]
-      @amount          = sale_data[:amount]
+      @sale_id         = sale_data[:sale_id].to_i
+      @amount          = sale_data[:amount].to_i
       @purchase_time   = sale_data[:purchase_time]
-      @vendor_id       = sale_data[:vendor_id]
-      @product_info    = sale_data[:product_info]
+      @vendor_id       = sale_data[:vendor_id].to_i
+      @product_info    = sale_data[:product_info].to_i
   end
 
   def self.all(filename = "./support/sales.csv")
