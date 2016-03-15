@@ -9,3 +9,8 @@ def initialize(market_hash)
 end
 
 end
+
+
+# FarMar::Vendor
+# Each vendor belongs to a market, the market_id field refers to the FarMar::Market ID field.
+# Market_id - (Fixnum) a reference to which market the vendor attends

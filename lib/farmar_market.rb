@@ -1,5 +1,5 @@
 #get rid of this after done with IRB testing
-require_relative '../far_mar.rb'
+# require_relative '../far_mar.rb'
 
 class FarMar::Market
   attr_reader :id, :name, :address, :city, :county, :state, :zip
@@ -14,20 +14,22 @@ class FarMar::Market
     @zip = market_hash[:zip]
   end
 
+# Look at this file path later..... specs doesn't love it
   def self.all
     all_markets = CSVHasher.hashify('../support/markets.csv')
-      all_markets.each do |n|
+      all_markets.collect do |n|
         FarMar::Market.new(n)
       end
   end
 
   def self.find(id)
     id=id.to_s
-    all_markets = CSVHasher.hashify('../support/markets.csv')
+
+    all_markets = FarMar::Market.all
 
     all_markets.each do |n|
-      if n[:id] == id
-        return FarMar::Market.new(n)
+      if n.id == id
+        return n
       end
     end
 

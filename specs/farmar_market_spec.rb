@@ -1,6 +1,7 @@
 require_relative './spec_helper'
 
 describe FarMar::Market do
+
 	it "FarMar::Market Class Exists" do
 		FarMar::Market.wont_be_nil
 	end
@@ -11,4 +12,9 @@ describe FarMar::Market do
 		sample.wont_be_nil
 	end
 
+	describe "#all" do
+		it "returns an array" do
+			FarMar::Market.all.must_be_instance_of String
+		end
+	end
 end
