@@ -13,6 +13,8 @@ class FarMar::Vendor
     @all_vendors = csv_array.collect do |row|
       self.new(row[0].to_i,row[1],row[2],row[3].to_i)
     end
+    #return to the array  @all_vendors with all the vendors in the file instanciated
+    # Array of objects
   end
 
   def self.find(id)
@@ -22,5 +24,9 @@ class FarMar::Vendor
         return vendor
       end
     end
+  end
+
+  def market
+
   end
 end

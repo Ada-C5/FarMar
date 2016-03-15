@@ -28,4 +28,14 @@ class FarMar::Market
     end
   end
 
+  def vendors
+    market_vendors = []
+    FarMar::Vendor.all.each do |vendor|
+      if vendor.market_id == @market_id.to_i
+        market_vendors << vendor
+      end
+    end
+    return market_vendors
+  end
+
 end

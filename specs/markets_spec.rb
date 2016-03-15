@@ -25,6 +25,18 @@ describe FarMar::Market do
     it "should return an object of the class Market" do
       FarMar::Market.find("142").must_be_instance_of FarMar::Market
     end
+  end
 
+  describe "FarMar::Market#vendor" do
+    it "should return object vendor that matches the market_id" do
+      market_test = FarMar::Market.new("18", "Grand Valley State University Farmers Market", "1 Campus Drive, Parking Lot F", "Allendale", "Ottawa", "Michigan", "49504")
+      market_test.vendors.length.must_equal 10
+    end
+
+    # it "should return an object of the class Market" do
+    #   market_test2 = FarMar::Market.new(121, "Grand Valley State University Farmers Market", "1 Campus Drive, Parking Lot F", "Allendale", "Ottawa", "Michigan", "49504")
+    #   market_test2.vendors.must_be_instance_of Array
+    #
+    # end
   end
 end
