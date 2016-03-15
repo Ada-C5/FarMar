@@ -15,7 +15,7 @@ module FarMar
     def revenue
     #we need the zero!!! (otherwise it starts with the first instance)
         total_revenue = sales.reduce(0) do |total, sale|
-          sale_amount = (sale.amount).to_f #this is hacky. fix.
+          sale_amount = (sale.amount).to_f #this is hacky. fix?
           total += sale_amount
         end
         return total_revenue

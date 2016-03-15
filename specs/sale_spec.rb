@@ -14,7 +14,7 @@ describe FarMar::Sale do
   describe "FarMar::Sale#find" do
     it "can find a product instance based on ID" do
     #we have Sale IDs 1-12001, and will test at random!
-    id = (1..12001).to_a.sample
+    id = ("1".."12001").to_a.sample
     FarMar::Sale.find(id).must_be_instance_of(FarMar::Sale)
     end
   end

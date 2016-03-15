@@ -11,10 +11,10 @@ describe FarMar::Product do
     end
   end
 
-  describe "FarMar::Product#find" do 
+  describe "FarMar::Product#find" do
     it "can find a product instance based on ID" do
     #we have Product IDs 1-8193, and will test at random!
-    id = (1..8193).to_a.sample
+    id = ("1".."8193").to_a.sample
     FarMar::Product.find(id).must_be_instance_of(FarMar::Product)
     end
   end
