@@ -40,6 +40,7 @@ describe FarMar::Sale do
       sal_pro.name.must_equal "Dry Beets"
       sal_pro.vendor_id.must_equal 1 # it matches!
     end
-    
+
+
 
 end

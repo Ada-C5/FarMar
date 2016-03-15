@@ -24,7 +24,7 @@ describe FarMar::Vendor do
   end
 
   # check the market method
-  it "verifies the market associated with vendor id: 1 (market_id: 1)" do
+  it "verifies the 1 market associated with vendor id: 1" do
     ven_mar = vendors_find.market
     ven_mar.id.must_equal 1
     ven_mar.name.must_equal %q[People's Co-op Farmers Market]
@@ -45,10 +45,13 @@ describe FarMar::Vendor do
   end
 
   # check the sales method
-  it "should verify all sales (6) found have the vendor id: 1" do
+  it "should verify all sales (7) found have the vendor id: 1" do
+    count = 0
     vendors_find.sales.each do |instance|
       instance.vendor_id.must_equal 1
+      count +=1
     end
+    count.must_equal 7
   end
 
   # check the revenue method
@@ -58,8 +61,11 @@ describe FarMar::Vendor do
 
   # check the self.by_market method
   it "should verify all vendors (6) found have the market_id: 1" do
+    count = 0
     FarMar::Vendor.by_market(1).each do |instance|
       instance.market_id.must_equal 1
+      count += 1
     end
+    count.must_equal 6
   end
 end

@@ -45,4 +45,10 @@ class FarMar::Sale
   def product
     FarMar::Product.all.find_all {|instance| instance.vendor_id == vendor_id}
   end
+
+  # returns a collection of sale OBJECTS where the purchase time is between the
+  # two given times
+  def self.between(beginning_time, end_time)
+    # age_sec = time.strftime('%s').to_f - birthday.strftime('%s').to_f
+  end
 end
