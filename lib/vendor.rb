@@ -44,10 +44,11 @@ class FarMar::Vendor
   def market
     vendor_id = self.id
     FarMar::Market.find(vendor_id)
-
     #--find market by vendor_id--
-    #get vendor using farmar::market vendors method
-    #call .market_id pass that in to FarMar.Market.find
+  end
+
+  def products
+
   end
 
 end

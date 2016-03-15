@@ -47,8 +47,15 @@ describe FarMar::Vendor do
     let(:vendor) {FarMar::Vendor.find(13)}
     it "Returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id field" do
       vendor_market = vendor.market
-      vendor_market.must_be_instance_of Array
-      #vendor_market.must_equal(4)
+      vendor_market.must_be_instance_of FarMar::Market
+      vendor.market_id.must_equal(4)
+    end
+  end
+
+  describe "#products" do
+    let(:product) {FarMar::Vendor.find(1)}
+    it "Returns a collection of FarMar::Product instances that are associated by the FarMar::Product" do
+ß
     end
   end
 
