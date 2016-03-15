@@ -19,8 +19,11 @@ describe FarMar::Vendor do
   end
 
   describe "FarMar::Vendor#self.find" do
-    it "should return object's city Cruickshank Group" do
+    it "should return object. and all its data" do
+      FarMar::Vendor.find("2676").vendor_id.must_be_same_as 2676
       FarMar::Vendor.find("2676").vendor_name.must_equal "Cruickshank Group"
+      FarMar::Vendor.find("2676").num_employees.must_equal "4"
+      FarMar::Vendor.find("2676").market_id.must_be_same_as 498
     end
 
     it "should return an object of the class Vendor" do
@@ -103,15 +106,18 @@ describe FarMar::Vendor do
   end
 
   describe "FarMar::Vendor#self.by_market" do
-    it "should return object's city Cruickshank Group" do
-      FarMar::Vendor.by_market("276").vendor_id.must_be_same_as 1494
-      FarMar::Vendor.by_market("276").vendor_name.must_equal "Schulist Inc"
-      FarMar::Vendor.by_market("276").num_employees.must_equal "7"
-      FarMar::Vendor.by_market("276").market_id.must_be_same_as 276
+
+    it "should return an object of the class Vendor" do
+      FarMar::Vendor.by_market("12").must_be_instance_of Array
+    end
+
+    it "should return to more than one vendor" do
+      FarMar::Vendor.by_market("456").length.must_be :>, 1
     end
 
     it "should return an object of the class Vendor" do
-      FarMar::Vendor.by_market("12").must_be_instance_of FarMar::Vendor
+      classes = FarMar::Vendor.by_market("456").map { |m| m.class }
+      classes.uniq.must_equal [FarMar::Vendor]
     end
 
   end
