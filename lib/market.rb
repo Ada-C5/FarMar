@@ -19,6 +19,29 @@ class FarMar::Market
     make_all(file_name, market_keys)
   end
 
+  def self.search(search_term)
+    search_term.downcase!
+
+    # get all markets to pass to name matching method
+    all_markets = self.all
+    market_list = self.match_name(search_term, all_markets)
+
+    # get all vendors to pass to name matching method
+    all_vendors = FarMar::Vendor.all
+
+    # returned from match_name is an array of vendor instances
+    vendors = self.match_name(search_term, all_vendors)
+
+    # append the associated market instances (linked through vendor's market_id)
+    market_list.push *vendors.collect { |vendor| self.find(vendor.market_id) }
+  end
+
+  def self.match_name(search_term, array)
+    array.find_all do |item|
+      item.name.downcase.include? search_term
+    end
+  end
+
   def vendors
     FarMar::Vendor.by_market(id)
   end

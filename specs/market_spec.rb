@@ -8,6 +8,9 @@ describe FarMar::Market do
   end
 
   describe "FarMar::Market class methods" do
+    let(:searched_school) { FarMar::Market.search('school') }
+    let(:searched_fletcher) { FarMar::Market.search('Fletcher') }
+    let(:searched_swift) { FarMar::Market.search("Swift") }
 
     it "is an instance of Array using the self.all method" do
       FarMar::Market.all.must_be_instance_of Array
@@ -21,6 +24,18 @@ describe FarMar::Market do
       market_found.must_be_instance_of FarMar::Market
       market_found.id.must_equal 495
       market_found.name.must_equal "South Bend Farmers Market"
+    end
+
+    it "returns an array of instances where the search term is included in market or vendor name" do
+      searched_school.must_be_instance_of Array
+      searched_school.length.must_equal 3
+
+      # search for something in markets.csv but not vendors.csv
+      searched_fletcher.length.must_equal 1
+      searched_fletcher[0].name.must_equal "Fletcher Allen's Farmers' Market"
+
+      # search for something in vendors.csv but not markets.csv
+      searched_swift.length.must_equal 4
     end
   end
 
