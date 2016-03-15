@@ -58,9 +58,10 @@ describe FarMar::Market do
 		end
 
 		it "returns the correct instances of FarMar::Vendor" do
-			###
+			test = FarMar::Market.vendors(30)
+			test[0].name.must_equal "Gleichner and Sons"
 		end
-		
+
 	end
 
 end

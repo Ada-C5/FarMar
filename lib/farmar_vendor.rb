@@ -1,5 +1,5 @@
 #get rid of ln2 after done with IRB testing
-require_relative '../far_mar.rb'
+# require_relative '../far_mar.rb'
 
 class FarMar::Vendor
   attr_reader :id, :name, :employee_num, :market_id
@@ -12,7 +12,7 @@ def initialize(vendor_hash)
 end
 
 def self.all
-  all_vendors = CSVHasher.hashify('../support/vendors.csv')
+  all_vendors = CSVHasher.hashify('./support/vendors.csv')
     all_vendors.collect do |n|
       FarMar::Vendor.new(n)
     end
