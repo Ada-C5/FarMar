@@ -6,6 +6,8 @@ describe FarMar::Market do
   end
 
   describe "FarMar::Market class methods" do
+    let(:market_found) { FarMar::Market.find(495) }
+
     it "is an instance of Array using the self.all method" do
       FarMar::Market.all.must_be_instance_of Array
     end
@@ -15,10 +17,9 @@ describe FarMar::Market do
     end
 
     it "returns the correct instance of FarMar::Market if the matching id is found using self.find method" do
-      instance_found = FarMar::Market.find(495)
-      instance_found.must_be_instance_of FarMar::Market
-      instance_found.id.must_equal 495
-      instance_found.name.must_equal "South Bend Farmers Market"
+      market_found.must_be_instance_of FarMar::Market
+      market_found.id.must_equal 495
+      market_found.name.must_equal "South Bend Farmers Market"
     end
 
   end
