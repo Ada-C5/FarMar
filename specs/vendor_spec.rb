@@ -28,9 +28,15 @@ describe FarMar::Vendor do
 	end
 
 	it "has a market instance method" do
-		vendor = FarMar::Vendor.new({id: "2001", market_id: 12})
+		vendor = FarMar::Vendor.new({id: "2001", market_id: "12"})
 
 		vendor.must_respond_to(:market)
+	end
+
+	it "has a market method that will return the market this vendor is associated with" do 
+
+		# I think it might be time to use some let blocks to construct test cases because I am tired of doing them one by one
+		# plus it will make it easier when you need a fully detailed case.
 	end
 
 
