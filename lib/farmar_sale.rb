@@ -48,5 +48,16 @@ class FarMar::Sale
       sale_array
     end
 
+    def self.product_sales(product_id)
+      all_sales = CSV.read("./support/sales.csv", "r")
+      sale_array = []
+      all_sales.each do |individual_array|
+        if individual_array[4].to_f == product_id.to_f
+          sale = self.new(individual_array[0], individual_array[1], individual_array[2], individual_array[3], individual_array[4])
+          sale_array << sale
+        end
+      end
+      sale_array
+    end
 
 end
