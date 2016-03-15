@@ -25,13 +25,12 @@ class FarMar::Sale
   end
 
   def self.find(sale_id)
-    # the_sale = []
-    # SALE_CSV.each do |sale|
-    #   if sale[0].to_i == id.to_i
-    #     the_sale = sale
-    #   end
-    # end
-    # index = SALE_CSV.index(the_sale)
     return FarMar::Sale.new(sale_id)
+  end
+
+  def vendor
+    sale = FarMar::Sale.find(@sale_id)
+    sale.vendor_id
+    FarMar::Vendor.find(vendor_id)
   end
 end
