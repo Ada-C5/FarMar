@@ -42,6 +42,12 @@ describe FarMar::Product do
     end
   end
 
+  describe "FarMar::Product#self.by_vendor(vendor_id)" do
+    it "should return number of times product has been sold" do
+      FarMar::Product.by_vendor(21).length.must_equal 5
+    end
+  end
+
   # see if you can get this working later
   # describe "FarMar::Product#number_of_sales" do
   #   products3 = FarMar::Product.new(id: 1)
