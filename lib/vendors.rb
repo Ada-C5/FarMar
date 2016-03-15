@@ -39,13 +39,12 @@ class FarMar::Vendor
 
   def products
     the_vendors_product = []
-    FarMar::Market.all.each do |product|
+    FarMar::Product.all.each do |product|
       if product.vendor_id == vendor_id.to_i
         the_vendors_product << product
       end
     end
     return the_vendors_product
-
   end
 
 end

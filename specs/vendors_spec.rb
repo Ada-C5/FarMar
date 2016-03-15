@@ -27,20 +27,23 @@ describe FarMar::Vendor do
 
   end
 
-  describe "FarMar::Vendor#market" do
-    before do
-      @vendor_test = FarMar::Vendor.new("18", "David Jimison", "1", "404")
+  describe "FarMar::Vendor#products" do
+    let(:vendor_test) { FarMar::Vendor.new("20","Ledner Group","7","6") }
+
+    it "should return an array the product(s) that of that vendor" do
+      vendor_test.products.must_be_instance_of Array
     end
 
-    it "should return object vendor that matches the market_id" do
-      @vendor_test.market.length.must_equal 1
+    it "should wont be nil " do
+      vendor_test.products.wont_equal nil
     end
 
-    # it "should return an object of the class Market" do
-    #   vendor_test2 = FarMar::Vendor.new("18", "David Jimison", "1", "404")
-    #   vendor_test2.market.must_be_instance_of Array
-    #
-    # end
+    it "should return an object of the class Product" do
+      classes = vendor_test.products.map { |m| m.class }
+      classes.uniq.must_equal [FarMar::Product]
+    end
   end
+
+
 
 end
