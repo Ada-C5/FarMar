@@ -9,7 +9,7 @@ describe FarMar::Product do
   let(:random_market_id) { ("1".."500").to_a.sample }
 
   let(:product_by_vendor_id_test) { FarMar::Product.new( [nil, nil, random_vendor_id] ) }
-  let(:vendor_by_market_id_test) { FarMar::Vendor.new( [@id, @name, @vendor_id] ) }
+  let(:product_by_product_id_test) { FarMar::Vendor.new( [random_product_id, nil, nil] ) }
 
   it "is an object we have access to" do
     FarMar::Product.wont_be_nil

@@ -11,6 +11,10 @@ module FarMar
       super('./support/products.csv', FarMar::Vendor, vendor_id, "id")
     end
 
+    def sales
+      super('./support/sales.csv', FarMar::Sales, id, "product_id")
+    end
+
     def self.find(data_file = './support/products.csv', id)
       super(data_file, id)
     end
