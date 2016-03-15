@@ -39,7 +39,7 @@ class FarMar::Vendor
   def market(mar_id)
     markets = FarMar::Market.all
     markets.find { |market| market.mar_id == mar_id}
-    end
+  end
 
   # returns product instances for vendor_id as array
   def products(vendor_id)

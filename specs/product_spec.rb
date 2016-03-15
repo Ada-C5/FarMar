@@ -35,4 +35,10 @@ describe FarMar::Product do
     FarMar::Product.all[5].number_of_sales(1).class.must_equal Fixnum
     FarMar::Product.all[5].number_of_sales(1).must_equal 7
   end  
+
+  # test self.by_vendor method
+  it "should return all product (instances) sold by certain vendor" do
+    FarMar::Product.by_vendor(99).length.must_equal 5
+    FarMar::Product.by_vendor(99)[0].class.must_equal FarMar::Product
+  end
 end

@@ -30,6 +30,11 @@ class FarMar::Product
     end
   end
 
+  # returns all products sold by certain vendor id
+  def self.by_vendor(vendor_id)
+    self.all.select { |product| product.ven_id == vendor_id}
+  end
+
   # return vendor instance associated with product/vendor_id
   # I don't get why this method is useful in real life!?!?!?!
   def vendor(vendor_id)
@@ -44,12 +49,5 @@ class FarMar::Product
     # returns the number of times this product has been sold
     def number_of_sales(product_id)
       sales(product_id).length
-      # sales = 0
-      # FarMar::Sale.all.each do |sale|
-      #   if sale.prod_id == product_id
-      #     sales += 1
-      #   end
-      # end
-      # return sales
     end
 end
