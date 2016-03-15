@@ -1,3 +1,56 @@
 class FarMar::Product
+	PRODUCT_DATA = "./support/products.csv"
+	def initialize(product_hash)
+		@ID = product_hash[:ID].to_i
+		@name = product_hash[:name]
+		@vendor_id = product_hash[:vendor_id].to_i
+
+	end
+	#returns a collection of instances, representing all of 
+	#the objects described in the CSV
+	def self.all
+		all = []
+		CSV.foreach(PRODUCT_DATA, "r") do |line|
+			product = FarMar::Product.new(ID: line[0].to_i, name: line[1],
+			vendor_id: line[2].to_i)
+			all << product
+		end
+    return all
+	end
+
+	#returns an instance of the object where the value of the
+	# id field in the CSV matches the passed parameter.
+	def self.find(id)
+		find = []
+   	CSV.foreach(PRODUCT_DATA, "r") do |line|
+      if line[0] == id.to_s
+        find =[line[0].to_i, line[1], line[2].to_i]
+        return find
+        break
+      end
+    end
+    return nil	
+	end
+
+	def vendor
+
+	end
+
+	#returns a collection of FarMar::Sale instances that are 
+	#associated using the FarMar::Sale product_id field.
+	def sales
+
+	end
+
+	#returns the number of times this product has been sold.
+	def number_of_sales
+
+	end
+
+	#returns all of the products with the given vendor_id
+	def self.by_vendor(vendor_id)
+
+	end
+
 
 end
