@@ -60,4 +60,13 @@ describe FarMar::Product do
 
   end
 
+  describe 'self.by_vendor' do
+    it "should return all products with given vendor_id" do
+      mr_vendor = FarMar::Product.by_vendor(20)
+      
+    end
+
+  end
+
+
 end
