@@ -48,8 +48,12 @@ describe FarMar::Vendor do
   describe "FarMar::Vendor#sales" do
     let(:vendor_test) { FarMar::Vendor.new("20","Ledner Group","7","6") }
 
-    it "should return an array the sale(s) that of that vendor" do
+    it "should return an ARRAY the sale that of that vendor" do
       vendor_test.sales.must_be_instance_of Array
+    end
+
+    it "should return an array the ONE sale vendor" do
+      vendor_test.sales.length.must_equal 5
     end
 
     it "should wont be nil " do
@@ -64,5 +68,17 @@ describe FarMar::Vendor do
 
   end
 
+  describe "FarMar::Vendor#revenue" do
+    let(:vendor_test) { FarMar::Vendor.new("20","Ledner Group","7","6") }
+
+    it "should return a number, the total of sales" do
+      vendor_test.revenue.must_be_kind_of Numeric
+    end
+
+    it "all the sales should be tons of money like 100.000" do
+      vendor_test.revenue.must_be :>, 100000
+    end
+
+  end
 
 end

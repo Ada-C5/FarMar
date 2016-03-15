@@ -38,23 +38,23 @@ class FarMar::Vendor
   end
 
   def products
-    the_vendors_product = []
-    FarMar::Product.all.each do |product|
-      if product.vendor_id == vendor_id.to_i
-        the_vendors_product << product
-      end
-    end
-    return the_vendors_product
+    the_vendors_product = FarMar::Product.all.select { |product| product.vendor_id == vendor_id.to_i }
   end
 
   def sales
-    the_vendors_sale = []
-    FarMar::Sale.all.each do |sale|
-      if sale.vendor_id == vendor_id.to_i
-        the_vendors_sale << sale
-      end
+    the_vendors_sale = FarMar::Sale.all.select { |sale| sale.vendor_id == vendor_id.to_i }
+  end
+
+  def revenue
+    @sume = 0
+    all_sales = []
+
+    FarMar::Sale.all.each do |sale_info|
+      all_sales << sale_info.ammount
     end
-    return the_vendors_sale
+
+    all_sales.reduce(:+)
+
   end
 
 end

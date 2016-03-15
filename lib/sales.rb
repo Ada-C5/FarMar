@@ -1,6 +1,5 @@
 class FarMar::Sale
-  attr_accessor :sale_id, :ammount, :purchase_time,
-                :vendor_id, :product_id
+  attr_accessor :sale_id, :ammount, :purchase_time, :vendor_id, :product_id
 
   def initialize(id, ammount, purchase_time, vendor_id, product_id)
     @sale_id = id
