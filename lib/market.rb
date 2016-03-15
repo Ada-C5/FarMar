@@ -1,6 +1,6 @@
 class FarMar::Market
 
-  attr_reader :id, :name
+  attr_reader :id, :name, :address, :city, :county, :state, :zip
 
   def initialize(market_hash)
     @id      = market_hash[:id]

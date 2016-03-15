@@ -29,4 +29,12 @@ class FarMar::Vendor
     FarMar::Market.all.find { |market| market.id == market_id }
   end
 
+  def products
+    FarMar::Product.all.find_all { |prod| prod.vendor_id == id }
+  end
+
+  def sales
+    FarMar::Sale.all.find_all { |sale| sale.vendor_id == id }
+  end
+
 end

@@ -27,4 +27,23 @@ describe FarMar::Vendor do
       FarMar::Vendor.all[13].market.must_be_instance_of FarMar::Market
     end
   end
+
+  describe "Vendor#products" do
+    it "should return all instances of Vendor that match the Vendor's id" do
+      ap FarMar::Vendor.find(14).products
+      FarMar::Vendor.find(14).products.must_be_instance_of Array
+      FarMar::Vendor.find(14).products.length.must_equal 2
+      FarMar::Vendor.find(14).products[0].vendor_id.must_equal "14"
+    end
+  end
+
+  describe "Vendor#sales" do
+    it "should return all instances of Vendor that match the Vendor's id" do
+      ap FarMar::Vendor.find(14).sales
+      FarMar::Vendor.find(14).sales.must_be_instance_of Array
+      FarMar::Vendor.find(14).sales.length.must_equal 3
+      FarMar::Vendor.find(14).sales[0].vendor_id.must_equal "14"
+    end
+  end
+
 end

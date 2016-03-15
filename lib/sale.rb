@@ -1,6 +1,6 @@
 class FarMar::Sale
 
-  attr_reader :id, :purchase_time
+  attr_reader :id, :purchase_time, :vendor_id
 
   def initialize(sale_hash)
     @id = sale_hash[:id]
