@@ -20,11 +20,13 @@ describe FarMar::Vendor do
 	end
 
 	it "has a find method" do
-		FarMar::Vendor.find('./support/vendors.csv').wont_be_nil
+		FarMar::Vendor.must_respond_to(:find)
 	end
 
 	it "returns the correct sale when self#find is called" do
 		FarMar::Vendor.find(18).name.must_equal("Von-Hamill")
 	end
+
+
 
 end
