@@ -1,5 +1,5 @@
 ## use this when testing in IRB, otherwise comment out
-#require_relative '../far_mar'
+require_relative '../far_mar'
 
 class FarMar::Market
   attr_reader :id, :name, :address, :city, :county, :state, :zip
@@ -23,7 +23,7 @@ class FarMar::Market
     all_markets.collect do |market|
 
       single_market_hash = {
-        id: market[0],
+        id: market[0].to_i,
         name: market[1],
         address: market[2],
         city: market[3],
@@ -43,5 +43,11 @@ class FarMar::Market
       end
     end
     found_market
+  end
+
+  def vendors
+    #returns a collection of FarMar::Vendor instances that are associated with
+    # the market by the market_id field
+    FarMar::Vendor.all.find_all {|vendor| vendor.market_id == id}
   end
 end

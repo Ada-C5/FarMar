@@ -17,10 +17,10 @@ class FarMar::Vendor
     all_vendors.collect do |vendor|
 
       single_vendor_hash = {
-        id: vendor[0],
+        id: vendor[0].to_i,
         name: vendor[1],
         number_of_employees: vendor[2],
-        market_id: vendor[3]
+        market_id: vendor[3].to_i
       }
       FarMar::Vendor.new(single_vendor_hash)
     end
