@@ -27,7 +27,7 @@ class FarMar::Market
   end
 
   def self.find(id)
-    markets_all = FarMar::Market.all
+    markets_all = self.all
 
     markets_all.each do |market|
       if id.to_i == market.id
