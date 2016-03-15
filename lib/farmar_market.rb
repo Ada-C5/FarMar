@@ -60,8 +60,5 @@ class FarMar::Market
     # returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field.
     vendors = FarMar::Vendor.all('./support/vendors.csv')
     vendors.select { |vendor| vendor.market_id == self.id }
-
-    # making sure the last thing I return is vendors_at_market in case this code changes again.
-    # vendors_at_market
   end
 end
