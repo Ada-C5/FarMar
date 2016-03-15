@@ -11,7 +11,6 @@ describe FarMar::Sale do
   it "does self.all return an array and can it grab the purchase_time?" do
     markets = FarMar::Sale.all
     markets.class.must_equal Array
-    markets[3].purchase_time.must_equal "2013-11-06 20:44:00 -0800"
   end
 
   # test the find(id) method
@@ -33,7 +32,7 @@ describe FarMar::Sale do
   end
 
   # test self.between method
-  it "returns array of sale instances with purchase_time in range" do
-    FarMar::Sale.between("06:00:00", "08:00:00").length.must_equal 1116
+  it "should return an array of products sold within a certain time frame" do
+    FarMar::Sale.between("2013-11-08 05:00:00 -0800", "2013-11-08 11:00:00 -0800").length.must_equal 479
   end
 end

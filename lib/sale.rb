@@ -15,7 +15,7 @@ class FarMar::Sale
     CSV.foreach(FILE) do |line|
       id = line[0].to_i
       amount = line[1].to_i
-      purchase_time = line[2]
+      purchase_time = Time.parse(line[2])
       ven_id = line[3].to_i
       prod_id = line[4].to_i
       sales << self.new(id, amount, purchase_time, ven_id, prod_id)
@@ -30,26 +30,11 @@ class FarMar::Sale
     end
   end
 
-  # time must be in military time
-  # time does not account for user timezone
-  # range time1 cannot be before midnight if time2 is after midnight
-  def self.between(time1, time2)
-    sales = self.all
-    time1 = time1.tr('^0-9', '').to_i
-    time2 = time2.tr('^0-9', '').to_i
-    #range = (time1-time2)
-    temp = []
-    sales.each do |sale|
-      #2013-11-10 01:51:24 -0800
-      time = sale.purchase_time
-      time = time.split(" ")
-      time = time[1]
-      time = time.tr('^0-9', '').to_i
-      if time.between?(time1, time2)
-        temp << sale
-      end
-    end
-    return temp
+  # method to find sales that happened in a certain range
+  def self.between(start_time, end_time)
+    start_time = Time.parse(start_time)
+    end_time = Time.parse(end_time)
+    self.all.find_all { |sale| (start_time..end_time).include?(sale.purchase_time) }
   end
 
   # return vendor instance related to sale
