@@ -35,4 +35,14 @@ class FarMar::Vendor
 			end 
 		end
 	end 
+
+	def get_markets
+		FarMar::Market.all.find_all {|vendor| vendor.market_id == market_id}
+	end
+
+	def get_products
+		FarMar::Product.all.find_all {|product| product.vendor_id == vendor_id}
+	end 
 end
+
+

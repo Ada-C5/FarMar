@@ -29,13 +29,18 @@ describe FarMar::Market do
 		market_test.market_name.must_equal "Carefree Farmers Market"
 	end
 
+	it "returns an array of vendors based on market ID" do
+		market_test.get_vendors.must_be_instance_of Array
+	end 
+
 	it "returns an instance of FarMar::Vendor" do
 		market_test.get_vendors[0].must_be_instance_of FarMar::Vendor
 	end 
 
-	it "returns an array of vendors based on market ID" do
-		market_test.get_vendors.must_be_instance_of Array
-	end 
+	it "Returns a vendor name when given a market ID" do
+		market_test.get_vendors[5].vendor_name.must_equal "Rippin-Nader"
+	end
+
 
 end
 
