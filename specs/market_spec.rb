@@ -27,7 +27,7 @@ describe FarMar::Market do
 
   describe "FarMar::Market#vendors" do
     it "should return 6 vendors associated with market id 1" do
-      ven_market.vendors(1).length.must_equal 6
+      ven_market.vendors.length.must_equal 6
     end
   end
 

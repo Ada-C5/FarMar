@@ -28,17 +28,20 @@ class FarMar::Product
     self.all.find_all { |vendor| vendor.vendor_id == vendor_id }
   end
 
-  def vendor(vendor_id)
+  def vendor
+    self.vendor_id
     FarMar::Vendor.all.find { |vendor| vendor.id == vendor_id }
   end
 
 
-  def sales(id)
+  def sales
+    self.id
     FarMar::Sale.all.select { |sale| sale.product_id == id }
   end
 
-  def number_of_sales(id)
-    sales(id).count
+  def number_of_sales
+    self.id
+    sales.count
   end
 
 end

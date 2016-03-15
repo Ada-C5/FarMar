@@ -26,6 +26,11 @@ class FarMar::Sale
     self.all.find { |sale| sale.id == id }
   end
 
+  def self.between(beginning_time, end_time)
+
+    # self.all.find_all { |time| time == beginning_time || time == end_time }
+  end
+
   def vendor(vendor_id)
     FarMar::Vendor.all.find { |vendor| vendor.id == vendor_id }
   end

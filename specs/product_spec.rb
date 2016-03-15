@@ -22,27 +22,27 @@ describe FarMar::Product do
   end
 
   describe "FarMar::Product#vendor" do
-    products1 = FarMar::Product.new(id: 1)
+    products1 = FarMar::Product.new(vendor_id: 86)
     it "should return 'Purdy-Kerluke' as Vendor name" do
-      products1.vendor(86).name.must_equal "Purdy-Kerluke"
+      products1.vendor.name.must_equal "Purdy-Kerluke"
     end
   end
 
   describe "FarMar::Product#sales" do
-    products2 = FarMar::Product.new(id: 1)
+    products2 = FarMar::Product.new(id: 58)
     it "should return array of sales associated w/product_id" do
-      products2.sales(58).length.must_equal 5
+      products2.sales.length.must_equal 5
     end
   end
 
   describe "FarMar::Product#number_of_sales" do
-    products3 = FarMar::Product.new(id: 1)
+    products3 = FarMar::Product.new(id: 74)
     it "should return number of times product has been sold" do
-      products3.number_of_sales(74).must_equal 7
+      products3.number_of_sales.must_equal 7
     end
   end
 
-  describe "FarMar::Product#self.by_vendor(vendor_id)" do
+  describe "FarMar::Product#self.by_vendor" do
     it "should return number of times product has been sold" do
       FarMar::Product.by_vendor(21).length.must_equal 5
     end
