@@ -33,4 +33,10 @@ class FarMar::Sale
     sale.vendor_id
     FarMar::Vendor.find(vendor_id)
   end
+
+  def product
+    sale = FarMar::Sale.find(@sale_id)
+    sale.product_id
+    FarMar::Product.find(product_id)
+  end
 end
