@@ -8,6 +8,7 @@ class FarMar::Sale
   SALE_CSV = FarMar::Sale.read_csv(FILE)
 
   def initialize(sale_id)
+    sale_id -= 1
     @sale_id = SALE_CSV[sale_id][0].to_i
     @amount = SALE_CSV[sale_id][1]
     @sale_time = SALE_CSV[sale_id][2]
@@ -23,14 +24,14 @@ class FarMar::Sale
     return allsales
   end
 
-  def self.find(id)
-    the_sale = []
-    SALE_CSV.each do |sale|
-      if sale[0].to_i == id.to_i
-        the_sale = sale
-      end
-    end
-    index = SALE_CSV.index(the_sale)
-    return FarMar::Sale.new(index)
+  def self.find(sale_id)
+    # the_sale = []
+    # SALE_CSV.each do |sale|
+    #   if sale[0].to_i == id.to_i
+    #     the_sale = sale
+    #   end
+    # end
+    # index = SALE_CSV.index(the_sale)
+    return FarMar::Sale.new(sale_id)
   end
 end

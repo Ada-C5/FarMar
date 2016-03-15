@@ -2,7 +2,7 @@ require_relative './spec_helper'
 require_relative '../farmar'
 
 describe "FarMar::Market" do
-  let(:first_market) {FarMar::Market.new(0)}
+  let(:first_market) {FarMar::Market.new(1)}
   let(:all_markets) {FarMar::Market.all}
   it "can create a new instance from markets.csv" do
     first_market
