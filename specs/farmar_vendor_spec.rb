@@ -50,4 +50,19 @@ describe "FarMar::Vendor#revenue" do
   it "should return the revenue as a fixnum" do
     FarMar::Vendor.find(13).revenue.is_a? Fixnum
   end
+
+  it "should return the fixnum 10,969 for vendor id 1" do
+    FarMar::Vendor.find(12).revenue.must_equal 10_969
+  end
+end
+
+describe "FarMar::Vendor#self.by_market" do
+  it "should return an array of instances of FarMar::Vendor" do
+    FarMar::Vendor.by_market(15).is_a? Array
+  end
+
+  # just to show that the correct markets were returned
+  it "should return the name of the second instance in the array when given 2" do
+    FarMar::Vendor.by_market(2)[1].name.must_equal "Stamm Inc"
+  end
 end

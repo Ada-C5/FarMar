@@ -36,6 +36,16 @@ class FarMar::Vendor
     found_vendor
   end
 
+  def self.by_market(market_id)
+    # returns all of the vendors with the given market_id
+    self.all.find_all {|vendor| vendor.market_id == market_id }
+
+
+    # self.all.collect do |vendor|
+    #
+    # end
+  end
+
   def markets
     #returns the FarMar::Market instance that is associated with this vendor
     #using the FarMar::Vendor market_id field
@@ -59,6 +69,6 @@ class FarMar::Vendor
     all_sale_amounts = sales.collect do |sale|
       sale.amount
     end
-    all_sale_amounts.reduce {|sum, n| sum + n }
+    all_sale_amounts.reduce(0, :+)
   end
 end
