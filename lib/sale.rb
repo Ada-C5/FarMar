@@ -7,11 +7,11 @@ class FarMar::Sale
   SALE_CSV = FarMar::Sale.read_csv(FILE)
 
   def initialize(csv_index)
-    @sale_id = SALE_CSV[csv_index][0]
+    @sale_id = SALE_CSV[csv_index][0].to_i
     @amount = SALE_CSV[csv_index][1]
     @sales_time = SALE_CSV[csv_index][2]
-    @vendor_id = SALE_CSV[csv_index][3]
-    @product_id = SALE_CSV[csv_index][4]
+    @vendor_id = SALE_CSV[csv_index][3].to_i
+    @product_id = SALE_CSV[csv_index][4].to_i
   end
 
   def self.all

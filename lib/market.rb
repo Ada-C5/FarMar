@@ -9,7 +9,7 @@ class FarMar::Market
   MARKET_CSV = FarMar::Market.read_csv(FILE)
 
   def initialize(csv_index)
-    @market_id = MARKET_CSV[csv_index][0]
+    @market_id = MARKET_CSV[csv_index][0].to_i
     @name =      MARKET_CSV[csv_index][1]
     @address =   MARKET_CSV[csv_index][2]
     @city =      MARKET_CSV[csv_index][3]
@@ -18,11 +18,17 @@ class FarMar::Market
   end
 
   def self.all
-    allmarkets = []
+    markets = []
     MARKET_CSV.length.times do |index|
-      allmarkets << FarMar::Market.new(index)
+      markets << FarMar::Market.new(index)
     end
-    return allmarkets
   end
 
+  def self.find(id)
+    MARKET_CSV.each do |market|
+      if market[0].to_i == id.to_i
+        return market
+      end
+    end
+  end
 end

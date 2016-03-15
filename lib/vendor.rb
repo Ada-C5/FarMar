@@ -7,10 +7,10 @@ class FarMar::Vendor
   VENDOR_CSV = FarMar::Vendor.read_csv(FILE)
 
   def initialize(csv_index)
-    @vendor_id = VENDOR_CSV[csv_index][0]
+    @vendor_id = VENDOR_CSV[csv_index][0].to_i
     @name = VENDOR_CSV[csv_index][1]
-    @no_of_empl = VENDOR_CSV[csv_index][2]
-    @market_id = VENDOR_CSV[csv_index][3]
+    @no_of_empl = VENDOR_CSV[csv_index][2].to_i
+    @market_id = VENDOR_CSV[csv_index][3].to_i
   end
 
   def self.all
@@ -20,4 +20,5 @@ class FarMar::Vendor
     end
     return allvendors
   end
+
 end
