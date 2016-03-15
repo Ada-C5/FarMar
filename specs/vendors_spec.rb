@@ -28,9 +28,12 @@ describe FarMar::Vendor do
   end
 
   describe "FarMar::Vendor#market" do
+    before do
+      @vendor_test = FarMar::Vendor.new("18", "David Jimison", "1", "404")
+    end
+
     it "should return object vendor that matches the market_id" do
-      vendor_test = FarMar::Vendor.new("18", "David Jimison", "1", "404")
-      vendor_test.market.length.must_equal 1
+      @vendor_test.market.length.must_equal 1
     end
 
     # it "should return an object of the class Market" do
