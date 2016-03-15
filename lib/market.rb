@@ -16,36 +16,17 @@ class FarMar::Market
   end
 
   def self.all
-    markets_info = []
     markets_csv_info = CSV.read("./support/markets.csv")  # an array of each line as an element
-
-    markets_csv_info.each do |line|
-      markets_info << self.new( id: line[0].to_i, name: line[1], address: line[2], city: line[3], county: line[4],
-                              state: line[5], zip: line[6] )
-    end
-    return markets_info
+    markets_csv_info.map { |line| self.new( id: line[0].to_i, name: line[1], address: line[2], city: line[3], county: line[4], state: line[5], zip: line[6] )}
   end
 
   def self.find(id)
-    markets_all = self.all
-
-    markets_all.each do |market|
-      if id.to_i == market.id
-        return market
-      end
-    end
+    self.all.select {|market| id.to_i == market.id }
   end
 
   # return a list of vendor instances (FarMar::Vendor) by matching market_id
   def vendor
-    vendor_list = []
-
-    vendor_list_all = FarMar::Vendor.all
-
-    vendor_list_all.each do |vendor|
-      vendor_list << vendor if id.to_i == vendor.market_id.to_i
-    end
-    return vendor_list
+    FarMar::Vendor.all.select {|vendor| id.to_i == vendor.market_id.to_i}[0]
   end
 
 end

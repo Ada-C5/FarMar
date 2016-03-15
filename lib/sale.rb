@@ -13,23 +13,12 @@ class FarMar::Sale
   end
 
   def self.all
-    all_sales_info = []
-
     sale_csv_info = CSV.read("./support/sales.csv")
-    sale_csv_info.each do |line|
-      all_sales_info << self.new( id: line[0].to_i, amount: line[1].to_i, purchase_time: line[2], vendor_id: line[3], product_id: line[4] )
-    end
-    return all_sales_info
+    sale_csv_info.map {|line| self.new(id: line[0].to_i, amount: line[1].to_i, purchase_time: line[2], vendor_id: line[3], product_id: line[4] )}
   end
 
   def self.find(id)
-    all_sales_info = self.all
-
-    all_sales_info.each do |sale|
-      if id.to_i == sale.id
-        return sale
-      end
-    end
+    self.all.select { |sale| id.to_i == sale.id.to_i }[0]
   end
 
 end
