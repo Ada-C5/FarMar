@@ -26,8 +26,7 @@ class FarMar::Market
   end
 
   def self.find(id)
-    find_markets = self.all
-    find_markets.find { |market| market.id == id }
+    self.all.find { |market| market.id == id }
   end
 
   def vendors(id)

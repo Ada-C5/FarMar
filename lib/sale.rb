@@ -23,8 +23,7 @@ class FarMar::Sale
   end
 
   def self.find(id)
-    find_sales = self.all
-    find_sales.find { |sale| sale.id == id }
+    self.all.find { |sale| sale.id == id }
   end
 
 end

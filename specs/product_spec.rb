@@ -19,6 +19,12 @@ describe FarMar::Product do
     it "should return nil when self.find called by id 9000" do
       FarMar::Product.find(9000).must_equal nil
     end
+  end
 
+  describe "FarMar::Product#vendor" do
+    products1 = FarMar::Product.new(id: 1)
+    it "should return 'Purdy-Kerluke' as Vendor name" do
+      products1.vendor(86).name.must_equal "Purdy-Kerluke"
+    end
   end
 end
