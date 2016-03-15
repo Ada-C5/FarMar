@@ -26,7 +26,7 @@ class FarMar::Product
   end
 
   def sales
-    FarMar::Sale.by_product(id)
+    FarMar::Sale.get_by("product", id)
   end
 
   def number_of_sales

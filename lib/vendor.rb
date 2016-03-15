@@ -31,7 +31,7 @@ class FarMar::Vendor
   end
 
   def sales
-    FarMar::Sale.by_vendor(id)
+    FarMar::Sale.get_by("vendor", id)
   end
 
   def revenue

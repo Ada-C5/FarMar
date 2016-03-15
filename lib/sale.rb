@@ -17,15 +17,13 @@ class FarMar::Sale
     make_all(file, sale_keys)
   end
 
-  def self.by_vendor(id_of_vendor)
+  def self.get_by(type, id)
     self.all.find_all do |sale|
-      sale.vendor_id == id_of_vendor
-    end
-  end
-
-  def self.by_product(id_of_product)
-    self.all.find_all do |sale|
-      sale.product_id == id_of_product
+      if type == "vendor"
+        sale.vendor_id == id
+      elsif type == "product"
+      sale.product_id == id
+      end
     end
   end
 
