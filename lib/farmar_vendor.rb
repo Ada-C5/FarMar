@@ -41,4 +41,10 @@ class FarMar::Vendor
     #using the FarMar::Vendor market_id field
     FarMar::Market.all.find {|market| market.id == market_id}
   end
+
+  def products
+    #returns a collection of FarMar::Product instances that are associated by
+    # the FarMar::Product vendor_id field.
+    FarMar::Product.all.find_all {|product| product.vendor_id == id}
+  end
 end

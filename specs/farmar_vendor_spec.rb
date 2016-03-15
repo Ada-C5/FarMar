@@ -29,3 +29,13 @@ describe "FarMar::Vendor#markets" do
     FarMar::Vendor.find(20).markets.must_be_instance_of FarMar::Market
   end
 end
+
+describe "FarMar::Vendor#products" do
+  it "should return an array" do
+    FarMar::Vendor.find(20).products.is_a? Array
+  end
+
+  it "should return an array of instances of FarMar::Product" do
+    FarMar::Vendor.find(20).products[0].must_be_instance_of FarMar::Product
+  end
+end
