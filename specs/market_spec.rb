@@ -38,7 +38,6 @@ describe FarMar::Market do
 	end
 
 	it "returns all the vendors associated with the market it's called for" do
-		skip
 		market_to_test = FarMar::Market.new({id: 5})
 
 		market_to_test.vendors.must_include("Langosh, Krajcik and Langosh")
