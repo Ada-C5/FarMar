@@ -28,10 +28,36 @@ describe FarMar::Product do
   describe ".find" do
     let(:product_eight) { FarMar::Product.find(8)}
 
-  it "can find a product given an id" do
-    product_eight.name.must_equal("Shaky Honey")
+    it "can find a product given an id" do
+      product_eight.name.must_equal("Shaky Honey")
+    end
+
+  end
+#14,Stupendous Carrots,7
+  describe '.vendor' do
+    let(:carrot) { FarMar::Product.find(14)}
+
+    it 'should return vendor that sells this product' do
+      carrot.vendor[0].vendor_id.must_equal(7)
+    end
+
   end
 
-end
+  describe '.sales' do
+    let (:toy) { FarMar::Product.find(40)}
+    it 'returns collection of all sales instances for this product' do
+      classes = toy.sales.map { |sale| sale.class}
+      classes.uniq.must_equal [FarMar::Sale]
+    end
+  end
+
+  describe '.number_of_sales' do
+    let (:car) { FarMar::Product.find(50)}
+
+    it "should return the number of sales for that item" do
+      car.number_of_sales.must_be_instance_of Fixnum
+    end
+
+  end
 
 end
