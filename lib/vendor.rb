@@ -44,10 +44,20 @@ class FarMar::Vendor
   #sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
   def sales
     vendor_sales = []
-    sales = FarMar::Sale::SALE_CSV.find_all { |sale| sale.last.to_i == @vendor_id }
+    sales = FarMar::Sale::SALE_CSV.find_all { |sale| sale.last.to_i == vendor_id }
     sales.each do |sale|
-      vendor_sales << FarMar::Sale.new(sales[0][0].to_i)
+      vendor_sales << FarMar::Sale.new(sales.first[0].to_i)
     end
     return vendor_sales
+  end
+
+  def revenue
+    vendor_sales = []
+    sales = FarMar::Sale::SALE_CSV.find_all { |sale| sale.last.to_i == vendor_id }
+    sales.each do |sale|
+      sale = FarMar::Sale.new(sales.first[0].to_i)
+      vendor_sales << sale.amount.to_i
+    end
+    return vendor_sales.reduce(0, :+)
   end
 end

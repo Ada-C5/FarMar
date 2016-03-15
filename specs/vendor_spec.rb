@@ -49,10 +49,19 @@ describe "FarMar::Vendor" do
     end
   end
 
-  describe "FarMar::Vendor#sales" do
-  let(:sales_made) {first_vendor.sales}
-    it "returns instances of Sale" do
-      sales_made.first.must_be_instance_of FarMar::Sale
+  # describe "FarMar::Vendor#sales" do
+  # let(:sales_made) {first_vendor.sales}
+  #   it "returns instances of Sale" do
+  #     sales_made.first.must_be_instance_of FarMar::Sale
+  #   end
+  # end
+
+  #revenue: returns the the sum of all of the vendor's sales (in cents)
+  describe "FarMar::Vendor#revenue" do
+    it "totals all the sales a vendor has made" do
+      second_vendor = FarMar::Vendor.new(2)
+      assert_equal 5727, second_vendor.revenue
     end
   end
+
 end
