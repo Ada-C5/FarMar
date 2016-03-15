@@ -48,7 +48,8 @@ class FarMar::Vendor
   end
 
   def products
-
+    vendor_id = self.id
+    FarMar::Product.by_vendor(vendor_id)
   end
 
 end

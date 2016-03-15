@@ -39,8 +39,8 @@ describe FarMar::Market do
   end
 
   describe "#vendors" do
+    let(:market) { FarMar::Market.find(1) }
     it "Returns an array of vendor objects that match a specific market_id" do
-      market = FarMar::Market.find(1)
       vendors = market.vendors
       vendors.length.must_equal(6)
     end

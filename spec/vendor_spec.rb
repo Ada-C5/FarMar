@@ -53,9 +53,10 @@ describe FarMar::Vendor do
   end
 
   describe "#products" do
-    let(:product) {FarMar::Vendor.find(1)}
+    let(:vendor) {FarMar::Vendor.find(16)}
     it "Returns a collection of FarMar::Product instances that are associated by the FarMar::Product" do
-ß
+      products = vendor.products
+      products.length.must_equal(5)
     end
   end
 
