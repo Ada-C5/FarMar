@@ -41,8 +41,8 @@ class FarMar::Market
   end
 
   #vendors: returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field.
-  def vendors(market_id)
-    FarMar::Vendor.market_vendors(market_id)
+  def vendors
+    FarMar::Vendor.market_vendors(@market_id)
   end
 
 

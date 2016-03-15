@@ -24,7 +24,14 @@ describe FarMar::Vendor do
 		assert_equal FarMar::Vendor.products(2), [["2", "Fierce Greens", "2"], ["3", "Heavy Chicken", "2"]]
 	end
 
-	#Market.vendors test
+	#Vendor.market test
 
-	
+	#Vendor.products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
+
+	#Vendor.sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
+
+	# self.by_market(market_id): returns all of the vendors with the given market_id
+
+	#revenue: returns the the sum of all of the vendor's sales (in cents)
+
 end
