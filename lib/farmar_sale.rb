@@ -1,7 +1,10 @@
 require_relative '../farmar'
+require_relative'./farmar_vendor'
+require_relative'./farmar_product'
+require_relative'./farmar_market'
 
 class FarMar::Sale
-  attr_accessor :transaction_amount
+  attr_accessor :id, :transaction_amount, :purchase_time, :vendor_id, :product_id
 
   def initialize(id, transaction_amount, purchase_time, vendor_id, product_id)
     @id                 = id #sale id
@@ -34,6 +37,37 @@ class FarMar::Sale
       end
     end
   end
+
+  #vendor: returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id field
+  def vendor
+    FarMar::Vendor.find(@vendor_id)
+  end
+
+#product: returns the FarMar::Product instance that is associated with this sale using the FarMar::Sale product_id field
+def product
+  FarMar::Product.find(@product_id)
+end
+
+# self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
+def self.between(beginning_time, end_time)
+  all_sales = CSV.read("./support/sales.csv", "r")
+  sale_array = []
+  beginning_time = beginning_time.gsub(/[:]/, '_')
+  end_time = end_time.gsub(/[:]/, '_')
+
+  all_sales.each do |sale|
+    sale_time = sale[2]
+    sale_time_array = sale_time.to_s.split(" ")
+    time = sale_time_array[1].gsub(/[:]/, '_')
+    if time.to_f > beginning_time.to_f && time.to_f < end_time.to_f
+      sale_array << sale
+    end
+  end
+  sale_array
+end
+
+
+
 
   private
     def self.vendor_sales(vendor_id)   #used by the Vendor.sales method

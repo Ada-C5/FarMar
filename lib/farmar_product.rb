@@ -1,6 +1,10 @@
 require_relative '../farmar'
+require_relative'./farmar_vendor'
+require_relative'./farmar_market'
+require_relative'./farmar_sale'
 
 class FarMar::Product
+  attr_accessor :id, :name, :vendor_id
 
   def initialize(id, name, vendor_id)
     @id         = id #product ID
@@ -14,6 +18,7 @@ class FarMar::Product
       @id           = individual_array[0]
       @name         = individual_array[1]
       @vendor_id    = individual_array[2]
+
       self.new(@id, @name, @vendor_id)
     end
   end

@@ -16,15 +16,11 @@ describe FarMar::Vendor do
 		FarMar::Vendor.find(2690).wont_be_nil
 	end
 
-	it "returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id field" do
-		FarMar::Vendor.market(1).wont_be_nil
-	end
+	# it "returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field" do
+	# 	assert_equal FarMar::Vendor.products(2), [["2", "Fierce Greens", "2"], ["3", "Heavy Chicken", "2"]]
+	# end
 
-	it "returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field" do
-		assert_equal FarMar::Vendor.products(2), [["2", "Fierce Greens", "2"], ["3", "Heavy Chicken", "2"]]
-	end
-
-	#Vendor.market test
+	#Vender.market: returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id field
 
 	#Vendor.products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
 

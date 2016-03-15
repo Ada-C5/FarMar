@@ -1,8 +1,11 @@
 require_relative '../farmar'
-require_relative './farmar_market'
+require_relative'./farmar_market'
+require_relative'./farmar_product'
+require_relative'./farmar_sale'
 
 
 class FarMar::Vendor
+  attr_accessor :vendor_id, :vendor_name, :employees, :market_id
 
   def initialize(vendor_id, vendor_name, employees, market_id)
     @vendor_id    = vendor_id

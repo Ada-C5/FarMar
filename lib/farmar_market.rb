@@ -1,7 +1,10 @@
 require_relative '../farmar'
 require_relative'./farmar_vendor'
+require_relative'./farmar_product'
+require_relative'./farmar_sale'
 
 class FarMar::Market
+  attr_accessor :id, :name, :address, :city, :county, :state, :zip
 
   def initialize(id, name, address, city, county, state, zip)
     @id         = id #market ID
@@ -44,6 +47,5 @@ class FarMar::Market
   def vendors
     FarMar::Vendor.market_vendors(@market_id)
   end
-
 
 end
