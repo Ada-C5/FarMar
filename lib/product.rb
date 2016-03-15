@@ -27,12 +27,9 @@ class FarMar::Product
     return FarMar::Product.new(product_id)
   end
 
-  #vendor: returns the FarMar::Vendor instance that is associated with this product using the FarMar::Product vendor_id field
   def vendor
     product = FarMar::Product.find(@product_id)
     product.vendor_id
     FarMar::Vendor.find(vendor_id)
   end
-
-
 end

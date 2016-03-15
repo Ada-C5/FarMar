@@ -35,15 +35,17 @@ describe "FarMar::Vendor" do
 
 #products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
   describe "FarMar::Vendor#products" do
-    # it "returns an array" do
-    #   products = first_vendor.products
-    #   products.must_be_instance_of Array
-    # end
+    let(:products) { first_vendor.products }
+    it "returns an array" do
+      products.must_be_instance_of Array
+    end
 
     it "returns instances of Product" do
+      products[0].must_be_instance_of FarMar::Product
     end
 
     it "returns products with the correct vendor_id" do
+      assert_equal 1, products.first.vendor_id.to_i
     end
   end
 end
