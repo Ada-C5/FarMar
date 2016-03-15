@@ -28,4 +28,12 @@ describe FarMar::Sale do
       sale1.vendor(10).name.must_equal "Kertzmann LLC"
     end
   end
+
+  describe "FarMar::Sale#product" do
+    sale2 = FarMar::Sale.new(id: 1)
+    it "should return 'Bad Chicken' product associated with sale" do
+      sale2.product(40).name.must_equal "Bad Chicken"
+    end
+  end
+
 end

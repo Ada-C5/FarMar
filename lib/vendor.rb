@@ -29,7 +29,7 @@ class FarMar::Vendor
   end
 
   def markets(market_id)
-    FarMar::Market.all.select { |market| market.id == market_id }
+    FarMar::Market.all.find { |market| market.id == market_id }
   end
 
   def products(id)

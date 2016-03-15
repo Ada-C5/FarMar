@@ -28,7 +28,10 @@ class FarMar::Sale
 
   def vendor(vendor_id)
     FarMar::Vendor.all.find { |vendor| vendor.id == vendor_id }
+  end
 
+  def product(product_id)
+    FarMar::Product.all.find { |product| product.id == product_id }
   end
 
 end

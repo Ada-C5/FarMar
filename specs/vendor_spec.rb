@@ -24,8 +24,8 @@ describe FarMar::Vendor do
 
   describe "FarMar::Vendor#markets" do
     vendor1 = FarMar::Vendor.new(market_id: 10)
-    it "should return the market associated with market id 10, and name should be Saratoga Farmers' Market" do
-      vendor1.markets(10)[0].name.must_equal "Saratoga Farmers' Market"
+    it "should return the market name Saratoga Farmers' Market w/id 10" do
+      vendor1.markets(10).name.must_equal "Saratoga Farmers' Market"
     end
   end
 
