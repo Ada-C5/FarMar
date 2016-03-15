@@ -21,4 +21,7 @@ class FarMar::Product
     end
   end
 
+  def vendor
+    FarMar::Vendor.find(vendor_id)
+  end
 end
