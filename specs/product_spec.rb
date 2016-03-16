@@ -48,9 +48,9 @@ describe FarMar::Product do
 	end
 
 	it "returns a collection of the products with given vendor id" do
-		FarMar::Product.by_vendor("2").must_equal(2)
-		FarMar::Product.by_vendor.must_be_instance_of(Array)
-		FarMar::Product.by_vendor[0].must_equal("Fierce Greens")
+		FarMar::Product.by_vendor("2").length.must_equal(2)
+		FarMar::Product.by_vendor("2").must_be_instance_of(Array)
+		FarMar::Product.by_vendor("2")[0].name.must_equal("Fierce Greens")
 	end
 
 	it "returns an empty collection when a product has a non-valid vendor id" do
