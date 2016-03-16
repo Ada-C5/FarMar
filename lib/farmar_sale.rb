@@ -52,6 +52,7 @@ class FarMar::Sale
   # product: returns the FarMar::Product instance that is associated 
   # with this sale using the FarMar::Sale product_id field
   def product
+    FarMar::Product.find(self.product_id)
   end
 
 
