@@ -23,3 +23,31 @@ describe "FarMar::Product#self.find(id)" do
     FarMar::Product.find(11).name.must_equal "Gigantic Bread"
   end
 end
+
+describe "FarMar::Product#vendor" do
+  it "should return an instance of FarMar::Vendor" do
+    FarMar::Product.find(20).vendor.must_be_instance_of FarMar::Vendor
+  end
+end
+
+describe "FarMar::Product#sales" do
+  it "should return an array of instances of FarMar::Sale" do
+    FarMar::Product.find(20).sales[0].must_be_instance_of FarMar::Sale
+  end
+end
+
+describe "FarMar::Product#number_of_sales" do
+  it "should return 8 for the product id of 4" do
+    FarMar::Product.find(4).number_of_sales.must_equal 8
+  end
+end
+
+describe "FarMar::Product#self.by_vendor" do
+  it "should return an array of instances of FarMar::Product" do
+    FarMar::Product.by_vendor(15).is_a? Array
+  end
+  # just to show that the correct markets were returned
+  it "should return the name of the second instance in the array when given 2" do
+    FarMar::Product.by_vendor(2)[1].name.must_equal "Heavy Chicken"
+  end
+end

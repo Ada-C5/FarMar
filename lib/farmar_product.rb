@@ -25,6 +25,7 @@ class FarMar::Product
   end
 
   def self.find(given_id)
+    # this can actually be refactored to a .find enumerator later
     found_product = nil
     self.all.each do |product|
       if product.id == given_id
@@ -32,5 +33,27 @@ class FarMar::Product
       end
     end
     found_product
+  end
+
+  def self.by_vendor(vendor_id)
+    # returns all of the products with the given vendor_id
+    self.all.find_all {|product| product.vendor_id == vendor_id }
+  end
+
+  def vendor
+    # returns the FarMar::Vendor instance that is associated with this vendor
+    # using the FarMar::Product vendor_id field
+    FarMar::Vendor.all.find {|vendor| vendor.id == vendor_id}
+  end
+
+  def sales
+    # returns a collection of FarMar::Sale instances that are associated
+    # using the FarMar::Sale product_id field.
+    FarMar::Sale.all.find_all {|sale| sale.product_id == id}
+  end
+
+  def number_of_sales
+    # returns the number of times this product has been sold
+    sales.length
   end
 end

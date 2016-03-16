@@ -39,11 +39,6 @@ class FarMar::Vendor
   def self.by_market(market_id)
     # returns all of the vendors with the given market_id
     self.all.find_all {|vendor| vendor.market_id == market_id }
-
-
-    # self.all.collect do |vendor|
-    #
-    # end
   end
 
   def markets
