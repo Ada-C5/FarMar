@@ -39,4 +39,12 @@ describe FarMar::Product do
 		product_two.sales.must_be_instance_of(Array)
 	end
 
+	it "returns a count of how many times this item has been sold" do
+		product_one.number_of_sales.must_equal(7)
+	end
+
+	it "returns 0 if this item has never been sold" do
+		product_two.number_of_sales.must_equal(0)
+	end
+
 end
