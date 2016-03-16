@@ -56,4 +56,8 @@ describe FarMar::Sale do
 		sale_two.product.must_be_nil
 	end
 
+	it "responds to calls on self#between" do
+		FarMar::Sale.must_respond_to(:between)
+	end
+
 end 
