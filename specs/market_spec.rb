@@ -22,10 +22,8 @@ describe FarMar::Market do
     it "returns false if it can't find the market" do
       FarMar::Market.find(3_000_000).must_equal false
     end
-  end
 
-  describe "FarMar::Market#self.find(id)" do
-    it "knows data about a particula market" do
+    it "knows data about a particular market" do
       market.name.must_equal "Morningside Park Farmers Market"
     end
   end

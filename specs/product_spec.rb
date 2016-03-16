@@ -51,7 +51,21 @@ describe FarMar::Product do
     end
   end
 
+  describe "FarMar::Product#number_of_sales" do
+    it "will return a number" do
+      product.number_of_sales.must_be_instance_of Fixnum
+    end
 
+    it "will return the correct number of sales for the product" do
+      product.number_of_sales.must_equal 2
+    end
 
+  end
+
+  describe "FarMar::Product#self.by_vendor" do
+    it "will return an array" do
+      FarMar::Product.by_vendor(261).must_be_instance_of Array
+    end
+  end
 
 end
