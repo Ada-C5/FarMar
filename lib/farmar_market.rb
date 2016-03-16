@@ -5,7 +5,7 @@ class FarMar::Market
   attr_reader :id, :name, :address, :city, :county, :state, :zip
 
   def initialize(market_hash)
-    @id = market_hash[:id]
+    @id = market_hash[:id].to_i
     @name = market_hash[:name]
     @address = market_hash[:address]
     @city = market_hash[:city]
@@ -22,7 +22,7 @@ class FarMar::Market
   end
 
   def self.find(id)
-    id=id.to_s
+    id=id.to_i
 
     all_markets = FarMar::Market.all
 

@@ -5,9 +5,9 @@ class FarMar::Product
   attr_reader :id, :name, :vendor_id
 
   def initialize(product_hash)
-    @id = product_hash[:id]
+    @id = product_hash[:id].to_i
     @name = product_hash[:name]
-    @vendor_id = product_hash[:vendor_id]
+    @vendor_id = product_hash[:vendor_id].to_i
   end
 
   def self.all
@@ -18,7 +18,7 @@ class FarMar::Product
   end
 
   def self.find(id)
-    id=id.to_s
+    id=id.to_i
 
     all_products = FarMar::Product.all
 
@@ -31,7 +31,7 @@ class FarMar::Product
   end
 
   def self.by_vendor(vendor_id)
-    vendor_id = vendor_id.to_s
+    vendor_id = vendor_id.to_i
     all_products = FarMar::Product.all
     all_products.select { |p| p.vendor_id == vendor_id }
   end

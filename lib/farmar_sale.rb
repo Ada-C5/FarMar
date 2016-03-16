@@ -5,11 +5,11 @@ class FarMar::Sale
   attr_reader :id, :amount, :purchase_time, :vendor_id, :product_id
 
   def initialize(sales_hash)
-    @id = sales_hash[:id]
-    @amount = sales_hash[:amount]
-    @purchase_time = sales_hash[:purchase_time]
-    @vendor_id = sales_hash[:vendor_id]
-    @product_id = sales_hash[:product_id]
+    @id = sales_hash[:id].to_i
+    @amount = sales_hash[:amount].to_i
+    @purchase_time = DateTime.parse(sales_hash[:purchase_time])
+    @vendor_id = sales_hash[:vendor_id].to_i
+    @product_id = sales_hash[:product_id].to_i
   end
 
   def self.all
@@ -20,7 +20,7 @@ class FarMar::Sale
   end
 
   def self.find(id)
-    id=id.to_s
+    id=id.to_i
 
     all_sales = FarMar::Sale.all
 
@@ -44,6 +44,6 @@ class FarMar::Sale
 
   #self.between(beginning_time, end_time): returns a collection
   #of FarMar::Sale objects where the purchase time is between the two times given as arguments
-
+  #http://ruby-doc.org/stdlib-2.1.1/libdoc/time/rdoc/Time.html#method-c-parse
   #http://stackoverflow.com/questions/4521921/how-to-know-if-todays-date-is-in-a-date-range/7176956#7176956
 end

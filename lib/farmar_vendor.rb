@@ -5,10 +5,10 @@ class FarMar::Vendor
   attr_reader :id, :name, :employee_num, :market_id
 
 def initialize(vendor_hash)
-  @id = vendor_hash[:id]
+  @id = vendor_hash[:id].to_i
   @name = vendor_hash[:name]
-  @employee_num = vendor_hash[:employee_num]
-  @market_id = vendor_hash[:market_id]
+  @employee_num = vendor_hash[:employee_num].to_i
+  @market_id = vendor_hash[:market_id].to_i
 end
 
 def self.all
@@ -19,7 +19,7 @@ def self.all
 end
 
 def self.find(id)
-  id=id.to_s
+  id=id.to_i
 
   all_vendors = FarMar::Vendor.all
 
@@ -37,7 +37,7 @@ def market
 end
 
 def self.by_market(market_id)
-  market_id = market_id.to_s
+  market_id = market_id.to_i
   all_vendors = FarMar::Vendor.all
   all_vendors.select { |v| v.market_id == market_id }
 end
@@ -52,7 +52,6 @@ def sales
   all_sales.select { |s| s.vendor_id == @id}
 end
 
-#FINALLY NEED TO TURN STUFF INTO FIXNUMS INSTEAD OF STRINGS ONLY.
 def revenue
   vendor_sales = sales
   amount_array = []
@@ -64,7 +63,5 @@ def revenue
 amount_array.reduce(0, :+)
 
 end
-#revenue: returns the the sum of
-#all of the vendor's sales (in cents)
-# [1,2,3]
+
 end
