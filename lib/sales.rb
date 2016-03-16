@@ -24,4 +24,14 @@ class FarMar::Sale
       end
     end
   end
+
+  def vendor
+    # returns the FarMar::Vendor instance that is associated with this sale
+    #using the FarMar::Sale vendor_id field
+    FarMar::Vendor.all.each do |vendor|
+      if vendor.vendor_id == vendor_id.to_i
+        return vendor
+      end
+    end
+  end
 end
