@@ -29,4 +29,19 @@ class FarMar::Market
   def vendors(mar_id)
     FarMar::Vendor.all.select { |vendor| vendor.mar_id == mar_id }
   end
+
+  # returns collection of PRODUCT instances associated to market via Vendor class
+  def products(mar_id)
+    vendors = FarMar::Vendor.by_market(mar_id)
+    products = FarMar::Product.all
+    product_array = []
+    vendors.each do |vendor|
+      products.each do |product|
+        if product.ven_id == vendor.ven_id
+          product_array << product
+        end
+      end
+    end
+    return product_array
+  end
 end
