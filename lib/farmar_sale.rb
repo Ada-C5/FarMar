@@ -1,5 +1,5 @@
 #get rid of ln2 after done with IRB testing
-require_relative '../far_mar.rb'
+# require_relative '../far_mar.rb'
 
 class FarMar::Sale
   attr_reader :id, :amount, :purchase_time, :vendor_id, :product_id
@@ -13,7 +13,7 @@ class FarMar::Sale
   end
 
   def self.all
-    all_sales = CSVHasher.hashify('../support/sales.csv')
+    all_sales = CSVHasher.hashify('./support/sales.csv')
     all_sales.collect { |n| FarMar::Sale.new(n) }
   end
 
@@ -24,12 +24,12 @@ class FarMar::Sale
 
   def vendor
     all_vendors = FarMar::Vendor.all
-    all_vendors.select { |v| v.id == @vendor_id}
+    all_vendors.select { |v| v.id == @vendor_id }
   end
 
   def product
     all_products = FarMar::Product.all
-    all_products.select { |p| p.id == @product_id}
+    all_products.select { |p| p.id == @product_id }
   end
 
   def self.between(beginning_time, end_time)

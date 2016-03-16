@@ -1,5 +1,5 @@
 #get rid of ln2 after done with IRB testing
-require_relative '../far_mar.rb'
+# require_relative '../far_mar.rb'
 
 class FarMar::Product
   attr_reader :id, :name, :vendor_id
@@ -11,7 +11,7 @@ class FarMar::Product
   end
 
   def self.all
-    all_products = CSVHasher.hashify('../support/products.csv')
+    all_products = CSVHasher.hashify('./support/products.csv')
     all_products.collect { |n| FarMar::Product.new(n) }
   end
 
@@ -28,12 +28,12 @@ class FarMar::Product
 
   def vendor
     all_vendors = FarMar::Vendor.all
-    all_vendors.select { |v| v.id == @vendor_id}
+    all_vendors.select { |v| v.id == @vendor_id }
   end
 
   def sales
     all_sales = FarMar::Sale.all
-    all_sales.select { |s| s.product_id == @id}
+    all_sales.select { |s| s.product_id == @id }
   end
 
   def number_of_sales
