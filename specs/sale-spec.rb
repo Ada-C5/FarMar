@@ -53,6 +53,6 @@ end
 
 describe "Sale#between(beginning_time, end_time)" do
   it "Does it the sales in the time?" do
-    FarMar::Sale.between("2013-11-08 04:30:41 -0800", "2013-11-08 04:32:41 -0800").must_be_instance_of Array
+    FarMar::Sale.between("2013-11-08 04:30:41 -0800", "2013-11-13 06:32:41 -0800")[0].must_be_instance_of FarMar::Sale
   end
 end

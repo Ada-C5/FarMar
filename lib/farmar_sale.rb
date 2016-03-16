@@ -48,10 +48,6 @@ class FarMar::Sale
     starting = DateTime.parse(beginning_time)
     ending = DateTime.parse(end_time)
     time_range = (starting..ending)
-    self.all.select { |sale| time_range.cover?(sale) }
+    self.all.find_all { |sale| sale.purchase_time.between? starting, ending }
   end
 end
-
-butts = FarMar::Sale.between("2013-11-08 04:30:41 -0800", "2013-11-08 04:32:41 -0800")
-
-puts butts
