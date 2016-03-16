@@ -4,15 +4,13 @@ class FarMar::Sale
   def initialize(id, ammount, purchase_time, vendor_id, product_id)
     @sale_id = id
     @ammount = ammount #Money.new(ammount, "USD")
-    @purchase_time = purchase_time
+    @purchase_time = Time.new(purchase_time)
     @vendor_id = vendor_id
     @product_id = product_id
   end
 
   def self.all
-    CSV.read('support/sales.csv').collect do |row|
-     self.new(row[0].to_i,row[1].to_i,row[2],row[3].to_i,row[4].to_i)
-    end
+    CSV.read('support/sales.csv').collect { |row| self.new(row[0].to_i,row[1].to_i,row[2],row[3].to_i,row[4].to_i) }
   end
 
   def self.find(id)
@@ -36,10 +34,15 @@ class FarMar::Sale
   def product
     #returns the FarMar::Product instance that is associated with this sale,
     # using the FarMar::Sale product_id field
-    FarMar::Product.all.each do |product| 
+    FarMar::Product.all.each do |product|
       if product.product_id == product_id.to_i
         return product
       end
     end
+  end
+
+  def self.between(beginning_time, end_time)
+    #returns a collection of FarMar::Sale objects,
+    # where the purchase time is between the two times given as arguments
   end
 end

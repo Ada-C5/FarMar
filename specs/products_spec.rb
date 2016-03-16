@@ -3,7 +3,7 @@ require_relative '../far_mar'
 
 describe FarMar::Product do
   let(:all_products) { FarMar::Product.all }
-  let(:product_test) { FarMar::Product.new("10","Black Apples","5") }
+  let(:product_test) { FarMar::Product.new("8068","Delightful Burrito","2649") }
   let(:vendor_test) { FarMar::Vendor.new( "22","Runolfsson and Sons","2","7") }
 
   it "is an object that isn't empty" do
@@ -54,6 +54,17 @@ describe FarMar::Product do
     it "should return an object of the class Vendor" do
       classes = product_test.sales.map { |m| m.class }
       classes.uniq.must_equal [FarMar::Sale]
+    end
+
+  end
+
+  describe "FarMar::Product#number_of_sales" do
+    it "should return object's product name equal to Agreeable Beef" do
+      product_test.number_of_sales.must_be_kind_of Numeric
+    end
+
+    it "should return object's product name equal to Agreeable Beef" do
+      product_test.number_of_sales.must_equal 10
     end
 
   end

@@ -35,7 +35,7 @@ class FarMar::Product
 
   def number_of_sales
     #returns the number of times this product has been sold.
-
+    sales.length 
   end
 
   def self.by_vendor(vendor_id_given)
