@@ -25,7 +25,7 @@ class FarMar::Vendor
         return FarMar::Vendor.new(vendor_instance)
       end
     end
-    return "no instance found"
+    return "No instance found"
   end
 
   def market #find market instance of vendor instance

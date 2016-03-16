@@ -17,9 +17,12 @@ describe FarMar::Vendor do
     end
   end
 
-  describe "Vendo find" do
+  describe "Vendor find" do
     it "can find an instance of a vendor by matching vendor id" do
       FarMar::Vendor.find(7).must_be_instance_of FarMar::Vendor #7th instance
+    end
+    it "will return nil if no instance found" do
+      FarMar::Vendor.find(333333).must_equal "No instance found"
     end
   end
 

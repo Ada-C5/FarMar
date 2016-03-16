@@ -6,15 +6,25 @@ describe FarMar::Market do
   let(:market) {FarMar::Market.new(MARKET_TEST)}
   let(:market_all) {FarMar::Market.all}
 
-  describe "Market#new" do
+  describe "Market new" do
     it "can create new instances of Market with correct name" do
       market.name.must_equal "name"
     end
   end
 
-  describe "Market#find" do
+  describe "Market all" do
+    it "can create a hash filled with market ids as keys and instances as values" do
+      market_all.must_be_instance_of Hash
+    end
+  end
+
+  describe "Market find" do
     it "can find an instance of a market by matching id" do
       FarMar::Market.find(286).must_be_instance_of FarMar::Market
+    end
+
+    it "will return nil if no instance found" do
+      FarMar::Market.find(333333).must_equal "No instance found"
     end
   end
 

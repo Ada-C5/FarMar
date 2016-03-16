@@ -4,15 +4,18 @@ describe FarMar::Product do
 
   PROUCT_TEST = [1, "name", 3] #pid, name, vid
   let(:item) {FarMar::Product.new(PROUCT_TEST)}
-  describe "Product#new" do
+  describe "Product new" do
     it "can create new instances of Product with correct name" do
       item.name.must_equal "name"
     end
   end
 
-  describe "Product#find" do
+  describe "Product find" do
     it "can find an instance of a product by matching product id" do
       FarMar::Product.find(286).must_be_instance_of FarMar::Product
+    end
+    it "will return nil if no instance found" do
+      FarMar::Product.find(333333).must_equal "No instance found"
     end
   end
 

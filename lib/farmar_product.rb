@@ -24,7 +24,7 @@ class FarMar::Product
         return FarMar::Product.new(product_instance)
       end
     end
-    return "no instance found"
+    return "No instance found"
   end
 
   def vendor
