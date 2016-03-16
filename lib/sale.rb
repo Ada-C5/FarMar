@@ -52,7 +52,15 @@ class FarMar::Sale
     return sales
   end
 
+  def vendor
+    vendor = self.vendor_id
+    return FarMar::Vendor.find(vendor)
+  end
 
+  def product
+    product = self.product_id
+    return FarMar::Product.find(product)
+  end
 
 
 
