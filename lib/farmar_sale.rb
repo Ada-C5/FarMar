@@ -43,7 +43,9 @@ class FarMar::Sale
     end
   end
 
-#vendor: returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id field
+  #vendor: returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id field
+  def vendor
+  end
 
 #product: returns the FarMar::Product instance that is associated with this sale using the FarMar::Sale product_id field
 
