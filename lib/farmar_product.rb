@@ -49,11 +49,15 @@ class FarMar::Product
   # FarMar::Sale product_id field.
   def sales
     sales_to_search = FarMar::Sale.all("./support/sales.csv")
-    sales_to_search.select {|sale| sale.vendor_id == self.id}
+    sales_to_search.select {|sale| sale.product_id == self.id}
   end
 
 
   # number_of_sales: returns the number of times this product has been sold.
+  def number_of_sales
+    sales_to_search = FarMar::Sale.all("./support/sales.csv")
+    sales_to_search.count {|sale| sale.product_id == self.id}
+  end
 
   # self.by_vendor(vendor_id): returns all of the products with the given vendor_id
 
