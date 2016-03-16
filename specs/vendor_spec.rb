@@ -56,4 +56,20 @@ describe FarMar::Vendor do
 		vendor_test.get_products[3].product_name.must_equal "Homeless Pretzel"
 		vendor_test.get_products[4].product_name.must_equal "Numerous Beets"
 	end
+
+	it "Returns a list of sales based on vendor ID " do 
+		vendor_test.get_sales[0].vendor_id.must_equal 56
+		vendor_test.get_sales[1].vendor_id.must_equal 56
+		vendor_test.get_sales[2].vendor_id.must_equal 56
+	end 
+
+	it "raises an error if the sale does not exist" do 
+		assert_raises(NoMethodError) {vendor_test.get_sales[3].vendor_id}
+	end 
+
+	it "returns an amount of sales based on vendor id" do 
+		vendor_test.get_revenue.amount.must_equal 13786
+	end 
 end 
+
+

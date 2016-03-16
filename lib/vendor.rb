@@ -43,6 +43,25 @@ class FarMar::Vendor
 	def get_products
 		FarMar::Product.all.find_all {|product| product.vendor_id == vendor_id}
 	end 
-end
 
+	def get_sales
+		FarMar::Sale.all.find_all {|sale| sale.vendor_id == vendor_id}
+	end 
+
+	def get_revenue
+		vendor_sales = FarMar::Sale.all.find_all {|sale| sale.vendor_id == vendor_id}		
+		total = vendor_sales[0]
+		return total 
+		# total = 0 
+		# vendor_sales.each do |sale|
+		# 	total += sale
+		# end 
+		# return total 
+	end
+
+end
+# array.inject(0){|sum,x| sum + x }
+# 260,6473,2013-11-09 15:59:29 -0800,56,181
+# 261,2799,2013-11-09 15:35:38 -0800,56,181
+# 262,4514,2013-11-09 02:55:04 -0800,56,182
 
