@@ -3,6 +3,7 @@ require_relative './spec_helper'
 describe FarMar::Product do
 
 	let(:product_one) {FarMar::Product.new({id: "1", name: "Dry Beets", vendor_id: "1"})}
+	let(:product_two) {FarMar::Product.new({id: "190283"})}
 
 	it "has an 'all' method that returns an array of products" do
 		products = FarMar::Product.all('./support/products.csv')
@@ -30,7 +31,12 @@ describe FarMar::Product do
 	end
 
 	it "returns a collection of associated FarMar::Sale using product_id field" do
-		product_one.sales.length.must_equal()
+		product_one.sales.length.must_equal(7)
+	end
+
+	it "returns an empty collection if #sales is called on a vendor with no sales" do
+		product_two.sales.must_be_empty
+		product_two.sales.must_be_instance_of(Array)
 	end
 
 end
