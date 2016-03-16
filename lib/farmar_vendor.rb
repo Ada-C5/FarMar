@@ -1,13 +1,10 @@
 module FarMar
   class Vendor < DataClass
 
-    attr_accessor :id, :number_of_employees, :market_id
+    attr_reader :id, :number_of_employees, :market_id
 
     def initialize(initialization_array)
       @id, @name, @number_of_employees, @market_id = initialization_array
-
-      #need to convert objects that came through as strings in parallel assignment...
-      #other problems with parallel assignment is what if row is incomplete? :(
 
     end
 

@@ -28,7 +28,16 @@ module FarMar
         sale_date = Date.parse(sale.purchase_time)
         (date2..date1).cover?(sale_date)
       end
+      return sales_between_times
+    end
 
+    def self.all_products_sold
+      all_sales = self.all
+      products_sold = all_sales.collect do |sale|
+        sale.product_id
+      end
+
+      products_sold.uniq
     end
 
     def self.find(data_file = './support/sales.csv', id)

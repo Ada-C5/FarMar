@@ -20,22 +20,26 @@ module FarMar
     end
 
     def products(data_file, data_class, id_to_match, method_name)
+    # returns a collection
       match_to_collection_by(data_file, data_class, id_to_match, method_name)
     end
 
     def sales(data_file, data_class, id_to_match, method_name)
+    # returns a collection
       match_to_collection_by(data_file, data_class, id_to_match, method_name)
     end
 
     def vendors(data_file, data_class, id_to_match, method_name)
+    # returns a collection
       match_to_collection_by(data_file, data_class, id_to_match, method_name)
     end
 
     def match_to_collection_by(data_file, data_class, id_to_match, method_name)
-    # returns an instance where the value of the id field for the instance of data_class (Market, Product, Sale, or Vendor) matches the passed id_to_match parameter.  The method_name returns the ID are trying to match, because it can be market_id, vendor_id, product_id, etc.
+    # returns a collection of instances where the value of the id field for the instance that matches the passed id_to_match parameter.  The method_name returns the ID are trying to match, because it can be market_id, vendor_id, product_id, etc.
 
       all = data_class.all(data_file)
       matched = all.find_all do |instance|
+        # return ["Sorry, I can't match nil IDs."] if instance.send(method_name) == nil
         id_to_match == instance.send(method_name) # need to do this with send(string) and not just .method_name because otherwise it thinks there is a method called .method name :(
       end
 
@@ -47,6 +51,7 @@ module FarMar
 
       all = data_class.all(data_file)
       all.find do |instance|
+        # return ["Sorry, I can't match nil IDs."] if instance.send(method_name) == nil
         id_to_match == instance.send(method_name) # need to do this with send(string) and not just .method_name because otherwise it thinks there is a method called .method name :(
         return instance
       end
@@ -76,6 +81,21 @@ module FarMar
       end
 
       return instances
+    end
+
+    def self.check_file_data_for_fields(data_file)
+    # checks that all the data fields are present in each row of CSV so parallel assignment will work in self.all
+
+      data = []
+      CSV.foreach(data_file) do |row|
+        data << row
+      end
+
+      array_lengths = data.collect do |data_array|
+        data_array.length
+      end
+
+      return array_lengths.uniq # we care that all the input is the same length, related to the data fields we parallel assign in each child class.
     end
 
   end
