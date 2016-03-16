@@ -70,12 +70,12 @@ describe FarMar::Product do
   end
 
   describe "FarMar::Product#self.by_vendor(vendor_id)" do
-    it "returns an ARRAY with all of the products with the given vendor_id" do
+    it "returns an ARRAY with all of the products that have the given vendor_id" do
       FarMar::Product.by_vendor("8").must_be_instance_of Array
     end
 
     it "each element in the array should be an object of the class Product" do
-      classes = FarMar::Product.by_vendor(2416).map { |m| m.class }
+      classes = FarMar::Product.by_vendor(2416).map { |product| product.class }
       classes.uniq.must_equal [FarMar::Product]
     end
 

@@ -1,5 +1,6 @@
 class FarMar::Sale
-  attr_reader :sale_id, :ammount, :purchase_time, :vendor_id, :product_id
+  attr_reader :sale_id, :ammount, :vendor_id, :product_id
+  attr_accessor :purchase_time
 
   def initialize(id, ammount, purchase_time, vendor_id, product_id)
     @sale_id = id
@@ -44,5 +45,12 @@ class FarMar::Sale
   def self.between(beginning_time, end_time)
     #returns a collection of FarMar::Sale objects,
     # where the purchase time is between the two times given as arguments
+    # FarMar::Sale.all collect do |sale|
+      #get into each sale,
+      #analize each purchase time,
+      #compare if the purchase time of the test, is included in the given range. Cover?
+      # if true, give it to me!!!!
+
+
   end
 end

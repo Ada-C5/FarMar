@@ -13,15 +13,12 @@ class FarMar::Market
   end
 
   def self.all
-    @all_markets = CSV.read('support/markets.csv').collect do |row|
-       self.new(row[0].to_i,row[1],row[2],row[3],row[4],row[5],row[6])
-    end
+    CSV.read('support/markets.csv').collect { |row| self.new(row[0].to_i,row[1],row[2],row[3],row[4],row[5],row[6]) }
   end
 
 
   def self.find(id)
-    FarMar::Market.all
-    @all_markets.each do |market|
+    FarMar::Market.all.each do |market|
       if market.market_id == id.to_i
         return market
       end
@@ -29,13 +26,7 @@ class FarMar::Market
   end
 
   def vendors
-    market_vendors = []
-    FarMar::Vendor.all.each do |vendor|
-      if vendor.market_id == market_id.to_i
-        market_vendors << vendor
-      end
-    end
-    return market_vendors
+    FarMar::Vendor.all.select { |vendor| vendor.market_id == market_id.to_i }
   end
 
 end

@@ -9,9 +9,7 @@ class FarMar::Vendor
   end
 
   def self.all
-    all_vendors =CSV.read('support/vendors.csv').collect do |row|
-      self.new(row[0].to_i,row[1],row[2],row[3].to_i)
-    end
+    CSV.read('support/vendors.csv').collect { |row| self.new(row[0].to_i,row[1],row[2],row[3].to_i)}
   end
 
   def self.find(id)
@@ -23,18 +21,15 @@ class FarMar::Vendor
   end
 
   def market
-    the_vendors_market = FarMar::Market.all.select { |market| market.market_id == market_id.to_i }
-    return the_vendors_market
+    FarMar::Market.all.select { |market| market.market_id == market_id.to_i }
   end
 
   def products
-    the_vendors_product = FarMar::Product.all.select { |product| product.vendor_id == vendor_id.to_i }
-    return the_vendors_product
+    FarMar::Product.all.select { |product| product.vendor_id == vendor_id.to_i }
   end
 
   def sales
-    the_vendors_sale = FarMar::Sale.all.select { |sale| sale.vendor_id == vendor_id.to_i }
-    return the_vendors_sale
+    FarMar::Sale.all.select { |sale| sale.vendor_id == vendor_id.to_i }
   end
 
   def revenue
@@ -49,9 +44,7 @@ class FarMar::Vendor
 
   def self.by_market(market_id_given)
     #returns all of the vendors with the given market_id
-
     FarMar::Vendor.all.select { |vendor| vendor.market_id == market_id_given.to_i }
-
   end
 
 end
