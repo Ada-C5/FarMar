@@ -3,6 +3,7 @@ require_relative './spec_helper'
 describe FarMar::Sale do 
 
 	let(:sale_one) {FarMar::Sale.new({id: "1", amount: "9290", purchase_time: "2013-11-07 04:34:56 -0800", vendor_id: "1", product_id: "1"})}
+	let(:sale_two) {FarMar::Sale.new({id: "12002", amount: "8923", vendor_id: "2691", product_id: "8197"})}
 
 	it "has an 'all' method that returns an array of sales" do
 		sales = FarMar::Sale.all('./support/sales.csv')
@@ -34,4 +35,14 @@ describe FarMar::Sale do
 		sale_one.vendor.name.must_equal("Feil-Farrell")
 	end
 
-end
+	#skipped for now, will address in refactor.
+	it "returns nil if no vendor is found" do
+		skip
+		sale_two.vendor_id.must_be_nil
+	end
+
+	it "responds to the product method call" do
+		sale_one.must_respond_to(:product)
+	end
+
+end 
