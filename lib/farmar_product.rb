@@ -47,6 +47,7 @@ class FarMar::Product
 
   # sales: returns a collection of FarMar::Sale instances that are associated using the 
   # FarMar::Sale product_id field.
+  
 
   # number_of_sales: returns the number of times this product has been sold.
 
