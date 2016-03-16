@@ -7,11 +7,7 @@ describe FarMar::Market do
     FarMar::Market.wont_be_nil
   end
 
-  describe "FarMar::Market class methods" do
-    let(:searched_school) { FarMar::Market.search('school') }
-    let(:searched_fletcher) { FarMar::Market.search('Fletcher') }
-    let(:searched_swift) { FarMar::Market.search("Swift") }
-
+  describe "FarMar::Market#self.all and #self.find class methods" do
     it "is an instance of Array using the self.all method" do
       FarMar::Market.all.must_be_instance_of Array
     end
@@ -25,6 +21,12 @@ describe FarMar::Market do
       market_found.id.must_equal 495
       market_found.name.must_equal "South Bend Farmers Market"
     end
+  end
+
+  describe "FarMar::Market#self.search" do
+    let(:searched_school) { FarMar::Market.search('school') }
+    let(:searched_fletcher) { FarMar::Market.search('Fletcher') }
+    let(:searched_swift) { FarMar::Market.search("Swift") }
 
     it "returns an array of instances where the search term is included in market or vendor name" do
       searched_school.must_be_instance_of Array
@@ -59,4 +61,17 @@ describe FarMar::Market do
       product_list[0].id.must_equal 8103
     end
   end
+
+  describe "FarMar::Market#preferred_vendor" do
+    let(:vendor_pref) { FarMar::Market.find(495).preferred_vendor }
+    let(:vendor_pref_ten) { FarMar::Market.find(10).preferred_vendor }
+
+    it "should return the vendor instance with the highest revenue" do
+      vendor_pref.id.must_equal 2662
+      vendor_pref.name.must_equal "Oberbrunner Inc"
+      vendor_pref_ten.id.must_equal 40
+      vendor_pref_ten.name.must_equal "Dickens-Weissnat"
+    end
+  end
 end
+

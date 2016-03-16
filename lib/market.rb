@@ -54,4 +54,8 @@ class FarMar::Market
 
     return products
   end
+
+  def preferred_vendor
+    vendors.max_by { |vendor| vendor.revenue }
+  end
 end
