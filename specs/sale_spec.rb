@@ -35,7 +35,7 @@ describe FarMar::Sale do
 		sale_one.vendor.name.must_equal("Feil-Farrell")
 	end
 
-	#skipped for now, will address in refactor of find vendor
+	#skipped for now, will address in refactor of Vendor#find
 	it "returns nil if no vendor is found" do
 		skip
 		sale_two.vendor.must_be_nil
@@ -50,6 +50,7 @@ describe FarMar::Sale do
 		sale_one.product.id.must_equal("1")
 	end
 
+	# skipped for now, will address in refactor of Product#find
 	it "returns nil if no product is found" do
 		skip
 		sale_two.product.must_be_nil
