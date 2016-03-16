@@ -1,4 +1,5 @@
 require 'csv'
+require 'money'
 # gems your project needs
 
 module FarMar
