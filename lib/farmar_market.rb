@@ -9,8 +9,8 @@ class FarMar::Market
 # County - (String) county in which the market is located
 # State - (String) state in which the market is located
 # Zip - (String) zipcode in which the market is located
-attr_reader :id, :name, :address, :city, :county, :state, :zip
-attr_accessor
+attr_reader :name, :address, :city, :county, :state, :zip
+attr_accessor :id
 
   def initialize(market_data)
     # if market_data != nil
@@ -43,17 +43,10 @@ attr_accessor
       end
   end
 
+  #vendors: returns a collection of FarMar::Vendor instances
+  #that are associated with the market by the market_id field.
   def vendors
-    p id
-    vendor_array =[]
-    filename = "./support/vendors.csv"
-      CSV.foreach(filename, 'r') do |row|
-        if id == row[3]
-          vendor = FarMar::Vendor.find(row[0])
-          vendor_array << vendor
-        end
-    end
-    return vendor_array
+    FarMar::Vendor.all.select { |vendor| vendor.market_id == id }
   end
 end
 

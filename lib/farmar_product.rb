@@ -28,10 +28,31 @@ attr_accessor
   def self.find(product_id, filename = "./support/products.csv")
     CSV.foreach(filename, 'r') do |line|
     #csv.read.each do |line|
-        if line[0] == product_id.to_s
-          selected_product = self.new(product_id: line[0], product_name: line[1], vendor_id: line[2])
-          return selected_product
-        end
+      if line[0] == product_id.to_s
+        selected_product = self.new(product_id: line[0], product_name: line[1], vendor_id: line[2])
+        return selected_product
       end
+    end
+  end
+
+  #vendor: returns the FarMar::Vendor instance that is associated with this
+  #vendor using the FarMar::Product vendor_id field
+  def vendor
+    FarMar::Vendor.all.select { |vendor| vendor.vendor_id == vendor_id }
+  end
+
+  #returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
+  def sales
+    FarMar::Sale.all.select { |sale| sale.product_info == product_id }
+  end
+
+  #returns the number of times this product has been sold.
+  def number_of_sales
+    sales.count
+  end
+
+  #returns all of the products with the given vendor_id
+  def self.by_vendor(vendor_id_given)
+    FarMar::Product.all.select { |product| product.vendor_id == vendor_id_given.to_i }
   end
 end

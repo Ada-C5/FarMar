@@ -37,17 +37,29 @@ attr_accessor :market_id
     end
   end
 
+  #market: returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id field
   def market
     FarMar::Market.all.select { |market| market.id == market_id }
   end
 
+  #products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
   def products
-    FarMar::Product.all.select { |product| product.product_id == vendor_id }
+    FarMar::Product.all.select { |product| product.vendor_id == vendor_id }
   end
 
+  #sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
   def sales
-    FarMar::Sale.all.select { |sale| sale.sale_id == vendor_id }
+    FarMar::Sale.all.select { |sale| sale.vendor_id == vendor_id }
   end
 
+  #revenue: returns the the sum of all of the vendor's sales (in cents)
+  def revenue
+    sales.map { |sale| sale.amount }.reduce(0, :+)
+  end
+
+  #self.by_market(market_id): returns all of the vendors with the given market_id
+  def self.by_market(market_id_given)
+    FarMar::Vendor.all.select { |vendor| vendor.market_id == market_id_given.to_i }
+  end
 
 end

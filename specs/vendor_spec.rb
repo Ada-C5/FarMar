@@ -23,14 +23,17 @@ describe FarMar::Vendor do
     	@vendor.must_be_instance_of(FarMar::Vendor)
     end
 
-    it "should return number of all vendors" do
-      all_vendors = FarMar::Vendor.all
-      all_vendors.length.must_equal 2690
+    describe "FarMar::Vendor#self.all" do
+      it "should return number of all vendors" do
+        FarMar::Vendor.all.length.must_equal 2690
+      end
     end
 
-    it "should return information for particular vendor" do
+    describe "FarMar::Vendor#find.all" do
+      it "should return information for particular vendor" do
         selected_vendor = FarMar::Vendor.find(77)
         selected_vendor.no_of_employees.must_equal 10
+      end
     end
 
     it "should return an array for market" do
@@ -38,14 +41,31 @@ describe FarMar::Vendor do
       one_market.market.must_be_instance_of Array
     end
 
-    it "should return information for particular product" do
-      selected_vendor = FarMar::Vendor.find(77)
-      selected_vendor.products[0].product_name.must_equal "Harsh Greens"
+    describe "FarMar::Vendor#products" do
+      it "should return information for particular product" do
+        selected_vendor = FarMar::Vendor.find(77)
+        selected_vendor.products[0].product_name.must_equal "Fluffy Chicken"
+      end
     end
 
-    it "should return information for particular sale" do
-      selected_vendor = FarMar::Vendor.find(77)
-      selected_vendor.sales[0].amount.must_equal 5365
+    describe "FarMar::Vendor#sales" do
+      it "should return information for particular sale" do
+        selected_vendor = FarMar::Vendor.find(77)
+        selected_vendor.sales[0].amount.must_equal 3274
+      end
+    end
+
+    describe "FarMar::Vendor#revenue" do
+      it "returns the sum of all of the vendor's sales (in cents)" do
+        selected_vendor = FarMar::Vendor.find(77)
+        selected_vendor.revenue.must_equal 13555
+      end
+    end
+
+    describe "FarMar::Vendor#by_market" do
+      it "returns all of the vendors with the given market_id" do
+        FarMar::Vendor.by_market(77).length.must_equal 4
+      end
     end
 
 end
