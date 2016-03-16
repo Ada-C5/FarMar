@@ -38,4 +38,12 @@ describe FarMar::Market do
     my_market.products(my_market.mar_id)[0].class.must_equal FarMar::Product 
     my_market.products(my_market.mar_id)[1].class.must_equal FarMar::Product
   end
+
+  # test self.search method
+  it "should return markets with search term in name of market or its vendors" do
+    FarMar::Market.search("Green").length.must_equal 54
+    FarMar::Market.search("green").length.must_equal 54
+    FarMar::Market.search("farm").length.must_equal 432
+    FarMar::Market.search("farM").length.must_equal 432
+  end
 end

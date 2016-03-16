@@ -44,4 +44,25 @@ class FarMar::Market
     end
     return product_array
   end
+
+  # returns collection of Market instances where market/vendor name share the same search term
+  def self.search(search_term)
+    return_markets = []
+    search_term = search_term.upcase
+    # search through markets, if names match, put in array
+    self.all.each do |market|
+      if market.name.upcase.include?(search_term)
+        return_markets << market
+      # if the name does not include search_term, search through the market's vendors
+      else
+        vendors = FarMar::Vendor.by_market(market.mar_id)
+        vendors.each do |vendor|
+          if vendor.name.upcase.include?(search_term)
+            return_markets << market
+          end
+        end
+      end
+    end
+    return return_markets
+  end
 end

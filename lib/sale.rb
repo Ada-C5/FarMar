@@ -4,7 +4,8 @@ class FarMar::Sale
 
   def initialize(id, amount, purchase_time, ven_id, prod_id)
     @sale_id = id
-    @amount = amount
+    # round sales amounts 
+    @amount = amount.round
     @purchase_time = purchase_time
     @ven_id = ven_id
     @prod_id = prod_id
