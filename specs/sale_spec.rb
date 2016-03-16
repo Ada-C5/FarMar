@@ -1,29 +1,33 @@
 require_relative './spec_helper'
 
 describe FarMar::Sale do
+  let (:sale) {FarMar::Sale}
+  let (:sale_12) {FarMar::Sale.new(id: "12", amount: "5179", purchase_time: "2013-11-08 16:36:03 -0800", vendor_id: "3", product_id: "4")}
+
   it "should be an object we have access to" do
-    FarMar::Sale.wont_be_nil
-  end
-end
-
-describe "FarMar::Sale#all" do
-  it "should return an array with instances form csv file" do
-    FarMar::Sale.all.class.must_equal Array
+    sale.wont_be_nil
   end
 
-end
-
-describe "FarMar::Sale#find(id)" do
-  it "should return an instance of FarMar::Product for FarMar::Product.find(1)" do
-    FarMar::Sale.find(12).must_be_instance_of FarMar::Sale
+  describe "FarMar::Sale#all" do
+    it "should return an array with instances form csv file" do
+      sale.all.class.must_equal Array
+    end
   end
 
-  it "should return 'Dry Beets' for instance of FarMar::Product.find(1)" do
-    FarMar::Sale.find(12).id.must_equal 12
+  describe "FarMar::Sale#find(id)" do
+    it "should return an instance of FarMar::Product for FarMar::Product.find(1)" do
+      sale_12.must_be_instance_of FarMar::Sale
+    end
+
+    it "should return 'Dry Beets' for instance of FarMar::Product.find(1)" do
+      sale_12.id.must_equal "12"
+    end
   end
 
-  # check if the amount being passed is converted from 4978 cents to 49.78
-  it "should return 'Dry Beets' for instance of FarMar::Product.find(1)" do
-    FarMar::Sale.find(14).amount.must_equal 4978
+  describe "FarMar::Sales#vendor" do
+    it "return FarMar::Vendor instances" do
+      vendors = sale_12.vendor.map {|vendor| vendor.class}
+      vendors.uniq.must_equal [FarMar::Vendor]
+    end
   end
 end

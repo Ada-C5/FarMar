@@ -21,4 +21,11 @@ class FarMar::Sale
     self.all.select { |sale| id.to_i == sale.id.to_i }[0]
   end
 
+  # returns all the instances of vendor that match the sale instance
+  #using FarMar::Sale.vendor_id == FarMar::Vendor.id
+
+  def vendor
+    FarMar::Vendor.all.select {|vendor| vendor.id.to_i == vendor_id.to_i}
+  end
+
 end
