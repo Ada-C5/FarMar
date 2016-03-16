@@ -1,4 +1,6 @@
 require_relative 'spec_helper'
+require 'date'
+require 'time'
 
 describe FarMar::Sale do
   # make sure there is a Player class
@@ -41,6 +43,11 @@ describe FarMar::Sale do
       sal_pro.vendor_id.must_equal 1 # it matches!
     end
 
+    # checks DateTime
+    it "should check the date" do
+      FarMar::Sale.between('2013-11-09 22:35:57 -0800','2013-11-09 22:38:00 -0800').length.must_equal 3
+
+    end
 
 
 end

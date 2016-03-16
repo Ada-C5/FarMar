@@ -49,6 +49,30 @@ class FarMar::Sale
   # returns a collection of sale OBJECTS where the purchase time is between the
   # two given times
   def self.between(beginning_time, end_time)
-    # age_sec = time.strftime('%s').to_f - birthday.strftime('%s').to_f
+    beginning_t = DateTime.strptime(beginning_time, %q[%Y-%m-%d %H:%M:%S %z])
+    end_t = DateTime.strptime(end_time, %q[%Y-%m-%d %H:%M:%S %z])
+    all_times = []
+    CSV.foreach("support/sales.csv") do |row|
+      market_time = DateTime.strptime(row[2], %q[%Y-%m-%d %H:%M:%S %z])
+      if (end_t-market_time) < (end_t-beginning_t) && (end_t-market_time) >= 0
+        all_times << row
+      end
+    end
+    return all_times
   end
+  # messy date method
+  # start = DateTime.strptime('2000-01-01 00:00:00 -0800', %q[%Y-%m-%d %H:%M:%S %z])
+  # beginning_t = DateTime.strptime(beginning_time, %q[%Y-%m-%d %H:%M:%S %z]).mjd
+  # end_t = DateTime.strptime(end_time, %q[%Y-%m-%d %H:%M:%S %z]).mjd
+  # b = (beginning_t - start).to_f
+  # e = (end_t - start).to_f
+  # all_times = []
+  # CSV.foreach("support/sales.csv") do |row|
+  #   market_time = DateTime.strptime(row[2], %q[%Y-%m-%d %H:%M:%S %z])
+  #   m = (market_time - start).to_f
+  #   if m > b && m < e
+  #     all_times << row
+  #   end
+  # end
+  # return all_times
 end
