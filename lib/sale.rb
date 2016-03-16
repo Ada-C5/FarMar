@@ -1,7 +1,3 @@
-# #vendor: returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id field
-# #product: returns the FarMar::Product instance that is associated with this sale using the FarMar::Sale product_id field
-# self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
-
 class FarMar::Sale
 
   attr_reader :id, :amount, :purchase_time, :vendor_id, :product_id
@@ -16,12 +12,11 @@ class FarMar::Sale
 
   def self.all
     all_sales = []
-    keys = [:id, :amount, :purchase_time, :vendor_id, :product_id]
-    sale_hash = CSV.read('./support/sales.csv').map {|values| Hash[ keys.zip(values) ]}
-    sale_hash.each do |sale|
-      all_sales << self.new(sale)
+    sales = CSV.read('./support/sales.csv')
+    sales.each do |sale|
+      all_sales << self.new(id: sale[0], amount: sale[1], purchase_time: sale[2], vendor_id: sale[3], product_id: sale[4])
     end
-    return all_sales
+    all_sales
   end
 
   def self.find(find_id)
@@ -32,6 +27,12 @@ class FarMar::Sale
 
 ##### DateTime.strptime("2013-11-11 06:21:52 -0800" "formatted version here")
 ##### DateTime.strptime("2013-11-11 06:21:52 -0800" "%Y-%m-%d %H:%M:%S %z")
+##### Basically, check if the difference between the end_time and searched_time is
+#     smaller than the difference between the end_time and beginning_time, if so,
+#     then the searched_time is between the beginning_time and end_time. Excludes
+#     difference results that are negative because that means the time was after
+#     the end_time
+
   # def self.between(beginning_time, end_time)
   #   between_times = []
   #   beginning_time = DateTime.strptime(beginning_time, "%Y-%m-%d %H:%M:%S %z")

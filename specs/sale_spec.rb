@@ -21,6 +21,13 @@ describe FarMar::Sale do
       all_sales.must_be_instance_of Array
       all_sales[0].must_be_instance_of FarMar::Sale
     end
+
+    it "has objects with the correct data" do
+      all_sales[13].id.must_equal "14"
+      all_sales[13].amount.must_equal 4978
+      all_sales[13].vendor_id.must_equal "3"
+      all_sales[13].product_id.must_equal "4"
+    end
   end
 
   describe "Sale#self.find(find_id)" do

@@ -28,12 +28,11 @@ class FarMar::Market
 
   def self.all
     all_markets = []
-    keys = [:id, :name, :address, :city, :county, :state, :zip]
-    market_hash = CSV.read('./support/markets.csv').map {|values| Hash[ keys.zip(values) ]}
-    market_hash.each do |market|
-      all_markets << self.new(market)
+    markets = CSV.read('./support/markets.csv')
+    markets.each do |mar|
+      all_markets << self.new(id: mar[0], name: mar[1], address: mar[2], city: mar[3], county: mar[4], state: mar[5], zip: mar[6])
     end
-    return all_markets
+    all_markets
   end
 
   def self.find(find_id)

@@ -25,6 +25,13 @@ describe FarMar::Market do
       all_markets.must_be_instance_of Array
       all_markets[0].must_be_instance_of FarMar::Market
     end
+
+    it "has objects with the correct data" do
+      all_markets[13].id.must_equal "14"
+      all_markets[13].name.must_equal "Hartford Farmers Market"
+      all_markets[13].city.must_equal "Hartford"
+      all_markets[13].state.must_equal "Wisconsin"
+    end
   end
 
   describe "Market#self.find(find_id)" do

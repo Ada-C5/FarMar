@@ -16,12 +16,11 @@ class FarMar::Product
 
   def self.all
     all_products = []
-    keys = [:id, :name, :vendor_id]
-    product_hash = CSV.read('./support/products.csv').map {|values| Hash[ keys.zip(values) ]}
-    product_hash.each do |product|
-      all_products << self.new(product)
+    products = CSV.read('./support/products.csv')
+    products.each do |prod|
+      all_products << self.new(id: prod[0], name: prod[1], vendor_id: prod[2])
     end
-    return all_products
+    all_products
   end
 
   def self.find(find_id)
