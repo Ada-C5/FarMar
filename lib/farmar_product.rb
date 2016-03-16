@@ -47,7 +47,11 @@ class FarMar::Product
 
   # sales: returns a collection of FarMar::Sale instances that are associated using the 
   # FarMar::Sale product_id field.
-  
+  def sales
+    sales_to_search = FarMar::Sale.all("./support/sales.csv")
+    sales_to_search.select {|sale| sale.vendor_id == self.id}
+  end
+
 
   # number_of_sales: returns the number of times this product has been sold.
 
