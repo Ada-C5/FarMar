@@ -23,3 +23,15 @@ describe "FarMar::Sale#self.find(id)" do
     FarMar::Sale.find(11).amount.must_equal 1030
   end
 end
+
+describe "FarMar::Sale#vendor" do
+  it "should return an instance of FarMar::Vendor" do
+    FarMar::Sale.find(20).vendor.must_be_instance_of FarMar::Vendor
+  end
+end
+
+describe "FarMar::Sale#product" do
+  it "should return an instance of FarMar::Product" do
+    FarMar::Sale.find(20).product.must_be_instance_of FarMar::Product
+  end
+end
