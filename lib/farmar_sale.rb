@@ -45,6 +45,13 @@ class FarMar::Sale
   # self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
 
   def self.between(beginning_time, end_time)
-
+    starting = DateTime.parse(beginning_time)
+    ending = DateTime.parse(end_time)
+    time_range = (starting..ending)
+    self.all.select { |sale| time_range.cover?(sale) }
   end
 end
+
+butts = FarMar::Sale.between("2013-11-08 04:30:41 -0800", "2013-11-08 04:32:41 -0800")
+
+puts butts
