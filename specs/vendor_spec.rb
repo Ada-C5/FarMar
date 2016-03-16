@@ -57,6 +57,4 @@ describe FarMar::Vendor do
     FarMar::Vendor.by_market(1).length.must_equal 6
     FarMar::Vendor.by_market(1)[0].name.must_equal "Feil-Farrell"
   end
-
-
 end

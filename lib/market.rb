@@ -1,5 +1,5 @@
 class FarMar::Market
-  attr_accessor :mar_id, :name
+  attr_reader :mar_id, :name
 
   FILE = './support/markets.csv'
 

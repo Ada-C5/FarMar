@@ -1,5 +1,5 @@
 class FarMar::Vendor
-  attr_accessor :name, :ven_id, :mar_id
+  attr_reader :name, :ven_id, :mar_id
   FILE = './support/vendors.csv'
 
   def initialize(id, name, num_of_employees, mar_id)

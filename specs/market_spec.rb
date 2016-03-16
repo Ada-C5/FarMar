@@ -2,6 +2,8 @@ require_relative './spec_helper'
 require_relative '../farmar'
 
 describe FarMar::Market do
+  let(:markets) { FarMar::Market.all }
+
   # make sure there is a market class
   it "Is there a class? Anything?" do
     FarMar::Market.wont_be_nil
@@ -14,7 +16,6 @@ describe FarMar::Market do
 
   # test self.all is populating correctly
   it "what is the name of the first market?" do
-    markets = FarMar::Market.all
     markets[0].name.must_equal "People's Co-op Farmers Market"
   end
 
@@ -25,13 +26,7 @@ describe FarMar::Market do
 
   # tests vendor method
   it "should return all vendor instances in specific market" do
-    markets = FarMar::Market.all
     market = markets[0]
     market.vendors(market.mar_id).length.must_equal 6
   end
-
-  # # tests vendor method
-  # it "should return all vendor instances in specific market" do
-  #   FarMar::Market.vendors(1).length.must_equal 6
-  # end
 end

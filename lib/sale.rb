@@ -1,5 +1,5 @@
 class FarMar::Sale
-  attr_accessor :sale_id, :purchase_time, :ven_id, :amount, :prod_id
+  attr_reader :sale_id, :purchase_time, :ven_id, :amount, :prod_id
   FILE = './support/sales.csv'
 
   def initialize(id, amount, purchase_time, ven_id, prod_id)
