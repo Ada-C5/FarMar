@@ -25,28 +25,28 @@ describe FarMar::Vendor do
   describe "FarMar::Vendor#markets" do
     vendor1 = FarMar::Vendor.new(market_id: 10)
     it "should return the market name Saratoga Farmers' Market w/id 10" do
-      vendor1.markets(10).name.must_equal "Saratoga Farmers' Market"
+      vendor1.markets.name.must_equal "Saratoga Farmers' Market"
     end
   end
 
   describe "FarMar::Vendor#products" do
     vendor2 = FarMar::Vendor.new(id: 26)
     it "should return 3 markets associated with vendor id 26" do
-      vendor2.products(26).length.must_equal 3
+      vendor2.products.length.must_equal 3
     end
   end
 
   describe "FarMar::Vendor#sales" do
     vendor3 = FarMar::Vendor.new(id: 14)
     it "should return 3 sales for vendor_id 14" do
-      vendor3.sales(14).length.must_equal 3
+      vendor3.sales.length.must_equal 3
     end
   end
 
   describe "FarMar::Vendor#revenue" do
     vendor4 = FarMar::Vendor.new(id: 15)
     it "should return total reveue for sales per vendor id" do
-      vendor4.revenue(15).must_equal 43414
+      vendor4.revenue.must_equal 43414
     end
   end
 
