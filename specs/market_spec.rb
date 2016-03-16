@@ -43,4 +43,8 @@ describe FarMar::Market do
       markets_find.products.length.must_equal 6
   end
 
+  # check the self.search(search_term) method
+  it "should return markets and vendors containing the word 'school'" do
+      FarMar::Market.search('school').length.must_equal 3
+  end
 end

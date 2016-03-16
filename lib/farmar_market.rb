@@ -45,6 +45,8 @@ class FarMar::Market
     FarMar::Vendor.all.find_all {|instance| instance.market_id == id}
   end
 
+  # returns a collection of product instances by referring to the vendor id's
+  # from #vendors. shovels the products into subarrays within prod array
   def products
     prod = []
     vendors.each do |vendor_instance|
@@ -52,7 +54,15 @@ class FarMar::Market
         vendor_instance.id}
     end
     return prod
+  end
 
+  # returns a collection of market instance where the market name of vendor name
+  # contain the search_term
+  def self.search(search_term)
+    market = self.all.find_all {|instance| instance.name.downcase.include?(search_term)}
+    vendor = FarMar::Vendor.all.find_all{|instance| instance.name.downcase.include?(search_term)}
+    match = market + vendor
+    return match
   end
 
 end
