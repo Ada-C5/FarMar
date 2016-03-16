@@ -43,4 +43,19 @@ describe FarMar::Sale do
   		classes.uniq.must_equal([FarMar::Sale])
   	end
   end
+
+  describe "Sale#vendor,product" do
+  	sale253 = FarMar::Sale.new(id: 253, amount: 3924,
+  						purchase_time: "2013-11-10 17:44:52 -0800",
+  						vendor_id: 54, product_id: 171)
+  	it "should return an array of vendors" do
+  		sale253.vendor.must_be_instance_of(FarMar::Vendor)
+  		sale253.product.must_be_instance_of(FarMar::Product)
+  	end
+
+  	it "should return a value from method" do
+  		sale253.vendor.id.must_equal(54)
+  		sale253.product.id.must_equal(171)
+  	end
+  end
 end

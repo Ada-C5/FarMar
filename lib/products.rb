@@ -1,7 +1,9 @@
 class FarMar::Product
+	attr_accessor :id, :name, :vendor_id
 	PRODUCT_DATA = "./support/products.csv"
+
 	def initialize(product_hash)
-		@ID = product_hash[:ID].to_i
+		@id = product_hash[:id].to_i
 		@name = product_hash[:name]
 		@vendor_id = product_hash[:vendor_id].to_i
 
@@ -11,7 +13,7 @@ class FarMar::Product
 	def self.all
 		all = []
 		CSV.foreach(PRODUCT_DATA, "r") do |line|
-			product = FarMar::Product.new(ID: line[0].to_i, name: line[1],
+			product = FarMar::Product.new(id: line[0].to_i, name: line[1],
 			vendor_id: line[2].to_i)
 			all << product
 		end
@@ -33,13 +35,17 @@ class FarMar::Product
 	end
 
 	def vendor
-
+		FarMar::Vendor.all.find do |vendor|
+			vendor.id == @vendor_id
+		end
 	end
 
 	#returns a collection of FarMar::Sale instances that are 
 	#associated using the FarMar::Sale product_id field.
 	def sales
-
+		FarMar::Sale.all.find_all do |sale|
+			sale.product_id == @id
+		end
 	end
 
 	#returns the number of times this product has been sold.

@@ -41,4 +41,18 @@ describe FarMar::Product do
   		classes.uniq.must_equal([FarMar::Product])
   	end
   end
+
+  describe "Product#vendor,sales" do
+  	product171 = FarMar::Product.new(id: 171,
+  								name: "Depressed Carrots", vendor_id: 54)
+  	it "should return an array of vendors" do
+  		product171.vendor.must_be_instance_of(FarMar::Vendor)
+  		product171.sales.must_be_instance_of(Array)
+  	end
+
+  	it "should return vendor count for a market" do
+  		product171.sales.count.must_equal(3)
+  		product171.vendor.id.must_equal(54)
+  	end
+  end
 end

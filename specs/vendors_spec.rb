@@ -42,4 +42,20 @@ describe FarMar::Vendor do
   		classes.uniq.must_equal([FarMar::Vendor])
   	end
   end
+
+  describe "Vendor#market,product,sales" do
+  	vendor54 = FarMar::Vendor.new(id: 54, name: "Bayer Inc",
+  						no_of_employees: 3, market_id:13) 
+  	it "should return the instance type of the methods" do
+  		vendor54.market.must_be_instance_of(FarMar::Market)
+  		vendor54.products.must_be_instance_of(Array)
+  		vendor54.sales.must_be_instance_of(Array)
+  	end
+
+  	it "should check values from vendor methods" do
+  		vendor54.products.count.must_equal(5)
+  		vendor54.sales.count.must_equal(8)
+  		vendor54.market.id.must_equal(13)
+  	end
+  end
 end

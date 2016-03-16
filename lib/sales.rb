@@ -1,8 +1,9 @@
 class FarMar::Sale
+	attr_accessor :id, :amount, :purchase_time, :vendor_id, :product_id
 	SALE_DATA = "./support/sales.csv"
 
 	def initialize(sale_hash)
-		@ID = sale_hash[:ID].to_i
+		@id = sale_hash[:id].to_i
 		@amount = sale_hash[:amount].to_i
 		@purchase_time = sale_hash[:purchase_time]
 		@vendor_id = sale_hash[:vendor_id].to_i
@@ -15,7 +16,7 @@ class FarMar::Sale
 	def self.all
 		all = []
 		CSV.foreach(SALE_DATA, "r") do |line|
-			sale = FarMar::Sale.new(ID: line[0].to_i, 
+			sale = FarMar::Sale.new(id: line[0].to_i, 
 			amount: line[1].to_i, purchase_time: line[2],
 			vendor_id: line[3].to_i, product_id: line[4].to_i)
 			all << sale
@@ -41,13 +42,17 @@ class FarMar::Sale
 	#returns the FarMar::Vendor instance that is associated
 	# with this sale using the FarMar::Sale vendor_id field
 	def vendor
-
+		FarMar::Vendor.all.find do |vendor|
+			vendor.id == @vendor_id
+		end
 	end
 
 	#returns the FarMar::Product instance that is associated 
 	#with this sale using the FarMar::Sale product_id field
 	def product
-
+		FarMar::Product.all.find do |product|
+			product.id == @product_id
+		end
 	end
 
 	#returns a collection of FarMar::Sale objects where the 

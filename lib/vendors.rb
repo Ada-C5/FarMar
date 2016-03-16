@@ -1,8 +1,10 @@
 class FarMar::Vendor
+	attr_accessor :id, :name, :no_of_employees, :market_id
+	
 	VENDOR_DATA = "./support/vendors.csv"
 
 	def initialize(vendor_hash)
-		@ID = vendor_hash[:ID].to_i
+		@id = vendor_hash[:id].to_i
 		@name = vendor_hash[:name]
 		@no_of_employees = vendor_hash[:no_of_employees].to_i
 		@market_id = vendor_hash[:market_id].to_i
@@ -13,7 +15,7 @@ class FarMar::Vendor
 	def self.all
 		all = []
 		CSV.foreach(VENDOR_DATA, "r") do |line|
-			vendor = FarMar::Vendor.new(ID: line[0].to_i, name: line[1],
+			vendor = FarMar::Vendor.new(id: line[0].to_i, name: line[1],
 			no_of_employees: line[2].to_i, market_id: line[3].to_i)
 			all << vendor
 		end
@@ -39,19 +41,25 @@ class FarMar::Vendor
 	#returns the FarMar::Market instance that is associated 
 	#with this vendor using the FarMar::Vendor market_id field
 	def market
-
+		FarMar::Market.all.find do |market|
+			market.id == @market_id
+		end
 	end
 
 	#returns a collection of FarMar::Product instances that 
 	#are associated by the FarMar::Product vendor_id field.
 	def products
-
+		FarMar::Product.all.find_all do |product|
+			product.vendor_id == @id
+		end
 	end
 
 	#returns a collection of FarMar::Sale instances that are
 	#associated by the vendor_id field.
 	def sales
-
+		FarMar::Sale.all.find_all do |sale|
+			sale.vendor_id == @id
+		end
 	end
 
 	#returns the the sum of all of the vendor's sales(in cents)

@@ -1,11 +1,9 @@
-
 class FarMar::Market
-	attr_accessor :ID, :name, :address, :city, :county, :state, :zip
-	
+	attr_accessor :id, :name, :address, :city, :county, :state, :zip
 	MARKET_DATA = "./support/markets.csv"
 
 	def initialize(market_hash)
-		@ID = market_hash[:ID].to_i
+		@id = market_hash[:id].to_i
 		@name = market_hash[:name]
 		@address = market_hash[:address]
 		@city = market_hash[:city]
@@ -19,7 +17,7 @@ class FarMar::Market
 	def self.all
 			all = []
 			CSV.foreach(MARKET_DATA, "r") do |line|
-				market = FarMar::Market.new(ID: line[0].to_i, name: line[1],
+				market = FarMar::Market.new(id: line[0].to_i, name: line[1],
 					address: line[2], city: line[3], county: line[4],
 					zip: line[6])
 				all << market
@@ -46,20 +44,8 @@ class FarMar::Market
 	#returns a collection of FarMar::Vendor instances that
 	#are associated with the market by the market_id field.
 	def vendor
-		vendors = []
-		vendors << FarMar::Vendor.all.select{|key,value| key == "market_id" && value == @id} 
-
+		FarMar::Vendor.all.find_all do |vendor|
+			vendor.market_id == @id
+		end
 	end
-
-
-
-
-
-
-
-
-
-
-
-
 end

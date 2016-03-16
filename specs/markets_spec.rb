@@ -3,13 +3,13 @@ require_relative "../far_mar"
 
 
 describe FarMar::Market do
-
+ 	let (:market15) {FarMar::Market.find(15)}
   it "it is an object we have acccess to" do
     FarMar::Market.wont_be_nil
   end
 
   describe "Market#find" do
-  	let (:market15) {FarMar::Market.find(15)}
+ 
 
   	it "checks that market15 is instance of an array" do
   		market15.must_be_instance_of(Array)
@@ -44,6 +44,19 @@ describe FarMar::Market do
   	it "should return array full of instances" do
   		classes = market.map{|m| m.class}
   		classes.uniq.must_equal([FarMar::Market])
+  	end
+  end
+
+  describe "Market#vendor" do
+  	market13 = FarMar::Market.new(id: 13, name: "Otsiningo Park Farmers' Market",
+  						address: "1 Bevier St", city:"Binghamton",county: "Broome",
+  						state: "New York", zip: "13905")
+  	it "should return an array of vendors" do
+  		market13.vendor.must_be_instance_of(Array)
+  	end
+
+  	it "should return vendor count for a market" do
+  		market13.vendor.count.must_equal(7)
   	end
   end
 end
