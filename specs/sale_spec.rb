@@ -2,7 +2,7 @@ require_relative 'spec_helper'
 
 describe FarMar::Sale do
   let(:all_sales) { FarMar::Sale.all }
-  let(:sale) { FarMar::Sale.find(14) }
+  let(:sale) { FarMar::Sale.new(id: "14", amount: "4978", purchase_time: "2013-11-10 01:51:24 -0800", vendor_id: "3", product_id: "4") }
 
   it "exists" do
     FarMar::Sale.wont_be_nil

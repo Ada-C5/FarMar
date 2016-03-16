@@ -2,7 +2,7 @@ require_relative 'spec_helper'
 
 describe FarMar::Vendor do
   let(:all_vendors) { FarMar::Vendor.all }
-  let(:vendor) { FarMar::Vendor.find(14) }
+  let(:vendor) { FarMar::Vendor.new(id: "14", name: "Stracke Group", num_employees: "2", market_id: "4") }
 
   it "exists" do
     FarMar::Vendor.wont_be_nil

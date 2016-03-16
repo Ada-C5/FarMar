@@ -2,7 +2,7 @@ require_relative 'spec_helper'
 
 describe FarMar::Market do
   let(:all_markets) { FarMar::Market.all }
-  let(:market) { FarMar::Market.find(14) }
+  let(:market) { FarMar::Market.new(id: "14", name: "Hartford Farmers Market", address: "1 Block North of Highway 60 on Rural Street", city: "Hartford", county: "Washington", state: "Wisconsin", zip: "53027") }
 
   it "exists" do
     FarMar::Market.wont_be_nil

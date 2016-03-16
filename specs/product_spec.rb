@@ -2,7 +2,7 @@ require_relative 'spec_helper'
 
 describe FarMar::Product do
   let(:all_products) { FarMar::Product.all }
-  let(:product) { FarMar::Product.find(14) }
+  let(:product) { FarMar::Product.new(id: "14", name: "Stupendous Carrots", vendor_id: "7") }
 
   it "exists" do
     FarMar::Product.wont_be_nil
