@@ -30,6 +30,17 @@ describe FarMar::Market do
   # check the vendor method
   it "should return the number of vendors with the matching market id" do
     markets_find.vendors.length.must_equal 6
+    #<FarMar::Vendor:0xXXXXXX @id=1, @name="Feil-Farrell", @employees=8, @market_id=1>,
+    #<FarMar::Vendor:0xXXXXXX @id=2, @name="Hamill, Kilback and Pfeffer", @employees=5, @market_id=1>,
+    #<FarMar::Vendor:0xXXXXXX @id=3, @name="Breitenberg Inc", @employees=5, @market_id=1>,
+    #<FarMar::Vendor:0xXXXXXX @id=4, @name="Kris and Sons", @employees=5, @market_id=1>,
+    #<FarMar::Vendor:0xXXXXXX @id=5, @name="Reynolds, Schmitt and Klocko", @employees=3, @market_id=1>,
+    #<FarMar::Vendor:0xXXXXXX @id=6, @name="Zulauf and Sons", @employees=8, @market_id=1>
+  end
+
+  # check the products method
+  it "should return 6 product arrays belonging to those 6 vendors" do
+      markets_find.products.length.must_equal 6
   end
 
 end
