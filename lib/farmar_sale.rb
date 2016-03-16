@@ -42,8 +42,10 @@ class FarMar::Sale
     all_products.select { |p| p.id == @product_id}
   end
 
-  #self.between(beginning_time, end_time): returns a collection
-  #of FarMar::Sale objects where the purchase time is between the two times given as arguments
-  #http://ruby-doc.org/stdlib-2.1.1/libdoc/time/rdoc/Time.html#method-c-parse
-  #http://stackoverflow.com/questions/4521921/how-to-know-if-todays-date-is-in-a-date-range/7176956#7176956
+  def self.between(beginning_time, end_time)
+    all_sales = FarMar::Sale.all
+    all_sales.select { |s| (beginning_time..end_time).cover?(s.purchase_time) }
+  end
+# beginning_time = DateTime.parse("2013-11-12 06:00:00 -0800")
+# end_time = DateTime.parse("2013-11-12 06:05:00 -0800")
 end
