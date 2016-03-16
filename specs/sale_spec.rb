@@ -45,4 +45,9 @@ describe FarMar::Sale do
 		sale_one.must_respond_to(:product)
 	end
 
+	it "returns the right product when #product is called" do
+		sale_one.product.name.must_equal("Dry Beets")
+		sale_one.product.id.must_equal("1")
+	end
+
 end 
