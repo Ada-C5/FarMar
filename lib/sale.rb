@@ -42,4 +42,18 @@ class FarMar::Sale
     end
     return sale
   end
+
+  def self.by_product(product_id)
+    sales = []
+    sale = self.all
+    sale.each do |found_sales|
+      sales << found_sales if product_id == found_sales.product_id
+    end
+    return sales
+  end
+
+
+
+
+
 end

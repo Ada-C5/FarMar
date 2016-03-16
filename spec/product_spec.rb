@@ -34,12 +34,32 @@ describe FarMar::Product do
     end
   end
 
-  # describe "#vendors" do
-  #   it "Returns an array of vendor objects that match a specific market_id" do
-  #     market = FarMar::Product.find(1)
-  #     vendors = market.vendors
-  #     vendors.length.must_equal(6)
-  #   end
-  # end
+  describe "#vendor" do
+    let(:product) { FarMar::Product.find(1) }
+    it "Returns the FarMar::Vendor instance that is associated with this vendor using the FarMar::Product vendor_id field" do
+      vendor = product.vendor
+      vendor.must_be_instance_of FarMar::Vendor
+    end
+  end
+
+  describe "#sales" do
+    let(:product) { FarMar::Product.find(1) }
+    it "Returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field." do
+      sales = product.sales
+      sales[0].must_be_instance_of FarMar::Sale
+      sales.must_be_instance_of Array
+      sales.length.must_equal(7)
+    end
+  end
+
+  describe "#number_of_sales" do
+    let(:product) { FarMar::Product.find(1) }
+    it "Returns the number of times this product has been sold" do
+      count = product.number_of_sales
+      count.must_equal(7)
+    end
+  end
+
+
 
 end

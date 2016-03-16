@@ -48,7 +48,7 @@ describe FarMar::Vendor do
     it "Returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id field" do
       vendor_market = vendor.market
       vendor_market.must_be_instance_of FarMar::Market
-      vendor.market_id.must_equal(4)
+      vendor_market.id.must_equal(4)
     end
   end
 
@@ -65,6 +65,14 @@ describe FarMar::Vendor do
     it "Returns a collection of FarMar::Sale instances that are associated by the vendor_id field." do
       sale = vendor.sales
       sale.length.must_equal(7)
+    end
+  end
+
+  describe "#revenue" do
+    let(:vendor) {FarMar::Vendor.find(16)}
+    it "Returns the the sum of all of the vendor's sales (in cents)" do
+      amount = vendor.revenue
+      amount.must_equal(41_846)
     end
   end
 

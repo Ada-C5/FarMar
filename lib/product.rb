@@ -39,4 +39,25 @@ class FarMar::Product
     return prod
   end
 
+  def vendor
+    vendor = self.vendor_id
+    return FarMar::Vendor.find(vendor)
+  end
+
+  def sales
+    product_id = @id
+    FarMar::Sale.by_product(product_id)
+  end
+
+  def number_of_sales
+    count = self.sales
+    
+    #total_amount = sales.inject(0) { |sum, sale|
+    #  sum + sale.amount
+    #}
+  end
+
+
+
+
 end

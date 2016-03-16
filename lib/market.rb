@@ -41,7 +41,7 @@ class FarMar::Market
   end
 
   def vendors
-    market_id = self.id
+    market_id = @id#self.id
     FarMar::Vendor.by_market(market_id)
   end
 

@@ -42,19 +42,28 @@ class FarMar::Vendor
   end
 
   def market
-    vendor_id = self.id
-    FarMar::Market.find(vendor_id)
+    market_id = @market_id#self.market_id
+    return FarMar::Market.find(market_id)
     #--find market by vendor_id--
   end
 
   def products
-    vendor_id = self.id
+    vendor_id = @id#self.id
     FarMar::Product.by_vendor(vendor_id)
   end
 
   def sales
-    vendor_id = self.id
-    FarMar::Sale.by_vendor(vendor_id)
+    vendor_id = @id#self.id
+    return FarMar::Sale.by_vendor(vendor_id)
+  end
+
+  def revenue
+    sales = self.sales #self is the instance this was called with
+    total_amount = sales.inject(0) { |sum, sale|
+      sum + sale.amount
+    }
+    return total_amount
+    #array.inject(0){|sum,x| sum + x }
   end
 
 end
