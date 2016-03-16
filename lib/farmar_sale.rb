@@ -1,4 +1,5 @@
 require "date"
+require 'chronic'
 class FarMar::Sale
 
   attr_reader :sale_id, :amount, :purchase_time, :vendor_id, :product_id
@@ -6,7 +7,8 @@ class FarMar::Sale
   def initialize(sale_info)
     @sale_id = sale_info[:sale_id].to_i
     @amount = sale_info[:amount].to_i
-    @purchase_time = DateTime.parse(sale_info[:purchase_time])
+    @purchase_time = Time.parse(sale_info[:purchase_time])
+    #@purchase_time = Chronic.parse(sale_info[:purchase_time])
     @vendor_id = sale_info[:vendor_id].to_i
     @product_id = sale_info[:product_id].to_i
   end
@@ -44,8 +46,25 @@ class FarMar::Sale
 
   # self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where
   # the purchase time is between the two times given as arguments
-  def self.between
-  end
+
+  #user should put each time in quotes and can write times however they like
+  def self.between(beginning_time, end_time)
+    begin_time  = Chronic.parse(beginning_time)
+    end_time = Chronic.parse(end_time)
+    time_range = (begin_time..end_time)
+
+    all_times = FarMar::Sale.all.select  { |sale | time_range.include? sale.purchase_time }
+  #
+  #
+  #
+  #   # map { |item| item.purchase_time }
+  #   # all_times.each do |time|
+  #   #   Chronic.parse(time)
+  #   # end
+  #   # between_times = all_times.select! { |time| time_range.include? time }
+  #   # return between_times
+  #
+   end
 
 
 end
