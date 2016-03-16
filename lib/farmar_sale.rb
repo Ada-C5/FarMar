@@ -14,9 +14,7 @@ class FarMar::Sale
 
   def self.all
     all_sales = CSVHasher.hashify('../support/sales.csv')
-      all_sales.collect do |n|
-        FarMar::Sale.new(n)
-      end
+    all_sales.collect { |n| FarMar::Sale.new(n) }
   end
 
   def self.find(id)

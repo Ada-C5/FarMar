@@ -13,9 +13,7 @@ end
 
 def self.all
   all_vendors = CSVHasher.hashify('../support/vendors.csv')
-    all_vendors.collect do |n|
-      FarMar::Vendor.new(n)
-    end
+  all_vendors.collect { |n| FarMar::Vendor.new(n) }
 end
 
 def self.find(id)

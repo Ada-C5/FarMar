@@ -12,9 +12,7 @@ class FarMar::Product
 
   def self.all
     all_products = CSVHasher.hashify('../support/products.csv')
-      all_products.collect do |n|
-        FarMar::Product.new(n)
-      end
+    all_products.collect { |n| FarMar::Product.new(n) }
   end
 
   def self.find(id)
