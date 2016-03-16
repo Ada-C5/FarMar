@@ -21,7 +21,7 @@ class FarMar::Sale
     SALE_CSV.length.times do |index|
       allsales << FarMar::Sale.new(index)
     end
-    return allsales
+    allsales
   end
 
   def self.find(sale_id)
@@ -38,5 +38,12 @@ class FarMar::Sale
     sale = FarMar::Sale.find(@sale_id)
     sale.product_id
     FarMar::Product.find(product_id)
+  end
+
+  def self.between(beginning_time, end_time)
+    beginning_time = DateTime.parse(beginning_time)
+    end_time = DateTime.parse(end_time)
+    sales_in_range = self.all.find_all { |sale| DateTime.parse(sale.sale_time).between?(beginning_time, end_time) }
+    return sales_in_range
   end
 end
