@@ -31,11 +31,13 @@ class FarMar::Sale
     self.all.find_all { |sale| (beginning_time..end_time).include?(sale.purchase_time) }
   end
 
-  def vendor(vendor_id)
+  def vendor
+    self.vendor_id
     FarMar::Vendor.all.find { |vendor| vendor.id == vendor_id }
   end
 
-  def product(product_id)
+  def product
+    self.product_id
     FarMar::Product.all.find { |product| product.id == product_id }
   end
 

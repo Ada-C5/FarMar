@@ -23,16 +23,16 @@ describe FarMar::Sale do
   end
 
   describe "FarMar::Sale#vendor" do
-    sale1 = FarMar::Sale.new(id: 10)
-    it "should return 'Kertzmann LLC' vendor name for vendor_id" do
-      sale1.vendor(10).name.must_equal "Kertzmann LLC"
+    sale1 = FarMar::Sale.new(vendor_id: 10)
+    it "should return id equal to product_id" do
+      sale1.vendor.id.must_equal 10
     end
   end
 
   describe "FarMar::Sale#product" do
-    sale2 = FarMar::Sale.new(id: 40)
-    it "should return 'Bad Chicken' product associated with sale" do
-      sale2.product(40).name.must_equal "Bad Chicken"
+    sale2 = FarMar::Sale.new(product_id: 40)
+    it "should return id equal to product_id" do
+      sale2.product.id.must_equal 40
     end
   end
 
