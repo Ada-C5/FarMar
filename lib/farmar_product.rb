@@ -31,10 +31,8 @@ class FarMar::Product
     products_to_search = FarMar::Product.all("./support/products.csv")
     product_to_return = nil
 
-    products_to_search.each do |product|
-      if product.id == id.to_s
-        product_to_return = product
-      end
+    if id.to_s <= products_to_search[products_to_search.length-1].id 
+      product_to_return = products_to_search[products_to_search.find_index {|product| product.id == id.to_s}]
     end
     product_to_return
   end
@@ -63,7 +61,6 @@ class FarMar::Product
   def self.by_vendor(vendor_id)
     products_to_search = FarMar::Product.all("./support/products.csv")
     products_to_search.select {|product| product.vendor_id == vendor_id.to_s}
-
   end
 
 end
