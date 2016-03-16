@@ -46,18 +46,11 @@ class FarMar::Product
 
   def sales
     product_id = @id
-    FarMar::Sale.by_product(product_id)
+    return FarMar::Sale.by_product(product_id)
   end
 
   def number_of_sales
     count = self.sales
-    
-    #total_amount = sales.inject(0) { |sum, sale|
-    #  sum + sale.amount
-    #}
+    return count.length
   end
-
-
-
-
 end

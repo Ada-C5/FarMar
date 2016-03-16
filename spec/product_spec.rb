@@ -59,7 +59,4 @@ describe FarMar::Product do
       count.must_equal(7)
     end
   end
-
-
-
 end
