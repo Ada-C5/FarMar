@@ -48,8 +48,10 @@ class FarMar::Vendor
   end
 
   def self.by_market(market_id_given)
-    vendors_in_a_market = FarMar::Vendor.all.select { |vendor| vendor.market_id == market_id_given.to_i }
-    return vendors_in_a_market
+    #returns all of the vendors with the given market_id
+
+    FarMar::Vendor.all.select { |vendor| vendor.market_id == market_id_given.to_i }
+
   end
 
 end

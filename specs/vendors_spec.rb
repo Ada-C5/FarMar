@@ -108,7 +108,7 @@ describe FarMar::Vendor do
   describe "FarMar::Vendor#self.by_market" do
 
     it "should return an object of the class Vendor" do
-      FarMar::Vendor.by_market("12").must_be_instance_of Array
+      FarMar::Vendor.by_market(12).must_be_instance_of Array
     end
 
     it "should return to more than one vendor" do

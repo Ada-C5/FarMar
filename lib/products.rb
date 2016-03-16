@@ -8,11 +8,12 @@ class FarMar::Product
   end
 
   def self.all
-    all_products = CSV.read('support/products.csv').collect { |row| self.new(row[0].to_i,row[1],row[2].to_i) }
-    return all_products
+     CSV.read('support/products.csv').collect { |row| self.new(row[0].to_i,row[1],row[2].to_i) }
   end
 
   def self.find(id)
+    # returns an instance of the object where the value of the id field
+    #in the CSV matches the passed parameter.
     FarMar::Product.all.each do |product|
       if product.product_id == id.to_i
         return product
@@ -23,14 +24,21 @@ class FarMar::Product
   def vendor
     #returns the FarMar::Vendor instance that is associated with
     #this vendor, using the FarMar::Product vendor_id field
-    the_vendor = FarMar::Vendor.all.select { |vendor| vendor.vendor_id == vendor_id.to_i }
-    return the_vendor
+    FarMar::Vendor.all.select { |vendor| vendor.vendor_id == vendor_id.to_i }
   end
 
   def sales
     #returns a collection of FarMar::Sale instances that are
     #associated using the FarMar::Sale product_id field.
-    saless = FarMar::Sale.all.select { |sale| sale.product_id == product_id.to_i }
-    return saless
+    FarMar::Sale.all.select { |sale| sale.product_id == product_id.to_i }
+  end
+
+  def number_of_sales
+    #returns the number of times this product has been sold.
+
+  end
+
+  def self.by_vendor(vendor_id_given)
+    FarMar::Product.all.select { |product| product.vendor_id == vendor_id_given.to_i }
   end
 end

@@ -4,6 +4,7 @@ require_relative '../far_mar'
 describe FarMar::Product do
   let(:all_products) { FarMar::Product.all }
   let(:product_test) { FarMar::Product.new("10","Black Apples","5") }
+  let(:vendor_test) { FarMar::Vendor.new( "22","Runolfsson and Sons","2","7") }
 
   it "is an object that isn't empty" do
     FarMar::Product.wont_be_nil
@@ -53,6 +54,18 @@ describe FarMar::Product do
     it "should return an object of the class Vendor" do
       classes = product_test.sales.map { |m| m.class }
       classes.uniq.must_equal [FarMar::Sale]
+    end
+
+  end
+
+  describe "FarMar::Product#self.by_vendor(vendor_id)" do
+    it "returns an ARRAY with all of the products with the given vendor_id" do
+      FarMar::Product.by_vendor("8").must_be_instance_of Array
+    end
+
+    it "each element in the array should be an object of the class Product" do
+      classes = FarMar::Product.by_vendor(2416).map { |m| m.class }
+      classes.uniq.must_equal [FarMar::Product]
     end
 
   end
