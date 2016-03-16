@@ -11,15 +11,11 @@ describe FarMar::Market do
   describe "Market#markets_with_nil" do
     it "knows about markets with missing info and stores them in an array" do
       # uncomment the following line to see the markets_with_nil array
-      # p FarMar::Market.markets_with_nil
-      FarMar::Market.markets_with_nil.must_be_instance_of Array
-    end
-  end
-
-  describe "Market#list_markets_missing_info" do
-    it "can list markets with missing their info" do
-      skip
-      FarMar::Market.list_markets_missing_info
+      # ap FarMar::Market.markets_with_nil
+      missinginfo = FarMar::Market.markets_with_nil
+      missinginfo.must_be_instance_of Array
+      missinginfo[0].must_be_instance_of String
+      missinginfo[0][0].eval.must_be_instance_of Fixnum
     end
   end
 
