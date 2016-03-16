@@ -13,20 +13,14 @@ class FarMar::Product
   def self.all
     products = []
     CSV.foreach(FILE) do |line|
-      id = line[0].to_i
-      name = line[1]
-      ven_id = line[2].to_i
-      products << self.new(id, name, ven_id)
+      products << self.new(line[0].to_i, line[1], line[2].to_i)
     end
     return products
   end
 
   # return an instance with same id
   def self.find(id)
-    products = self.all
-    products.each do |product|
-      return product if product.prod_id == id
-    end
+    self.all.find { |product| product.prod_id == id }
   end
 
   # returns all products sold by certain vendor id
@@ -35,7 +29,6 @@ class FarMar::Product
   end
 
   # return vendor instance associated with product/vendor_id
-  # I don't get why this method is useful in real life!?!?!?!
   def vendor(vendor_id)
     FarMar::Vendor.all.find { |vendor| vendor.ven_id == vendor_id}
   end
