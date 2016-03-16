@@ -2,9 +2,6 @@ require_relative './spec_helper'
 
 describe FarMar::Sale do 
 
-	it "exists" do
-		FarMar::Sale.wont_be_nil
-	end
 
 	it "has an 'all' method that returns an array of sales" do
 		sales = FarMar::Sale.all('./support/sales.csv')
@@ -20,7 +17,7 @@ describe FarMar::Sale do
 	end
 
 	it "has a find method" do
-		FarMar::Sale.find('./support/sales.csv').wont_be_nil
+		FarMar::Sale.must_respond_to(:find)
 	end
 
 	it "returns the correct sale when self#find is called" do
