@@ -62,6 +62,11 @@ class FarMar::Sale
     return FarMar::Product.find(product)
   end
 
+  def self.between(beginning_time, end_time)
+    
+  end
+
+
 
 
 end

@@ -52,6 +52,14 @@ describe FarMar::Sale do
     end
   end
 
+  describe "#product" do
+    let(:sale_1) { FarMar::Sale.find(1) }
+    let(:sale_2) { FarMar::Sale.find(13) }
+    it "Returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments" do
+      time_passed = sale_1.purchase_time - sale_2.purchase_time
+      product.must_be_instance_of FarMar::Product
+    end
+  end
 
 
 
