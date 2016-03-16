@@ -2,6 +2,7 @@ require_relative './spec_helper'
 require_relative '../farmar'
 
 describe FarMar::Vendor do
+  let(:vendors) { FarMar::Vendor.all }
   # make sure there is a sale class
   it "Is there a class? Anything?" do
     FarMar::Vendor.wont_be_nil
@@ -22,7 +23,6 @@ describe FarMar::Vendor do
 
   # test the market method
   it "should return an instance of the market associated with that vendor" do
-    vendors = FarMar::Vendor.all
     vendor = vendors[0]
     vendor.market(vendor.mar_id).wont_be_nil
     vendor.market(vendor.mar_id).name.must_equal "People's Co-op Farmers Market"
@@ -30,14 +30,12 @@ describe FarMar::Vendor do
 
   # test the products method
   it "Should return all product instances for certain vendor" do
-    vendors = FarMar::Vendor.all
     vendor = vendors[25]
     vendor.products(vendor.ven_id).length.must_equal 3
   end
 
   # test sale method
   it "should return collection of sale instances for certain vendor" do
-    vendors = FarMar::Vendor.all
     vendor = vendors[25]
     vendor.sales(vendor.ven_id).class.must_equal Array
     vendor.sales(vendor.ven_id).length.must_equal 6
@@ -47,7 +45,6 @@ describe FarMar::Vendor do
 
   # test revenue method
   it "should return SUM of all sales for certain vendor" do
-    vendors = FarMar::Vendor.all
     vendor = vendors[25]
     vendor.revenue(vendor.ven_id).must_equal 28014
   end

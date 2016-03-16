@@ -2,6 +2,7 @@ require_relative './spec_helper'
 require_relative '../farmar'
 
 describe FarMar::Sale do
+  let(:sales) { FarMar::Sale.all }
   # make sure there is a sale class
   it "Is there a class? Anything?" do
     FarMar::Sale.wont_be_nil
@@ -9,8 +10,7 @@ describe FarMar::Sale do
 
   # test self.all method
   it "does self.all return an array and can it grab the purchase_time?" do
-    markets = FarMar::Sale.all
-    markets.class.must_equal Array
+    sales.class.must_equal Array
   end
 
   # test the find(id) method
@@ -27,7 +27,7 @@ describe FarMar::Sale do
 
     # test the prodoct method
   it "returns the product instance related to a sale" do
-    sale = FarMar::Sale.all[544]
+    sale = sales[544]
     sale.product(sale.prod_id).class.must_equal FarMar::Product
   end
 
