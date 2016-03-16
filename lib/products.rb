@@ -50,12 +50,25 @@ class FarMar::Product
 
 	#returns the number of times this product has been sold.
 	def number_of_sales
-
+		sum = 0
+		FarMar::Sale.all.each do |sale|
+			if sale.product_id == @id
+				sum += 1
+			end
+		end
+		return sum
 	end
 
 	#returns all of the products with the given vendor_id
 	def self.by_vendor(vendor_id)
-
+		products = []
+		CSV.foreach(PRODUCT_DATA, "r") do |line|
+			if line[2].to_i == vendor_id
+				products << FarMar::Vendor.new(id: line[0].to_i, name: line[1],
+			vendor_id: line[2].to_i)
+      end
+    end
+    return products
 	end
 
 

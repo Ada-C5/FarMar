@@ -17,7 +17,7 @@ class FarMar::Sale
 		all = []
 		CSV.foreach(SALE_DATA, "r") do |line|
 			sale = FarMar::Sale.new(id: line[0].to_i, 
-			amount: line[1].to_i, purchase_time: line[2],
+			amount: line[1].to_i, purchase_time: DateTime.parse(line[2]),
 			vendor_id: line[3].to_i, product_id: line[4].to_i)
 			all << sale
 		end
@@ -57,8 +57,18 @@ class FarMar::Sale
 
 	#returns a collection of FarMar::Sale objects where the 
 	#purchase time is between the two times given as arguments
-	def self.between(beginning_time, end_time)
-
+	def self.between((beginning_time, end_time)
+		sales = []
+		beginning_time = DateTime.parse(beginning_time)
+		end_time = DateTime.parse(end_time)
+        FarMar::Sale.all.find_all do |sale|
+          if (sale.purchase_time >= beginning_time) && 
+ 							(sale.purchase_time <= end_time)
+            sales << sale
+          end
+        end
+        return sales
 	end
+
 
 end

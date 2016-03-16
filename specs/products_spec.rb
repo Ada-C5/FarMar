@@ -3,6 +3,9 @@ require_relative "../far_mar"
 
 
 describe FarMar::Product do
+	product171 = FarMar::Product.new(id: 171,
+  								name: "Depressed Carrots", vendor_id: 54)
+  	
   it "it is an object we have acccess to" do
     FarMar::Product.wont_be_nil
   end
@@ -43,8 +46,6 @@ describe FarMar::Product do
   end
 
   describe "Product#vendor,sales" do
-  	product171 = FarMar::Product.new(id: 171,
-  								name: "Depressed Carrots", vendor_id: 54)
   	it "should return an array of vendors" do
   		product171.vendor.must_be_instance_of(FarMar::Vendor)
   		product171.sales.must_be_instance_of(Array)
@@ -53,6 +54,18 @@ describe FarMar::Product do
   	it "should return vendor count for a market" do
   		product171.sales.count.must_equal(3)
   		product171.vendor.id.must_equal(54)
+  	end
+  end
+
+  describe "Product#number_of_sales" do
+  	it "should return the # of sales for a product" do
+  		product171.number_of_sales.must_equal(3)
+  	end
+  end
+
+  describe "Product#by_vendor(vendor_id)" do
+  	it "should return count of products for a vendor" do
+  		FarMar::Product.by_vendor(5).count.must_equal(3)
   	end
   end
 end
