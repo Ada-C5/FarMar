@@ -16,16 +16,8 @@ class FarMar::Product
   end
 
   def self.find(id)
-    id=id.to_i
-
     all_products = FarMar::Product.all
-
-    all_products.each do |n|
-      if n.id == id
-        return n
-      end
-    end
-      return nil
+    all_products.select { |p| p.id == id }
   end
 
   def self.by_vendor(vendor_id)

@@ -18,16 +18,8 @@ class FarMar::Sale
   end
 
   def self.find(id)
-    id=id.to_i
-
     all_sales = FarMar::Sale.all
-
-    all_sales.each do |n|
-      if n.id == id
-        return n
-      end
-    end
-      return nil
+    all_sales.select { |s| s.id == id }
   end
 
   def vendor

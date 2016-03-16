@@ -17,16 +17,8 @@ def self.all
 end
 
 def self.find(id)
-  id=id.to_i
-
   all_vendors = FarMar::Vendor.all
-
-  all_vendors.each do |n|
-    if n.id == id
-      return n
-    end
-  end
-    return nil
+  all_vendors.select { |v| v.id == id }
 end
 
 def market

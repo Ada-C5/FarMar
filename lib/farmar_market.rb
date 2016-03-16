@@ -16,20 +16,12 @@ class FarMar::Market
 
   def self.all
     all_markets = CSVHasher.hashify('../support/markets.csv')
-    all_markets.collect { |n| FarMar::Market.new(n) }
+    all_markets.collect { |m| FarMar::Market.new(m) }
   end
 
   def self.find(id)
-    id=id.to_i
-
     all_markets = FarMar::Market.all
-
-    all_markets.each do |n|
-      if n.id == id
-        return n
-      end
-    end
-      return nil
+    all_markets.select { |m| m.id == id }
   end
 
   def vendors
