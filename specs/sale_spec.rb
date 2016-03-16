@@ -60,4 +60,9 @@ describe FarMar::Sale do
 		FarMar::Sale.must_respond_to(:between)
 	end
 
+	it "returns a collection with the correct number of objects when self#between is called" do
+		FarMar::Sale.between("2013-11-07 00:00:00 -0800", "2013-11-07 23:59:59").count.must_equal(1816)
+	end
+
+
 end 
