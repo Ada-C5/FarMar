@@ -58,4 +58,8 @@ class FarMar::Market
   def preferred_vendor
     vendors.max_by { |vendor| vendor.revenue }
   end
+
+  def worst_vendor
+    vendors.min_by { |vendor| vendor.revenue }
+  end
 end

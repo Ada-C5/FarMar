@@ -63,14 +63,38 @@ describe FarMar::Market do
   end
 
   describe "FarMar::Market#preferred_vendor" do
-    let(:vendor_pref) { FarMar::Market.find(495).preferred_vendor }
+    let(:vendor_pref) { market_found.preferred_vendor }
     let(:vendor_pref_ten) { FarMar::Market.find(10).preferred_vendor }
 
-    it "should return the vendor instance with the highest revenue" do
+    it "should return the vendor instance with the highest revenue for market 495" do
       vendor_pref.id.must_equal 2662
       vendor_pref.name.must_equal "Oberbrunner Inc"
+      vendor_pref.revenue.must_equal 25930 
+      # note that there are duplicate entries in sales.csv for different dates for this vendor_id
+      # which have the same sale ID number but are located at the bottom of the file.
+    end
+
+    it "should return the vendor instance with the highest revenue for market 10" do
       vendor_pref_ten.id.must_equal 40
       vendor_pref_ten.name.must_equal "Dickens-Weissnat"
+      vendor_pref_ten.revenue.must_equal 60127
+    end
+  end
+
+  describe "FarMar::Market#worst_vendor" do
+    let(:vendor_worst) { market_found.worst_vendor }
+    let(:vendor_worst_ten) { FarMar::Market.find(10).worst_vendor }
+
+    it "should return the vendor with the lowest revenue from market 495" do
+      vendor_worst.id.must_equal 2664
+      vendor_worst.name.must_equal "Dickinson, Brakus and Heathcote"
+      vendor_worst.revenue.must_equal 0
+    end
+
+    it "should return the vendor with the lowest revenue from market 10" do
+      vendor_worst_ten.id.must_equal 42
+      vendor_worst_ten.name.must_equal "Tillman, Lockman and Klein"
+      vendor_worst_ten.revenue.must_equal 9960
     end
   end
 end
