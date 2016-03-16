@@ -50,7 +50,7 @@ class FarMar::Market
   def products
     prod = []
     vendors.each do |vendor_instance|
-      prod << FarMar::Product.all.find_all {|instance| instance.vendor_id ==
+      prod += FarMar::Product.all.find_all {|instance| instance.vendor_id ==
         vendor_instance.id}
     end
     return prod

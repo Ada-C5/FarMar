@@ -39,8 +39,8 @@ describe FarMar::Market do
   end
 
   # check the products method
-  it "should return 6 product arrays belonging to those 6 vendors" do
-      markets_find.products.length.must_equal 6
+  it "should return 13 products belonging to those 6 vendors" do
+      markets_find.products.length.must_equal 13
   end
 
   # check the self.search(search_term) method
