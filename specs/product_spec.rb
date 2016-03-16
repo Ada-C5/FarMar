@@ -29,4 +29,8 @@ describe FarMar::Product do
 		product_one.vendor.name.must_equal("Feil-Farrell")
 	end
 
+	it "returns a collection of associated FarMar::Sale using product_id field" do
+		product_one.sales.length.must_equal()
+	end
+
 end
