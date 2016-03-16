@@ -22,11 +22,17 @@ class FarMar::Market
       city: row[3], county: row[4], state: row[5], zip: row[6])
     end
     return markets
-
   end
 
   def self.find(id)
     self.all.find { |market| market.id == id }
+  end
+
+  def self.search(search_term)
+    self.all.select { |market| market.name.include?(search_term)}
+    # self.all.grep(/search_term/)
+    # { |market| market.name.include?(search_term)}
+
   end
 
   def vendors
@@ -34,5 +40,12 @@ class FarMar::Market
     FarMar::Vendor.all.select { |vendor| vendor.market_id == id }
   end
 
+  # def products
+  #   # vendors => vendors by market
+  #   # FarMar::Vendor.by_market(market_id) => vendors by market
+  #   # FarMar::Product.by_vendor(vendor_id) => products by vendor
+  #
+  #
+  # end
 
 end

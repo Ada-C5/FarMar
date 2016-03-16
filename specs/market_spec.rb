@@ -31,4 +31,10 @@ describe FarMar::Market do
     end
   end
 
+  describe "FarMar::Market#self.search(search_term)" do
+    it "should return 3 markets for search term 'school'" do
+      FarMar::Market.search('school').length.must_equal 3
+    end
+  end
+
 end

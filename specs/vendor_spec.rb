@@ -51,7 +51,7 @@ describe FarMar::Vendor do
   end
 
   describe "FarMar::Vendor#self.by_market" do
-    it "should return array of vendors when given market_id" do
+    it "should return array of vendors by market when given market_id" do
       FarMar::Vendor.by_market(4).length.must_equal 4
     end
   end
