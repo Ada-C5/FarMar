@@ -2,6 +2,7 @@ require_relative './spec_helper'
 
 describe FarMar::Sale do 
 
+	let(:sale_one) {FarMar::Sale.new({id: "1", amount: "9290", purchase_time: "2013-11-07 04:34:56 -0800", vendor_id: "1", product_id: "1"})}
 
 	it "has an 'all' method that returns an array of sales" do
 		sales = FarMar::Sale.all('./support/sales.csv')
@@ -25,7 +26,7 @@ describe FarMar::Sale do
 	end
 
 	it "has a method that returns all the sales for a vendor" do
-		FarMar::Sale.must_respond_to(:vendor)
+		sale_one.must_respond_to(:vendor)
 	end
 
 end
