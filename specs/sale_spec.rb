@@ -25,8 +25,13 @@ describe FarMar::Sale do
 		FarMar::Sale.find(50).amount.must_equal("5420")
 	end
 
-	it "has a method that returns all the sales for a vendor" do
+	it "responds to the vendor method call" do
 		sale_one.must_respond_to(:vendor)
+	end
+
+	it "returns the vendor associated with this sale" do
+		sale_one.vendor.id.must_equal("1")
+		sale_one.vendor.name.must_equal("Feil-Farrell")
 	end
 
 end
