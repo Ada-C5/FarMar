@@ -29,15 +29,19 @@ describe FarMar::Sale do
 
       # uncomment the following line to see an an instance of sale with id 14
       # ap sale
-      sale.must_be_instance_of FarMar::Sale
-      sale.id.must_equal this_id
-      sale.purchase_time.must_equal "2013-11-10 01:51:24 -0800"
+      FarMar::Sale.find(14).must_be_instance_of FarMar::Sale
+      FarMar::Sale.find(14).id.must_equal this_id
+      FarMar::Sale.find(14).purchase_time.must_equal "2013-11-10 01:51:24 -0800"
     end
   end
 
   describe "Sale#self.between" do
+    let(:small_time_test) { FarMar::Sale.between("2013-11-09 22:35:57 -0800", "2013-11-09 22:38:00 -0800") }
+
     it "returns an array of Sales with purchase times within the given range" do
-      FarMar::Sale.between("2013-11-09 22:35:57 -0800", "2013-11-09 22:38:00 -0800")[0].must_be_instance_of FarMar::Sale
+      small_time_test[0].must_be_instance_of FarMar::Sale
+      small_time_test.length.must_equal 3
+
       FarMar::Sale.between("2013-11-08 05:00:00 -0800", "2013-11-08 11:00:00 -0800").length.must_equal 479
     end
   end

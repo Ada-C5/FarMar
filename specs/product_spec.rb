@@ -19,19 +19,23 @@ describe FarMar::Product do
     it "returns the Product object with matching id" do
       this_id = all_products[13].id
 
-      product.must_be_instance_of FarMar::Product
-      product.id.must_equal this_id
-      product.name.must_equal "Stupendous Carrots"
+      FarMar::Product.find(14).must_be_instance_of FarMar::Product
+      FarMar::Product.find(14).id.must_equal this_id
+      FarMar::Product.find(14).name.must_equal "Stupendous Carrots"
     end
   end
 
   describe "Product#self.by_vendor(find_vendor_id)" do
+    before do
+      @vendor_4 = FarMar::Product.by_vendor("4")
+    end
+
     it "should return an array of vendors with matching market id" do
       # uncomment the following line to see array of vendors with market_id = 4
       # ap FarMar::Product.by_vendor("4")
-      FarMar::Product.by_vendor("4").must_be_instance_of Array
-      FarMar::Product.by_vendor("4")[0].must_be_instance_of FarMar::Product
-      FarMar::Product.by_vendor("4")[1].name.must_equal "Smooth Mushrooms"
+      @vendor_4.must_be_instance_of Array
+      @vendor_4[0].must_be_instance_of FarMar::Product
+      @vendor_4[1].name.must_equal "Smooth Mushrooms"
     end
   end
 

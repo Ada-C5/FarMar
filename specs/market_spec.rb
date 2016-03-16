@@ -15,7 +15,8 @@ describe FarMar::Market do
       missinginfo = FarMar::Market.markets_with_nil
       missinginfo.must_be_instance_of Array
       missinginfo[0].must_be_instance_of String
-      missinginfo[0][0].eval.must_be_instance_of Fixnum
+      missinginfo[0][0].to_i.must_be_instance_of Fixnum
+      assert(missinginfo[0][0].to_i > 0, "The first character is not a fixnum, meaning it's not the market id")
     end
   end
 
@@ -30,9 +31,9 @@ describe FarMar::Market do
     it "returns the Market object with matching id" do
       this_id = all_markets[13].id
 
-      market.must_be_instance_of FarMar::Market
-      market.id.must_equal this_id
-      market.name.must_equal "Hartford Farmers Market"
+      FarMar::Market.find(14).must_be_instance_of FarMar::Market
+      FarMar::Market.find(14).id.must_equal this_id
+      FarMar::Market.find(14).name.must_equal "Hartford Farmers Market"
     end
   end
 
