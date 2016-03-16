@@ -13,6 +13,14 @@ describe FarMar::Vendor do
       all_vendors.must_be_instance_of Array
       all_vendors[0].must_be_instance_of FarMar::Vendor
     end
+
+    it "has objects with the correct data" do
+      all_vendors[13].id.must_equal "14"
+      all_vendors[13].name.must_equal "Stracke Group"
+      all_vendors[13].num_employees.must_equal "2"
+      all_vendors[13].market_id.must_equal "4"
+    end
+
   end
 
   describe "Vendor#self.find(find_id)" do
@@ -28,7 +36,7 @@ describe FarMar::Vendor do
   describe "Vendor#self.by_market(find_market_id)" do
     let(:market_4) { FarMar::Vendor.by_market("4") }
 
-    it "should return an array of vendors with matching market id" do  
+    it "should return an array of vendors with matching market id" do
       # uncomment the following line to see array of vendors with market_id = 4
       # ap FarMar::Vendor.by_market("4")
       market_4.must_be_instance_of Array

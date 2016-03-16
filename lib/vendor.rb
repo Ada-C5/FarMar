@@ -1,6 +1,6 @@
 class FarMar::Vendor
 
-  attr_reader :id, :name, :market_id
+  attr_reader :id, :name, :market_id, :num_employees
 
   def initialize(vendor_hash)
     @id            = vendor_hash[:id]
@@ -11,12 +11,11 @@ class FarMar::Vendor
 
   def self.all
     all_vendors = []
-    keys = [:id, :name, :num_employees, :market_id]
-    vendor_hash = CSV.read('./support/vendors.csv').map { |values| Hash[ keys.zip(values) ] }
-    vendor_hash.each do |vendor|
-      all_vendors << self.new(vendor)
+    vendors = CSV.read('./support/vendors.csv')
+    vendors.each do |ven|
+      all_vendors << self.new(id: ven[0], name: ven[1], num_employees: ven[2], market_id: ven[3])
     end
-    return all_vendors
+    all_vendors
   end
 
   def self.find(find_id)
