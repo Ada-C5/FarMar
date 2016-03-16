@@ -16,28 +16,17 @@ class FarMar::Market
   def self.all
     markets = []
     CSV.foreach(FILE) do |line|
-      id = line[0].to_i
-      name = line[1]
-      address = line[2]
-      city = line[3]
-      county = line[4]
-      state = line[5]
-      zip = line[6].to_i
-      markets << self.new(id, name, address, city, county, state, zip)
+      markets << self.new(line[0].to_i, line[1], line[2], line[3], line[4], line[5], line[6].to_i)
     end
     return markets
   end
 
   def self.find(id)
-    markets = self.all
-    markets.select do |market|
-      return market if market.mar_id == id
-    end
+    self.all.find { |market| market.mar_id == id }
   end
 
   # return array of vendors in a specific market
   def vendors(mar_id)
-    vendors = FarMar::Vendor.all 
-    vendors.select { |vendor| vendor.mar_id == mar_id }
+    FarMar::Vendor.all.select { |vendor| vendor.mar_id == mar_id }
   end
 end
