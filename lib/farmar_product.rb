@@ -60,6 +60,10 @@ class FarMar::Product
   end
 
   # self.by_vendor(vendor_id): returns all of the products with the given vendor_id
+  def self.by_vendor(vendor_id)
+    products_to_search = FarMar::Product.all("./support/products.csv")
+    products_to_search.select {|product| product.vendor_id == vendor_id.to_s}
 
+  end
 
 end
