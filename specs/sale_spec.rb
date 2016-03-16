@@ -35,10 +35,10 @@ describe FarMar::Sale do
 		sale_one.vendor.name.must_equal("Feil-Farrell")
 	end
 
-	#skipped for now, will address in refactor.
+	#skipped for now, will address in refactor of find vendor
 	it "returns nil if no vendor is found" do
 		skip
-		sale_two.vendor_id.must_be_nil
+		sale_two.vendor.must_be_nil
 	end
 
 	it "responds to the product method call" do
@@ -48,6 +48,11 @@ describe FarMar::Sale do
 	it "returns the right product when #product is called" do
 		sale_one.product.name.must_equal("Dry Beets")
 		sale_one.product.id.must_equal("1")
+	end
+
+	it "returns nil if no product is found" do
+		skip
+		sale_two.product.must_be_nil
 	end
 
 end 
