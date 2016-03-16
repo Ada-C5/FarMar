@@ -64,13 +64,24 @@ class FarMar::Vendor
 
 	#returns the the sum of all of the vendor's sales(in cents)
 	def revenue
-
+		sum = 0
+		FarMar::Sale.all.each do |sale|
+			if sale.vendor_id == @id
+				sum += sale.amount
+			end
+		end
+		return sum
 	end
 
 	#returns all of the vendors with the given market_id
 	def self.by_market(market_id)
-
-	end
-
-
+		vendors = []
+		CSV.foreach(VENDOR_DATA, "r") do |line|
+			if line[3].to_i == market_id
+				vendors << FarMar::Vendor.new(id: line[0].to_i, name: line[1],
+			no_of_employees: line[2].to_i, market_id: line[3].to_i)
+      end
+    end
+    return vendors
+  end
 end

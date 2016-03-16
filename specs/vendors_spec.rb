@@ -3,6 +3,9 @@ require_relative "../far_mar"
 
 
 describe FarMar::Vendor do
+	vendor54 = FarMar::Vendor.new(id: 54, name: "Bayer Inc",
+  						no_of_employees: 3, market_id:13)
+
   it "it is an object we have acccess to" do
     FarMar::Vendor.wont_be_nil
   end
@@ -37,25 +40,35 @@ describe FarMar::Vendor do
   		vendor.count.must_equal(2690)
   	end
 
-  	it "should return array full of instances" do
+  	it "should return the class" do
   		classes = vendor.map{|m| m.class}
   		classes.uniq.must_equal([FarMar::Vendor])
   	end
   end
 
-  describe "Vendor#market,product,sales" do
-  	vendor54 = FarMar::Vendor.new(id: 54, name: "Bayer Inc",
-  						no_of_employees: 3, market_id:13) 
+  describe "Vendor#market,product,sales" do 
   	it "should return the instance type of the methods" do
   		vendor54.market.must_be_instance_of(FarMar::Market)
   		vendor54.products.must_be_instance_of(Array)
   		vendor54.sales.must_be_instance_of(Array)
   	end
 
-  	it "should check values from vendor methods" do
+  	it "should return correct values from vendor methods" do
   		vendor54.products.count.must_equal(5)
   		vendor54.sales.count.must_equal(8)
   		vendor54.market.id.must_equal(13)
+  	end
+  end
+
+  describe "Vendor#revenue" do
+  	it "should return the revenue from a vendor" do
+  		vendor54.revenue.must_equal(39552)
+  	end
+  end
+
+  describe "Vendor#by_market(market_id)" do
+  	it "should return count of vendors for a market" do
+  		FarMar::Vendor.by_market(2).count.must_equal(3)
   	end
   end
 end
