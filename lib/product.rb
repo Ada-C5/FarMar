@@ -31,11 +31,9 @@ class FarMar::Product
 			end 
 		end
 	end
-#
-# Everything below here needs to be tested and sanity checked 
-#
+
 	def get_vendors
-		FarMar::Vendor.all.find_all {|vendor| product.vendor_id == vendor_id}
+		FarMar::Vendor.all.find_all {|vendor| vendor.vendor_id == vendor_id}
 	end
 
 	def get_sales
@@ -43,13 +41,15 @@ class FarMar::Product
 	end 
 
 	def get_number_of_sales
-		product_sales = FarMar::Sale.all.find_all {|product| sale.product_id == product_id}		 
+		product_sales = FarMar::Sale.all.find_all {|sale| sale.product_id == product_id}		 
 		total = product_sales.collect {|sale| sale.amount}
-		total = total.reduce(0, :+)
+		total = total.length
 		return total 
 	end
 
 	def	self.by_vendor(vendor_id)
-		FarMar::Product.all.find_all {|product| product.vendor_id == vendor_id}
+		products = FarMar::Product.all.find_all {|product| product.vendor_id == vendor_id}
+		products = products.length
+		return products
 	end 
 end

@@ -26,9 +26,36 @@ describe FarMar::Product do
 		product_test.product_name.must_equal "Nom nom Beef"
 	end
 
-	#vendor: returns the FarMar::Vendor instance that is associated with this vendor using the FarMar::Product vendor_id field
-	#sales: returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
-	#number_of_sales: returns the number of times this product has been sold.
-	#self.by_vendor(vendor_id): returns all of the products with the given vendor_id
+	it "Returns an array of vendors based on product ID" do
+		product_test.get_vendors.must_be_instance_of Array
+	end 
+
+	it "Returns an instance of FarMar::Vendor" do
+		product_test.get_vendors[0].must_be_instance_of FarMar::Vendor
+	end 
+
+	it "Returns vendor ID based on Product ID from ::Vendor" do
+		product_test.get_vendors[0].vendor_id.must_equal 19
+	end
+
+	it "Returns an instance of FarMar::Sale" do
+		product_test.get_sales[0].must_be_instance_of FarMar::Sale
+	end 
+
+	it "Returns the product ID from a list of sales" do
+		product_test.get_sales[0].vendor_id.must_equal 19
+	end
+
+	it "Returns vendor ID based on Product ID from ::Sale" do
+		product_test.get_sales[0].vendor_id.must_equal 19 #nom nom beef
+	end
+
+	it "Returns the total times a product sold from ::Sale" do 
+		product_test.get_number_of_sales.must_equal 2
+	end 
+
+	it "by_vendor returns products associated with vendor ID" do 
+		vendor_test.must_equal 5
+	end
 
 end
