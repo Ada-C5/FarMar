@@ -12,7 +12,7 @@ module FarMar
     end
 
     def number_of_sales
-      self.sales.length #idk why I needed to put self. here... but it made the test pass?
+      self.sales.length # self because THIS object needs to respond to the message, .sales
     end
 
     def sales

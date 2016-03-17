@@ -4,53 +4,53 @@ module FarMar
     def initialize
     end
 
-    def market(data_file, data_class, id_to_match, method_name)
+    def market(data_file, data_class, id_to_match, id_reader_name)
     # returns an instance
-      match_to_instance_by(data_file, data_class, id_to_match, method_name)
+      match_to_instance_by(data_file, data_class, id_to_match, id_reader_name)
     end
 
-    def vendor(data_file, data_class, id_to_match, method_name)
+    def vendor(data_file, data_class, id_to_match, id_reader_name)
     # returns an instance
-      match_to_instance_by(data_file, data_class, id_to_match, method_name)
+      match_to_instance_by(data_file, data_class, id_to_match, id_reader_name)
     end
 
-    def product(data_file, data_class, id_to_match, method_name)
+    def product(data_file, data_class, id_to_match, id_reader_name)
     # returns an instance
-      match_to_instance_by(data_file, data_class, id_to_match, method_name)
+      match_to_instance_by(data_file, data_class, id_to_match, id_reader_name)
     end
 
-    def products(data_file, data_class, id_to_match, method_name)
+    def products(data_file, data_class, id_to_match, id_reader_name)
     # returns a collection
-      match_to_collection_by(data_file, data_class, id_to_match, method_name)
+      match_to_collection_by(data_file, data_class, id_to_match, id_reader_name)
     end
 
-    def sales(data_file, data_class, id_to_match, method_name)
+    def sales(data_file, data_class, id_to_match, id_reader_name)
     # returns a collection
-      match_to_collection_by(data_file, data_class, id_to_match, method_name)
+      match_to_collection_by(data_file, data_class, id_to_match, id_reader_name)
     end
 
-    def vendors(data_file, data_class, id_to_match, method_name)
+    def vendors(data_file, data_class, id_to_match, id_reader_name)
     # returns a collection
-      match_to_collection_by(data_file, data_class, id_to_match, method_name)
+      match_to_collection_by(data_file, data_class, id_to_match, id_reader_name)
     end
 
-    def match_to_collection_by(data_file, data_class, id_to_match, method_name)
-    # returns a collection of instances where the value of the id field for the instance that matches the passed id_to_match parameter.  The method_name returns the ID are trying to match, because it can be market_id, vendor_id, product_id, etc.
+    def match_to_collection_by(data_file, data_class, id_to_match, id_reader_name)
+    # returns a collection of instances where the value of the id field for the instance that matches the passed id_to_match parameter.  The id_reader_name returns the ID are trying to match, because it can be market_id, vendor_id, product_id, etc.
 
       all = data_class.all(data_file)
       matched = all.find_all do |instance|
-        id_to_match == instance.send(method_name) # need to do this with send(string) and not just .method_name because otherwise it thinks there is a method called .method name :(
+        id_to_match == instance.send(id_reader_name) # need to do this with send(string) and not just .id_reader_name because otherwise it thinks there is a method called .id_reader_name :(
       end
 
       return matched
     end
 
-    def match_to_instance_by(data_file, data_class, id_to_match, method_name)
-    # returns an instance where the value of the id field for the instance of data_class (Market, Product, Sale, or Vendor) matches the passed id_to_match parameter.  The method_name returns the ID are trying to match, because it can be market_id, vendor_id, product_id, etc.
+    def match_to_instance_by(data_file, data_class, id_to_match, id_reader_name)
+    # returns an instance where the value of the id field for the instance of data_class (Market, Product, Sale, or Vendor) matches the passed id_to_match parameter.  The id_reader_name returns the ID are trying to match, because it can be market_id, vendor_id, product_id, etc.
 
       all = data_class.all(data_file)
       all.find do |instance|
-        id_to_match == instance.send(method_name) # need to do this with send(string) and not just .method_name because otherwise it thinks there is a method called .method name :(
+        id_to_match == instance.send(id_reader_name) # need to do this with send(string) and not just .id_reader_name because otherwise it thinks there is a method called .method name :(
         return instance
       end
     end

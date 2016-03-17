@@ -12,12 +12,12 @@ module FarMar
     end
 
     def self.find(data_file = './support/markets.csv', id)
-      super(data_file, id)
+      super('./support/markets.csv', id)
     end
 
     def self.all(data_file = './support/markets.csv' )
-      super(data_file)
+      super('./support/markets.csv')
     end
-    
+
   end
 end

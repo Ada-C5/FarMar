@@ -29,7 +29,7 @@ module FarMar
     end
 
     def self.by_market(data_file = './support/vendors.csv', given_market_id)
-    # returns a collection of FarMar::Market instance where the value of the market_id field passed given_market_id parameter.
+    # returns a collection of FarMar::Vendor instance where the value of the market_id field passed given_market_id parameter.
       vendors = self.all(data_file)
       matched_vendors = vendors.find_all do |vendor|
         vendor.market_id == given_market_id
