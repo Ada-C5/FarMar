@@ -29,10 +29,9 @@ class FarMar::Market
   end
 
   def self.search(search_term)
-    self.all.select { |market| market.name.include?(search_term)}
-    # self.all.grep(/search_term/)
-    # { |market| market.name.include?(search_term)}
-
+    vendor_names = FarMar::Vendor.all.select { |vendor| vendor.name.upcase.include?(search_term.upcase) }
+    market_names = self.all.select { |market| market.name.upcase.include?(search_term.upcase) }
+    return vendor_names + market_names
   end
 
   def vendors
