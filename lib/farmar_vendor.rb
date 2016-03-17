@@ -1,5 +1,5 @@
 require 'csv'
-require_relative "../far_mar"
+#require_relative "../far_mar"
 
 class FarMar::Vendor
 #   ID - (Fixnum) uniquely identifies the vendor

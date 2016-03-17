@@ -1,5 +1,5 @@
 require 'csv'
-require_relative "../far_mar"
+#require_relative "../far_mar"
 
 class FarMar::Market
 # ID - (Fixnum) a unique identifier for that market

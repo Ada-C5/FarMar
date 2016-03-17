@@ -1,5 +1,6 @@
 require_relative "./spec_helper"
-require_relative "../far_mar"
+require 'date'
+#require_relative "../far_mar"
 #require_relative "./lib/farmar_sale"
 
 describe FarMar::Sale do
@@ -41,9 +42,11 @@ describe "FarMar#Sale" do
       end
 
       describe "FarMar::Sale#between" do
-        it "returns an array containing Sale objects" do
-          selected_vendor = FarMar::Sale.find(89)
-          selected_vendor.vendor[0].name.must_equal "Langosh, Krajcik and Langosh"
+        it "returns a collection of sales data in a given date range" do
+          begin_date = DateTime.parse('11th Nov 2013 04:05:06 PM')
+          end_date = DateTime.parse('20th Nov 2013 04:05:06 PM')
+            FarMar::Sale.between(begin_date, end_date).size.must_equal 3703
+            FarMar::Sale.between(begin_date, end_date).class.must_equal Array
         end
       end
 end
