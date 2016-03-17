@@ -47,4 +47,11 @@ describe FarMar::Market do
   it "should return markets and vendors containing the word 'school'" do
       FarMar::Market.search('school').length.must_equal 3
   end
+
+  # check the preferred_vendor method
+  it "should return ___" do
+      markets_find.preferred_vendor.must_equal 3
+  end
+
+
 end

@@ -65,4 +65,20 @@ class FarMar::Market
     return match
   end
 
+  def preferred_vendor
+    sale = []
+    amount = []
+    vendors.each do |vendor_instance|
+      sale << FarMar::Sale.all.find_all{|instance| instance.vendor_id == vendor_instance.id}
+    end
+
+    # sale.length.times do |num|
+    #   sale[num].length.times do |num2|
+    #     sale[num][num2].
+    #   amount += sale[num] #.amount #.inject(:+)
+    # end
+    return sale[0][1].amount #.find_max
+  end
 end
+
+#<FarMar::Sale:0xXXXXXX @id=30, @amount=7459, @purchase_time="2013-11-10 01:44:14 -0800", @vendor_id=5, @product_id=8>], [#<FarMar::Sale:0xXXXXXX @id=31, @amount=2977, @purchase_time="2013-11-09 10:57:21 -0800", @vendor_id=6, @product_id=13>]]
