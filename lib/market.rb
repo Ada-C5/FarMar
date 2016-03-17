@@ -1,5 +1,3 @@
-require 'CSV'
-
 class FarMar::Market
 
   attr_reader :id, :name, :address, :city, :county, :state, :zip
