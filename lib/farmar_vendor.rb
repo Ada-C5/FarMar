@@ -14,6 +14,7 @@ module FarMar
           sale_amount = (sale.amount).to_f
           total += sale_amount
         end
+        return total_revenue
     end
 
     def sales

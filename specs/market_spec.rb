@@ -30,4 +30,26 @@ describe FarMar::Market do
     end
   end
 
+  describe "FarMar::Markets#products" do
+    it "returns a collection of FarMar::Product instances that are associated to the market through the FarMar::Vendor class." do
+    products_collection = market_test.products
+    products_collection.must_be_kind_of(Array)
+    #each item in the Array will be an instance of FarMar::Product
+    products_collection.each { |instance| instance.must_be_instance_of(FarMar::Product) }
+    end
+  end
+
+  describe "FarMar::Markets#prefered_vendor" do
+    it "returns the vendor with the highest revenue" do
+    market_test.prefered_vendor.must_be_instance_of(FarMar::Vendor)
+    end
+  end
+
+  describe "FarMar::Markets#worst_vendor" do
+    it "returns the vendor with the lowest revenue" do
+    market_test.prefered_vendor.must_be_instance_of(FarMar::Vendor)
+    end
+  end
+
+
 end
