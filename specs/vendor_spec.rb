@@ -59,4 +59,9 @@ describe FarMar::Vendor do
 		market_one_vendors.length.must_equal(6)
 	end
 
+	it "returns a Fixnum representing profits from all sales by vendor in cents" do 
+		vendor_test_one.revenue.must_equal(38259)
+	end
+
+
 end
