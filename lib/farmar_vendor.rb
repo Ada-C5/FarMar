@@ -21,15 +21,15 @@ class FarMar::Vendor
     all_vendors.select { |v| v.id == id }
   end
 
-  def market
-    all_markets = FarMar::Market.all
-    all_markets.select { |m| m.id == @market_id }
-  end
-
   def self.by_market(market_id)
     market_id = market_id.to_i
     all_vendors = FarMar::Vendor.all
     all_vendors.select { |v| v.market_id == market_id }
+  end
+  
+  def market
+    all_markets = FarMar::Market.all
+    all_markets.select { |m| m.id == @market_id }
   end
 
   def products
