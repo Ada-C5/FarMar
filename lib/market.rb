@@ -69,6 +69,6 @@ class FarMar::Market
   # returns vendor with highest revenue
   def prefered_vendor
     vendors = vendors(mar_id)
-    vendors.max_by { |vendor| revenue(vendor.ven_id) }
+    vendors.max_by { |vendor| vendor.revenue(vendor.ven_id) }
   end
 end
