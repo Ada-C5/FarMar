@@ -51,4 +51,11 @@ class FarMar::Market
     FarMar::Product.all.find_all { |prod| market_vendors_ids.include? prod.vendor_id }
   end
 
+  def self.search(search_term)
+    match_vendor_market_id = FarMar::Vendor.all.find_all { |mar| mar.name.downcase.include?(search_term.downcase) }.collect { |ven| ven.market_id }
+    match_vendor_name = FarMar::Market.all.find_all { |mar| match_vendor_market_id.include? mar.id }
+    match_market_name = FarMar::Market.all.find_all { |mar| mar.name.downcase.include?(search_term.downcase) }
+    match_market_name.concat match_vendor_name
+  end
+
 end

@@ -44,6 +44,13 @@ describe FarMar::Market do
     end
   end
 
+  describe "Market#self.search(search_term)" do
+    it "returns an array of markets that amtch the search term" do
+      FarMar::Market.search("school").length.must_equal 3
+      FarMar::Market.search("Zulauf").length.must_equal 19
+    end
+  end
+
   describe "Market#vendors" do
     it "should return all instances of Vendor that match the Market's id" do
       # uncomment the following line to see the vendors array
@@ -61,5 +68,7 @@ describe FarMar::Market do
       assert market.products.collect { |prod| prod.vendor_id }.include? "64"
     end
   end
+
+
 
 end
