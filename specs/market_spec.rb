@@ -50,5 +50,12 @@ describe FarMar::Market do
   # test prefered vendor
   it "should return vendor with highest income" do
     markets[4].prefered_vendor.class.must_equal FarMar::Vendor
+    # market15 = FarMar::Market.find(4)
+    # market15.prefered_vendor.must_equal 4
   end
+
+  # test prefered vendor(date) method
+  # it "should return vendor with highest income from certain day" do
+  #   markets[2].prefered_ven("2013-11-10").must_equal 5
+  # end
 end

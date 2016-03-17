@@ -71,4 +71,22 @@ class FarMar::Market
     vendors = vendors(mar_id)
     vendors.max_by { |vendor| vendor.revenue(vendor.ven_id) }
   end
+
+  # returns vendor with highest revenue on a certain date
+  def prefered_ven(date)
+    date = Time.parse(date)
+    vendors = vendors(mar_id)
+    from_date = []
+    vendors.each do |vendor|
+      sales = vendor.sales(vendor.ven_id)
+      sales.each do |sale|
+        time = Time.parse(sale.purchase_time.to_s)
+        if time.day == date.day
+          from_date << vendor
+        end
+      end
+    end
+    # go through vendor sales from date parameter
+    from_date.max_by { |vendor| vendor.revenue(vendor.ven_id) }
+  end
 end
