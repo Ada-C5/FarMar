@@ -32,4 +32,18 @@ describe "FarMar#Sale" do
         selected_sale = FarMar::Sale.find(78)
         selected_sale.product_info.must_equal 44
       end
+
+      describe "FarMar::Sale#vendor" do
+        it "FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id field" do
+          selected_vendor = FarMar::Sale.find(89)
+          selected_vendor.vendor[0].name.must_equal "Langosh, Krajcik and Langosh"
+        end
+      end
+
+      describe "FarMar::Sale#between" do
+        it "returns an array containing Sale objects" do
+          selected_vendor = FarMar::Sale.find(89)
+          selected_vendor.vendor[0].name.must_equal "Langosh, Krajcik and Langosh"
+        end
+      end
 end

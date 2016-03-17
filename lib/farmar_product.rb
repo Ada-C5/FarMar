@@ -1,5 +1,5 @@
 require 'csv'
-require_relative "../far_mar"
+#require_relative "../far_mar"
 
 class FarMar::Product
 #   ID - (Fixnum) uniquely identifies the product
@@ -53,6 +53,6 @@ attr_accessor
 
   #returns all of the products with the given vendor_id
   def self.by_vendor(vendor_id_given)
-    FarMar::Product.all.select { |product| product.vendor_id == vendor_id_given.to_i }
+    self.all.select { |product| product.vendor_id == vendor_id_given.to_i }
   end
 end

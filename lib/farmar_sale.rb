@@ -38,4 +38,26 @@ attr_reader :sale_id, :amount, :purchase_time, :vendor_id, :product_info
         end
       end
   end
+
+  #vendor: returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id field
+  def vendor
+    FarMar::Vendor.all.select { |vendor| vendor.vendor_id == vendor_id }
+  end
+
+  #product: returns the FarMar::Product instance that is associated with this sale using the FarMar::Sale product_id field
+  def product
+    FarMar::Product.all.select { |product| product.product_id == product_info }
+  end
+
+  #returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
+  def self.between(begin_date, end_date)
+    sales_array =[]
+    self.all.each do |sale|
+      purchase_time = DateTime.parse(sale.purchase_time)
+      if (purchase_time > begin_date) && (purchase_time < end_date)
+        sales_array << sale
+      end
+    end
+    return sales_array
+  end
 end

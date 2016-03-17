@@ -54,9 +54,9 @@ describe "FarMar#Product" do
         end
       end
 
-      describe "FarMar::Product#by_market" do
+      describe "FarMar::Product#by_vendor" do
         it "returns all of the products with the given vendor_id" do
-          FarMar::Vendor.by_market(56).length.must_equal 5
+          FarMar::Product.by_vendor(67).length.must_equal 3
         end
       end
 end
