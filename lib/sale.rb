@@ -39,4 +39,32 @@ class FarMar::Sale
 			end 
 		end
 	end
+
+	#
+	# Everything below here needs to be tested and sanity checked 
+	#
+
+	def get_vendors
+		FarMar::Vendor.all.find_all {|sale| vendor.vendor_id == vendor_id}
+	end
+
+	def get_products
+		FarMar::Product.all.find_all {|product| product.vendor_id == vendor_id}
+	end 
+
+	def self.between(beginning_time, ending_time)
+		# give time begin parameter
+		# give time end parameter
+		# count up everything between those two and return them 
+
+		# questions: do I need to sort sales by date, then do a diff?
+		
+		# 10 pm ideas: 
+		# sort
+		# find what I am looking for
+		# collect it
+		# reduce it
+		# return it
+	end
+
 end

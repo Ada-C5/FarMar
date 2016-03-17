@@ -38,7 +38,7 @@ describe FarMar::Vendor do
 		vendor_test.get_markets[0].market_id.must_equal 13
 	end
 
-	it "Returns an instance of FarMar::Market" do
+	it "Returns an instance of FarMar::Product" do
 		vendor_test.get_products[0].must_be_instance_of FarMar::Product
 	end 
 
