@@ -51,7 +51,6 @@ describe FarMar::Sale do
 
 	# skipped for now, will address in refactor of Product#find
 	it "returns nil if no product is found" do
-		skip
 		sale_two.product.must_be_nil
 	end
 
