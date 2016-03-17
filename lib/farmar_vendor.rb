@@ -60,6 +60,7 @@ class FarMar::Vendor
 
   # revenue: returns the the sum of all of the vendor's sales (in cents)
   def revenue
+    
 
   end
 
