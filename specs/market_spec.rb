@@ -43,10 +43,10 @@ describe FarMar::Market do
     end
   end
 
-  describe "FarMar::Market#self.search(search_term)" do
+  describe "FarMar::Market#preferred_vendor" do
     markets4 = FarMar::Market.new(id: 1)
-    it "should return 3 markets & vendors for search term 'school'" do
-    markets4.preferred_vendor.must_equal 5
+    it "should return vendor with largest revenue for specific market" do
+    markets4.preferred_vendor.name.must_equal "Reynolds, Schmitt and Klocko"
     end
   end
 
