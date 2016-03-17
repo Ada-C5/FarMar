@@ -29,22 +29,18 @@ class FarMar::Vendor
   end
 
   def markets
-    self.market_id
     FarMar::Market.all.find { |market| market.id == market_id }
   end
 
   def products
-    self.id
     FarMar::Product.all.select { |product| product.vendor_id == id }
   end
 
   def sales
-    self.id
     FarMar::Sale.all.select { |sale| sale.vendor_id == id }
   end
 
   def revenue
-    self.id
     sales.reduce(0) { |sum, sale| sum += sale.amount }
   end
 

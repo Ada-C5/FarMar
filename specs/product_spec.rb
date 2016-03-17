@@ -48,11 +48,10 @@ describe FarMar::Product do
     end
   end
 
-  # see if you can get this working later
   # describe "FarMar::Product#number_of_sales" do
-  #   products3 = FarMar::Product.new(id: 1)
+  #   products3 = FarMar::Product.new(id: 14000)
   #   it "should return nil for id that doesn't exist" do
-  #     products3.number_of_sales(14000).must_equal  nil
+  #     products3.number_of_sales.must_equal  nil
   #   end
   # end
 
