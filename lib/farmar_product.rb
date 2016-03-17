@@ -1,13 +1,13 @@
 class FarMar::Product
 
   attr_reader :product_id, :name, :vendor_id
-  # self.all: returns a collection of instances, representing all of the objects described in the CSV
   def initialize(product_info)
     @product_id, @name, @vendor_id = product_info
     @product_id = @product_id.to_i
     @vendor_id = @vendor_id.to_i
   end
 
+  # self.all: returns a collection of instances, representing all of the objects described in the CSV
   def self.all
     CSV.read(PRODUCT_CSV).map do |line|
       self.new(line)
@@ -50,11 +50,7 @@ class FarMar::Product
     products.collect { |product| FarMar::Product.new(product)}
   end
 
-  # def self.by_vendor(vendor_id)
-  #   FarMar::Product.all.select { |product| product.vendor_id == vendor_id}
 end
-
-
 
 # 1. ID - (Fixnum) uniquely identifies the product
 # 2. Name - (String) the name of the product (not guaranteed unique)
@@ -62,28 +58,4 @@ end
 
 # def sales
 #   FarMar::Sale.all.select { |sale| sale.product_id == product_id}
-# end
-
-# def vendor
-#   FarMar::Vendor.all.select { |vendor| vendor.vendor_id == vendor_id}
-# end
-
-
-
-# def self.all
-#   all_product_info = []
-#   CSV.open("./support/products.csv", 'r') do |csv|
-#     csv.read.each do |line|
-#       all_product_info.push(self.new(product_id: line[0], name: line[1], vendor_id: line[2]))
-#     end
-#   end
-#   return all_product_info
-# end
-
-# def self.find(id)
-#   all_products = self.all
-#   all_products.each do |product|
-#     return product if product.product_id == id
-#   end
-#   nil
 # end

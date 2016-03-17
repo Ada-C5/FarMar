@@ -3,7 +3,6 @@ require 'chronic'
 class FarMar::Sale
 
   attr_reader :sale_id, :amount, :purchase_time, :vendor_id, :product_id
-  # self.all: returns a collection of instances, representing all of the objects described in the CSV
   def initialize(sale_info)
     @sale_id, @amount, @purchase_time, @vendor_id, @product_id = sale_info
     @sale_id = @sale_id.to_i
@@ -13,6 +12,7 @@ class FarMar::Sale
     @product_id = @product_id.to_i
   end
 
+  # self.all: returns a collection of instances, representing all of the objects described in the CSV
   def self.all
     CSV.read(SALE_CSV).map do |line|
       self.new(line)
@@ -24,7 +24,6 @@ class FarMar::Sale
       return self.new(line) if line[0].to_i == id
     end
   end
-
 
   # vendor: returns the FarMar::Vendor instance that is associated with this sale using the
   # FarMar::Sale vendor_id field
@@ -41,40 +40,17 @@ class FarMar::Sale
       return FarMar::Product.new(line) if line[0].to_i == self.product_id
     end
   end
-  # def market
-  #   CSV.foreach(MARKET_CSV) do |line|
-  #     return FarMar::Market.new(line) if line[0].to_i == self.market_id
-  #   end
-  # end
-
-
 
   # self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where
   # the purchase time is between the two times given as arguments
-
   #user should put each time in quotes and can write times however they like
   def self.between(beginning_time, end_time)
-    #begin_time  = Chronic.parse(beginning_time)
-    #end_time = Chronic.parse(end_time)
     begin_time = Chronic.parse(beginning_time)
     end_time = Chronic.parse(end_time)
     time_range = (begin_time..end_time)
     FarMar::Sale.all.select  { |sale | time_range.include? sale.purchase_time }
   end
 end
-  #
-  #
-  #
-  #   # map { |item| item.purchase_time }
-  #   # all_times.each do |time|
-  #   #   Chronic.parse(time)
-  #   # end
-  #   # between_times = all_times.select! { |time| time_range.include? time }
-  #   # return between_times
-
-
-
-
 
 
 
@@ -90,8 +66,6 @@ end
 # 3.  Purchase_time - (Datetime) when the sale was completed
 # 4.  Vendor_id - (Fixnum) a reference to which vendor completed the sale
 # 5.  Product_id - (Fixnum) a reference to which product was sold
-
-
 
 # def vendor
 #   FarMar::Vendor.all.select { |vendor| vendor.vendor_id == vendor_id }

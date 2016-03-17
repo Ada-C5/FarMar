@@ -2,7 +2,6 @@ class FarMar::Vendor
   VENDORS_CSV = "./support/vendors.csv"
 
   attr_reader :vendor_id, :name, :number_of_employees, :market_id
-  # self.all: returns a collection of instances, representing all of the objects described in the CSV
 
   def initialize(vendor_info)
     @vendor_id, @name, @number_of_employees, @market_id = vendor_info
@@ -11,6 +10,7 @@ class FarMar::Vendor
     @market_id = @market_id.to_i
   end
 
+  # self.all: returns a collection of instances, representing all of the objects described in the CSV
   def self.all
     CSV.read(VENDORS_CSV).map do |line|
       self.new(line)
@@ -33,7 +33,6 @@ class FarMar::Vendor
 
   #products: returns a collection of FarMar::Product instances that are associated by
   #the FarMar::Product vendor_id field.
-
   def products
     products = CSV.read(PRODUCT_CSV).select do |line|
       line[2].to_i == self.vendor_id
@@ -48,9 +47,6 @@ class FarMar::Vendor
     end
     sales.collect { |sale| FarMar::Sale.new(sale)}
   end
-  # def sales
-  #   FarMar::Sale.all.select { |sale| sale.vendor_id == vendor_id}
-  # end
 
   #revenue: returns the the sum of all of the vendor's sales (in cents)
   def revenue
@@ -59,13 +55,6 @@ class FarMar::Vendor
   end
 
   #self.by_market(market_id): returns all of the vendors with the given market_id
-
-  def self.by_market(market_id)
-    CSV.foreach(VENDORS_CSV) do |line|
-      return FarMar::Vendor.new(line) if line[3] == market_id
-    end
-  end
-
   def self.by_market(market_id)
     vendors = CSV.read(VENDORS_CSV).select { |line| line[3].to_i == market_id }
     vendors.collect { |vendor| FarMar::Vendor.new(vendor)}
@@ -74,6 +63,12 @@ class FarMar::Vendor
 
 end
 
+
+# def self.by_market(market_id)
+#   CSV.foreach(VENDORS_CSV) do |line|
+#     return FarMar::Vendor.new(line) if line[3] == market_id
+#   end
+# end
 
 # Each vendor belongs to a market, the market_id field refers to the FarMar::Market ID field.
 # Each vendor has many products for sell. The FarMar::Vendor data, in order in the CSV, consists of:
