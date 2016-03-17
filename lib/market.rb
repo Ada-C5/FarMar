@@ -45,4 +45,10 @@ class FarMar::Market
     FarMar::Vendor.all.find_all { |ven| ven.market_id == id }
   end
 
+  def products
+    market_vendors = self.vendors
+    market_vendors_ids = market_vendors.collect { |ven| ven.id }
+    FarMar::Product.all.find_all { |prod| market_vendors_ids.include? prod.vendor_id }
+  end
+
 end

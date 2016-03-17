@@ -54,4 +54,12 @@ describe FarMar::Market do
     end
   end
 
+  describe "Market#products" do
+    it "finds all of the products at the market" do
+      market.products.must_be_instance_of Array
+      market.products[0].must_be_instance_of FarMar::Product
+      assert market.products.collect { |prod| prod.vendor_id }.include? "64"
+    end
+  end
+
 end
