@@ -5,8 +5,7 @@ require_relative '../far_mar'
 describe FarMar::Sale do
 
   before do
-    info = {sale_id: 3,
-    purchase_time: '2013-11-12 12:00:35'}
+    info = [3,44,"tomorrow at 5pm", 5,7]
     @sale = FarMar::Sale.new(info)
   end
 
@@ -32,7 +31,7 @@ describe FarMar::Sale do
   describe 'datetime conversion with new' do
 
     it "should convert purchase time to datetime" do
-      FarMar::Sale.all[0].purchase_time.day.must_equal(7)
+      FarMar::Sale.find(1).purchase_time.hour.must_equal(4)
     end
 
   end
@@ -40,14 +39,14 @@ describe FarMar::Sale do
   describe '.vendor' do
     it "should return vendor instance that made that sale" do
       this_sale = FarMar::Sale.find(30)
-      this_sale.vendor[0].class.must_equal FarMar::Vendor
+      this_sale.vendor.class.must_equal FarMar::Vendor
     end
   end
 
   describe '.product' do
     it "should return product instance" do
       this_sale = FarMar::Sale.find(30)
-      this_sale.product[0].class.must_equal FarMar::Product
+      this_sale.product.class.must_equal FarMar::Product
     end
   end
 

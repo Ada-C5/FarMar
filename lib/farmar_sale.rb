@@ -5,43 +5,48 @@ class FarMar::Sale
   attr_reader :sale_id, :amount, :purchase_time, :vendor_id, :product_id
   # self.all: returns a collection of instances, representing all of the objects described in the CSV
   def initialize(sale_info)
-    @sale_id = sale_info[:sale_id].to_i
-    @amount = sale_info[:amount].to_i
-    @purchase_time = Time.parse(sale_info[:purchase_time])
-    #@purchase_time = Chronic.parse(sale_info[:purchase_time])
-    @vendor_id = sale_info[:vendor_id].to_i
-    @product_id = sale_info[:product_id].to_i
+    @sale_id, @amount, @purchase_time, @vendor_id, @product_id = sale_info
+    @sale_id = @sale_id.to_i
+    @amount = @amount.to_i
+    @purchase_time = Chronic.parse(@purchase_time)
+    @vendor_id = @vendor_id.to_i
+    @product_id = @product_id.to_i
   end
 
   def self.all
-    all_sale_info = []
-    CSV.open("./support/sales.csv", 'r') do |csv|
-      csv.read.each do |line|
-        all_sale_info.push(self.new(sale_id: line[0], amount: line[1], purchase_time: line[2], vendor_id: line[3], product_id: line[4]))
-      end
+    CSV.read(SALE_CSV).map do |line|
+      self.new(line)
     end
-    return all_sale_info
   end
 
   def self.find(id)
-    all_sales = self.all
-    all_sales.each do |sale|
-      return sale if sale.sale_id == id
+    CSV.foreach(SALE_CSV) do |line|
+      return self.new(line) if line[0].to_i == id
     end
-    nil
   end
+
 
   # vendor: returns the FarMar::Vendor instance that is associated with this sale using the
   # FarMar::Sale vendor_id field
   def vendor
-    FarMar::Vendor.all.select { |vendor| vendor.vendor_id == vendor_id }
+    CSV.foreach(VENDORS_CSV) do |line|
+      return FarMar::Vendor.new(line) if line[0].to_i == self.vendor_id
+    end
   end
 
   # product: returns the FarMar::Product instance that is associated with this sale using
   # the FarMar::Sale product_id field
   def product
-    FarMar::Product.all.select { |product| product.product_id == product_id }
+    CSV.foreach(PRODUCT_CSV) do |line|
+      return FarMar::Product.new(line) if line[0].to_i == self.product_id
+    end
   end
+  # def market
+  #   CSV.foreach(MARKET_CSV) do |line|
+  #     return FarMar::Market.new(line) if line[0].to_i == self.market_id
+  #   end
+  # end
+
 
 
   # self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where
@@ -49,11 +54,14 @@ class FarMar::Sale
 
   #user should put each time in quotes and can write times however they like
   def self.between(beginning_time, end_time)
-    begin_time  = Chronic.parse(beginning_time)
+    #begin_time  = Chronic.parse(beginning_time)
+    #end_time = Chronic.parse(end_time)
+    begin_time = Chronic.parse(beginning_time)
     end_time = Chronic.parse(end_time)
     time_range = (begin_time..end_time)
-
-    all_times = FarMar::Sale.all.select  { |sale | time_range.include? sale.purchase_time }
+    FarMar::Sale.all.select  { |sale | time_range.include? sale.purchase_time }
+  end
+end
   #
   #
   #
@@ -63,11 +71,6 @@ class FarMar::Sale
   #   # end
   #   # between_times = all_times.select! { |time| time_range.include? time }
   #   # return between_times
-  #
-   end
-
-
-end
 
 
 
@@ -87,3 +90,9 @@ end
 # 3.  Purchase_time - (Datetime) when the sale was completed
 # 4.  Vendor_id - (Fixnum) a reference to which vendor completed the sale
 # 5.  Product_id - (Fixnum) a reference to which product was sold
+
+
+
+# def vendor
+#   FarMar::Vendor.all.select { |vendor| vendor.vendor_id == vendor_id }
+# end

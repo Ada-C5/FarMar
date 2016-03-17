@@ -4,14 +4,6 @@ require_relative '../far_mar'
 
 describe FarMar::Market do
 
-  before do
-    happy_market_info = {
-      market_id: 10,
-      name: "Happy Market"
-    }
-    @happy_market = FarMar::Market.new(happy_market_info)
-  end
-
   it "does this exist" do
     FarMar::Market.wont_be_nil
   end
@@ -26,7 +18,7 @@ describe FarMar::Market do
   end
 
   it "creates an instance of FarMar::Market" do
-    @happy_market.must_be_instance_of(FarMar::Market)
+    FarMar::Market.new([4, "yay", "dirt", "ryan", "claire", "five", "six"]).must_be_instance_of(FarMar::Market)
   end
 
   describe "self.find" do

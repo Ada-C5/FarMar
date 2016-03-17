@@ -38,7 +38,7 @@ describe FarMar::Vendor do
     let(:vendor_five) { FarMar::Vendor.find(5)}
 
     it "should return the market where the vendor sells" do
-      vendor_five.market[0].market_id.must_equal(1)
+      vendor_five.market.market_id.must_equal(1)
     end
 
   end

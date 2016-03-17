@@ -9,7 +9,7 @@ describe FarMar::Product do
   end
 
   it "can create instance of product class" do
-    FarMar::Product.new(name: "super-toy").must_be_instance_of(FarMar::Product)
+    FarMar::Product.new("super-toy").must_be_instance_of(FarMar::Product)
   end
 
   describe ".all" do
@@ -38,7 +38,7 @@ describe FarMar::Product do
     let(:carrot) { FarMar::Product.find(14)}
 
     it 'should return vendor that sells this product' do
-      carrot.vendor[0].vendor_id.must_equal(7)
+      carrot.vendor.vendor_id.must_equal(7)
     end
 
   end
@@ -66,7 +66,6 @@ describe FarMar::Product do
       classes = goods.map { |product| product.class}
       classes.uniq.must_equal [FarMar::Product]
     end
-
   end
 
 
