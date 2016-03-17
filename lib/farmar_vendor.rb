@@ -73,9 +73,6 @@ class FarMar::Vendor
 
     # return sum
     return total_revenue
-
-
-
   end
 
   # self.by_market(market_id): returns all of the vendors with the given market_id
