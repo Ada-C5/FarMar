@@ -34,7 +34,7 @@ class FarMar::Sale
   end
 
   def self.find(id)
-    sales_to_search = FarMar::Sale.all("./support/sales.csv")
+    sales_to_search = FarMar::Sale.all(FarMar::SALES_CSV)
 
     sales_to_search.each do |sale|
       if sale.id == id.to_s
@@ -59,11 +59,11 @@ class FarMar::Sale
   # self.between(beginning_time, end_time): returns a collection of FarMar::Sale 
   # objects where the purchase time is between the two times given as arguments
   def self.between(beginning_time, end_time)
-    sales_to_search = FarMar::Sale.all("./support/sales.csv")
-    earliest = Time.parse(beginning_time).utc
-    latest = Time.parse(end_time).utc
+    sales_to_search = FarMar::Sale.all(FarMar::SALES_CSV)
+    # earliest = Time.parse(beginning_time).utc
+    # latest = Time.parse(end_time).utc
 
-    sales_to_search.select { |sale| earliest <= Time.parse(sale.purchase_time).utc && Time.parse(sale.purchase_time).utc <= latest}
+    sales_to_search.select { |sale| Time.parse(beginning_time).utc <= Time.parse(sale.purchase_time).utc && Time.parse(sale.purchase_time).utc <= Time.parse(end_time).utc}
 
   end
 

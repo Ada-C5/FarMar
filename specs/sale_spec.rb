@@ -37,7 +37,6 @@ describe FarMar::Sale do
 
 	#skipped for now, will address in refactor of Vendor#find
 	it "returns nil if no vendor is found" do
-		skip
 		sale_two.vendor.must_be_nil
 	end
 

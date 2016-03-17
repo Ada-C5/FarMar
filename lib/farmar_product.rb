@@ -28,7 +28,7 @@ class FarMar::Product
   end
 
   def self.find(id)
-    products_to_search = FarMar::Product.all("./support/products.csv")
+    products_to_search = FarMar::Product.all(FarMar::PRODUCTS_CSV)
     product_to_return = nil
 
     if id.to_s <= products_to_search[products_to_search.length-1].id 
@@ -46,20 +46,20 @@ class FarMar::Product
   # sales: returns a collection of FarMar::Sale instances that are associated using the 
   # FarMar::Sale product_id field.
   def sales
-    sales_to_search = FarMar::Sale.all("./support/sales.csv")
+    sales_to_search = FarMar::Sale.all(FarMar::SALES_CSV)
     sales_to_search.select {|sale| sale.product_id == self.id}
   end
 
 
   # number_of_sales: returns the number of times this product has been sold.
   def number_of_sales
-    sales_to_search = FarMar::Sale.all("./support/sales.csv")
+    sales_to_search = FarMar::Sale.all(FarMar::SALES_CSV)
     sales_to_search.count {|sale| sale.product_id == self.id}
   end
 
   # self.by_vendor(vendor_id): returns all of the products with the given vendor_id
   def self.by_vendor(vendor_id)
-    products_to_search = FarMar::Product.all("./support/products.csv")
+    products_to_search = FarMar::Product.all(FarMar::PRODUCTS_CSV)
     products_to_search.select {|product| product.vendor_id == vendor_id.to_s}
   end
 

@@ -31,13 +31,14 @@ class FarMar::Vendor
   end
 
   def self.find(id)
-    vendors_to_search = FarMar::Vendor.all("./support/vendors.csv")
+    vendors_to_search = FarMar::Vendor.all(FarMar::VENDORS_CSV)
+    vendor_to_return = nil
 
-    vendors_to_search.each do |vendor|
-      if vendor.id == id.to_s
-        return vendor
-      end
+    if id.to_s <= vendors_to_search[vendors_to_search.length-1].id
+      vendor_to_return = vendors_to_search[vendors_to_search.find_index {|vendor| vendor.id == id.to_s}]
     end
+    
+    vendor_to_return
   end
 
 # market: returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id field
@@ -48,13 +49,13 @@ class FarMar::Vendor
 
   # products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
   def products
-    products_to_search = FarMar::Product.all("./support/products.csv")
+    products_to_search = FarMar::Product.all(FarMar::PRODUCTS_CSV)
     products_to_search.select {|product| product.vendor_id == self.id}
   end
 
   # sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
   def sales
-    sales_to_search = FarMar::Sale.all("./support/sales.csv")
+    sales_to_search = FarMar::Sale.all(FarMar::SALES_CSV)
     sales_to_search.select {|sale| sale.vendor_id == self.id}
   end
 
@@ -77,7 +78,7 @@ class FarMar::Vendor
 
   # self.by_market(market_id): returns all of the vendors with the given market_id
   def self.by_market(market_id)
-    vendors_to_search = FarMar::Vendor.all("./support/vendors.csv")
+    vendors_to_search = FarMar::Vendor.all(FarMar::VENDORS_CSV)
 
     vendors_to_search.select {|vendor| vendor.market_id == market_id.to_s}
   end

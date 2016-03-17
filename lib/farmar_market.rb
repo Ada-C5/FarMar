@@ -44,7 +44,7 @@ class FarMar::Market
 
 
   def self.find(id)
-    markets_to_search = FarMar::Market.all("./support/markets.csv")
+    markets_to_search = FarMar::Market.all(FarMar::MARKETS_CSV)
     found_market = nil
 
     markets_to_search.each do |market|
@@ -58,7 +58,7 @@ class FarMar::Market
 
   def vendors
     # returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field.
-    vendors = FarMar::Vendor.all('./support/vendors.csv')
+    vendors = FarMar::Vendor.all(FarMar::VENDORS_CSV)
     vendors.select { |vendor| vendor.market_id == self.id }
   end
 end
