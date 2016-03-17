@@ -52,12 +52,23 @@ describe FarMar::Sale do
     end
   end
 
-  describe "#product" do
-    let(:sale_1) { FarMar::Sale.find(1) }
-    let(:sale_2) { FarMar::Sale.find(13) }
+  describe "#self.between" do
     it "Returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments" do
-      time_passed = sale_1.purchase_time - sale_2.purchase_time
-      product.must_be_instance_of FarMar::Product
+      beg_time = DateTime.parse("2013-11-07 04:34:55 -0800")
+      end_time = DateTime.parse("2013-11-07 04:34:57 -0800")
+      total = FarMar::Sale.between(beg_time, end_time)
+      total.must_be_instance_of Array
+      total.length.must_equal(1)
+    end
+
+    describe "#self.between" do
+      it "Returns a collection of FarMar::Sale objects where the purchase time is between a day given as arguments" do
+        beg_time = DateTime.parse("2013-11-07 04:34:55 -0800")
+        end_time = DateTime.parse("2013-11-08 04:34:55 -0800")
+        total = FarMar::Sale.between(beg_time, end_time)
+        total.must_be_instance_of Array
+        total.length.must_equal(1809)
+      end
     end
   end
 

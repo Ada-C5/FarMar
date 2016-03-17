@@ -63,7 +63,15 @@ class FarMar::Sale
   end
 
   def self.between(beginning_time, end_time)
-    
+    sold = []
+    self.all.each do |sale|
+      time = DateTime.parse(sale.purchase_time)
+      if time > beginning_time && time < end_time
+        sold << sale
+      end
+    end
+    #.cover?
+    return sold
   end
 
 
