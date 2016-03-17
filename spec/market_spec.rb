@@ -2,12 +2,15 @@ require_relative './spec_helper'
 require_relative '../lib/market'
 
 describe FarMar::Market do
+  let(:all_markets) { FarMar::Market.all}
+  let(:market) { FarMar::Market.find(1) }
+
   it "Market Class exist?" do
     FarMar::Market.wont_be_nil
   end
 
   describe "#self.all(file)" do
-    let(:all_markets) { FarMar::Market.all}
+    # let(:all_markets) { FarMar::Market.all}
 
     it "Return an array?" do
       all_markets.must_be_instance_of Array
@@ -20,7 +23,7 @@ describe FarMar::Market do
   end
 
   describe "#self.find(id)" do
-    let(:market) { FarMar::Market.find(1) }
+    # let(:market) { FarMar::Market.find(1) }
 
     it "Know basic data about market?" do
       market.must_be_instance_of FarMar::Market
@@ -39,7 +42,7 @@ describe FarMar::Market do
   end
 
   describe "#vendors" do
-    let(:market) { FarMar::Market.find(1) }
+    # let(:market) { FarMar::Market.find(1) }
     it "Returns an array of vendor objects that match a specific market_id" do
       vendors = market.vendors
       vendors.length.must_equal(6)
