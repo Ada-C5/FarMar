@@ -47,23 +47,34 @@ class FarMar::Market
 
   # returns collection of Market instances where market/vendor name share the same search term
   def self.search(search_term)
-    return_markets = []
+    # return_markets = []
+    # search_term = search_term.upcase
+    # # search through markets, if names match, put in array
+    # self.all.each do |market|
+    #   if market.name.upcase.include?(search_term)
+    #     return_markets << market
+    #   # if the name does not include search_term, search through the market's vendors
+    #   else
+    #     vendors = FarMar::Vendor.by_market(market.mar_id)
+    #     vendors.each do |vendor|
+    #       if vendor.name.upcase.include?(search_term)
+    #         return_markets << market
+    #       end
+    #     end
+    #   end
+    # end
+    # return return_markets
     search_term = search_term.upcase
-    # search through markets, if names match, put in array
-    self.all.each do |market|
-      if market.name.upcase.include?(search_term)
-        return_markets << market
-      # if the name does not include search_term, search through the market's vendors
-      else
-        vendors = FarMar::Vendor.by_market(market.mar_id)
-        vendors.each do |vendor|
-          if vendor.name.upcase.include?(search_term)
-            return_markets << market
-          end
-        end
-      end
-    end
-    return return_markets
+    markets = []
+    vendors = []
+    vendors = FarMar::Vendor.all.find_all { |vendor| vendor.name.upcase.include?(search_term)}
+    return vendors
+    # vendors.each do |vendor|
+    #   markets = vendor.market(vendor.mar_id)
+    # end
+    # #return vendors
+    # markets = self.all.collect { |market| market.name.upcase.include?(search_term)}
+    # return markets
   end
 
   # returns vendor with highest revenue

@@ -40,22 +40,20 @@ describe FarMar::Market do
   end
 
   # test self.search method
-  # it "should return markets with search term in name of market or its vendors" do
-  #   FarMar::Market.search("Green").length.must_equal 54
-  #   FarMar::Market.search("green").length.must_equal 54
-  #   FarMar::Market.search("farm").length.must_equal 432
-  #   FarMar::Market.search("farM").length.must_equal 432
-  # end
+  it "should return markets with search term in name of market or its vendors" do
+    # FarMar::Market.search("Green").length.must_equal 54
+    # # FarMar::Market.search("green").length.must_equal 54
+    FarMar::Market.search("farm").length.must_equal 432
+    # FarMar::Market.search("farM").length.must_equal 432
+  end
 
   # test prefered vendor
   it "should return vendor with highest income" do
     markets[4].prefered_vendor.class.must_equal FarMar::Vendor
-    # market15 = FarMar::Market.find(4)
-    # market15.prefered_vendor.must_equal 4
   end
 
-  # test prefered vendor(date) method
-  # it "should return vendor with highest income from certain day" do
-  #   markets[2].prefered_ven("2013-11-10").must_equal 5
-  # end
+  #test prefered vendor(date) method
+  it "should return vendor with highest income from certain day" do
+    markets[2].prefered_ven("2013-11-10").class.must_equal FarMar::Vendor
+  end
 end
