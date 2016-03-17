@@ -48,9 +48,14 @@ describe FarMar::Market do
       FarMar::Market.search('school').length.must_equal 3
   end
 
+  # check the sales method
+  it "should return all sales in subarrays based on vendors (6)" do
+      markets_find.sales.length.must_equal 6
+  end
+
   # check the preferred_vendor method
   it "should return the vendor with the highest revenue, checks value" do
-      markets_find.preferred_vendor[1].must_equal 61749
+      markets_find.preferred_vendor[1].must_equal 61749 #[1]
   end
 
 
