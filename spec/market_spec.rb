@@ -15,8 +15,6 @@ describe FarMar::Market do
   end
 
 
-
-
   describe "FarMar::Market#self.all" do
       it "will return an array of market instances" do
       market_class.all.must_be_instance_of Array

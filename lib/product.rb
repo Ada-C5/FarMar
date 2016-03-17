@@ -2,9 +2,9 @@
 require 'CSV'
 class FarMar::Product
   include FarMar
-attr_reader :id, :name, :vendor
-  def initialize(id=nil,name=nil,vendor_id=nil)
-    @id = id
+attr_reader :id, :name, :vendor, :vendor_id
+  def initialize(id=nil,name=nil,vendor=nil,vendor_id=nil)
+    @id = id.to_i
     @name = name.to_s
     @vendor_id = vendor_id.to_i
   end
@@ -28,7 +28,7 @@ attr_reader :id, :name, :vendor
   def vendors
         vendor_list = []
         CSV.read("./support/vendors.csv").each do |line|
-          if line[0] == @vendor_id
+          if line[0].to_i == vendor_id.to_i
             vendor_list<< FarMar::Vendor.new(line[0],line[1],line[2],line[3])
           end
       end
@@ -36,7 +36,28 @@ attr_reader :id, :name, :vendor
   end
 
 
+  def sales
+    sales_list = []
+    CSV.read("./support/sales.csv").each do |line|
+      if line[4].to_i == id.to_i
+      sales_list << FarMar::Sale.new(line[0],line[1],line[3],line[4])
+      end
+    end
+    return sales_list
 
+  end
 
+  def number_of_sales
+    sales.length
+  end
+
+  def self.by_vendor(vendor_id)
+    vendor_id_list = []
+    CSV.read("./support/products.csv").each do |line|
+      if line[2] == vendor_id.to_i
+      vendor_id_list << FarMar::Product.new(line[0],line[1],line[2])
+      end
+    end
+  end
 
 end

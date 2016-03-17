@@ -56,7 +56,7 @@ describe FarMar::Vendor do
 
   describe "FarMar::Vendor#self.find" do
     it "will return a vendor with id 5" do
-      @vendor.find("5").must_be_instance_of  FarMar::Vendor
+      @vendor.find("5").must_be_instance_of FarMar::Vendor
     end
   end
 
