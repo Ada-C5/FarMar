@@ -43,4 +43,21 @@ describe "Product#find" do
     product.product_name.must_equal "Disgusted Carrots"
     product.vendor_id.must_equal "11"
   end
+
+  describe "Product#sales" do
+    it "makes sure that the assoc_product_id requested matches the product_id given" do
+      assoc_sales = FarMar::Product.new({product_id: "32", product_name: "Disgusted Carrots", vendor_id: "11"})
+      sales_collection = assoc_sales.sales(32)
+      sales_collection.last.product_id.must_equal "32"
+        sales_collection.first.product_id.must_equal "32"
+    end
+  end
+
+
+  #need test for vendor
+
+  #need test for self.by_vendor
+
+  #need test for number_of_sales
+
 end

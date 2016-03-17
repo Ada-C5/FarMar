@@ -44,4 +44,9 @@ describe "Sale#find" do
     sale.product_id.must_equal "2"
   end
 
+#need test for self.between
+
+#need test for def vendor
+
+#need test for product
 end

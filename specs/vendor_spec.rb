@@ -45,4 +45,29 @@ describe "Vendor#find" do
     vendor.num_employ.must_equal "7"
     vendor.market_id.must_equal "8"
   end
+
+
+  describe "Vendor#products" do
+    it "makes sure that the assoc_vendor_id requested matches the vendor_id given" do
+      assoc_products = FarMar::Vendor.new({vendor_id: "38", vendor_name: "Marvin, Casper and Krajcik", num_employ: "10", market_id: "9"}) #needs an instance of market bc vendors is an instance method
+      product_collection = assoc_products.products(38)
+      product_collection.last.vendor_id.must_equal "38"
+    end
+  end
+
+  describe "Vendor#sales" do
+    it "makes sure that the assoc_vendor_id requested matches the vendor_id given" do
+      assoc_sales = FarMar::Vendor.new({vendor_id: "64", vendor_name: "Larson, Mosciski and Murazik", num_employ: "6", market_id: "14"})
+      sales_collection = assoc_sales.sales(64)
+      sales_collection.last.vendor_id.must_equal "64"
+      sales_collection.first.vendor_id.must_equal "64"
+    end
+  end
+
+
+# need test for def market
+
+#need test for revenue
+
+#need test for self.by_market
 end

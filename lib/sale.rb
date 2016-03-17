@@ -40,6 +40,34 @@ class FarMar::Sale
           return nil                                    #return nil if the id is not found
     end
 
+  def self.between(start_time, end_time)
+    these_sales = []
+    FarMar::Sale.all each do |sale|
+      if (sale.purchase_time >= start_time) && (sale.purchase_time <= end_time)
+        these_sales << sale
+      end
+    end
+    return these_sales
+  end
 
 
+  def vendor
+    self.vendor_id
+    FarMar::Vendor.all each do |vendor|
+      if vendor.vendor_id == self.vendor_id
+        return vendor
+      end
+    end
+  end
+
+  def product
+    self.product_id
+    FarMar::Product.all each do |product|
+      if product.product_id == self.product_id
+        return product
+      end
+    end
+  end
+
+  
 end

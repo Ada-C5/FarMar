@@ -12,6 +12,7 @@ class FarMar::Market
       @state = market_hash[:state]
       @zip = market_hash[:zip]
 
+
     end
 
 
@@ -45,8 +46,15 @@ class FarMar::Market
   end
 
 
-
-
+  def vendors(assoc_market_id)  #vendors: returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field.
+    #FarMar::Vendor.all
+    assoc_vendors = []
+    FarMar::Vendor.all.each do |vendor|
+      if vendor.market_id.to_i == assoc_market_id
+        assoc_vendors << vendor
+      end
+    end
+      return assoc_vendors
   end
 
 end
