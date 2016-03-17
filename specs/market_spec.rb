@@ -69,6 +69,21 @@ describe FarMar::Market do
     end
   end
 
+  describe "Market#prefered_vendor" do
+    it "finds the market's vendor with the highest revenue" do
+      # uncomment the following line to see the prefered vendor for market 14
+      # ap market.prefered_vendor
+      market.prefered_vendor.name.must_equal "Schowalter, Runolfsson and Muller"
+    end
+  end
+
+  describe "Market#worst_vendor" do
+    it "finds the market's vendor with the lowest revenue" do
+      # uncomment the following line to see the worst vendor for market 14
+      # ap market.worst_vendor
+      market.worst_vendor.name.must_equal "Reilly-Howell"
+    end
+  end
 
 
 end
