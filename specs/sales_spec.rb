@@ -58,4 +58,10 @@ describe FarMar::Sale do
   		sale253.product.id.must_equal(171)
   	end
   end
+
+  describe "Sale#between" do
+  	it "should return an array" do
+  		FarMar::Sale.between("2013-11-06 14:19:49 -0800","2013-11-07 04:34:56 -0800").must_be_instance_of(Array)
+  	end
+  end
 end

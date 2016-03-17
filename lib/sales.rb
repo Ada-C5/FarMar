@@ -33,7 +33,6 @@ class FarMar::Sale
         find =[line[0].to_i, line[1].to_i, line[2].to_i,
       				line[3].to_i, line[4].to_i]
         return find
-        break
       end
     end
     return nil	
@@ -57,18 +56,16 @@ class FarMar::Sale
 
 	#returns a collection of FarMar::Sale objects where the 
 	#purchase time is between the two times given as arguments
-	def self.between((beginning_time, end_time)
+	def self.between(beginning_time, end_time)
 		sales = []
 		beginning_time = DateTime.parse(beginning_time)
 		end_time = DateTime.parse(end_time)
-        FarMar::Sale.all.find_all do |sale|
-          if (sale.purchase_time >= beginning_time) && 
- 							(sale.purchase_time <= end_time)
-            sales << sale
-          end
+      FarMar::Sale.all.find_all do |sale|
+        if (sale.purchase_time >= beginning_time) && 
+ 					(sale.purchase_time <= end_time)
+ 			     sales << sale
         end
-        return sales
+      end
+      return sales
 	end
-
-
 end

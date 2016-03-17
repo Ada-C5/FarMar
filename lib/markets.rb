@@ -35,7 +35,6 @@ class FarMar::Market
           find =[line[0].to_i, line[1], line[2], line[3], 
           		 line[4], line[5], line[6]]
         	return find
-        	break
         end
       end
       return nil		

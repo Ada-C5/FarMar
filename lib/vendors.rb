@@ -31,7 +31,6 @@ class FarMar::Vendor
         find =[line[0].to_i, line[1], line[2].to_i,
       				line[3].to_i]
         return find
-        break
       end
     end
     return nil	
