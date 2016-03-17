@@ -30,12 +30,12 @@ class FarMar::Sale
   # return an array of all instances within a certain time range
   def self.between(beginning_time, end_time)
     # convert strings to Time objects by parsing
-    begins = Time.parse(beginning_time)
-    ends = Time.parse(end_time)
+    begins = DateTime.parse(beginning_time)
+    ends = DateTime.parse(end_time)
 
     # find all instances within the begin..end range and return array
     self.all.find_all do |sale|
-      (begins..ends).cover?(Time.parse(sale.purchase_time))
+      (begins..ends).cover?(DateTime.parse(sale.purchase_time))
     end
   end
 
