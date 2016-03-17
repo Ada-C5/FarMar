@@ -23,6 +23,15 @@ class FarMar::Vendor
     end
   end
 
+  def self.sales_by_date(date)
+    # must create DateTime object if date is given as a string (like "2013-11-06")
+    # start at 00:00:00 in the same time zone as the sales.csv file (-0800)
+    date = DateTime.parse(date + " 00:00:00-08:00")
+
+    next_day = date.next
+    FarMar::Sale.between(date, next_day)
+  end
+
   # returns the associated market instance
   def market
     FarMar::Market.find(market_id)

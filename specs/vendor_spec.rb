@@ -8,6 +8,8 @@ describe FarMar::Vendor do
   end
 
   describe "FarMar::Vendor class methods" do
+    let(:sales_by_date) { FarMar::Vendor.sales_by_date("2013-11-06") }
+
     it "should return an array of instances using the self.all method" do
       FarMar::Vendor.all.must_be_instance_of Array
     end
@@ -16,6 +18,13 @@ describe FarMar::Vendor do
       vendor_ten.must_be_instance_of FarMar::Vendor
       vendor_ten.name.must_equal "Kertzmann LLC"
       vendor_ten.id.must_equal 10
+    end
+
+    it "should return an array of all sales made on a specific date" do
+      sales_by_date.must_be_instance_of Array
+      sales_by_date.length.must_equal 1113
+      sales_by_date[0].id.must_equal 4
+      sales_by_date[0].purchase_time.must_equal "2013-11-06 20:44:00 -0800"
     end
   end
 

@@ -22,7 +22,7 @@ class FarMar::Sale
       if type == "vendor"
         sale.vendor_id == id
       elsif type == "product"
-      sale.product_id == id
+        sale.product_id == id
       end
     end
   end
@@ -30,12 +30,12 @@ class FarMar::Sale
   # return an array of all instances within a certain time range
   def self.between(beginning_time, end_time)
     # convert strings to Time objects by parsing
-    begins = DateTime.parse(beginning_time)
-    ends = DateTime.parse(end_time)
+    beginning_time = DateTime.parse(beginning_time) if beginning_time.is_a? String
+    end_time = DateTime.parse(end_time) if end_time.is_a? String
 
     # find all instances within the begin..end range and return array
     self.all.find_all do |sale|
-      (begins..ends).cover?(DateTime.parse(sale.purchase_time))
+      (beginning_time..end_time).cover?(DateTime.parse(sale.purchase_time))
     end
   end
 
