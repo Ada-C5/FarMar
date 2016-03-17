@@ -5,7 +5,7 @@ class FarMar::Sale
   def initialize(id, ammount, purchase_time, vendor_id, product_id)
     @sale_id = id
     @ammount = ammount #Money.new(ammount, "USD")
-    @purchase_time = Time.new(purchase_time)
+    @purchase_time = DateTime.parse(purchase_time)
     @vendor_id = vendor_id
     @product_id = product_id
   end
@@ -43,14 +43,23 @@ class FarMar::Sale
   end
 
   def self.between(beginning_time, end_time)
-    #returns a collection of FarMar::Sale objects,
-    # where the purchase time is between the two times given as arguments
-    # FarMar::Sale.all collect do |sale|
-      #get into each sale,
-      #analize each purchase time,
-      #compare if the purchase time of the test, is included in the given range. Cover?
-      # if true, give it to me!!!!
+    beginning_time = DateTime.parse(beginning_time)
+    end_time = DateTime.parse(end_time)
+    time_tres = DateTime.parse("10839,1934,2013-11-12 20:33:07 -0800,2443,7439")
 
+    # #returns a collection of FarMar::Sale objects,
+    # # where the purchase time is between the two times given as arguments
+    # #get into each sale,
+    # sales_in_a_range = []
+    #   #compare if the purchase time of the test, is included in the given range. Cover?
+    #   # if true, give it to me!!!!
+    # end
 
+    FarMar::Sale.all.select do |sale|
+    (beginning_time..end_time).cover?(sale.purchase_time)
+        # sales_in_a_range << sale
+    end
+    # return sales_in_a_range.length
   end
+
 end

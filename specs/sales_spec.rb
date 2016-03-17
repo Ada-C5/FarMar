@@ -57,4 +57,23 @@ describe FarMar::Sale do
 
     end
   end
+
+  describe "FarMar::Sale#self.between(beginning_time, end_time)" do
+    # let(:range_test) { Date.parse(2013-11-11 13:37:28 -0800)
+    # let(:range_tests) { Date.parse( 2013-11-10 21:21:41 -0800)
+
+    it "should return an array with all vendors" do
+      FarMar::Sale.between("2013-11-11 13:37:28 -0800", "2013-11-10 21:21:41 -0800").must_be_instance_of Array
+    end
+
+    it "should return an object of the class Product" do
+      classes = FarMar::Sale.between("2013-11-11 13:37:28 -0800", "2013-11-30 21:21:41 -0800").map { |s| s.class }
+      classes.uniq.must_equal [FarMar::Sale]
+    end
+
+    it "should return an array with all the sales in that period of time" do
+      FarMar::Sale.between("2013-11-11 13:37:28 -0800", "2013-11-30 21:21:41 -0800").length.wont_equal 12798
+    end
+  end
+
 end

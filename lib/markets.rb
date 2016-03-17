@@ -1,6 +1,5 @@
 class FarMar::Market
-  attr_accessor :market_id, :market_name, :market_address, :market_city,
-                :market_county, :market_state, :market_zip
+  attr_accessor :market_id, :market_name, :market_address, :market_city, :market_county, :market_state, :market_zip
 
   def initialize(id, name, address, city, county, state, zip)
     @market_id = id
@@ -15,7 +14,6 @@ class FarMar::Market
   def self.all
     CSV.read('support/markets.csv').collect { |row| self.new(row[0].to_i,row[1],row[2],row[3],row[4],row[5],row[6]) }
   end
-
 
   def self.find(id)
     FarMar::Market.all.each do |market|
