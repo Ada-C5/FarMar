@@ -1,4 +1,4 @@
-# require_relative '../far_mar'
+#require_relative '../far_mar'
 
 class FarMar::Sale
   attr_reader :id, :amount, :purchase_time, :vendor_id, :product_id
@@ -20,7 +20,7 @@ class FarMar::Sale
       single_sale_hash = {
         id: sale[0].to_i,
         amount: sale[1].to_i,
-        purchase_time: sale[2], # this needs to be a DateTime at some point
+        purchase_time: DateTime.parse(sale[2]),
         vendor_id: sale[3].to_i,
         product_id: sale[4].to_i
       }
@@ -36,6 +36,14 @@ class FarMar::Sale
       end
     end
     found_sale
+  end
+
+  def self.between(beginning_time, end_time)
+    ## returns a collection of FarMar::Sale objects where the purchase time is
+    ## between the two times given as arguments
+    FarMar::Sale.all.find_all do |sale|
+      sale.purchase_time >= beginning_time && sale.purchase_time <= end_time
+    end
   end
 
   def vendor

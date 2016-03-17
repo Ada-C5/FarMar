@@ -35,3 +35,10 @@ describe "FarMar::Sale#product" do
     FarMar::Sale.find(20).product.must_be_instance_of FarMar::Product
   end
 end
+
+describe "FarMar::Sale#self.between" do
+  it "should return an Array" do
+    #FarMar::Sale.between(DateTime.parse(FarMar::Sale.find(1)), DateTime.parse(FarMar::Sale.find(2)).is_a? Array
+    FarMar::Sale.between(DateTime.parse("2013-11-10 12:26:30 -0800"), DateTime.parse("2013-11-13 04:14:40 -0800")).is_a? Array
+  end
+end
