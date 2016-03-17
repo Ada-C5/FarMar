@@ -9,9 +9,7 @@ class FarMar::Product
 
   # self.all: returns a collection of instances, representing all of the objects described in the CSV
   def self.all
-    CSV.read(PRODUCT_CSV).map do |line|
-      self.new(line)
-    end
+    CSV.read(PRODUCT_CSV).map { |line| self.new(line) }
   end
 
   def self.find(id)

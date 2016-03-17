@@ -50,4 +50,12 @@ describe FarMar::Sale do
     end
   end
 
+  describe "self.between" do
+    it "should return all sales between two times" do
+      sales = FarMar::Sale.between("11/8/2013 at 4pm", "11/8/2013 at 8pm")
+      sales[0].purchase_time.class.must_equal Time
+    end
+  end
+
+
 end

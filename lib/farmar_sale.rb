@@ -14,9 +14,7 @@ class FarMar::Sale
 
   # self.all: returns a collection of instances, representing all of the objects described in the CSV
   def self.all
-    CSV.read(SALE_CSV).map do |line|
-      self.new(line)
-    end
+    CSV.read(SALE_CSV).map { |line| self.new(line) }
   end
 
   def self.find(id)
@@ -48,10 +46,21 @@ class FarMar::Sale
     begin_time = Chronic.parse(beginning_time)
     end_time = Chronic.parse(end_time)
     time_range = (begin_time..end_time)
-    FarMar::Sale.all.select  { |sale | time_range.include? sale.purchase_time }
+    sales = CSV.read(SALE_CSV).select do |line|
+      time_range.include? Chronic.parse(line[2])
+    end
+    sales.collect { |sale| FarMar::Sale.new(sale)}
   end
 end
 
+# def products
+#   products = CSV.read(PRODUCT_CSV).select do |line|
+#     line[2].to_i == self.vendor_id
+#   end
+#   products.collect { |product| FarMar::Product.new(product)}
+# end
+#
+# FarMar::Sale.all.select  { |sale | time_range.include? sale.purchase_time }
 
 
 # time = DateTime.parse('2013-11-12 12:00:35')

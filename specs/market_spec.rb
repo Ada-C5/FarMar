@@ -46,4 +46,37 @@ describe FarMar::Market do
 
   end
 
+  describe "products" do
+    let(:market_one) {FarMar::Market.find(1)}
+
+    it "should return array of products sold by that market" do
+      market_one.products.must_be_instance_of Array
+    end
+
+    it 'should return instances of product' do
+      market_one.products[0].class.must_equal FarMar::Product
+    end
+
+  end
+
+  describe 'self.search' do
+    it "should return collection where search term is in market name" do
+      FarMar::Market.search('school').length.must_equal 3
+    end
+  end
+
+  describe 'preferred_vendor' do
+    it "should return vendor in that market with highest revenue" do
+      market = FarMar::Market.find(1)
+      market.preferred_vendor.vendor_id.must_equal(5)
+    end
+  end
+
+  describe 'worst_vendor' do
+    it "should return vendor in that market with least revenue" do
+      market = FarMar::Market.find(1)
+      market.worst_vendor.vendor_id.must_equal(6)
+    end
+  end
+
 end

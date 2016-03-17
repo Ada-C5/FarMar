@@ -43,6 +43,14 @@ describe FarMar::Product do
 
   end
 
+  # describe 'market' do
+  #   let (:bike) {FarMar::Product.find(12)}
+  #   it "should return market where that product is sold" do
+  #     bike.market.market_id.must_equal
+  #
+  #   end
+  # end
+
   describe '.sales' do
     let (:toy) { FarMar::Product.find(40)}
     it 'returns collection of all sales instances for this product' do
