@@ -32,6 +32,10 @@ class FarMar::Vendor
     FarMar::Sale.between(date, next_day)
   end
 
+  def self.revenue(date)
+    self.sales_by_date(date).reduce(0) { |sum, sale| sum + sale.amount}
+  end
+
   # returns the associated market instance
   def market
     FarMar::Market.find(market_id)
