@@ -22,7 +22,7 @@ class FarMar::Sale
 	  	individual_sale = {
 	   	sale_id: 				row[0].to_i,
 	   	amount: 				row[1].to_i,
-	   	purchase_time: 	row[2], # figure out how to do date_time shenanigans 
+	   	purchase_time: 	DateTime.parse(row[2]) ,# figure out how to do date_time shenanigans 
 	   	vendor_id:  		row[3].to_i,
 	   	product_id: 		row[4].to_i
 	  	}

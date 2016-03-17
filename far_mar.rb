@@ -1,4 +1,6 @@
 require 'CSV'
+require 'Date'
+require 'Time'
 
 module FarMar
 	

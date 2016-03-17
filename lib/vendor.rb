@@ -49,19 +49,18 @@ class FarMar::Vendor
 	end 
 
 	def get_revenue
-		vendor_sales = FarMar::Sale.all.find_all {|sale| sale.vendor_id == vendor_id}		
-		total = vendor_sales[0]
-		return total 
-		# total = 0 
-		# vendor_sales.each do |sale|
-		# 	total += sale
-		# end 
-		# return total 
+		# instances of sales 
+		vendor_sales = FarMar::Sale.all.find_all {|sale| sale.vendor_id == vendor_id}		 
+		# array of values representing returned sales
+		total = vendor_sales.collect {|sale| sale.amount}
+		# no longer instances! Can be reduced. 
+		total = total.reduce(0, :+)
+		return total  
 	end
 
+  def	self.by_market(market_id)
+  	FarMar::Vendor.all.find_all {|vendor| vendor.market_id == market_id}
+  end 
 end
-# array.inject(0){|sum,x| sum + x }
-# 260,6473,2013-11-09 15:59:29 -0800,56,181
-# 261,2799,2013-11-09 15:35:38 -0800,56,181
-# 262,4514,2013-11-09 02:55:04 -0800,56,182
+
 

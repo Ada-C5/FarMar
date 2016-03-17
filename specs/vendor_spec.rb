@@ -4,6 +4,7 @@ describe FarMar::Vendor do
 
 	let(:all_vendors) {FarMar::Vendor.all}
 	let(:vendor_test) {FarMar::Vendor.find(56)}
+	let(:market_test) {FarMar::Vendor.by_market(56)}
 
 	it "exists" do 
 		FarMar::Vendor.wont_be_nil 
@@ -17,11 +18,7 @@ describe FarMar::Vendor do
 		assert_equal Array, all_vendors.class
 	end
 
-	it "Vendor.find returns an instance of Vendor" do 
-		assert_equal FarMar::Vendor, vendor_test.class
-	end
-
-	it "Returns an instance of FarMar::Vendor" do 
+	it "Find returns an instance of FarMar::Vendor" do 
 		vendor_test.must_be_instance_of FarMar::Vendor
 	end
 
@@ -63,13 +60,20 @@ describe FarMar::Vendor do
 		vendor_test.get_sales[2].vendor_id.must_equal 56
 	end 
 
-	it "raises an error if the sale does not exist" do 
+	it "Raises an error if the sale does not exist" do 
 		assert_raises(NoMethodError) {vendor_test.get_sales[3].vendor_id}
 	end 
 
-	it "returns an amount of sales based on vendor id" do 
-		vendor_test.get_revenue.amount.must_equal 13786
+	it "Returns an amount of sales based on vendor ID" do 
+		vendor_test.get_revenue.must_equal 13786
+	end 
+
+	it "by_market returns a list of vendors at a given market" do 
+		market_test[0].market_id.must_equal 56
+		market_test[1].market_id.must_equal 56
+	end
+
+	it "Raises an error if the vendor instance does not exist" do 
+		assert_raises(NoMethodError) {market_test[15].market_id}
 	end 
 end 
-
-
