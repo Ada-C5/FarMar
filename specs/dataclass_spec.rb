@@ -13,7 +13,7 @@ describe FarMar::DataClass do
       assert(field_length == [7])
     end
 
-    it "will return arrays with 3 'fields' for Products data [@@id, @name, @vendor_id]" do
+    it "will return arrays with 3 'fields' for Products data [@id, @name, @vendor_id]" do
       field_length = FarMar::DataClass.check_file_data_for_fields('./support/products.csv')
       assert(field_length == [3])
     end

@@ -26,19 +26,21 @@ module FarMar
 
       sales_between_times = all_sales.find_all do |sale|
         sale_date = Date.parse(sale.purchase_time)
-        (date2..date1).cover?(sale_date)
+        (date1..date2).cover?(sale_date)
       end
       return sales_between_times
     end
 
-    def self.all_products_sold
-      all_sales = self.all
-      products_sold = all_sales.collect do |sale|
-        sale.product_id
-      end
 
-      products_sold.uniq
-    end
+    # def self.all_products_sold
+    # # used this to check for sales that had a nil product id... still not sure what to do with them
+    #   all_sales = self.all
+    #   sales_with_nil_pid = all_sales.find_all do |sale|
+    #     sale.vendor_id == nil
+    #   end
+    #
+    #   sales_with_nil_pid
+    # end
 
     def self.find(data_file = './support/sales.csv', id)
       super(data_file, id)

@@ -1,14 +1,10 @@
 require_relative './spec_helper'
 
 describe FarMar::Sale do
-  #we have Sale IDs 1-12001, and will test at random!
+  # Random IDs for tests
   let(:random_sale_id) { ("1".."12001").to_a.sample }
-  #we have Product IDs 1-8193, and will test at random!
   let(:random_product_id) { ("1".."8193").to_a.sample }
-  #we have Vendor IDs 1-2690, and will test at random
   let(:random_vendor_id) { ("1".."2690").to_a.sample }
-  #Market IDs are 1-500, and will test at random.
-  let(:random_market_id) { ("1".."500").to_a.sample }
 
   let(:sale_by_vendor_id_test) { FarMar::Sale.new( [nil, nil, nil, random_vendor_id, nil] ) }
   let(:sale_by_product_id_test) { FarMar::Sale.new( [nil, nil, nil, nil, random_product_id] ) }

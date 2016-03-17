@@ -1,15 +1,13 @@
 require_relative './spec_helper'
 
 describe FarMar::Product do
-  #we have Product IDs 1-8193, and will test at random!
+  # Random IDs for tests
   let(:random_product_id) { ("1".."8193").to_a.sample }
-  #we have Vendor IDs 1-2690, and will test at random
   let(:random_vendor_id) { ("1".."2690").to_a.sample }
-  #Market IDs are 1-500, and will test at random.
-  let(:random_market_id) { ("1".."500").to_a.sample }
+  # let(:random_market_id) { ("1".."500").to_a.sample }
 
   let(:product_by_vendor_id_test) { FarMar::Product.new( [nil, nil, random_vendor_id] ) }
-  let(:product_by_product_id_test) { FarMar::Product.new( ["4", nil, nil] ) } # I think some products aren't sold I will look at this later.
+  let(:product_by_product_id_test) { FarMar::Product.new( [random_product_id, nil, nil] ) } # I think some products aren't sold I will look at this later.
 
   it "is an object we have access to" do
     FarMar::Product.wont_be_nil

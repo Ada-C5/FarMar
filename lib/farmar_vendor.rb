@@ -8,13 +8,25 @@ module FarMar
 
     end
 
+    # def self.sales_with_nil
+    # # used this to check for sales that had a nil product id... still not sure what to do with them
+    #   all_vendors = self.all
+    #   vendors_with_nil_pid = all_vendors.find_all do |vendor|
+    #     vendor.market_id == nil
+    #   end
+    #
+    #   vendors_with_nil_pid
+    # end
+
     def revenue
     #we need the zero!!! (otherwise it starts with the first instance)
         total_revenue = sales.reduce(0) do |total, sale|
-          sale_amount = (sale.amount).to_f #this is hacky. fix?
+          sale_amount = (sale.amount).to_f
           total += sale_amount
         end
-        return total_revenue
+
+        total_revenue > 0 ? total_revenue : "This poor vendor made no sales!"
+
     end
 
     def sales

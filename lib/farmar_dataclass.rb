@@ -39,7 +39,10 @@ module FarMar
 
       all = data_class.all(data_file)
       matched = all.find_all do |instance|
-        # return ["Sorry, I can't match nil IDs."] if instance.send(method_name) == nil
+        # if (instance.send(method_name) == nil || id_to_match == nil)
+        #   return ["Sorry, I can't match nil IDs."]
+        # end
+
         id_to_match == instance.send(method_name) # need to do this with send(string) and not just .method_name because otherwise it thinks there is a method called .method name :(
       end
 
@@ -51,7 +54,10 @@ module FarMar
 
       all = data_class.all(data_file)
       all.find do |instance|
-        # return ["Sorry, I can't match nil IDs."] if instance.send(method_name) == nil
+        # if (instance.send(method_name) == nil || id_to_match == nil)
+        #   return ["Sorry, I can't match nil IDs."]
+        # end
+
         id_to_match == instance.send(method_name) # need to do this with send(string) and not just .method_name because otherwise it thinks there is a method called .method name :(
         return instance
       end
@@ -97,6 +103,20 @@ module FarMar
 
       return array_lengths.uniq # we care that all the input is the same length, related to the data fields we parallel assign in each child class.
     end
+
+    # def self.find_nils(data_file)
+    #
+    #   data = []
+    #   CSV.foreach(data_file) do |row|
+    #     data << row
+    #   end
+    #
+    #   instances_with_nil = data.find_all do |array|
+    #     array.include?(nil)
+    #   end
+    #
+    #   return instances_with_nil
+    # end
 
   end
 end

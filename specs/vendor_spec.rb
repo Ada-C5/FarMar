@@ -1,9 +1,8 @@
 require_relative './spec_helper'
 
 describe FarMar::Vendor do
-  #we have Vendor IDs 1-2690, and will test at random
+  # Generate random ids for tests based on ranges
   let(:random_vendor_id) { ("1".."2690").to_a.sample }
-  #Market IDs are 1-500, and will test at random.
   let(:random_market_id) { ("1".."500").to_a.sample }
 
   let(:vendor_by_vendor_id_test) { FarMar::Vendor.new( [random_vendor_id, nil, nil, nil] ) }
@@ -71,7 +70,7 @@ describe FarMar::Vendor do
 
   describe "FarMar::Vendor#revenue" do #this one won't work yet!
     it "returns the the sum of all of the vendor's sales (in cents)" do
-    vendor_by_vendor_id_test.revenue.must_be_kind_of(Float) #we want the number back in cents!
+      vendor_by_vendor_id_test.revenue.must_be_kind_of(Float) #we want the number back in cents!
 
     end
   end
