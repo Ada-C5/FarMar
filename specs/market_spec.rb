@@ -49,8 +49,8 @@ describe FarMar::Market do
   end
 
   # check the preferred_vendor method
-  it "should return ___" do
-      markets_find.preferred_vendor.must_equal 3
+  it "should return the vendor with the highest revenue, checks value" do
+      markets_find.preferred_vendor[1].must_equal 61749
   end
 
 
