@@ -43,4 +43,11 @@ describe FarMar::Market do
     end
   end
 
+  describe "FarMar::Market#self.search(search_term)" do
+    markets4 = FarMar::Market.new(id: 1)
+    it "should return 3 markets & vendors for search term 'school'" do
+    markets4.preferred_vendor.must_equal 5
+    end
+  end
+
 end

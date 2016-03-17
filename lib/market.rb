@@ -35,8 +35,11 @@ class FarMar::Market
   end
 
   def vendors
-    self.id
     FarMar::Vendor.all.select { |vendor| vendor.market_id == id }
+  end
+
+  def preferred_vendor
+    vendors.max_by { |vendor| vendor.revenue }
   end
 
   # def products
