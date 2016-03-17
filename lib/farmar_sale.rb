@@ -22,6 +22,11 @@ class FarMar::Sale
     all_sales.select { |s| s.id == id }
   end
 
+  def self.between(beginning_time, end_time)
+    all_sales = FarMar::Sale.all
+    all_sales.select { |s| (beginning_time..end_time).cover?(s.purchase_time) }
+  end
+
   def vendor
     all_vendors = FarMar::Vendor.all
     all_vendors.select { |v| v.id == @vendor_id }
@@ -32,10 +37,6 @@ class FarMar::Sale
     all_products.select { |p| p.id == @product_id }
   end
 
-  def self.between(beginning_time, end_time)
-    all_sales = FarMar::Sale.all
-    all_sales.select { |s| (beginning_time..end_time).cover?(s.purchase_time) }
-  end
 # beginning_time = DateTime.parse("2013-11-12 06:00:00 -0800")
 # end_time = DateTime.parse("2013-11-12 06:05:00 -0800")
 end
