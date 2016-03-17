@@ -18,17 +18,6 @@ module FarMar
     def self.all(data_file = './support/markets.csv' )
       super(data_file)
     end
-
-    # def self.all_markets_nil_id
-    # # used this to check for sales that had a nil product id... still not sure what to do with them
-    #   all_markets = self.all
-    #   markets_with_nil_pid = all_markets.find_all do |market|
-    #     market.id == nil || market.id == nil
-    #   end
-    #
-    #   markets_with_nil_pid
-    # end
-
-
+    
   end
 end

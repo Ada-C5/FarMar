@@ -30,10 +30,8 @@ describe FarMar::Vendor do
     vendors_collection = FarMar::Vendor.by_market(random_market_id)
     vendors_collection.must_be_kind_of(Array)
 
-    # any item in the Array will be an instance of FarMar::Vendor
-    number_of_vendors = vendors_collection.length
-    random_vendor = (0...number_of_vendors).to_a.sample
-    vendors_collection[random_vendor].must_be_instance_of(FarMar::Vendor)
+    # each item in the Array will be an instance of FarMar::Vendor
+    vendors_collection.each { |instance| instance.must_be_instance_of(FarMar::Vendor) }
     end
   end
 
@@ -48,11 +46,8 @@ describe FarMar::Vendor do
     it "returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field." do
     products_collection = vendor_by_vendor_id_test.products
     products_collection.must_be_kind_of(Array)
-
-    # any item in the Array will be an instance of FarMar::Product
-    number_of_products = products_collection.length
-    random_product = (0...number_of_products).to_a.sample
-    products_collection[random_product].must_be_instance_of(FarMar::Product)
+    # each item in the Array will be an instance of FarMar::Product
+    products_collection.each { |instance| instance.must_be_instance_of(FarMar::Product) }
     end
   end
 
@@ -60,20 +55,16 @@ describe FarMar::Vendor do
     it "returns a collection of FarMar::Sale instances that are associated by the vendor_id field." do
     sales_collection = vendor_by_vendor_id_test.sales
     sales_collection.must_be_kind_of(Array)
-
-    # any item in the Array will be an instance of FarMar::Sale
-    number_of_sales = sales_collection.length
-    random_sale = (0...number_of_sales).to_a.sample
-    sales_collection[random_sale].must_be_instance_of(FarMar::Sale)
+    # each item in the Array will be an instance of FarMar::Sale
+    sales_collection.each { |instance| instance.must_be_instance_of(FarMar::Sale) }
     end
   end
 
-  describe "FarMar::Vendor#revenue" do #this one won't work yet!
+  describe "FarMar::Vendor#revenue" do
     it "returns the the sum of all of the vendor's sales (in cents)" do
       vendor_by_vendor_id_test.revenue.must_be_kind_of(Float) #we want the number back in cents!
 
     end
   end
-
 
 end

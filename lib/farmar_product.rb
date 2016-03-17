@@ -6,16 +6,6 @@ module FarMar
     def initialize(initialization_array)
       @id, @name, @vendor_id = initialization_array
     end
-    
-    # def self.all_vendors_by_product
-    # # used this to check for sales that had a nil product id... still not sure what to do with them
-    #   all_products = self.all
-    #   products_with_nil_pid = all_products.find_all do |product|
-    #     product.vendor_id == nil
-    #   end
-    #
-    #   products_with_nil_pid
-    # end
 
     def vendor
       super('./support/vendors.csv', FarMar::Vendor, vendor_id, "id")

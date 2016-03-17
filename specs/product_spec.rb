@@ -4,10 +4,9 @@ describe FarMar::Product do
   # Random IDs for tests
   let(:random_product_id) { ("1".."8193").to_a.sample }
   let(:random_vendor_id) { ("1".."2690").to_a.sample }
-  # let(:random_market_id) { ("1".."500").to_a.sample }
 
   let(:product_by_vendor_id_test) { FarMar::Product.new( [nil, nil, random_vendor_id] ) }
-  let(:product_by_product_id_test) { FarMar::Product.new( [random_product_id, nil, nil] ) } # I think some products aren't sold I will look at this later.
+  let(:product_by_product_id_test) { FarMar::Product.new( [random_product_id, nil, nil] ) }
 
   it "is an object we have access to" do
     FarMar::Product.wont_be_nil
@@ -29,11 +28,8 @@ describe FarMar::Product do
     it "returns all of the products with the given vendor_id" do
       products_collection = FarMar::Product.by_vendor(random_vendor_id)
       products_collection.must_be_kind_of(Array)
-
-      # any item in the Array will be an instance of FarMar::Vendor
-      number_of_products = products_collection.length
-      random_product = (0...number_of_products).to_a.sample
-      products_collection[random_product].must_be_instance_of(FarMar::Product)
+      # each item in the Array will be an instance of FarMar::Vendor
+      products_collection.each { |instance| instance.must_be_instance_of(FarMar::Product) }
     end
   end
 
@@ -47,17 +43,14 @@ describe FarMar::Product do
     it "will return a collection of FarMar::Sale instances that are associated by the product_id field." do
       sales_collection = product_by_product_id_test.sales
       sales_collection.must_be_kind_of(Array)
-
-      # any item in the Array will be an instance of FarMar::Sale
-      number_of_sales = sales_collection.length
-      random_sale = (0...number_of_sales).to_a.sample
-      sales_collection[random_sale].must_be_instance_of(FarMar::Sale)
+      # each item in the Array will be an instance of FarMar::Sale
+      sales_collection.each { |instance| instance.must_be_instance_of(FarMar::Sale) }
     end
   end
 
   describe "#number_of_sales" do
     it "will return the number of times this product has been sold." do
-    assert_operator(product_by_product_id_test.number_of_sales, :>=, 0)
+    assert_operator(product_by_product_id_test.number_of_sales, :>=, 0.0)
     # :>= because although some products may not have been sold, I know for sure we can't have negative sales.
     end
   end

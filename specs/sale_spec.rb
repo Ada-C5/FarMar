@@ -27,8 +27,11 @@ describe FarMar::Sale do
 
   describe "self.between(beginning_time, end_time)" do
     it "returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments" do
-     #parameters must be year-month-day
-      FarMar::Sale.between("2013-11-1", "2013-11-15").must_be_instance_of(Array)
+     # parameters must be year-month-day
+      sales_between = FarMar::Sale.between("2013-11-1", "2013-11-15")
+      sales_between.must_be_instance_of(Array)
+      # every instance must be instance of Sale
+      sales_between.each { |instance| instance.must_be_instance_of(FarMar::Sale) }
 
     end
   end
