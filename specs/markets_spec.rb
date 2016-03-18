@@ -38,11 +38,19 @@ describe FarMar::Market do
     it "can find an instance of market matching the passed name" do
       FarMar::Market.find_by_name("farmer").must_be_instance_of FarMar::Market
     end
+
+    it "will return 'No instance found' if search terms don't match an instance" do
+      FarMar::Market.find_by_name("wut").must_be_instance_of String
+    end
   end
 
   describe "Market find_all_by_name" do
     it "can find a collection (array) of markets matching the passed name" do
       FarMar::Market.find_all_by_name("farmer").must_be_instance_of Array
+    end
+
+    it "will return 'No instance found' if search terms don't match any instances" do
+      FarMar::Market.find_all_by_name("xxxxxxb").must_be_instance_of String
     end
   end
 

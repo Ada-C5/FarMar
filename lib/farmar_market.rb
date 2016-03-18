@@ -23,8 +23,9 @@ class FarMar::Market < FarMar::SharedStuff
   end
 
   def self.find_by_name(match) #finds first instance of matching name
+
     self.pull_from_csv.each do |instance|
-      if instance[1].include?(match.to_s)
+      if instance[1].include?(match.downcase.to_s)
         return make_new_instance(instance)
       end
     end
@@ -32,8 +33,13 @@ class FarMar::Market < FarMar::SharedStuff
   end
 
   def self.find_all_by_name(match)
-    all_match = FarMar::Market.all.select {|vendor_id, instance| instance.name.include?(match.to_s)}
-    return all_match.values #array of instances
+    all_match = FarMar::Market.all.select {|vendor_id, instance| instance.name.include?(match.downcase.to_s)}
+    if all_match.empty?
+      return "No instance found"
+    else
+      return all_match.values #array of instances
+    end
+
   end
 
 end
