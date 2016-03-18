@@ -1,7 +1,7 @@
 require_relative './spec_helper'
 require_relative '../far_mar.rb'
 
-describe FarMar::Market do           #this is testing to make sure Player exisT
+describe FarMar::Market do
 it "will not be nil" do
     FarMar::Market.wont_be_nil
   end
@@ -14,7 +14,7 @@ it "will not be nil" do
       all_markets.wont_be_nil
     end
 
-    it "returns an array" do      #want to describe what the method is doing, not what the test is doing
+    it "returns an array" do  
       all_markets.class.must_equal(Array)      #could also do: .must_be_instance of Array
     end
 
@@ -53,7 +53,7 @@ it "will not be nil" do
     it "makes sure that the assoc_market_id requested matches the market_id given" do
       assoc_vendors = FarMar::Market.new({market_id: "6", market_name: "Jefferson City Farmer's Market", address: "000 Main Street", city: "Jefferson City", county: "Cole", state: "Missouri", zip: "0"}) #needs an instance of market bc vendors is an instance method
       vendor_collection = assoc_vendors.vendors(6)
-      vendor_collection.last.market_id.must_equal "6"   #a way to do boolean false?
+      vendor_collection.last.market_id.must_equal "6"
     end
 
   end

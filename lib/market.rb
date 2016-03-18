@@ -1,5 +1,3 @@
-
-
 class FarMar::Market
   attr_reader :market_id, :market_name, :address, :city, :county, :state, :zip #these are like the instance variables, but now methods!
 

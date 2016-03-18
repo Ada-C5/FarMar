@@ -1,7 +1,7 @@
 require_relative './spec_helper'
 require_relative '../far_mar.rb'
 
-describe FarMar::Sale do                                         #this is testing to make sure Player exists
+describe FarMar::Sale do  
   it "will not be nil" do
     FarMar::Sale.wont_be_nil
   end
@@ -14,7 +14,7 @@ describe "Sale#all" do
   it "makes an array of all the sales" do
     all_sales.wont_be_nil
   end
-  it "returns an array" do      #want to describe what the method is doing, not what the test is doing
+  it "returns an array" do
     all_sales.class.must_equal(Array)
   end
   it "makes sure that the first element is an instance of a Sale/Sale object" do

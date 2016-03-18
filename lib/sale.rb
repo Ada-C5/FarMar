@@ -1,4 +1,3 @@
-# lib/farmar_market.rb
 class FarMar::Sale
 attr_reader :sale_id, :amount, :purchase_time, :vendor_id, :product_id
 

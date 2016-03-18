@@ -15,7 +15,7 @@ describe FarMar::Product do
       all_products.wont_be_nil
     end
 
-    it "returns an array" do      #want to describe what the method is doing, not what the test is doing
+    it "returns an array" do
       all_products.class.must_equal(Array)
     end
 
@@ -54,14 +54,13 @@ describe FarMar::Product do
     end
 
     describe "Product#vendor" do
-      #let(:product) {FarMar::Product.find(32)}
       it "makes sure that when we call market method on the new instance of Vendor we get the correct one" do
         product.vendor.vendor_name.must_equal(vendor_name = "Donnelly-Quigley")
       end
     end
 
     describe "Product#by_vendor" do
-      it "makes sure the vendor_id for the first market in the returned array is correct" do
+      it "makes sure the product_id for the first market in the returned array is correct depending on the vendor_id given" do
         FarMar::Product.by_vendor(500)[0].product_id.must_equal("1549")
 
       end
@@ -69,7 +68,6 @@ describe FarMar::Product do
     end
 
     describe "Product#number_of_sales" do
-    #let(:product) {FarMar::Product.find(32)}
       it "makes sure the length of the array or number of sales is correct for the Prduct instance given" do
         product.number_of_sales.must_equal(2)
 

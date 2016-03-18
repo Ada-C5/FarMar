@@ -1,4 +1,3 @@
-# lib/farmar_market.rb
 class FarMar::Product
 
   attr_reader :product_id, :product_name, :vendor_id #these are like the instance variables, but now methods!
@@ -63,7 +62,7 @@ class FarMar::Product
       end
     end
 
-  return product_sales.length 
+  return product_sales.length
   end
 
 

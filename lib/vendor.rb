@@ -1,4 +1,3 @@
-# lib/farmar_market.rb
 class FarMar::Vendor
 attr_reader :vendor_id, :vendor_name, :num_employ, :market_id
 

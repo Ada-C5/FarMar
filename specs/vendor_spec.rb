@@ -2,7 +2,7 @@ require_relative './spec_helper'
 require_relative '../far_mar.rb'
 
 describe FarMar::Vendor do
-let(:vendor) {FarMar::Vendor.find(24)}                                      #this is testing to make sure Player exists
+let(:vendor) {FarMar::Vendor.find(24)}
   it "will not be nil" do
     FarMar::Vendor.wont_be_nil
   end
@@ -15,7 +15,7 @@ let(:vendor) {FarMar::Vendor.find(24)}                                      #thi
       FarMar::Vendor.all.wont_be_nil
     end
 
-    it "returns an array" do      #want to describe what the method is doing, not what the test is doing
+    it "returns an array" do 
       all_vendors.class.must_equal(Array)
     end
 
