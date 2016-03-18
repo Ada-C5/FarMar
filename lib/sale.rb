@@ -29,7 +29,7 @@ class FarMar::Sale
 
   def self.find(id)
     sales = self.all
-    sales.each do |found_sale|
+    sales.detect do |found_sale|
       return found_sale if id == found_sale.id
     end
     return nil

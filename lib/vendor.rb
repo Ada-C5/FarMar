@@ -27,7 +27,7 @@ class FarMar::Vendor
 
   def self.find(id)
     vendors = self.all
-    vendors.each do |found_vendor|
+    vendors.detect do |found_vendor|
       return found_vendor if id == found_vendor.id
     end
     return nil
