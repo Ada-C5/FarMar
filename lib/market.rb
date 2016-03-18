@@ -40,13 +40,15 @@ class FarMar::Market < FarMar::FarMarClass
   # returns collection of Market instances where market or vendor name share the same search term
   def self.search(search_term)
     search_term = search_term.upcase
-
+    # get vendors with names that match the search term
     vendors = FarMar::Vendor.all.find_all { |vendor| vendor.name.upcase.include?(search_term)}
+    # get the market instances from those vendors
     vendors_market = vendors.collect { |vendor| vendor.market(vendor.market_id)}
-
+    # get the markets with names that match the search term
     markets = self.all.find_all { |market| market.name.upcase.include?(search_term)}
-
+    # combine both the arrays of market instances
     markets = vendors_market + markets
+    # take only unique markets
     markets = markets.uniq
     return markets
   end
