@@ -1,7 +1,6 @@
 class FarMar::Sale < FarMar::SharedStuff
   attr_reader :sale_id, :amount, :purchase_time, :vendor_id, :product_id
   def initialize(line) #for all, csv length -1?
-
     @sale_id = line[0].to_i
     @amount = line[1].to_i
     @purchase_time = line[2].to_i #unix_time, or as close as I could get.
@@ -31,7 +30,7 @@ class FarMar::Sale < FarMar::SharedStuff
     return product.values[0] #returns instance
   end
 
-  def self.between(beginning_time, end_time)
+  def self.between(beginning_time, end_time) #input format day/month/year only
     end_array = end_time.split("/")
     end_array.map! {|string| string.to_i}
     end_time = Date.new(end_array[2], end_array[0], end_array[1]).to_time

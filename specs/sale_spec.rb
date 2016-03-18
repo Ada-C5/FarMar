@@ -31,9 +31,9 @@ describe FarMar::Sale do
     end
   end
 
-  describe "Sale between" do 
+  describe "Sale between" do
     it "can find a collection of instances whose purchase time is between two passed times" do
-      FarMar::Sale.between("11/9/2013", "11/10/2013").must_be_instance_of Array
+      FarMar::Sale.between("11/8/2013", "11/8/2013").must_be_instance_of Array
     end
   end
 
