@@ -65,6 +65,7 @@ describe FarMar::Market do
   describe "FarMar::Market#preferred_vendor" do
     let(:vendor_pref) { market_found.preferred_vendor }
     let(:vendor_pref_ten) { FarMar::Market.find(10).preferred_vendor }
+    let(:vendor_pref_from_date) { FarMar::Market.find(10).preferred_vendor("2013-11-06") }
 
     it "should return the vendor instance with the highest revenue for market 495" do
       vendor_pref.id.must_equal 2662
@@ -79,22 +80,36 @@ describe FarMar::Market do
       vendor_pref_ten.name.must_equal "Dickens-Weissnat"
       vendor_pref_ten.revenue.must_equal 60127
     end
+
+    it "should return the vendor instance with the highest revenue on a particular day" do
+      vendor_pref_from_date.id.must_equal 46
+      vendor_pref_from_date.revenue("2013-11-06").must_equal 10513
+    end
   end
 
   describe "FarMar::Market#worst_vendor" do
     let(:vendor_worst) { market_found.worst_vendor }
     let(:vendor_worst_ten) { FarMar::Market.find(10).worst_vendor }
+    let(:vendor_worst_from_date) { FarMar::Market.find(10).worst_vendor("2013-11-06") }
 
+    # only considers markets that sold something
+    # in case those that didn't sell anything weren't present
     it "should return the vendor with the lowest revenue from market 495" do
-      vendor_worst.id.must_equal 2664
-      vendor_worst.name.must_equal "Dickinson, Brakus and Heathcote"
-      vendor_worst.revenue.must_equal 0
+      vendor_worst.id.must_equal 2666
+      vendor_worst.name.must_equal "Lemke-Bernhard"
+      vendor_worst.revenue.must_equal 5722 # NOTE!! there are 4 sales that are in different 
+      # spots in the sales.csv file (same numbers for 2nd set but diff time stamp)
     end
 
     it "should return the vendor with the lowest revenue from market 10" do
       vendor_worst_ten.id.must_equal 42
       vendor_worst_ten.name.must_equal "Tillman, Lockman and Klein"
       vendor_worst_ten.revenue.must_equal 9960
+    end
+
+    it "should return the vendor with the lowest revenue on a particular date" do
+      vendor_worst_from_date.id.must_equal 48
+      vendor_worst_from_date.revenue("2013-11-06").must_equal 4094
     end
   end
 end

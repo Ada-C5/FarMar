@@ -55,11 +55,17 @@ class FarMar::Market
     return products
   end
 
-  def preferred_vendor
-    vendors.max_by { |vendor| vendor.revenue }
+  # returns the vendor with the highest revenue (either total or on a specific date)
+  def preferred_vendor(date = nil)
+    vendors.max_by { |vendor| vendor.revenue(date) }
   end
 
-  def worst_vendor
-    vendors.min_by { |vendor| vendor.revenue }
+  # returns the vendor with the lowest revenue IF THEY SOLD SOMETHING THAT DAY
+  # does not count any vendors that didn't sell on a particular date in case
+  # they weren't present at that particular market on that day
+  def worst_vendor(date = nil)
+    all_vendors = vendors
+    all_vendors_on_day = all_vendors.reject{|vendor| vendor.revenue(date).zero?}
+    all_vendors_on_day.min_by { |vendor| vendor.revenue(date) }
   end
 end
