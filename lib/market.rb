@@ -28,11 +28,12 @@ class FarMar::Market
     self.all.find { |market| market.id == id }
   end
 
-  # def self.search(search_term)
-  #   vendors.select { |vendor| vendor.markets.name.upcase.include?(search_term.upcase) }
-  #   market_names = self.all.select { |market| market.name.upcase.include?(search_term.upcase) }
-  #   return vendor_names + market_names
-  # end
+  def self.search(search_term)
+    vendors = FarMar::Vendor.all.select { |vendor| vendor.name.upcase.include?(search_term.upcase) }
+    vendor_names = vendors.collect { |vendor| vendor.markets }
+    market_names = self.all.select { |market| market.name.upcase.include?(search_term.upcase) }
+    return vendor_names + market_names
+  end
 
   def vendors
     FarMar::Vendor.all.select { |vendor| vendor.market_id == id }

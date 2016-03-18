@@ -31,17 +31,15 @@ describe FarMar::Market do
     end
   end
 
-  # describe "FarMar::Market#self.search(search_term)" do
-  #   it "should return 3 markets & vendors for search term 'school'" do
-  #     FarMar::Market.search('school').length.must_equal 3
-  #   end
-  # end
-  #
-  # describe "FarMar::Market#self.search(search_term)" do
-  #   it "should return 3 markets & vendors for search term 'school'" do
-  #     FarMar::Market.search('wild').length.must_equal 13
-  #   end
-  # end
+  describe "FarMar::Market#self.search(search_term)" do
+    it "should return 3 markets & vendors for search term 'school'" do
+      FarMar::Market.search('school').length.must_equal 3
+    end
+
+    it "should return 31 markets & vendors for search term 'wild'" do
+      FarMar::Market.search('wild').length.must_equal 13
+    end
+  end
 
   describe "FarMar::Market#preferred_vendor" do
     markets4 = FarMar::Market.new(id: 1)
