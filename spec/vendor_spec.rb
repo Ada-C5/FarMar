@@ -4,6 +4,9 @@ require_relative '../lib/vendor'
 describe FarMar::Vendor do
   let(:vendor) {FarMar::Vendor.find(16)}
   let(:all_vendors) { FarMar::Vendor.all}
+  let(:vendor_2) {FarMar::Vendor.by_market(1)}
+  let(:vendor_1) { FarMar::Vendor.find(1) }
+  let(:vendor_3) {FarMar::Vendor.find(13)}
 
   it "Vendor Class exist?" do
     FarMar::Vendor.wont_be_nil
@@ -11,7 +14,6 @@ describe FarMar::Vendor do
 
   describe "#self.all(file)" do
     # let(:all_vendors) { FarMar::Vendor.all}
-
     it "Return an array?" do
       all_vendors.must_be_instance_of Array
     end
@@ -23,8 +25,7 @@ describe FarMar::Vendor do
   end
 
   describe "#self.find(id)" do
-    let(:vendor_1) { FarMar::Vendor.find(1) }
-
+    # let(:vendor_1) { FarMar::Vendor.find(1) }
     it "Know basic data about vendor?" do
       vendor_1.must_be_instance_of FarMar::Vendor
       vendor_1.id.must_equal(1)
@@ -39,7 +40,7 @@ describe FarMar::Vendor do
   end
 
   describe "#self.by_market" do
-    let(:vendor_2) {FarMar::Vendor.by_market(1)}
+    # let(:vendor_2) {FarMar::Vendor.by_market(1)}
     it "Returns all of the vendors with the given market_id?" do
       # vendor = FarMar::Vendor.by_market(1)
       vendor_2.length.must_equal(6)
@@ -48,9 +49,9 @@ describe FarMar::Vendor do
   end
 
   describe "#market" do
-    let(:vendor) {FarMar::Vendor.find(13)}
+    # let(:vendor_3) {FarMar::Vendor.find(13)}
     it "Returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id field" do
-      vendor_market = vendor.market
+      vendor_market = vendor_3.market
       vendor_market.must_be_instance_of FarMar::Market
       vendor_market.id.must_equal(4)
     end

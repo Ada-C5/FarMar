@@ -2,13 +2,15 @@ require_relative './spec_helper'
 require_relative '../lib/sale'
 
 describe FarMar::Sale do
+  let(:all_sales) { FarMar::Sale.all}
+  let(:sale) { FarMar::Sale.find(1) }
+
   it "Sale Class exist?" do
     FarMar::Sale.wont_be_nil
   end
 
   describe "#self.all(file)" do
-    let(:all_sales) { FarMar::Sale.all}
-
+    # let(:all_sales) { FarMar::Sale.all}
     it "Return an array?" do
       all_sales.must_be_instance_of Array
     end
@@ -20,8 +22,7 @@ describe FarMar::Sale do
   end
 
   describe "#self.find(id)" do
-    let(:sale) { FarMar::Sale.find(1) }
-
+    # let(:sale) { FarMar::Sale.find(1) }
     it "Know basic data about sale?" do
       sale.must_be_instance_of FarMar::Sale
       sale.id.must_equal(1)
@@ -37,7 +38,7 @@ describe FarMar::Sale do
   end
 
   describe "#vendor" do
-    let(:sale) { FarMar::Sale.find(1) }
+    # let(:sale) { FarMar::Sale.find(1) }
     it "Returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id field" do
       vendor = sale.vendor
       vendor.must_be_instance_of FarMar::Vendor
@@ -45,7 +46,7 @@ describe FarMar::Sale do
   end
 
   describe "#product" do
-    let(:sale) { FarMar::Sale.find(1) }
+    # let(:sale) { FarMar::Sale.find(1) }
     it "Returns the FarMar::Product instance that is associated with this sale using the FarMar::Sale product_id field" do
       product = sale.product
       product.must_be_instance_of FarMar::Product

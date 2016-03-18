@@ -11,7 +11,6 @@ describe FarMar::Market do
 
   describe "#self.all(file)" do
     # let(:all_markets) { FarMar::Market.all}
-
     it "Return an array?" do
       all_markets.must_be_instance_of Array
     end
@@ -24,7 +23,6 @@ describe FarMar::Market do
 
   describe "#self.find(id)" do
     # let(:market) { FarMar::Market.find(1) }
-
     it "Know basic data about market?" do
       market.must_be_instance_of FarMar::Market
       market.id.must_equal(1)
