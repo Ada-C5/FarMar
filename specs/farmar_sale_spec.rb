@@ -58,13 +58,13 @@ describe FarMar::Sale do
 
 	describe "vendor method" do
 		it "will return the correct vendor for a sale" do
-			@test_sale.vendor[0].name.must_equal "Feil-Farrell"
+			@test_sale.vendor.name.must_equal "Feil-Farrell"
 		end
 	end
 
 	describe "product method" do
 		it "will return the correct product for a sale" do
-			@test_sale.product[0].name.must_equal "Dry Beets"
+			@test_sale.product.name.must_equal "Dry Beets"
 		end
 	end
 

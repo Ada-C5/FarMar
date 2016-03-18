@@ -50,7 +50,7 @@ describe FarMar::Vendor do
 
 	describe "market method" do
 		it "returns the correct FarMar::Market instance" do
-			@test_vendor.market[0].city.must_equal "Portland"
+			@test_vendor.market.city.must_equal "Portland"
 		end
 	end
 

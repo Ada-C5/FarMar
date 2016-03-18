@@ -30,14 +30,14 @@ class FarMar::Sale
 
   def vendor
     all_vendors = FarMar::Vendor.all
-    all_vendors.select { |v| v.id == @vendor_id }
+    found_vendor = all_vendors.select { |v| v.id == @vendor_id }
+    found_vendor[0]
   end
 
   def product
     all_products = FarMar::Product.all
-    all_products.select { |p| p.id == @product_id }
+    found_product = all_products.select { |p| p.id == @product_id }
+    found_product[0]
   end
 
-# beginning_time = DateTime.parse("2013-11-12 06:00:00 -0800")
-# end_time = DateTime.parse("2013-11-12 06:05:00 -0800")
 end

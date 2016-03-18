@@ -30,7 +30,8 @@ class FarMar::Vendor
 
   def market
     all_markets = FarMar::Market.all
-    all_markets.select { |m| m.id == @market_id }
+    found_market = all_markets.select { |m| m.id == @market_id }
+    found_market[0]
   end
 
   def products
