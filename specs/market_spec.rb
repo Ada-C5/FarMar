@@ -43,8 +43,15 @@ describe FarMar::Market do
 
   describe "FarMar::Market#preferred_vendor" do
     markets4 = FarMar::Market.new(id: 1)
-    it "should return vendor with largest revenue for specific market" do
+    it "should return vendor with highest revenue for specific market" do
     markets4.preferred_vendor.name.must_equal "Reynolds, Schmitt and Klocko"
+    end
+  end
+
+  describe "FarMar::Market#worst_vendor" do
+    markets5 = FarMar::Market.new(id: 3)
+    it "should return vendor with lowest revenue for specific market" do
+    markets5.worst_vendor.name.must_equal "Windler Inc"
     end
   end
 

@@ -43,12 +43,18 @@ class FarMar::Market
     vendors.max_by { |vendor| vendor.revenue }
   end
 
+  def worst_vendor
+    vendors.min_by { |vendor| vendor.revenue }
+  end
+
   # def products
-  #   # vendors => vendors by market
-  #   # FarMar::Vendor.by_market(market_id) => vendors by market
-  #   # FarMar::Product.by_vendor(vendor_id) => products by vendor
-  #
-  #
+  #   #  vendors_markets = vendors # vendors by market
+  #    vendor_products = []
+  #    vendors.each do |vendor|
+  #      products.each do |product|
+  #        vendor_products << product
+  #       end
+  #     end  # products by vendor
   # end
 
 end
