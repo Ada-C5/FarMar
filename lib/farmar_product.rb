@@ -7,10 +7,6 @@ class FarMar::Product
     @vendor_id = hash[:vendor_id].to_i
   end
 
-  # ID - (Fixnum) uniquely identifies the product
-  # Name - (String) the name of the product (not guaranteed unique)
-  # Vendor_id - (Fixnum) a reference to which vendor sells this product
-
   # creates instances (8193) of each row of data in the csv
   # and pushes them into an array -- *blank cells are nil
   def self.all

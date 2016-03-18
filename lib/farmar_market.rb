@@ -11,14 +11,6 @@ class FarMar::Market
     @zip = hash[:zip]
   end
 
-  # ID - (Fixnum) a unique identifier for that market
-  # Name - (String) the name of the market (not guaranteed unique)
-  # Address - (String) street address of the market
-  # City - (String) city in which the market is located
-  # County - (String) county in which the market is located
-  # State - (String) state in which the market is located
-  # Zip - (String) zipcode in which the market is located
-
   # creates instances (500) of each row of data in the csv
   # and pushes them into an array -- *blank cells are nil
   def self.all
@@ -69,16 +61,6 @@ class FarMar::Market
     FarMar::Sale.all.collect {|instance| instance if ([instance.vendor_id] & ven).any? }.compact
   end
 
-  # return sales in subarrays NOPEEE
-  # def sales_instance_array
-  #   sale_instances = []
-  #   vendors.each do |vendor_instance|
-  #     sale_instances += sales.find_all{|instance| instance.vendor_id == vendor_instance.id}
-  #   end
-  #   return sale_instances
-  # end
-  # #
-  # return sales all in ONE array NO subs allowed here!!
   def sales_sum_array
     sale_sums = []
     ven = vendors_id

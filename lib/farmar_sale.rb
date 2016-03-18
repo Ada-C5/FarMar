@@ -9,12 +9,6 @@ class FarMar::Sale
     @product_id = hash[:product_id].to_i
   end
 
-  # ID - (Fixnum) uniquely identifies the sale
-  # Amount - (Fixnum) the amount of the transaction, in cents (i.e., 150 would be $1.50)
-  # Purchase_time - (Datetime) when the sale was completed
-  # Vendor_id - (Fixnum) a reference to which vendor completed the sale
-  # Product_id - (Fixnum) a reference to which product was sold
-
   # creates instances (12798) of each row of data in the csv
   # and pushes them into an array -- *blank cells are nil
   def self.all

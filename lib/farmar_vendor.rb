@@ -8,11 +8,6 @@ class FarMar::Vendor
     @market_id = hash[:market_id].to_i
   end
 
-  # ID - (Fixnum) uniquely identifies the vendor
-  # Name - (String) the name of the vendor (not guaranteed unique)
-  # No. of Employees - (Fixnum) How many employees the vendor has at the market
-  # Market_id - (Fixnum) a reference to which market the vendor attends
-
   # creates instances (2690) of each row of data in the csv
   # and pushes them into an array -- *blank cells are nil
   def self.all
