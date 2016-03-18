@@ -6,15 +6,7 @@ describe FarMar::Vendor do
 		@test_vendor = FarMar::Vendor.find(1)
 	end
 
-	it "FarMar::Vendor Class Exists" do
-		FarMar::Vendor.wont_be_nil
-	end
-
 	describe "self.all" do
-		it "exists" do
-			FarMar::Vendor.all.wont_be_nil
-		end
-
 		it "returns an array" do
 			FarMar::Vendor.all.must_be_instance_of Array
 		end
@@ -25,10 +17,6 @@ describe FarMar::Vendor do
 	end
 
 	describe "self.find" do
-		it "exists" do
-			FarMar::Vendor.find(1).wont_be_nil
-		end
-
 		it "returns an instance of FarMar::Vendor when given a valid id" do
 			@test_vendor.must_be_instance_of FarMar::Vendor
 		end
@@ -75,5 +63,4 @@ describe FarMar::Vendor do
 			@test_vendor.revenue.must_equal 38259
 		end
 	end
-
 end

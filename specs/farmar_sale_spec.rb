@@ -5,15 +5,7 @@ describe FarMar::Sale do
 		@test_sale = FarMar::Sale.find(1)
 	end
 
-	it "FarMar::Sale Class Exists" do
-		FarMar::Sale.wont_be_nil
-	end
-
 	describe "self.all" do
-		it "exists" do
-			FarMar::Sale.all.wont_be_nil
-		end
-
 		it "returns an array" do
 			FarMar::Sale.all.must_be_instance_of Array
 		end
@@ -24,10 +16,6 @@ describe FarMar::Sale do
 	end
 
 	describe "self.find" do
-		it "exists" do
-			FarMar::Sale.find(1).wont_be_nil
-		end
-
 		it "returns an instance of FarMar::Sale when given a valid id" do
 			@test_sale.must_be_instance_of FarMar::Sale
 		end
