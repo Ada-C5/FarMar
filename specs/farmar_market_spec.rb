@@ -63,7 +63,6 @@ describe FarMar::Market do
 		it "returns the correct instances of FarMar::Vendor" do
 			FarMar::Market.find(30).name.must_equal "Grafton Farmers Market"
 		end
-
 	end
 
 end
