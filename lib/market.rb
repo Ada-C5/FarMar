@@ -42,7 +42,7 @@ class FarMar::Market
 		end
 	end 
 
-	# is an instance method and already has reference to the market id
+	# is an instance method and already has reference to the market id from test
 	def get_vendors
 		FarMar::Vendor.all.find_all {|vendor| vendor.market_id == market_id}
 	end

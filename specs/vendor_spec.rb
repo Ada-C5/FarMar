@@ -10,15 +10,7 @@ describe FarMar::Vendor do
 		FarMar::Vendor.wont_be_nil 
 	end
 
-	it "Vendor.all is not nil" do 
-		all_vendors.wont_be_nil
-	end
-
-	it "Vendor.all returns Array Class" do 
-		assert_equal Array, all_vendors.class
-	end
-
-	it "Find returns an instance of FarMar::Vendor" do 
+	it "Find returns an instance of ::Vendor" do 
 		vendor_test.must_be_instance_of FarMar::Vendor
 	end
 
@@ -30,15 +22,15 @@ describe FarMar::Vendor do
 		vendor_test.get_markets.must_be_instance_of Array
 	end 
 
-	it "Returns an instance of FarMar::Market" do
+	it "Returns an instance of ::Market" do
 		vendor_test.get_markets[0].must_be_instance_of FarMar::Market
 	end 
 
-	it "Returns the ID of a market that a vendor visits" do
+	it "Returns the market ID that a vendor visits" do
 		vendor_test.get_markets[0].market_id.must_equal 13
 	end
 
-	it "Returns an instance of FarMar::Product" do
+	it "Returns an instance of ::Product" do
 		vendor_test.get_products[0].must_be_instance_of FarMar::Product
 	end 
 
@@ -46,18 +38,14 @@ describe FarMar::Vendor do
 		vendor_test.get_products[0].vendor_id.must_equal 56
 	end
 
-	it "Returns the name of a product(s) sold by a vendor" do 
+	it "Returns the name of product(s) sold by a vendor" do 
 		vendor_test.get_products[0].product_name.must_equal "Steep Honey"
 		vendor_test.get_products[1].product_name.must_equal "Repulsive Greens"
-		vendor_test.get_products[2].product_name.must_equal "Swift Carrots"
-		vendor_test.get_products[3].product_name.must_equal "Homeless Pretzel"
-		vendor_test.get_products[4].product_name.must_equal "Numerous Beets"
 	end
 
 	it "Returns a list of sales based on vendor ID " do 
 		vendor_test.get_sales[0].vendor_id.must_equal 56
-		vendor_test.get_sales[1].vendor_id.must_equal 56
-		vendor_test.get_sales[2].vendor_id.must_equal 56
+
 	end 
 
 	it "Raises an error if the sale does not exist" do 
