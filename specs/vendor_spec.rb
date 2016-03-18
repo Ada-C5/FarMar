@@ -56,4 +56,10 @@ describe FarMar::Vendor do
     end
   end
 
+  # describe "FarMar::Vendor#self.most_revenue(n)" do
+  #   it "should return top n vendor instances ranked by revenue" do
+  #     FarMar::Vendor.most_revenue(4).length.must_equal 4
+  #   end
+  # end
+
 end

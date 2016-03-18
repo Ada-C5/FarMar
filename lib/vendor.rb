@@ -28,6 +28,19 @@ class FarMar::Vendor
     self.all.find_all { |vendor| vendor.market_id == market_id }
   end
 
+  # def self.most_revenue(n)
+  #   top_vendors = self.all.take(n)
+  #   # revenues = []
+  #   top_vendors.collect { ||}
+  #   revenues = top_vendors.each do |vendor|
+  #    vendor.sales
+  #   end
+  #   revenues.sort.reverse
+  #   # sorted_amount = FarMar::Sale.all.sort_by {|sale| sale.amount }
+  #   # sorted_amount = sorted_amount.reverse
+  #   # top_sales = sorted_amount.take(n)
+  # end
+
   def markets
     FarMar::Market.all.find { |market| market.id == market_id }
   end
