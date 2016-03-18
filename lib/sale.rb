@@ -3,6 +3,9 @@ require 'date'
 require 'chronic'
 
 class FarMar::Sale
+
+  @@sale = nil
+
   attr_reader :id, :amount, :purchase_time, :vendor_id, :product_id
   FILE = "./support/sales.csv"
   def initialize(sale_info)
@@ -14,12 +17,14 @@ class FarMar::Sale
   end
 
   def self.all
-    sale_csv_info = CSV.read(FILE)
-    sale_csv_info.map {|line| self.new(id: line[0].to_i, amount: line[1].to_i, purchase_time: line[2], vendor_id: line[3], product_id: line[4] )}
+    @@sale ||= begin
+      sale_csv_info = CSV.read(FILE)
+      sale_csv_info.map {|line| self.new(id: line[0].to_i, amount: line[1].to_i, purchase_time: line[2], vendor_id: line[3], product_id: line[4] )}
+    end
   end
 
   def self.find(id)
-    self.all.select { |sale| id.to_i == sale.id.to_i }[0]
+    self.all.find { |sale| id.to_i == sale.id.to_i } #since it returns an array and I want the instance
   end
 
   # returns all the instances of vendor that match the sale instance
@@ -43,4 +48,76 @@ class FarMar::Sale
   # def min_max
   #   self.all.minmax_by {|date| date.purchase_time}
   # end
+  #
+  # def self.date
+  #   self.all.map {|date| date.purchase_time.date}
+  # end
+  #
+  #
+  # def self.between_hour(beginning_time, end_time)
+  #   start_date = Chronic.parse(beginning_time).hour
+  #   end_date   = Chronic.parse(end_time).hour
+  #   result = self.all.select {|sale| (start_date..end_date).cover? (sale.purchase_time).hour }
+  #   return result
+  # end
+
+  def self.vendor_with_highest_revenue_in (beginning_time, end_time)     # 5 - 7
+    start_date = Chronic.parse(beginning_time)
+    end_date   = Chronic.parse(end_time)
+
+    date_range = (start_date..end_date)
+
+    return "Please try again" if start_date >= end_date
+
+    select_sales = self.all.select {|sale| (date_range).cover? (sale.purchase_time) }
+
+    select_sales_by_vendor = {}
+
+    select_sales.each do |sale| # 10-11-2016 5pm, $300, "Joe"
+      amount = sale.amount
+      vendor = sale.vendor_id
+
+      #key = vendor_name
+
+      if select_sales_by_vendor [vendor].nil?
+        select_sales_by_vendor[vendor] = amount
+      else
+        select_sales_by_vendor[vendor] += amount
+      end
+    end
+
+    select_sales_by_vendor.max_by {|vendor, amount| amount}
+
+  end
+
 end
+
+#
+# def highest_vendor_by_date_in (beginning_time, end_time)     # 5 - 7
+#   start_date = Chronic.parse(beginning_time)
+#   end_date   = Chronic.parse(end_time)
+#
+#   date_range = (start_hour..end_hour)
+#
+#   return "Please try again" if start_hour >= end_hour
+#
+#   select_sales = self.all.select {|sale| (date_range).cover? (sale.purchase_time) }
+#
+#   select_sales.each do |sale| # 10-11-2016 5pm, $300, "Joe"
+#     sale_hour = sale.purchase_time.hour
+#     amount = sale.amount
+#     vendor = sale.vendor_id
+#
+#     select_sales_by_vendor = {}
+#
+#     #key = vendor_name
+#
+#     if select_sales_by_vendor [vendor].nil?
+#       select_sales_by_vendor[vendor] = amount
+#     else
+#       select_sales_by_vendor[vendor] += amount
+#     end
+#   end
+#
+#   select_sales_by_vendor.max_by {|vendor, amount| amount}
+# end

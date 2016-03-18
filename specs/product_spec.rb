@@ -39,8 +39,8 @@ describe FarMar::Product do
   # using FarMar::Product.id to match FarMar::Product.product_id
   describe "FarMar::Product#sales" do
     it "returns a collection of FarMar::Sale instances that match market instance" do
-      sales = product_5.sales.map {|sales| sales.class }
-      sales.uniq.must_equal [FarMar::Sale]
+      total_sales = product_5.sales.map {|sales| sales.class }
+      total_sales.uniq.must_equal [FarMar::Sale]
     end
   end
 

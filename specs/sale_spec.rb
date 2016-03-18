@@ -16,7 +16,7 @@ describe FarMar::Sale do
 
   describe "FarMar::Sale#find(id)" do
     it "should return an instance of FarMar::Product for FarMar::Product.find(1)" do
-      sale_12.must_be_instance_of FarMar::Sale
+      sale.find("12").must_be_instance_of FarMar::Sale
     end
 
     it "should return 'Dry Beets' for instance of FarMar::Product.find(1)" do
@@ -56,4 +56,31 @@ describe FarMar::Sale do
       sale_result_select.wont_be_nil
     end
   end
+
+  describe "FarMar::Sale#vendor_with_highest_revenue_in SELF METHOD" do
+    it "returns the vendor with the highest revenue in given date range" do
+      vendor = sale.vendor_with_highest_revenue_in("2013-11-08 16:36:03 -0800", "2013-11-09 01:22:56 -0800")
+      vendor.class.must_equal Array
+    end
+    #
+    # it "returns the vendor with the highest revenue in given date range" do
+    #   vendor = sale.vendor_with_highest_revenue_in("2013-11-08 16:36:03 -0800", "2013-11-09 01:22:56 -0800")
+    #   vendor[0].must_equal Array
+    #
+    # end
+    #
+    # it "returns the vendor with the highest revenue in given date range" do
+    #   vendor = sale.vendor_with_highest_revenue_in("2013-11-08 16:36:03 -0800", "2013-11-09 01:22:56 -0800")
+    #   vendor[1].must_equal Array
+    # end
+
+  end
+
+  # describe "FarMar::Sales#self.between_hour(beginning_time, end_time)" do
+  #   it "should return a collection of FarMar::Sale instances" do
+  #     sales = sale.between_hour("2013-11-12 06:03:54 -0800", "2013-11-12 01:22:56 -0800")
+  #     sales_result = sales.minmax_by {|sale| sale.purchase_time.hour}
+  #     [sales_result[0].purchase_time.hour, sales_result[1].purchase_time.hour].must_equal Fixnum
+  #   end
+  # end
 end

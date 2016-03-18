@@ -21,7 +21,7 @@ describe FarMar::Vendor do
 
   describe "self#find(id)" do
     it "returns an instance of FarMar::Vendor given vendor_id(11)" do
-      vendor_11.must_be_instance_of FarMar::Vendor #.must_be_instance_of FarMar::Vendor
+      vendor.find("11").must_be_instance_of FarMar::Vendor #.must_be_instance_of FarMar::Vendor
     end
 
     it "returns information about vendor(11)" do
@@ -48,6 +48,9 @@ describe FarMar::Vendor do
     it "returns a collection of instances of FarMar::Product assocaited with vendor(11)" do
       products = vendor_11.products.map { |product| product.class}
       products.uniq.must_equal [FarMar::Product]
+    end
+    it "returns a collection of instances of FarMar::Product assocaited with vendor(11)" do
+      vendor_11.products.class.must_equal Array
     end
   end
 
@@ -77,5 +80,21 @@ describe FarMar::Vendor do
       vendors_market_ids = vendor.by_market("3").map {|vendor| vendor.market_id}
       vendors_market_ids.uniq.must_equal ["3"]
     end
+  end
+
+  describe "FarMar::Vendor.most_revenue(n) SELF METHOD" do
+    it "return n vendors ranked by total revenue" do
+      vendor.most_revenue(3).length.must_equal 3
+    end
+  end
+
+  describe "FarMar::Vendor.most_items(n) SELF CLASS" do
+    it "returns vendor with most_items" do
+      vendor.most_items(2).length.must_equal 2
+    end
+    it "returns an array with (n) vendor(s) with most_items" do
+      vendor.most_items(3).class.must_equal Array
+    end
+
   end
 end

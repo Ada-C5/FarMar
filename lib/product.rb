@@ -1,7 +1,10 @@
 #require_relative '../far_mar'
 
 class FarMar::Product
-  attr_reader :id, :name, :total_employees, :market_id, :vendor_id
+
+  @@products = nil
+
+  attr_reader :id, :name, :vendor_id
 
   def initialize(product_info)
     @id              = product_info [ :id ].to_i             # (Fixnum) uniquely identifies the product
@@ -10,8 +13,10 @@ class FarMar::Product
   end
 
   def self.all
-    products_from_csv = CSV.read("./support/products.csv") # creates an array with each line as element
-    products_from_csv.map {|line| self.new(id: line[0].to_i, name: line[1], vendor_id: line[2].to_i)}
+    @@products ||= begin
+      products_from_csv = CSV.read("./support/products.csv") # creates an array with each line as element
+      products_from_csv.map {|line| self.new(id: line[0].to_i, name: line[1], vendor_id: line[2].to_i)}
+    end
   end
 
   def self.find(id)

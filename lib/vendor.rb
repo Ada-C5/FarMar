@@ -1,6 +1,9 @@
-#require_relative '../far_mar'
+require_relative '../far_mar'
 
 class FarMar::Vendor
+
+  @@vendors = nil
+
   attr_reader :id, :name, :total_employees, :market_id
 
   def initialize(vendor_info)
@@ -11,13 +14,14 @@ class FarMar::Vendor
   end
 
   def self.all
-    vendor_csv_file = CSV.read("./support/vendors.csv")
-    vendor_csv_file.map {|line| self.new(id: line[0].to_i, name: line[1], total_employees: line[2], market_id: line[3])}
+    @@vendors ||= begin
+      vendor_csv_file = CSV.read("./support/vendors.csv")
+      vendor_csv_file.map {|line| self.new(id: line[0].to_i, name: line[1], total_employees: line[2], market_id: line[3])}
+    end
   end
 
   def self.find(id)
-    self.all.select {|vendor| id.to_i == vendor.id}
-
+    self.all.find {|vendor| id.to_i == vendor.id}
   end
 
   # self.by_market(market_id): returns all of the vendors with the given market_id
@@ -34,7 +38,7 @@ class FarMar::Vendor
   # vendor matching vendor.id and product.vendor_id.
   # The instance of the products that each vendor sells
   def products
-    FarMar::Product.all.select { |product| id.to_i == product.vendor_id.to_i }
+    FarMar::Product.all.select { |product| product.vendor_id.to_i == id.to_i  }
   end
 
   def sales
@@ -43,19 +47,20 @@ class FarMar::Vendor
 
   #revenue: returns the the sum of all of the vendor's sales (in cents)
   def revenue
+    sales_by_vendor = sales.map {|sale| sale.amount }
+    sales_by_vendor.reduce(0,:+)
+  end
+
+  def self.most_revenue(n)
+    self.all.max_by(n) {|vendor| vendor.revenue}
+  end
+
+  def sales_by_vendor
     revenue = sales.map {|sale| sale.amount }
-    revenue.reduce(0,:+)
+  end
+
+  def self.most_items(n)
+    self.all.max_by(n) {|vendor| vendor.products.count}
   end
 
 end
-
-# def self.all
-#   vendor_list_all = []
-#
-#   vendor_csv_file = CSV.read("./support/vendors.csv")
-#
-#   vendor_csv_file.each do |line|
-#     vendor_list_all << self.new(id: line[0].to_i, name: line[1], total_employees: line[2], market_id: line[3])
-#   end
-#   vendor_list_all
-# end
