@@ -1,14 +1,14 @@
 class FarMar::Sale
-  attr_reader :sale_id, :purchase_time, :ven_id, :amount, :prod_id
+  attr_reader :id, :purchase_time, :vendor_id, :amount, :product_id
   FILE = './support/sales.csv'
 
   def initialize(id, amount, purchase_time, ven_id, prod_id)
-    @sale_id = id
+    @id = id
     # round sales amounts 
     @amount = amount.round
     @purchase_time = purchase_time
-    @ven_id = ven_id
-    @prod_id = prod_id
+    @vendor_id = ven_id
+    @product_id = prod_id
   end
 
   def self.all
@@ -20,7 +20,7 @@ class FarMar::Sale
   end
 
   def self.find(id)
-    self.all.find { |sale| sale.sale_id == id }
+    self.all.find { |sale| sale.id == id }
   end
 
   # method to find sales that happened in a certain range
@@ -30,12 +30,12 @@ class FarMar::Sale
   end
 
   # return vendor instance related to sale
-  def vendor(ven_id)
-    FarMar::Vendor.all.find { |vendor| vendor.ven_id == ven_id }
+  def vendor(vendor_id)
+    FarMar::Vendor.all.find { |vendor| vendor.id == vendor_id }
   end
 
   # returns product instance associated with sale
-  def product(prod_id)
-    FarMar::Product.all.find { |product| product.prod_id == prod_id }
+  def product(product_id)
+    FarMar::Product.all.find { |product| product.id == product_id }
   end
 end

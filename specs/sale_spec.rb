@@ -15,20 +15,20 @@ describe FarMar::Sale do
 
   # test the find(id) method
   it "returns the right sale according to id?" do
-    FarMar::Sale.find(4).sale_id.must_equal 4
+    FarMar::Sale.find(4).id.must_equal 4
   end
 
   # test the vendor method
   it "returns the vendor instance related to a sale" do
     sale = FarMar::Sale.all[544]
     sale.class.must_equal FarMar::Sale
-    sale.vendor(sale.ven_id).name.must_equal "Schoen-Effertz"
+    sale.vendor(sale.vendor_id).name.must_equal "Schoen-Effertz"
   end
 
     # test the prodoct method
   it "returns the product instance related to a sale" do
     sale = sales[544]
-    sale.product(sale.prod_id).class.must_equal FarMar::Product
+    sale.product(sale.product_id).class.must_equal FarMar::Product
   end
 
   # test self.between method

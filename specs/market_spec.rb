@@ -27,16 +27,16 @@ describe FarMar::Market do
   # tests vendor method
   it "should return all vendor instances in specific market" do
     market = markets[0]
-    market.vendors(market.mar_id).length.must_equal 6
+    market.vendors(market.id).length.must_equal 6
   end
 
   # test products method
   it "should return all products at market (by all vendors)" do
     my_market = markets[3]
     my_market.class.must_equal FarMar::Market
-    my_market.products(my_market.mar_id).class.must_equal Array
-    my_market.products(my_market.mar_id)[0].class.must_equal FarMar::Product 
-    my_market.products(my_market.mar_id)[1].class.must_equal FarMar::Product
+    my_market.products(my_market.id).class.must_equal Array
+    my_market.products(my_market.id)[0].class.must_equal FarMar::Product 
+    my_market.products(my_market.id)[1].class.must_equal FarMar::Product
   end
 
   # test self.search method

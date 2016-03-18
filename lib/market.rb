@@ -1,10 +1,10 @@
 class FarMar::Market
-  attr_reader :mar_id, :name
+  attr_reader :id, :name
 
   FILE = './support/markets.csv'
 
   def initialize(id, name, address, city, county, state, zip)
-    @mar_id = id
+    @id = id
     @name = name
     @address = address
     @city = city
@@ -22,22 +22,22 @@ class FarMar::Market
   end
 
   def self.find(id)
-    self.all.find { |market| market.mar_id == id }
+    self.all.find { |market| market.id == id }
   end
 
   # return array of vendors in a specific market
-  def vendors(mar_id)
-    FarMar::Vendor.all.select { |vendor| vendor.mar_id == mar_id }
+  def vendors(market_id)
+    FarMar::Vendor.all.select { |vendor| vendor.market_id == market_id }
   end
 
   # returns collection of PRODUCT instances associated to market via Vendor class
-  def products(mar_id)
-    vendors = FarMar::Vendor.by_market(mar_id)
+  def products(market_id)
+    vendors = FarMar::Vendor.by_market(market_id)
     products = FarMar::Product.all
     product_array = []
     vendors.each do |vendor|
       products.each do |product|
-        if product.ven_id == vendor.ven_id
+        if product.vendor_id == vendor.id
           product_array << product
         end
       end
@@ -56,17 +56,17 @@ class FarMar::Market
 
   # returns vendor with highest revenue
   def prefered_vendor
-    vendors = vendors(mar_id)
-    vendors.max_by { |vendor| vendor.revenue(vendor.ven_id) }
+    vendors = vendors(self.id)
+    vendors.max_by { |vendor| vendor.revenue(vendor.id) }
   end
 
   # returns vendor with highest revenue on a certain date
   def prefered_ven(date)
     date = Time.parse(date)
-    vendors = vendors(mar_id)
+    vendors = vendors(self.id)
     from_date = []
     vendors.each do |vendor|
-      sales = vendor.sales(vendor.ven_id)
+      sales = vendor.sales(vendor.id)
       sales.each do |sale|
         time = Time.parse(sale.purchase_time.to_s)
         if time.day == date.day
@@ -75,6 +75,6 @@ class FarMar::Market
       end
     end
     # go through vendor sales from date parameter
-    from_date.max_by { |vendor| vendor.revenue(vendor.ven_id) }
+    from_date.max_by { |vendor| vendor.revenue(vendor.id) }
   end
 end
