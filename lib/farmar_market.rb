@@ -57,4 +57,9 @@ class FarMar::Market
     vendors.max_by {|vendor| FarMar::Vendor.find(vendor.id).revenue}
   end
 
+  def worst_vendor
+    # returns the vendor with the lowest revenue
+    vendors.min_by {|vendor| FarMar::Vendor.find(vendor.id).revenue}
+  end
+
 end

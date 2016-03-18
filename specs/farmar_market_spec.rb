@@ -44,3 +44,13 @@ describe "FarMar::Market#preferred_vendor" do
     FarMar::Market.find(1).preferred_vendor.name.must_equal FarMar::Vendor.find(5).name
   end
 end
+
+describe "FarMar::Market#worst_vendor" do
+  it "should return an instance of FarMar::Vendor" do
+    FarMar::Market.find(1).worst_vendor.must_be_instance_of FarMar::Vendor
+  end
+
+  it "should return the name of the correct instance with the highest revenue for that market" do
+    FarMar::Market.find(1).worst_vendor.name.must_equal FarMar::Vendor.find(6).name
+  end
+end
