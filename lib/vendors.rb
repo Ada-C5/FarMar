@@ -33,17 +33,10 @@ class FarMar::Vendor
   end
 
   def revenue
-    @sume = 0
-    all_sales = []
-    FarMar::Sale.all.each do |sale_info|
-      all_sales << sale_info.ammount
-    end
-    all_sales.reduce(:+)
-
+    FarMar::Sale.all.collect { |sale_info| sale_info.ammount }.reduce(:+)
   end
 
   def self.by_market(market_id_given)
-    #returns all of the vendors with the given market_id
     FarMar::Vendor.all.select { |vendor| vendor.market_id == market_id_given.to_i }
   end
 

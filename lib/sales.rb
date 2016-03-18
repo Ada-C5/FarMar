@@ -11,7 +11,7 @@ class FarMar::Sale
   end
 
   def self.all
-    CSV.read('support/sales.csv').collect { |row| self.new(row[0].to_i,row[1].to_i,row[2],row[3].to_i,row[4].to_i) }
+    CSV.read('support/sales.csv').collect { |row| self.new(row[0].downcase.to_i,row[1].to_i,row[2],row[3].to_i,row[4].to_i) }
   end
 
   def self.find(id)
