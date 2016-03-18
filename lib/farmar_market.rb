@@ -1,5 +1,6 @@
 require 'csv'
 #require_relative "../far_mar"
+#require_relative "farmar_vendor.rb"
 
 class FarMar::Market
 # ID - (Fixnum) a unique identifier for that market
@@ -48,7 +49,17 @@ attr_accessor :id
   def vendors
     FarMar::Vendor.all.select { |vendor| vendor.market_id == id }
   end
+
+  #Boooo! - Does not work yet :( 
+  #products returns a collection of FarMar::Product instances that are associated to the market through the FarMar::Vendor class
+  # def products
+  #   vendor_ids = vendors.map { |vendor| vendor.vendor_id }
+  #   vendor_ids.each do |vendor_id|
+  #      FarMar::Product.all.select { |product| product.vendor_id == vendor_id}
+  #   end
+  # end
 end
+
 
 #IRB for tesing:
   #   get all CSV data
