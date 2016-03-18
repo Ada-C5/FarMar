@@ -88,4 +88,27 @@ class FarMar::Market
 		end
 		return market_collection
 	end
+
+	#returns the vendor with the highest revenue
+	def prefered_vendor
+		best_vendor = []
+		sum = 0
+		max_sum = 0
+		FarMar::Vendor.all.each do |vendor|
+			if vendor.market_id == @id
+				sum = 0
+				FarMar::Sale.all.each do |sale|
+					if sale.vendor_id == vendor.id
+						sum += sale.amount
+					end
+				end
+
+				if sum > max_sum
+					max_sum = sum
+					best_vendor = vendor
+				end
+			end
+		end
+		return best_vendor
+	end	
 end

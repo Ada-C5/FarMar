@@ -70,5 +70,4 @@ class FarMar::Product
     return products
 	end
 
-
 end

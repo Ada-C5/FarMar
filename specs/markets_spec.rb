@@ -82,6 +82,18 @@ describe FarMar::Market do
   	it "should return correct size of array" do
   		FarMar::Market.search("Von-").count.must_equal(2)
   		FarMar::Market.search("Top").count.must_equal(4)
+  		FarMar::Market.search("Inc").count.must_equal(283)
   	end
   end
+
+  describe "Market#prefered_vendor" do
+  	it "should return an instance of FarMar::Vendor" do
+  		market1.prefered_vendor.must_be_instance_of(FarMar::Vendor)
+  	end
+
+  	it "should return the correct vendor" do
+  		market1.prefered_vendor.id.must_equal(5)
+  	end
+  end
+
 end
