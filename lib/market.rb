@@ -4,21 +4,13 @@ class FarMar::Market < FarMar::FarMarClass
   FILE = './support/markets.csv'
 
   def initialize(id, name, address, city, county, state, zip)
-    @id = id
+    @id = id.to_i
     @name = name
     @address = address
     @city = city
     @county = county
     @state = state
-    @zip = zip
-  end
-
-  def self.all
-    markets = []
-    CSV.foreach(FILE) do |line|
-      markets << self.new(line[0].to_i, line[1], line[2], line[3], line[4], line[5], line[6].to_i)
-    end
-    return markets
+    @zip = zip.to_i
   end
 
   # return array of vendors in a specific market

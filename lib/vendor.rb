@@ -3,20 +3,11 @@ class FarMar::Vendor < FarMar::FarMarClass
   FILE = './support/vendors.csv'
 
   def initialize(id, name, num_of_employees, mar_id)
-    @id = id
+    @id = id.to_i
     @name = name
-    @num_of_employees = num_of_employees
-    @market_id = mar_id
+    @num_of_employees = num_of_employees.to_i
+    @market_id = mar_id.to_i
   end
-
-  # return instances from csv information
-  def self.all
-    vendors = []
-    CSV.foreach(FILE) do |line|
-      vendors << self.new(line[0].to_i, line[1], line[2].to_i, line[3].to_i)
-    end
-    return vendors
-  end 
 
   # find all vendors with given market_id
   def self.by_market(market_id)

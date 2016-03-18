@@ -3,20 +3,12 @@ class FarMar::Sale < FarMar::FarMarClass
   FILE = './support/sales.csv'
 
   def initialize(id, amount, purchase_time, ven_id, prod_id)
-    @id = id
+    @id = id.to_i
     # round sales amounts 
-    @amount = amount.round
-    @purchase_time = purchase_time
-    @vendor_id = ven_id
-    @product_id = prod_id
-  end
-
-  def self.all
-    sales = []
-    CSV.foreach(FILE) do |line|
-      sales << self.new(line[0].to_i, line[1].to_i, Time.parse(line[2]), line[3].to_i, line[4].to_i)
-    end
-    return sales
+    @amount = amount.to_i
+    @purchase_time = Time.parse(purchase_time)
+    @vendor_id = ven_id.to_i
+    @product_id = prod_id.to_i
   end
 
   # method to find sales that happened in a certain range

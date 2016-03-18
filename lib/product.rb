@@ -4,18 +4,9 @@ class FarMar::Product < FarMar::FarMarClass
   FILE = './support/products.csv'
 
   def initialize(id, name, ven_id)
-    @id = id
+    @id = id.to_i
     @name = name
-    @vendor_id = ven_id  
-  end
-
-  # make an array of product instances from CSV
-  def self.all
-    products = []
-    CSV.foreach(FILE) do |line|
-      products << self.new(line[0].to_i, line[1], line[2].to_i)
-    end
-    return products
+    @vendor_id = ven_id.to_i  
   end
 
   # returns all products sold by certain vendor id
