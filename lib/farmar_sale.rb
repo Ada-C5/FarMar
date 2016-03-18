@@ -60,6 +60,17 @@ class FarMar::Sale
     end
     return all_times
   end
+
+  # create each loop
+
+
+  # sale.purchase_time <= end_time && sale.purchase_time >= beginning_t
+
+
+
+
+
+
   # messy date method
   # start = DateTime.strptime('2000-01-01 00:00:00 -0800', %q[%Y-%m-%d %H:%M:%S %z])
   # beginning_t = DateTime.strptime(beginning_time, %q[%Y-%m-%d %H:%M:%S %z]).mjd

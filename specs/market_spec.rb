@@ -27,15 +27,13 @@ describe FarMar::Market do
     # included ALL info to refer to for later method testings
   end
 
-  # check the vendor method
+  # check the vendors method
   it "should return the number of vendors with the matching market id" do
     markets_find.vendors.length.must_equal 6
-    #<FarMar::Vendor:0xXXXXXX @id=1, @name="Feil-Farrell", @employees=8, @market_id=1>,
-    #<FarMar::Vendor:0xXXXXXX @id=2, @name="Hamill, Kilback and Pfeffer", @employees=5, @market_id=1>,
-    #<FarMar::Vendor:0xXXXXXX @id=3, @name="Breitenberg Inc", @employees=5, @market_id=1>,
-    #<FarMar::Vendor:0xXXXXXX @id=4, @name="Kris and Sons", @employees=5, @market_id=1>,
-    #<FarMar::Vendor:0xXXXXXX @id=5, @name="Reynolds, Schmitt and Klocko", @employees=3, @market_id=1>,
-    #<FarMar::Vendor:0xXXXXXX @id=6, @name="Zulauf and Sons", @employees=8, @market_id=1>
+  end
+
+  it "checks the vendors_id method" do
+      markets_find.vendors_id.must_equal [1, 2, 3, 4, 5, 6] #[1]
   end
 
   # check the products method
@@ -49,14 +47,33 @@ describe FarMar::Market do
   end
 
   # check the sales method
-  it "should return all sales in subarrays based on vendors (6)" do
-      markets_find.sales.length.must_equal 6
+  it "should return the total amount of sales" do
+      markets_find.sales.length.must_equal 31
+  end
+
+  # check the sales_sum_array method
+  it "should return total sales sum amounts in array based on vendors (6)" do
+      markets_find.sales_sum_array.length.must_equal 6
   end
 
   # check the preferred_vendor method
   it "should return the vendor with the highest revenue, checks value" do
-      markets_find.preferred_vendor[1].must_equal 61749 #[1]
+      markets_find.preferred_vendor.id.must_equal 5 #[1]
   end
 
+  # check the worst_vendor method
+  it "should return the vendor with the lowest revenue" do
+      markets_find.worst_vendor.id.must_equal 6 #[1]
+  end
+
+  # check the preferred_vendor(date) method
+  it "should return the vendor id with the highest revenue, on 2013-11-08" do
+      markets_find.prefered_vendor('2013-11-08').must_equal 5 #[1]
+  end
+
+  # check the preferred_vendor(date) method
+  it "should return the vendor id with the lowest revenue on 2013-11-08" do
+      markets_find.worst_vend('2013-11-08').must_equal 4
+  end
 
 end
