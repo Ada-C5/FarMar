@@ -60,10 +60,15 @@ class FarMar::Sale
   # objects where the purchase time is between the two times given as arguments
   def self.between(beginning_time, end_time)
     sales_to_search = FarMar::Sale.all(FarMar::SALES_CSV)
+    beginning_time = Time.parse(beginning_time).utc
+    end_time = Time.parse(end_time).utc
     # earliest = Time.parse(beginning_time).utc
     # latest = Time.parse(end_time).utc
 
-    sales_to_search.select { |sale| Time.parse(beginning_time).utc <= Time.parse(sale.purchase_time).utc && Time.parse(sale.purchase_time).utc <= Time.parse(end_time).utc}
+    sales_to_search.select do |sale|
+      sale_time = Time.parse(sale.purchase_time).utc
+      beginning_time <= sale_time && sale_time <= end_time
+    end
 
   end
 
