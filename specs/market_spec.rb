@@ -59,7 +59,7 @@ describe FarMar::Market do
 
   describe "FarMar::Markets#worst_vendor" do
     it "returns the vendor with the lowest revenue" do
-    market_test.prefered_vendor.must_be_instance_of(FarMar::Vendor)
+    market_test.worst_vendor.must_be_instance_of(FarMar::Vendor)
     end
   end
 
