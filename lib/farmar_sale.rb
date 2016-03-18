@@ -49,22 +49,29 @@ def product
 end
 
 # self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
-def self.between(beginning_time, end_time)
-  all_sales = CSV.read("./support/sales.csv", "r")
-  sale_array = []
-  beginning_time = beginning_time.gsub(/[:]/, '_')
-  end_time = end_time.gsub(/[:]/, '_')
+# def self.between(beginning_time, end_time)
+#   all_sales = CSV.read("./support/sales.csv", "r")
+#   sale_array = []
+#   beginning_time = beginning_time.gsub(/[:]/, '_')
+#   end_time = end_time.gsub(/[:]/, '_')
+#
+#   all_sales.each do |sale|
+#     sale_time = sale[2]
+#     sale_time_array = sale_time.to_s.split(" ")
+#     time = sale_time_array[1].gsub(/[:]/, '_')
+#     if time.to_f > beginning_time.to_f && time.to_f < end_time.to_f
+#       sale_array << sale
+#     end
+#   end
+#   sale_array
+# end         This is ridiculous
 
-  all_sales.each do |sale|
-    sale_time = sale[2]
-    sale_time_array = sale_time.to_s.split(" ")
-    time = sale_time_array[1].gsub(/[:]/, '_')
-    if time.to_f > beginning_time.to_f && time.to_f < end_time.to_f
-      sale_array << sale
-    end
-  end
-  sale_array
-end
+def self.between(beginning_time, end_time)
+   beginning_time = DateTime.parse(beginning_time)
+   end_time = DateTime.parse(end_time)
+   sales = self.all.find_all { |sale| DateTime.parse(sale.purchase_time).between?(beginning_time, end_time) }
+   sales
+ end
 
 
 

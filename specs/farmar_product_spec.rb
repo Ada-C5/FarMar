@@ -3,7 +3,6 @@ require_relative '../farmar'
 
 describe FarMar::Product do
 
-# TEST 1
 	it  "is an object we have access to" do
 		FarMar::Product.wont_be_nil
 	end
@@ -16,12 +15,23 @@ describe FarMar::Product do
 		FarMar::Product.find(10).wont_be_nil
 	end
 
-	  #vendor: returns the FarMar::Vendor instance that is associated with this vendor using the FarMar::Product vendor_id field
+	it "returns the Vendor instance that is associated with this vendor using the Product vendor_id field" do
+		product = FarMar::Product.find(1)
+		assert_equal product.vendor.class, FarMar::Vendor
+	end
 
-		  #sales: returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
+	it "returns a collection of Sale instances that are associated using the Sale product_id field" do
+		product = FarMar::Product.find(2)
+		assert_equal product.sales.class, Array
+	end
 
-			#number_of_sales: returns the number of times this product has been sold.
+	it "returns the number of times this product has been sold" do
+		product = FarMar::Product.find(1)
+		assert_equal product.number_of_sales, 7
+	end
 
-			# self.by_vendor(vendor_id): returns all of the productsvendors with the given vendormarket_id
+	it "returns all of the products with the given vendor_id" do
+		assert_equal FarMar::Product.by_vendor(1).class, Array
+	end
 
 end
