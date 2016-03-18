@@ -72,8 +72,8 @@ class FarMar::Product
   def self.by_vendor(vendor_id)
     vendor_products = []
 
-    FarMer::Product.all.each do |product|
-      if product.vendor_id == vendor_id
+    FarMar::Product.all.each do |product|
+      if product.vendor_id.to_i == vendor_id.to_i
         vendor_products << product
       end
     end
@@ -85,10 +85,11 @@ class FarMar::Product
 
   def vendor
     self.vendor_id #@vendor_id
-    FarMar::Vendor.all each do |vendor|
+    FarMar::Vendor.all.each do |vendor|
       if vendor.vendor_id == self.vendor_id
         return vendor
       end
     end
   end
+
 end

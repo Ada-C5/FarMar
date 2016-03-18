@@ -62,26 +62,27 @@ attr_reader :vendor_id, :vendor_name, :num_employ, :market_id
 
   def market
     self.market_id #@market_id
-    FarMar::Market.all each do |market|
+    FarMar::Market.all.each do |market|
       if market.market_id == self.market_id
         return market
       end
     end
   end
 
+
   def revenue
     amount_variable = 0
     vendor_sales = []
     this_vendor_id = self.vendor_id
 
-    FarMar::Sales.all.each do |sale|
+    FarMar::Sale.all.each do |sale|
       if sale.vendor_id == this_vendor_id
         vendor_sales << sale
       end
     end
 
     vendor_sales.each do |sale|
-      amount_variable = amount_variable + sale.amount
+      amount_variable = amount_variable + sale.amount.to_i
     end
 
     return amount_variable
@@ -92,8 +93,8 @@ attr_reader :vendor_id, :vendor_name, :num_employ, :market_id
     these_market_vendors = []
 
     FarMar::Vendor.all.each do |vendor|
-      if vendor.market_id == market_id
-        these_market_vendors << vendor_sales
+      if vendor.market_id.to_i == market_id.to_i
+        these_market_vendors << vendor
       end
     end
 

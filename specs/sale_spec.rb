@@ -43,10 +43,21 @@ describe "Sale#find" do
     sale.vendor_id.must_equal "2"
     sale.product_id.must_equal "2"
   end
-
+end
 #need test for self.between
 
-#need test for def vendor
 
-#need test for product
+describe "Sale#vendor" do
+let(:sale) {FarMar::Sale.find(32)}
+  it "makes sure that when we call vendor method on the new instance of Sale we get the correct one" do
+    sale.vendor.vendor_id.must_equal("7")
+  end
+end
+
+
+describe "Sale#product" do
+let(:sale) {FarMar::Sale.find(32)}
+  it "makes sure that when we call product method on the new instance of Sale we get the correct one" do
+    sale.product.product_id.must_equal("14")
+  end
 end
