@@ -37,4 +37,36 @@ describe FarMar::Market do
      market.vendors[0].id.must_equal("2676")
     end
   end
+
+  describe "FarMar::Market#products" do
+    it "returns an array when called" do
+      market.products.must_be_instance_of Array
+    end
+
+    it "returns the correct products for the market"  do
+     market.products[0][0].id.must_equal("8141")
+    end
+  end
+
+  describe "FarMar::Market#self.search(search_term)" do
+    it "returns an array when called" do
+      FarMar::Market.search("school").must_be_instance_of Array
+    end
+
+    it "returns the correct products for the market"  do
+     FarMar::Market.search("school")[0].name.must_equal("Fox School Farmers Market")
+    end
+  end
+
+  describe "FarMar::Market.preferred_vendor" do
+    it "returns the vendor with the greatest revenue for a particular market" do
+      market.preferred_vendor.name.must_equal("Cruickshank Group")
+    end
+  end
+
+  describe "FarMar::Market.worst_vendor" do
+    it "returns the vendor with the lowest revenue for a particular market" do
+      market.worst_vendor.name.must_equal("Koepp-Haley")
+    end 
+  end
 end

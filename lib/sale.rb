@@ -39,10 +39,10 @@ class FarMar::Sale
 
   def self.between(beginning_time, end_time)
     # Returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
-    #begins = Time.parse(beginning_time)
-    #ends = Time.parse(end_time)
     begins = Time.parse(beginning_time)
     ends = Time.parse(end_time)
     return self.all.find_all { |sale| (begins..ends).cover?(sale.purchase_time) }
   end
+
+  
 end
