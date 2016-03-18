@@ -41,10 +41,10 @@ describe FarMar::Market do
 
   # test self.search method
   it "should return markets with search term in name of market or its vendors" do
-    # FarMar::Market.search("Green").length.must_equal 54
-    # # FarMar::Market.search("green").length.must_equal 54
+    FarMar::Market.search("Green").length.must_equal 54
+    FarMar::Market.search("green").length.must_equal 54
     FarMar::Market.search("farm").length.must_equal 432
-    # FarMar::Market.search("farM").length.must_equal 432
+    FarMar::Market.search("farM").length.must_equal 432
   end
 
   # test prefered vendor
