@@ -1,21 +1,11 @@
-class FarMar::Product
+class FarMar::Product < RepeatMethods
+  DATA = "./support/products.csv"
 
   attr_reader :product_id, :name, :vendor_id
   def initialize(product_info)
     @product_id, @name, @vendor_id = product_info
     @product_id = @product_id.to_i
     @vendor_id = @vendor_id.to_i
-  end
-
-  # self.all: returns a collection of instances, representing all of the objects described in the CSV
-  def self.all
-    CSV.read(PRODUCT_CSV).map { |line| self.new(line) }
-  end
-
-  def self.find(id)
-    CSV.foreach(PRODUCT_CSV) do |line|
-      return self.new(line) if line[0].to_i == id
-    end
   end
 
   #vendor: returns the FarMar::Vendor instance that is associated with this vendor
@@ -49,11 +39,3 @@ class FarMar::Product
   end
 
 end
-
-# 1. ID - (Fixnum) uniquely identifies the product
-# 2. Name - (String) the name of the product (not guaranteed unique)
-# 3. Vendor_id - (Fixnum) a reference to which vendor sells this product
-
-# def sales
-#   FarMar::Sale.all.select { |sale| sale.product_id == product_id}
-# end

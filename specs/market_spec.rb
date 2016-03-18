@@ -79,4 +79,12 @@ describe FarMar::Market do
     end
   end
 
+  describe "preferred_vendor_on(date)" do
+    let (:market) { FarMar::Market.find(1)}
+
+    it "returns vendor with most revenue on specific date" do
+      market.preferred_vendor_on("11/12/13").vendor_id.must_equal 5
+    end
+  end
+
 end

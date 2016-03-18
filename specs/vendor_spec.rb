@@ -90,4 +90,10 @@ describe FarMar::Vendor do
 
   end
 
+  # describe "self.most_revenue(n)" do
+  #   it "should provide n vendors with most revenue" do
+  #     FarMar::Vendor.most_revenue(2)[0].class.must_equal FarMar::Vendor
+  #   end
+  # end
+
 end

@@ -7,6 +7,21 @@ require 'date'
 module FarMar
 end
 
+class RepeatMethods
+  DATA = "./support/vendors.csv"
+
+  def self.all
+    CSV.read(self::DATA).map { |line|  self.new(line) }
+  end
+
+  def self.find(id)
+    CSV.foreach(self::DATA) do |line|
+      return self.new(line) if line[0].to_i == id
+    end
+  end
+
+end
+
 PRODUCT_CSV = "./support/products.csv"
 MARKET_CSV = "./support/markets.csv"
 VENDORS_CSV = "./support/vendors.csv"

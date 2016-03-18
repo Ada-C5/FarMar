@@ -1,5 +1,6 @@
-class FarMar::Vendor
-  VENDORS_CSV = "./support/vendors.csv"
+
+class FarMar::Vendor < RepeatMethods
+  DATA = "./support/vendors.csv"
 
   attr_reader :vendor_id, :name, :number_of_employees, :market_id
 
@@ -8,19 +9,6 @@ class FarMar::Vendor
     @vendor_id = @vendor_id.to_i
     @number_of_employees = @number_of_employees.to_i
     @market_id = @market_id.to_i
-  end
-
-  # self.all: returns a collection of instances, representing all of the objects described in the CSV
-  def self.all
-    CSV.read(VENDORS_CSV).map do |line|
-      self.new(line)
-    end
-  end
-
-  def self.find(id, file =  VENDORS_CSV)
-    CSV.foreach(file) do |line|
-      return self.new(line) if line[0].to_i == id
-    end
   end
 
   #market: returns the FarMar::Market instance that is associated with this vendor using
@@ -60,63 +48,11 @@ class FarMar::Vendor
     vendors.collect { |vendor| FarMar::Vendor.new(vendor)}
   end
 
+  # self.most_revenue(n) returns the top n vendor instances ranked by total revenue
+  # this works but it is breaking my tests because it takes so long
+
+  # def self.most_revenue(n)
+  #   self.all.max_by(n) { |vendor| vendor.revenue }
+  # end
 
 end
-
-
-# def self.by_market(market_id)
-#   CSV.foreach(VENDORS_CSV) do |line|
-#     return FarMar::Vendor.new(line) if line[3] == market_id
-#   end
-# end
-
-# Each vendor belongs to a market, the market_id field refers to the FarMar::Market ID field.
-# Each vendor has many products for sell. The FarMar::Vendor data, in order in the CSV, consists of:
-
-
-# 1. ID - (Fixnum) uniquely identifies the vendor
-# 2. Name - (String) the name of the vendor (not guaranteed unique)
-# 3. No. of Employees - (Fixnum) How many employees the vendor has at the market
-# 4. Market_id - (Fixnum) a reference to which market the vendor attends
-
-
-# def initialize(vendor_info)
-#   @vendor_id = vendor_info[:vendor_id].to_i
-#   @name = vendor_info[:name]
-#   @number_of_employees = vendor_info[:number_of_employees].to_i
-#   @market_id = vendor_info[:market_id].to_i
-# end
-
-
-# def self.all
-#   all_vendor_info = []
-#   CSV.open("./support/vendors.csv", 'r') do |csv|
-#     csv.read.each do |line|
-#       all_vendor_info.push(self.new(line))
-#     end
-#   end
-#   return all_vendor_info
-# end
-
-# def self.find_first_version(id)
-#   all_vendors = self.all
-#   all_vendors.each do |vendor|
-#     return vendor if vendor.vendor_id == id
-#   end
-#   nil
-# end
-
-
-# def products
-#   FarMar::Product.all.select { |product| product.vendor_id == vendor_id}
-# end
-
-
-# def market
-#   FarMar::Market.all.select { |market| market.market_id == market_id }
-# end
-
-
-# def self.by_market(market_id)
-#   FarMar::Vendor.all.select { |vendor| vendor.market_id == market_id}
-# end
