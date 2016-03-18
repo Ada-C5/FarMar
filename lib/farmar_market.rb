@@ -1,4 +1,4 @@
-class FarMar::Market
+class FarMar::Market < FarMar::SharedStuff
   attr_reader :name, :address, :county, :state, :zip, :market_id, :city
   def initialize(line) #for all, csv length -1?
     @market_id = line[0].to_i
@@ -14,24 +14,26 @@ class FarMar::Market
     CSV.read('./support/markets.csv')
   end
 
-  def self.all
-    market_instances = {}
-    self.pull_from_csv.each do |market|
-      market_instances[market[0]] = FarMar::Market.new(market)
-    end
-      market_instances
-  end
-
-  def self.find(id) #search by market id
-    self.pull_from_csv.each do |market_instance|
-      if market_instance[0].to_i == id.to_i
-        return FarMar::Market.new(market_instance)
-      end
-    end
-    return "No instance found"
+  def self.make_new_instance(market_instance)
+    FarMar::Market.new(market_instance)
   end
 
   def vendors #search by market id
     FarMar::Vendor.all.select {|vendor_id, instance| instance.market_id == self.market_id}
   end
+
+  def self.find_by_name(match) #finds first instance of matching name
+    self.pull_from_csv.each do |instance|
+      if instance[1].include?(match.to_s)
+        return make_new_instance(instance)
+      end
+    end
+    return "No instance found"
+  end
+
+  def self.find_all_by_name(match)
+    all_match = FarMar::Market.all.select {|vendor_id, instance| instance.name.include?(match.to_s)}
+    return all_match.values #array of instances
+  end
+
 end

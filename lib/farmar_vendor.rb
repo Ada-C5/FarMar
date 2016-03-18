@@ -1,4 +1,4 @@
-class FarMar::Vendor
+class FarMar::Vendor < FarMar::SharedStuff
   attr_reader :market_id, :name, :vendor_id, :employees
   def initialize(line)
     @vendor_id = line[0].to_i
@@ -11,21 +11,8 @@ class FarMar::Vendor
     CSV.read('./support/vendors.csv')
   end
 
-  def self.all
-    all_vendors = {}
-    self.pull_from_csv.each do |vendor_instance|
-        all_vendors[vendor_instance[0]] = FarMar::Vendor.new(vendor_instance)
-      end
-    return all_vendors
-  end
-
-  def self.find(id) #find by vendor id
-    pull_from_csv.each do |vendor_instance|
-      if vendor_instance[0].to_i == id.to_i
-        return FarMar::Vendor.new(vendor_instance)
-      end
-    end
-    return "No instance found"
+  def self.make_new_instance(instance)
+    FarMar::Vendor.new(instance)
   end
 
   def market #find market instance of vendor instance

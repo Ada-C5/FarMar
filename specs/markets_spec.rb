@@ -23,7 +23,7 @@ describe FarMar::Market do
       FarMar::Market.find(286).must_be_instance_of FarMar::Market
     end
 
-    it "will return nil if no instance found" do
+    it "will return 'No instance found' if no instance found" do
       FarMar::Market.find(333333).must_equal "No instance found"
     end
   end
@@ -31,7 +31,19 @@ describe FarMar::Market do
   describe "Market#vendors" do
     it "can find instances of vendors by market id" do
       market.vendors.must_be_instance_of Hash
-
     end
   end
+
+  describe "Market find_by_name" do
+    it "can find an instance of market matching the passed name" do
+      FarMar::Market.find_by_name("farmer").must_be_instance_of FarMar::Market
+    end
+  end
+
+  describe "Market find_all_by_name" do
+    it "can find a collection (array) of markets matching the passed name" do
+      FarMar::Market.find_all_by_name("farmer").must_be_instance_of Array
+    end
+  end
+
 end

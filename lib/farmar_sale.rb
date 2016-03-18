@@ -1,4 +1,4 @@
-class FarMar::Sale
+class FarMar::Sale < FarMar::SharedStuff
   attr_reader :sale_id, :amount, :purchase_time, :vendor_id, :product_id
   def initialize(line) #for all, csv length -1?
     @sale_id = line[0].to_i
@@ -12,22 +12,8 @@ class FarMar::Sale
     CSV.read('./support/sales.csv')
   end
 
-  def self.all
-    sale_instances = {}
-    self.pull_from_csv.each do |sale|
-          sale_instances[sale[0]] = FarMar::Sale.new(sale)
-    end
-      sale_instances
-  end
-
-
-  def self.find(id) #find by product id
-    pull_from_csv.each do |sale_instance|
-      if sale_instance[0].to_i == id.to_i
-        return FarMar::Sale.new(sale_instance)
-      end
-    end
-    return "No instance found"
+  def self.make_new_instance(instance)
+    FarMar::Sale.new(instance)
   end
 
   def vendor
