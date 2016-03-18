@@ -54,7 +54,7 @@ describe FarMar::Product do
     end
 
     describe "Product#vendor" do
-      let(:product) {FarMar::Product.find(32)}
+      #let(:product) {FarMar::Product.find(32)}
       it "makes sure that when we call market method on the new instance of Vendor we get the correct one" do
         product.vendor.vendor_name.must_equal(vendor_name = "Donnelly-Quigley")
       end
@@ -68,7 +68,14 @@ describe FarMar::Product do
 
     end
 
-    #need test for number_of_sales
+    describe "Product#number_of_sales" do
+    #let(:product) {FarMar::Product.find(32)}
+      it "makes sure the length of the array or number of sales is correct for the Prduct instance given" do
+        product.number_of_sales.must_equal(2)
+
+      end
+    end
+
 
   end
-end 
+end

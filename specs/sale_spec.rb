@@ -44,7 +44,6 @@ describe "Sale#find" do
     sale.product_id.must_equal "2"
   end
 end
-#need test for self.between
 
 
 describe "Sale#vendor" do
@@ -60,4 +59,19 @@ let(:sale) {FarMar::Sale.find(32)}
   it "makes sure that when we call product method on the new instance of Sale we get the correct one" do
     sale.product.product_id.must_equal("14")
   end
+end
+
+
+describe "Sale#self.between" do
+
+  it "returns the number of sales made between the begin time and the end time" do
+    start_time = "2013-11-11 06:44:12 -0800"
+    end_time = "2013-11-11 06:44:14 -0800"
+    total_sales = FarMar::Sale.between(start_time, end_time)
+    total_sales.length.must_equal(1)
+
+
+
+  end
+
 end

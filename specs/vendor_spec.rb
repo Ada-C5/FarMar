@@ -33,7 +33,6 @@ let(:vendor) {FarMar::Vendor.find(24)}                                      #thi
 
 
   describe "Vendor#find" do
-    #let(:vendor) {FarMar::Vendor.find(24)}
 
     it"makes sure that the id requested matches the id given" do
       vendor = FarMar::Vendor.find(24)

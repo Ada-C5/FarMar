@@ -56,15 +56,14 @@ class FarMar::Product
 
   def number_of_sales
     product_sales = []
-    this_product = self.product_id
 
-    FarMar::Sales.all.each do |sale|
-      if sale.product_id == this_product.product_id
+    FarMar::Sale.all.each do |sale|
+      if sale.product_id.to_i == product_id.to_i
         product_sales << sale
       end
     end
 
-  return product_sales.length  #.to_i??
+  return product_sales.length 
   end
 
 
