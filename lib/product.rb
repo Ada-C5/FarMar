@@ -24,8 +24,23 @@ class FarMar::Product < FarMar::FarMarClass
     FarMar::Sale.all.select { |sale| sale.product_id == product_id}
   end
 
-    # returns the number of times this product has been sold
-    def number_of_sales(product_id)
-      sales(product_id).length
-    end
+  # returns the number of times this product has been sold
+  def number_of_sales(product_id)
+    sales(product_id).length
+  end
+
+  # returns top ten product instances by total revenue
+  # def self.most_revenue(n)
+  #   all_products = []
+  #   self.all.each do |product|
+  #     total = 0
+  #     sales = product.sales(product.id)
+  #     sales.each do |sale|
+  #       total += sale.amount
+  #     end
+  #     all_products << total
+  #   end
+  #   return all_products.sort[0..n] 
+  # end
+  
 end

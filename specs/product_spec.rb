@@ -42,4 +42,9 @@ describe FarMar::Product do
     FarMar::Product.by_vendor(99).length.must_equal 5
     FarMar::Product.by_vendor(99)[0].class.must_equal FarMar::Product
   end
+
+  # test self.most_revenue(n) method
+  # it "should return top 10 products by revenue" do
+  #   FarMar::Product.most_revenue(10).class.must_equal Array
+  # end
 end
