@@ -37,9 +37,16 @@ describe FarMar::Product do
 
   describe "FarMar::Product#number_of_sales" do
     products3 = FarMar::Product.new(id: 74)
+    products4 = FarMar::Product.new(id: 14000)
+
     it "should return number of times product has been sold" do
       products3.number_of_sales.must_equal 7
     end
+
+    it "should return nil for id that doesn't exist" do
+      products4.number_of_sales.must_equal  nil
+    end
+
   end
 
   describe "FarMar::Product#self.by_vendor" do
@@ -49,9 +56,9 @@ describe FarMar::Product do
   end
 
   # describe "FarMar::Product#number_of_sales" do
-  #   products3 = FarMar::Product.new(id: 14000)
+  #   products4 = FarMar::Product.new(id: 14000)
   #   it "should return nil for id that doesn't exist" do
-  #     products3.number_of_sales.must_equal  nil
+  #     products4.number_of_sales.must_equal  nil
   #   end
   # end
 

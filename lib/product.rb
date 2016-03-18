@@ -37,8 +37,9 @@ class FarMar::Product
   end
 
   def number_of_sales
-    sales_num = sales.count
-    # nil if sales_num == 0
+    product_sales = sales
+    return nil if product_sales.empty?
+    product_sales.count 
   end
 
 end
