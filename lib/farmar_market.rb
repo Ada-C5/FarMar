@@ -42,18 +42,9 @@ class FarMar::Market
     market_list
   end
 
-
   def self.find(id)
     markets_to_search = FarMar::Market.all(FarMar::MARKETS_CSV)
-    found_market = nil
-
-    markets_to_search.each do |market|
-      if market.id == id.to_s
-        found_market = market
-      end
-    end
-
-    found_market
+    markets_to_search.find {|market| market.id == id.to_s}
   end
 
   def vendors
