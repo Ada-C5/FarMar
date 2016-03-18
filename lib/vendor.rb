@@ -28,6 +28,10 @@ class FarMar::Vendor
     self.all.find_all { |ven| ven.market_id == find_market_id }
   end
 
+  def self.most_revenue(n)
+    self.all.max_by(n) { |ven| ven.revenue }
+  end
+
   def market
     FarMar::Market.all.find { |market| market.id == market_id }
   end

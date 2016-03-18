@@ -11,7 +11,7 @@ describe FarMar::Vendor do
   describe "Vendor#self.all" do
     it "creates an array of Vendor objects" do
       all_vendors.must_be_instance_of Array
-      all_vendors[0].must_be_instance_of FarMar::Vendor
+      all_vendors.last.must_be_instance_of FarMar::Vendor
     end
 
     it "has objects with the correct data" do
@@ -42,6 +42,15 @@ describe FarMar::Vendor do
       market_4.must_be_instance_of Array
       market_4[0].must_be_instance_of FarMar::Vendor
       market_4[3].name.must_equal "Homenick-Kuhn"
+    end
+  end
+
+  describe "Vendor#self.most_revenue" do
+    it "finds the n number of highest revenue vendors in all markets" do
+      skip
+      # uncomment the following line to see the most_revenue(4) array, get trolled
+      # ap FarMar::Vendor.most_revenue(4)
+      FarMar::Vendor.most_revenue(4).length.must_equal 4
     end
   end
 
