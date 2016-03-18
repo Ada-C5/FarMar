@@ -33,7 +33,7 @@ class FarMar::Sale
     vendor_list = []
     CSV.read("./support/vendors.csv").each do |line|
         if line[0].to_i == vendor_id.to_i
-        vendor_list << FarMar::Vendor.new(line[0],line[1],line[3])
+        vendor_list << FarMar::Vendor.new(line[0],line[1],line[2],line[3])
         end
       end
       return vendor_list
@@ -44,7 +44,7 @@ class FarMar::Sale
     product_list = []
     CSV.read("./support/products.csv").each do |line|
       if line[0].to_i == product_id.to_i
-      product_list << FarMar::Product.new(line[0],line[1],line[2])
+      product_list << FarMar::Product.new(line[0],line[1],line[2],line[3])
       end
     end
     return product_list
@@ -56,7 +56,7 @@ class FarMar::Sale
     times_range = []
     CSV.read("./support/sales.csv").each do |line|
       if ((beginning_time..end_time).cover? Date.parse(line[2]))
-        times_range << FarMar::Sale.new(line[0],line[1],line[3])
+        times_range << FarMar::Sale.new(line[0],line[1],line[2],line[3],line[4])
       end
     end
     return times_range

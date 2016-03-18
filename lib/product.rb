@@ -3,10 +3,11 @@ require 'CSV'
 class FarMar::Product
   include FarMar
 attr_reader :id, :name, :vendor, :vendor_id
-  def initialize(id=nil,name=nil,vendor=nil,vendor_id=nil)
+  def initialize(id=nil,name=nil,vendor_id=nil,product_id=nil)
     @id = id.to_i
     @name = name.to_s
     @vendor_id = vendor_id.to_i
+    @product_id = product_id.to_i
   end
 
   def self.all
@@ -25,10 +26,10 @@ attr_reader :id, :name, :vendor, :vendor_id
       end
   end
 
-  def vendors
+  def vendor
         vendor_list = []
         CSV.read("./support/vendors.csv").each do |line|
-          if line[0].to_i == vendor_id.to_i
+          if line[0] == vendor_id.to_s
             vendor_list<< FarMar::Vendor.new(line[0],line[1],line[2],line[3])
           end
       end
@@ -39,7 +40,7 @@ attr_reader :id, :name, :vendor, :vendor_id
   def sales
     sales_list = []
     CSV.read("./support/sales.csv").each do |line|
-      if line[4].to_i == id.to_i
+      if line[4] == id.to_s
       sales_list << FarMar::Sale.new(line[0],line[1],line[3],line[4])
       end
     end
@@ -54,10 +55,11 @@ attr_reader :id, :name, :vendor, :vendor_id
   def self.by_vendor(vendor_id)
     vendor_id_list = []
     CSV.read("./support/products.csv").each do |line|
-      if line[2] == vendor_id.to_i
+      if line[2] == vendor_id.to_s
       vendor_id_list << FarMar::Product.new(line[0],line[1],line[2])
       end
     end
+    vendor_id_list
   end
 
 end
