@@ -13,13 +13,13 @@ describe FarMar::Sale do
     FarMar::Sale.wont_be_nil
   end
 
-  describe "FarMar::Sale#all" do
+  describe "self.all" do
     it "returns an array of instances" do
     FarMar::Sale.all.must_be_kind_of(Array)
     end
   end
 
-  describe "FarMar::Sale#find" do
+  describe "self.find" do
     it "can find a product instance based on ID" do
     FarMar::Sale.find(random_sale_id).must_be_instance_of(FarMar::Sale)
     end
@@ -36,13 +36,13 @@ describe FarMar::Sale do
     end
   end
 
-  describe "#vendor" do
+  describe "FarMar::Sale##vendor" do
     it "returns the FarMar::Vendor instance that is associated with this sale using the FarMar::Sale vendor_id field" do
     sale_by_vendor_id_test.vendor.must_be_instance_of(FarMar::Vendor)
     end
   end
 
-  describe "#product" do
+  describe "FarMar::Sale##product" do
     it "#returns the FarMar::Product instance that is associated with this sale using the FarMar::Sale product_id field" do
       sale_by_product_id_test.product.must_be_instance_of(FarMar::Product)
     end

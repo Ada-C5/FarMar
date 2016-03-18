@@ -33,13 +33,13 @@ describe FarMar::Product do
     end
   end
 
-  describe "#vendor" do
+  describe "FarMar::Product#vendor" do
     it "will return the FarMar::Vendor instance associated with this vendor using the FarMar::Product vendor_id" do
       product_by_vendor_id_test.vendor.must_be_instance_of(FarMar::Vendor)
     end
   end
 
-  describe "#sales" do
+  describe "FarMar::Product#sales" do
     it "will return a collection of FarMar::Sale instances that are associated by the product_id field." do
       sales_collection = product_by_product_id_test.sales
       sales_collection.must_be_kind_of(Array)
@@ -48,7 +48,7 @@ describe FarMar::Product do
     end
   end
 
-  describe "#number_of_sales" do
+  describe "FarMar::Product#number_of_sales" do
     it "will return the number of times this product has been sold." do
     assert_operator(product_by_product_id_test.number_of_sales, :>=, 0.0)
     # :>= because although some products may not have been sold, I know for sure we can't have negative sales.

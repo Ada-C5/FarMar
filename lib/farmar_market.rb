@@ -36,32 +36,35 @@ module FarMar
       super('./support/vendors.csv', FarMar::Vendor, id, "market_id")
     end
 
-    def self.search(search_term)
+    def self.search(search_term) # should this be broken up into a few methods?
 
+      # find search_term in Market names
       all_markets = self.all
-      matched_market_name = all_markets.find_all do |market|
+      markets_for_matched_market_name = all_markets.find_all do |market|
         market_name = market.name.downcase
         market_name.include?(search_term.downcase)
       end
 
-      matched_market_name
-
+      # find search_term in Vendor names
       all_vendors = FarMar::Vendor.all
       matched_vendor_name = all_vendors.find_all do |vendor|
         vendor_name = vendor.name.downcase
         vendor_name.include?(search_term.downcase)
       end
 
+      # Market_ids where the matched_vendors sell
       market_ids_for_matched_vendor_name = matched_vendor_name.collect do |vendor|
         vendor.market_id
       end
 
+      # Match the market_ids to the market instances
       markets_for_matched_vendor_name = all_markets.find_all do |market|
         market_ids_for_matched_vendor_name.include?market.id
       end
 
-      all_matched_markets = matched_market_name.concat(markets_for_matched_vendor_name)
-
+      # These are the markets you're looking for...
+      all_matched_markets = markets_for_matched_market_name.concat(markets_for_matched_vendor_name)
+      return all_matched_markets
     end
 
     def self.find(data_file = './support/markets.csv', id)

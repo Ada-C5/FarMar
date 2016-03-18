@@ -13,19 +13,29 @@ describe FarMar::Vendor do
     FarMar::Vendor.wont_be_nil
   end
 
-  describe "FarMar::Vendor.all" do
+  describe "self.all" do
     it "returns an array of instances" do
     FarMar::Vendor.all.must_be_kind_of(Array)
     end
   end
 
-  describe "FarMar::Vendor.find" do
+  describe "self.find" do
     it "can find a product instance based on ID" do
     FarMar::Vendor.find(random_vendor_id).must_be_instance_of(FarMar::Vendor)
     end
   end
 
-  describe "FarMar::Vendor.by_market" do
+  # describe "FarMar::Vendor.most_revenue(n)" do
+  #   it "returns the top n vendor instances ranked by total revenue" do
+  #   most_revenue = FarMar::Vendor.most_revenue(2)
+  #   # must return a collection of the top n vendors by revenue
+  #   most_revenue.length.must_equal(2)
+  #   # each item in the collection should be instance of FarMar::Vendor
+  #   most_revenue.each { |instance| instance.must_be_instance_of(FarMar::Vendor) }
+  #   end
+  # end
+
+  describe "self.by_market" do
     it "returns *all* of the vendors with the given market_id" do
     vendors_collection = FarMar::Vendor.by_market(random_market_id)
     vendors_collection.must_be_kind_of(Array)
