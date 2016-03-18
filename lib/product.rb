@@ -9,7 +9,7 @@ class FarMar::Product
   end
 
   def self.all(file = "./support/products.csv")
-    product_array = []
+    # product_array = []
     product = CSV.read(file)
     product.map do |line|
       hash = {
@@ -17,9 +17,10 @@ class FarMar::Product
         :name => line[1],
         :vendor_id => line[2]
       }
-      product_array << FarMar::Product.new(hash)
+      # product_array <<
+      FarMar::Product.new(hash)
     end
-    return product_array
+    # return product_array
   end
 
   def self.find(id)

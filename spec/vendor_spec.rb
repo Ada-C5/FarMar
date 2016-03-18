@@ -80,5 +80,4 @@ describe FarMar::Vendor do
       amount.must_equal(41_846)
     end
   end
-
 end

@@ -13,7 +13,7 @@ class FarMar::Market
   end
 
   def self.all(file = "./support/markets.csv")
-    market_array = []
+    # market_array = []
     market = CSV.read(file)
     market.map do |line|
       hash = {
@@ -25,9 +25,10 @@ class FarMar::Market
         :state => line[5],
         :zip => line[6]
       }
-      market_array << FarMar::Market.new(hash)
+      # market_array <<
+      FarMar::Market.new(hash)
     end
-    return market_array
+    # return market_array
   end
 
   def self.find(id)

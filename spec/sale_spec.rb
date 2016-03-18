@@ -72,8 +72,4 @@ describe FarMar::Sale do
       end
     end
   end
-
-
-
-
 end

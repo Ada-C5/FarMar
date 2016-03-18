@@ -46,5 +46,4 @@ describe FarMar::Market do
       vendors.length.must_equal(6)
     end
   end
-
 end
