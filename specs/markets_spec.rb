@@ -80,8 +80,8 @@ describe FarMar::Market do
   	end
 
   	it "should return correct size of array" do
-  		FarMar::Market.search("Stracke Group").count.must_equal(1)
-  		FarMar::Market.search("Silverdale Farmers Market").count.must_equal(1)
+  		FarMar::Market.search("Von-").count.must_equal(2)
+  		FarMar::Market.search("Top").count.must_equal(4)
   	end
   end
 end

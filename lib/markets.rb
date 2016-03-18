@@ -66,20 +66,26 @@ class FarMar::Market
 	#returns a collection of FarMar::Market instances where the 
 	#market name or vendor name contain the search_term
 	def self.search(search_term)
-		markets = []
-		FarMar::Vendor.all.each do |vendor|
-			if search_term == vendor.name
-				search_term = vendor.market_id
+		market_collection = []
+		markets = FarMar::Market.all
+		vendors = FarMar::Vendor.all
+		search_term = search_term.downcase
+
+		vendors.each do |vendor|
+			if vendor.name.downcase.include? search_term
+				markets.each do |market|
+					if vendor.market_id == market.id
+						market_collection << market
+					end
+				end
 			end
 		end
 
-		FarMar::Market.all.each do |market|
-					if market.id == search_term
-						markets << market
-					elsif market.name == search_term
-						markets << market
-					end
+		markets.each do |market|
+			if market.name.downcase.include? search_term
+				market_collection << market
+			end
 		end
-		return markets
+		return market_collection
 	end
 end
