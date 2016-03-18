@@ -67,10 +67,15 @@ describe FarMar::Vendor do
 
   describe "FarMar::Vendor#revenue" do
     let(:revenue) { vendor_ten.revenue }
+    let(:revenue_on_date) { vendor_ten.revenue("2013-11-08") }
 
     it "should return a Fixnum" do
       revenue.must_be_instance_of Fixnum
+    end
+
+    it "should return the revenue from a specific day" do
       revenue.must_equal 32628
+      revenue_on_date.must_equal 4077
     end
   end
 end

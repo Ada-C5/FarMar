@@ -52,7 +52,13 @@ class FarMar::Vendor
   end
 
   # returns the sum of all sales in cents
-  def revenue
-    sales.reduce(0) { |sum, sale| sum + sale.amount }
+  def revenue(date = nil)
+    return sales.reduce(0) { |sum, sale| sum + sale.amount } if date.nil?
+
+    sales_on_day = sales.find_all do |sale|
+      sale.purchase_time.include? date
+    end
+
+    sales_on_day.reduce(0) { |sum, sale| sum + sale.amount }
   end
 end
