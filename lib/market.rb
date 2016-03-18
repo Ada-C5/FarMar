@@ -44,8 +44,7 @@ class FarMar::Market
   end
 
 
-  def vendors(assoc_market_id)  #vendors: returns a collection of FarMar::Vendor instances that are associated with the market by the market_id field.
-    #FarMar::Vendor.all
+  def vendors(assoc_market_id) 
     assoc_vendors = []
     FarMar::Vendor.all.each do |vendor|
       if vendor.market_id.to_i == assoc_market_id

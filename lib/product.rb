@@ -38,9 +38,6 @@ class FarMar::Product
 
 
 
-
-
-    #sales: returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
   def sales(assoc_product_id)
     assoc_sales = []
     FarMar::Sale.all.each do |sale|

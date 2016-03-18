@@ -37,8 +37,7 @@ attr_reader :vendor_id, :vendor_name, :num_employ, :market_id
   end
 
 
-  def products(assoc_vendor_id) #products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
-    #FarMar::Product.all
+  def products(assoc_vendor_id)
     assoc_products = []
     FarMar::Product.all.each do |product|
       if product.vendor_id.to_i == assoc_vendor_id
@@ -48,7 +47,7 @@ attr_reader :vendor_id, :vendor_name, :num_employ, :market_id
       return assoc_products
   end
 
- #sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
+
   def sales(assoc_vendor_id)
     assoc_sales = []
     FarMar::Sale.all.each do |sale|
