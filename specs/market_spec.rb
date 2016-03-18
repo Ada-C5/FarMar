@@ -48,4 +48,19 @@ describe "FarMar::Market" do
       assert_equal 2, vendors[0].market_id
     end
   end
+
+  describe "FarMar::Market#search" do
+    search = FarMar::Market.search('school')
+    it "returns collections" do
+      search.must_be_instance_of Array
+    end
+
+    it "returns instances of Market" do
+      search.first.must_be_instance_of FarMar::Market
+    end
+
+    it "returns instances whose name includes the search_term" do
+      search.first.name.include? 'school'
+    end
+  end
 end

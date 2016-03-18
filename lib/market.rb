@@ -35,9 +35,7 @@ class FarMar::Market
     vendors.find_all { |vendor| market_id == vendor.market_id }
   end
 
-  # self.search(search_term) returns a collection of FarMar::Market instances where the market name or vendor name contain the search_term. For example FarMar::Market.search('school') would return 3 results, one being the market with id 75 (Fox School Farmers FarMar::Market).
-
   def self.search(search_term)
-    self.all.find_all()
+    self.all.find_all { |market| market.name.downcase.include? search_term.to_s.downcase}
   end
 end
