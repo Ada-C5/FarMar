@@ -41,6 +41,15 @@ describe FarMar::Market do
     end
   end
 
+  describe "FarMar::Market#find_by_name" do
+    let(:camdenton) { FarMar::Market.find_by_name("Farmers Market in Camdenton") }
+
+    it "should return a single instance of market that matches the name given" do
+      camdenton.id.must_equal 17
+      camdenton.must_be_instance_of FarMar::Market
+    end
+  end
+
   describe "FarMar::Market#vendor" do
     let(:vendor_list) {market_found.vendors }
 

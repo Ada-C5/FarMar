@@ -44,6 +44,13 @@ class FarMar::Market
     end
   end
 
+  def self.find_by_name(match)
+    match = match.downcase
+    self.all.find do |market|
+      market.name.downcase == match
+    end
+  end
+
   # returns a collection of vendor instances related to market through market_id
   def vendors
     FarMar::Vendor.by_market(id)
