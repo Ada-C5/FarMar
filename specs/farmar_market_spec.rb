@@ -1,5 +1,8 @@
 require_relative './spec_helper'
 
+# probably should have standardized which id's I was using in the find(id) method
+# instead of using random ones of my choice, that way I could have used let, oops
+
 describe FarMar::Market do
   it "should be an object we have access to" do
     FarMar::Market.wont_be_nil
@@ -58,5 +61,9 @@ end
 describe "FarMar::Market#products" do
   it "should return an array of instances of Product; the first element of the array should be an instance of Product" do
     FarMar::Market.find(1).products[0].must_be_instance_of FarMar::Product
+  end
+
+  it "should return an array where the second element of the array is a product with the name 'Fierce Greens' " do
+    FarMar::Market.find(1).products[1].name.must_equal "Fierce Greens"
   end
 end
