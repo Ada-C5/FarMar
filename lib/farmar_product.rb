@@ -17,7 +17,8 @@ class FarMar::Product
 
   def self.find(id)
     all_products = FarMar::Product.all
-    all_products.select { |p| p.id == id }
+    found_product = all_products.select { |p| p.id == id }
+    found_product[0]
   end
 
   def self.by_vendor(vendor_id)
@@ -28,7 +29,8 @@ class FarMar::Product
 
   def vendor
     all_vendors = FarMar::Vendor.all
-    all_vendors.select { |v| v.id == @vendor_id }
+    found_vendor = all_vendors.select { |v| v.id == @vendor_id }
+    found_vendor[0]
   end
 
   def sales

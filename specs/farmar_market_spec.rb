@@ -2,7 +2,7 @@ require_relative './spec_helper'
 
 describe FarMar::Market do
 	before do
-		@test_market = FarMar::Market.find(1)[0]
+		@test_market = FarMar::Market.find(1)
 	end
 
 	it "FarMar::Market Class Exists" do
@@ -39,7 +39,7 @@ describe FarMar::Market do
 		end
 
 		it "returns [] when given an invalid id" do
-			FarMar::Market.find(9999999).must_equal []
+			FarMar::Market.find(9999999).must_equal nil
 		end
 
 		it "returns the correct instance when given a valid id" do
@@ -61,11 +61,8 @@ describe FarMar::Market do
 		end
 
 		it "returns the correct instances of FarMar::Vendor" do
-			(FarMar::Market.find(30))[0].name.must_equal "Grafton Farmers Market"
+			FarMar::Market.find(30).name.must_equal "Grafton Farmers Market"
 		end
-
-		# it "returns all correct instances of FarMar::Vendor"
-		# tests a vendor id that has multiple matches somehow.
 
 	end
 

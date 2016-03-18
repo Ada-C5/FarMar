@@ -19,7 +19,8 @@ class FarMar::Sale
 
   def self.find(id)
     all_sales = FarMar::Sale.all
-    all_sales.select { |s| s.id == id }
+    found_sale = all_sales.select { |s| s.id == id }
+    found_sale[0]
   end
 
   def self.between(beginning_time, end_time)

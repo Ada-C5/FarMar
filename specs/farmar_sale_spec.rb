@@ -2,7 +2,7 @@ require_relative './spec_helper'
 
 describe FarMar::Sale do
 	before do
-		@test_sale = FarMar::Sale.find(1)[0]
+		@test_sale = FarMar::Sale.find(1)
 	end
 
 	it "FarMar::Sale Class Exists" do
@@ -33,7 +33,7 @@ describe FarMar::Sale do
 		end
 
 		it "returns [] when given an invalid id" do
-			FarMar::Sale.find(9999999).must_equal []
+			FarMar::Sale.find(9999999).must_equal nil
 		end
 
 		it "returns the correct instance when given a valid id" do

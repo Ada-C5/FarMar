@@ -3,8 +3,8 @@ require_relative './spec_helper'
 describe FarMar::Product do
 
 	before do
-		@test_market = FarMar::Market.find(1)[0]
-		@test_product = FarMar::Product.find(1)[0]
+		@test_market = FarMar::Market.find(1)
+		@test_product = FarMar::Product.find(1)
 	end
 
 	it "FarMar::Product Class Exists" do
@@ -34,8 +34,8 @@ describe FarMar::Product do
 			@test_product.must_be_instance_of FarMar::Product
 		end
 
-		it "returns [] when given an invalid id" do
-			FarMar::Product.find(9999999).must_equal []
+		it "returns nil when given an invalid id" do
+			FarMar::Product.find(9999999).must_equal nil
 		end
 
 		it "returns the correct instance when given a valid id" do
@@ -59,7 +59,7 @@ describe FarMar::Product do
 
 	describe "vendor method" do
 		it "will return the correct vendor of a product" do
-			@test_product.vendor[0].name.must_equal "Feil-Farrell"
+			@test_product.vendor.name.must_equal "Feil-Farrell"
 		end
 	end
 
