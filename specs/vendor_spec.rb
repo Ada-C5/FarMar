@@ -40,7 +40,7 @@ describe FarMar::Vendor do
       # uncomment the following line to see array of vendors with market_id = 4
       # ap FarMar::Vendor.by_market("4")
       market_4.must_be_instance_of Array
-      market_4[0].must_be_instance_of FarMar::Vendor
+      market_4.last.must_be_instance_of FarMar::Vendor
       market_4[3].name.must_equal "Homenick-Kuhn"
     end
   end
@@ -62,26 +62,26 @@ describe FarMar::Vendor do
 
   describe "Vendor#products" do
     it "should return all instances of Product that match the Vendor's id" do
-      # uncomment the following line to see the products array
+      # uncomment the following line to see the vendor.products array
       # ap vendor.products
       vendor.products.must_be_instance_of Array
       vendor.products.length.must_equal 2
-      vendor.products[0].vendor_id.must_equal "14"
+      vendor.products.last.vendor_id.must_equal "14"
     end
   end
 
   describe "Vendor#sales" do
     it "returns all instances of Sale that match the Vendor's id" do
-      # uncomment the following line to see the sales array
+      # uncomment the following line to see the vendor.sales array
       # ap vendor.sales
       vendor.sales.must_be_instance_of Array
       vendor.sales.length.must_equal 3
-      vendor.sales[0].vendor_id.must_equal "14"
+      vendor.sales.last.vendor_id.must_equal "14"
     end
   end
 
   describe "Vendor#revenue" do
-    it "should sum the sale amounts" do
+    it "should sum the sale amounts of a Vendor" do
       vendor.revenue.must_equal 5311
     end
   end

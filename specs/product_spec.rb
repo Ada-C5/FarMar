@@ -25,9 +25,7 @@ describe FarMar::Product do
     it "returns the Product object with matching id" do
       this_id = all_products[13].id
 
-      FarMar::Product.find(14).must_be_instance_of FarMar::Product
       FarMar::Product.find(14).id.must_equal this_id
-      FarMar::Product.find(14).name.must_equal "Stupendous Carrots"
     end
   end
 
@@ -40,7 +38,7 @@ describe FarMar::Product do
       # uncomment the following line to see array of products with vendor_id = 4
       # ap FarMar::Product.by_vendor("4")
       @vendor_4.must_be_instance_of Array
-      @vendor_4[0].must_be_instance_of FarMar::Product
+      @vendor_4.last.must_be_instance_of FarMar::Product
       @vendor_4[1].name.must_equal "Smooth Mushrooms"
     end
   end
@@ -60,12 +58,12 @@ describe FarMar::Product do
       # ap product.sales
       product.sales.must_be_instance_of Array
       product.sales.length.must_equal 7
-      product.sales[0].product_id.must_equal "14"
+      product.sales.last.product_id.must_equal "14"
     end
   end
 
   describe "Product#number_of_sales" do
-    it "should sum the sale amounts" do
+    it "should sum the sale amounts of a Product" do
       product.number_of_sales.must_equal 7
     end
   end
