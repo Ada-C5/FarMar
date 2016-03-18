@@ -20,20 +20,20 @@ class FarMar::Vendor
     # @market_id        = vendor_info[:market_id]         # (Fixnum) a reference to which market the vendor attends
   end
 
-  def self.all
+  def self.all(file = CSV_FILE)
     @@vendors ||= begin
-      vendor_csv_file = CSV.read(CSV_FILE)
-      vendor_csv_file.map {|line| self.new(line)
+      vendor_csv_file = CSV.read(file)
+      vendor_csv_file.map {|line| self.new(line)}
     end
   end
 
   def self.find(id)
-    self.all.find {|vendor| vendor.id == id}.first
+    self.all.find {|vendor| vendor.id == id.to_i}
   end
 
   # self.by_market(market_id): returns all of the vendors with the given market_id
   def self.by_market(market_id)
-    self.all.select {|vendor| == vendor.market_id == market_id }
+    self.all.select {|vendor| vendor.market_id == market_id.to_i }
   end
  # return a list of market instances (FarMar::Market.id) by matching market_id
 
@@ -63,7 +63,7 @@ class FarMar::Vendor
   end
 
   def sales_by_vendor
-    revenue = sales.map {|sale| sale.amount }
+    sales.map {|sale| sale.amount }
   end
 
   def self.most_items(n)

@@ -17,7 +17,7 @@ class FarMar::Sale
     # converting instance variables to correct format
     @id             = @id.to_i
     @amount         = @amount.to_i
-    @purchase_time  = Time.parse(sale_info[@purchase_time])
+    @purchase_time  = Time.parse(@purchase_time)
     @vendor_id      = @vendor_id.to_i
     @product_id     = @product_id.to_i
 
@@ -29,15 +29,15 @@ class FarMar::Sale
     # @product_id     = sale_info[ :product_id ]     # (Fixnum) a reference to which product was sold
   end
 
-  def self.all
+  def self.all(file = CSV_FILE)
     @@sale ||= begin
-      sale_csv_info = CSV.read(CSV_FILE)
+      sale_csv_info = CSV.read(file)
       sale_csv_info.map {|line| self.new(line)}
     end
   end
 
   def self.find(id)
-    self.all.find { |sale| sale.id == id } #since it returns an array and I want the instance
+    self.all.find { |sale| sale.id == id.to_i } #since it returns an array and I want the instance
   end
 
   def self.between(beginning_time, end_time)

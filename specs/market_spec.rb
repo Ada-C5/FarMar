@@ -2,15 +2,14 @@ require_relative './spec_helper'
 
 describe FarMar::Market do
   let (:market) {FarMar::Market}
-  let (:market_12) { FarMar::Market.new(id: 12, name: "Coxsackie Farmers' Market")}
+  let (:market_12) { FarMar::Market.new(["12", "Coxsackie Farmers' Market","1 Betke Boulevard","Coxsackie,Greene","New York","12051"])}
 
   it "should be an object we have access to" do
     market.wont_be_nil
   end
 
   it "should return class 'FarMar::Market' for joe = FarMar::Market.new" do
-    joe = market.new(name: "Joe", id: 1234)
-    joe.class.must_equal FarMar::Market
+    market_12.class.must_equal FarMar::Market
   end
 
   describe "FarMar::Market#self" do
@@ -75,9 +74,16 @@ describe FarMar::Market do
     end
   end
 
+  describe "FarMar::Market#worst_vendor" do
+    it "returns FarMar::Vendor instance" do
+      market_12.worst_vendor.class.must_equal FarMar::Vendor
+    end
+  end
+
   describe "FarMar::Market#worst_vendor_by (date)" do
     it "returns FarMar::Vendor instance" do
       market_12.worst_vendor_by("2013-11-08 04:31:41 -0800").class.must_equal FarMar::Vendor
     end
   end
+
 end

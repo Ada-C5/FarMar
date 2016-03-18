@@ -1,7 +1,6 @@
 require 'csv'
 #require_relative '../far_mar'
 
-
 class FarMar::Market
 
   CSV_FILE = "./support/markets.csv"
@@ -26,14 +25,15 @@ class FarMar::Market
   end
 
 
-  def self.all
+  def self.all(file = CSV_FILE)
     @@markets ||= begin
-      markets_csv_info = CSV.read(CSV_FILE)  # an array of each line as an element
+      markets_csv_info = CSV.read(file)  # an array of each line as an element
       markets_csv_info.map { |line| self.new(line) }
+    end
   end
 
   def self.find(id)
-    self.all.find {|market| market.id == id }
+    self.all.find {|market| market.id == id.to_i }
   end
 
   # return a list of vendor instances (FarMar::Vendor) by matching market_id
@@ -46,9 +46,13 @@ class FarMar::Market
   end
 
   def self.search(search_term)
-    search_results = []
-    search_results = self.all.select {|market| market.name.downcase.include? search_term.downcase }
-    search_results += FarMar::Vendor.all.select {|vendor| vendor.name.downcase.include? search_term.downcase}
+
+    markets_with_term = self.all.select {|market| market.name.downcase.include? search_term.downcase }
+    vendors_with_term = FarMar::Vendor.all.select {|vendor| vendor.name.downcase.include? search_term.downcase}
+
+    unique_markets_from_vendor = vendors_with_term.select {|vendor| markets_with_term.exclude? vendor.market_id}
+
+    markets_with_term  += unique_markets_from_vendor.each {|vendor| self.find(unique_markets_from_vendor.market_id)}
   end
 
   def prefered_vendor

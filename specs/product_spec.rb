@@ -3,7 +3,7 @@ require_relative './spec_helper'
 describe FarMar::Product do
   let (:product) { FarMar::Product} #instance of class
   let (:product_3) { FarMar::Product.find(3) }
-  let (:product_5) { FarMar::Product.new(id: 5, name: "Green Apples", vendor_id: 4)} # specific instance
+  let (:product_5) { FarMar::Product.new(["5", "Green Apples", "4"])} # specific instance
 
   it "should be an object we have access to" do
     product.wont_be_nil
@@ -53,7 +53,7 @@ describe FarMar::Product do
 
   describe "FarMar::Product.by_vendor(vendor_id) self.class" do
     it "returns an array of all the products" do
-      product.by_vendor(5).class.must_equal Array
+      product.by_vendor("5").class.must_equal Array
     end
 
     it "returns all the products with given vendor_id" do

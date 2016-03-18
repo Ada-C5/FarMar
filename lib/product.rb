@@ -19,19 +19,19 @@ class FarMar::Product
     # @vendor_id       = product_info [ :vendor_id   ].to_i # (Fixnum) a reference to which vendor sells this product
   end
 
-  def self.all
+  def self.all(file = CSV_FILE)
     @@products ||= begin
-      products_from_csv = CSV.read(CSV_FILE) # creates an array with each line as element
+      products_from_csv = CSV.read(file) # creates an array with each line as element
       products_from_csv.map {|line| self.new(line)}
     end
   end
 
   def self.find(id)
-    self.all.select { |product| product.id == id }.first
+    self.all.select { |product| product.id == id.to_i }.first
   end
 
   def self.by_vendor(vendor_id)
-    self.all.select {|product| product.vendor_id vendor_id}
+    self.all.select {|product| product.vendor_id == vendor_id.to_i}
   end
 
   def vendor

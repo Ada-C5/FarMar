@@ -2,7 +2,7 @@ require_relative './spec_helper'
 
 describe FarMar::Sale do
   let (:sale) {FarMar::Sale}
-  let (:sale_12) {FarMar::Sale.new(id: "12", amount: "5179", purchase_time: "2013-11-08 16:36:03 -0800", vendor_id: "3", product_id: "4")}
+  let (:sale_12) {FarMar::Sale.new(["12", "5179", "2013-11-08 16:36:03 -0800", "3", "4"])}
 
   it "should be an object we have access to" do
     sale.wont_be_nil
@@ -20,7 +20,7 @@ describe FarMar::Sale do
     end
 
     it "should return 'Dry Beets' for instance of FarMar::Product.find(1)" do
-      sale_12.id.must_equal "12"
+      sale_12.id.must_equal 12
     end
   end
 

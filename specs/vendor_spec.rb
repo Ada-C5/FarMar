@@ -2,7 +2,7 @@ require_relative './spec_helper'
 
 describe FarMar::Vendor do
   let (:vendor) { FarMar::Vendor }
-  let(:vendor_11) { FarMar::Vendor.new(id: 11, name: "Donnelly-Quigley", total_employees: 7, market_id: 3 )}
+  let(:vendor_11) { FarMar::Vendor.new(["11", "Donnelly-Quigley","7","3"])}
 
   it "should be an object we have access to" do
     FarMar::Vendor.wont_be_nil
@@ -27,7 +27,7 @@ describe FarMar::Vendor do
     it "returns information about vendor(11)" do
       vendor_11.id.must_equal 11 #.must_be_instance_of FarMar::Vendor
       vendor_11.name.must_equal "Donnelly-Quigley"
-      vendor_11.total_employees.must_equal 7
+      vendor_11.total_employees.must_equal "7"
       vendor_11.market_id.must_equal 3
     end
   end
@@ -78,7 +78,7 @@ describe FarMar::Vendor do
 
     it "return market_id '3' for all vendors given market id '3' " do
       vendors_market_ids = vendor.by_market("3").map {|vendor| vendor.market_id}
-      vendors_market_ids.uniq.must_equal ["3"]
+      vendors_market_ids.uniq.must_equal [3]
     end
   end
 
@@ -95,6 +95,15 @@ describe FarMar::Vendor do
     it "returns an array with (n) vendor(s) with most_items" do
       vendor.most_items(3).class.must_equal Array
     end
+  end
 
+  describe "FarMar::Vendor.sales_by_vendor" do
+    it "returns total sales for each vendor" do
+      # vendor_sales = vendor_11.sales_by_vendor.map{|sales| sales.amount.class}
+      vendor_11.class.must_equal Fixnum
+
+      # vendor_revenue = vendor_12.sales_by_vendor.map {|vendor| vendor.class}
+      # vendor_revenue.uniq.class.must_equal Fixnum
+    end
   end
 end
