@@ -44,6 +44,6 @@ class FarMar::Sale
     beginning_time = DateTime.parse(beginning_time)
     end_time = DateTime.parse(end_time)
     sales_in_range = self.all.find_all { |sale| DateTime.parse(sale.sale_time).between?(beginning_time, end_time) }
-    # return sales_in_range
+    sales_in_range
   end
 end

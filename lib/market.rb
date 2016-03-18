@@ -38,4 +38,14 @@ class FarMar::Market
   def self.search(search_term)
     self.all.find_all { |market| market.name.downcase.include? search_term.to_s.downcase}
   end
+
+  #prefered_vendor: returns the vendor with the highest revenue
+  def self.prefered_vendor
+    revenues = []
+    FarMar::Vendor.all.each do |vendor|
+      vendor.revenue
+      revenues << [vendor, "revenue: #{vendor.revenue}"]
+    end
+    revenues.max_by { |array| array.last }
+  end
 end
