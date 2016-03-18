@@ -1,6 +1,3 @@
-#get rid of ln2 after done with IRB testing
-# require_relative '../far_mar.rb'
-
 class FarMar::Market
   attr_reader :id, :name, :address, :city, :county, :state, :zip
 
@@ -15,19 +12,15 @@ class FarMar::Market
   end
 
   def self.all
-    all_markets = CSVHasher.hashify('./support/markets.csv')
-    all_markets.collect { |m| FarMar::Market.new(m) }
+    CSVHasher.hashify('./support/markets.csv').collect { |m| FarMar::Market.new(m) }
   end
 
   def self.find(id)
-    all_markets = FarMar::Market.all
-    found_market = all_markets.select { |m| m.id == id }
-    found_market[0]
+    FarMar::Market.all.select { |m| m.id == id }[0]
   end
 
   def vendors
-    all_vendors = FarMar::Vendor.all
-    all_vendors.select { |v| @id == v.market_id }
+    FarMar::Vendor.all.select { |v| @id == v.market_id }
   end
 
 end

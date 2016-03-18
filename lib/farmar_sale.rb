@@ -1,6 +1,3 @@
-#get rid of ln2 after done with IRB testing
-# require_relative '../far_mar.rb'
-
 class FarMar::Sale
   attr_reader :id, :amount, :purchase_time, :vendor_id, :product_id
 
@@ -13,31 +10,23 @@ class FarMar::Sale
   end
 
   def self.all
-    all_sales = CSVHasher.hashify('./support/sales.csv')
-    all_sales.collect { |n| FarMar::Sale.new(n) }
+    CSVHasher.hashify('./support/sales.csv').collect { |n| FarMar::Sale.new(n) }
   end
 
   def self.find(id)
-    all_sales = FarMar::Sale.all
-    found_sale = all_sales.select { |s| s.id == id }
-    found_sale[0]
+    FarMar::Sale.all.select { |s| s.id == id }[0]
   end
 
   def self.between(beginning_time, end_time)
-    all_sales = FarMar::Sale.all
-    all_sales.select { |s| (beginning_time..end_time).cover?(s.purchase_time) }
+    FarMar::Sale.all.select { |s| (beginning_time..end_time).cover?(s.purchase_time) }
   end
 
   def vendor
-    all_vendors = FarMar::Vendor.all
-    found_vendor = all_vendors.select { |v| v.id == @vendor_id }
-    found_vendor[0]
+    FarMar::Vendor.all.select { |v| v.id == @vendor_id }[0]
   end
 
   def product
-    all_products = FarMar::Product.all
-    found_product = all_products.select { |p| p.id == @product_id }
-    found_product[0]
+    FarMar::Product.all.select { |p| p.id == @product_id }[0]
   end
 
 end
