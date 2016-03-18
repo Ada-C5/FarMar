@@ -19,9 +19,7 @@ class FarMar::Vendor
   end
 
   def self.find(find_id)
-    self.all.each do |vendor|
-      return vendor if vendor.id == find_id.to_s
-    end
+    self.all.find { |vendor| vendor.id == find_id.to_s }
   end
 
   def self.by_market(find_market_id)

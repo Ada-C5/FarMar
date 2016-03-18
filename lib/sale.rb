@@ -20,9 +20,7 @@ class FarMar::Sale
   end
 
   def self.find(find_id)
-    self.all.each do |sale|
-      return sale if sale.id == find_id.to_s
-    end
+    self.all.find { |sale| sale.id == find_id.to_s }
   end
 
 ##### DateTime.strptime("2013-11-11 06:21:52 -0800" "formatted version here")

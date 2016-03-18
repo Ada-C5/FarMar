@@ -24,9 +24,7 @@ class FarMar::Product
   end
 
   def self.find(find_id)
-    self.all.each do |product|
-      return product if product.id == find_id.to_s
-    end
+    self.all.find { |product| product.id == find_id.to_s }
   end
 
   def self.by_vendor(find_vendor_id)

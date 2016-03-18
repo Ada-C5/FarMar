@@ -36,9 +36,7 @@ class FarMar::Market
   end
 
   def self.find(find_id)
-    self.all.each do |market|
-      return market if market.id == find_id.to_s
-    end
+    self.all.find { |market| market.id == find_id.to_s }
   end
 
   def self.search(search_term)
