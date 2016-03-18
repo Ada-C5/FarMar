@@ -29,12 +29,7 @@ class FarMar::Product
 
   def self.find(id)
     products_to_search = FarMar::Product.all(FarMar::PRODUCTS_CSV)
-    product_to_return = nil
-
-    if id.to_s <= products_to_search[products_to_search.length-1].id 
-      product_to_return = products_to_search[products_to_search.find_index {|product| product.id == id.to_s}]
-    end
-    product_to_return
+    products_to_search.find {|product| product.id == id.to_s}
   end
 
   # vendor: returns the FarMar::Vendor instance that is associated with this vendor using the 

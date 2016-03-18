@@ -45,9 +45,7 @@ class FarMar::Market
 
   def self.find(id)
     markets_to_search = FarMar::Market.all(FarMar::MARKETS_CSV)
-
     markets_to_search.find {|market| market.id == id.to_s}
-    
   end
 
   def vendors
