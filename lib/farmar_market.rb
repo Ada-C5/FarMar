@@ -1,5 +1,5 @@
 ## use this when testing in IRB, otherwise comment out
-# require_relative '../far_mar'
+require_relative '../far_mar'
 
 class FarMar::Market
   attr_reader :id, :name, :address, :city, :county, :state, :zip
@@ -49,4 +49,12 @@ class FarMar::Market
     # the market by the market_id field
     FarMar::Vendor.all.find_all {|vendor| vendor.market_id == id}
   end
+
+  ### optional methods whee
+
+  def preferred_vendor
+    # returns the vendor with the highest revenue
+    vendors.max_by {|vendor| FarMar::Vendor.find(vendor.id).revenue}
+  end
+
 end

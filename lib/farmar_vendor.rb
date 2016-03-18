@@ -1,4 +1,4 @@
-# require_relative '../far_mar'
+require_relative '../far_mar'
 
 class FarMar::Vendor
   attr_reader :id, :name, :number_of_employees, :market_id

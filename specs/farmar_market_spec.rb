@@ -24,12 +24,23 @@ describe "FarMar::Market#self.find(id)" do
   end
 end
 
-describe "FarMar::Markets#vendors" do
+describe "FarMar::Market#vendors" do
   it "should return an array containing instances of FarMar::Vendor" do
     FarMar::Market.find(1).vendors[0].must_be_instance_of FarMar::Vendor
   end
 
   it "should return the name 'Bechtelar Inc' for the first vendor with the market ID 2" do
     FarMar::Market.find(2).vendors[0].name.must_equal "Bechtelar Inc"
+  end
+end
+
+## tests for optional requirements
+describe "FarMar::Market#preferred_vendor" do
+  it "should return an instance of FarMar::Vendor" do
+    FarMar::Market.find(1).preferred_vendor.must_be_instance_of FarMar::Vendor
+  end
+
+  it "should return the name of the correct instance with the highest revenue for that market" do
+    FarMar::Market.find(1).preferred_vendor.name.must_equal FarMar::Vendor.find(5).name
   end
 end
