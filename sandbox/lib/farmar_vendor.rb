@@ -61,19 +61,11 @@ class FarMar::Vendor
 
   # revenue: returns the the sum of all of the vendor's sales (in cents)
   def revenue
-    # create sales to search
-    # search sales for this vendor id
     # leverages sales method
     sales_to_sum = self.sales
     total_revenue = 0
 
-    # sum sales
-    sales_to_sum.each do |sale|
-      total_revenue += sale.amount.to_i
-    end
-
-    # return sum
-    return total_revenue
+    sales_to_sum.reduce(0) {|revenue, sale| total_revenue += sale.amount.to_i}    
   end
 
   # self.by_market(market_id): returns all of the vendors with the given market_id
