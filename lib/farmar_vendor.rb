@@ -45,14 +45,19 @@ class FarMar::Vendor
   end
 
   def revenue
-    vendor_sales = sales
-    amount_array = []
-
-    vendor_sales.each do |sale|
-      amount_array << sale.amount
-    end
-
-    amount_array.reduce(0, :+)
+    amounts = sales.collect { |s| s.amount }
+    amounts.reduce(0, :+)
   end
+
+  # def revenue
+  #   vendor_sales = sales
+  #   amount_array = []
+  #
+  #   vendor_sales.each do |sale|
+  #     amount_array << sale.amount
+  #   end
+  #
+  #   amount_array.reduce(0, :+)
+  # end
 
 end

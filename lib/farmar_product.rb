@@ -1,6 +1,3 @@
-#get rid of ln2 after done with IRB testing
-# require_relative '../far_mar.rb'
-
 class FarMar::Product
   attr_reader :id, :name, :vendor_id
 
