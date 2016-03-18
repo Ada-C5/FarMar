@@ -34,12 +34,10 @@ class FarMar::Vendor
   end
 
   def self.by_market(market_id)
-    vend = []
+    # vend = []
     vendors = self.all
-    vendors.each do |found_vendor|
-      vend << found_vendor if market_id == found_vendor.market_id
+    vendors.find_all do |found_vendor| found_vendor if market_id == found_vendor.market_id
     end
-    return vend
   end
 
   def market

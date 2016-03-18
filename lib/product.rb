@@ -32,12 +32,13 @@ class FarMar::Product
   end
 
   def self.by_vendor(vendor_id)
-    prod = []
+    # prod = []
     products = self.all
-    products.each do |found_product|
-      prod << found_product if vendor_id == found_product.vendor_id
+    products.find_all do |found_product|
+      # prod <<
+      found_product if vendor_id == found_product.vendor_id
     end
-    return prod
+    # return prod
   end
 
   def vendor

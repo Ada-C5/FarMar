@@ -36,21 +36,23 @@ class FarMar::Sale
   end
 
   def self.by_vendor(vendor_id)
-    sale = []
+    # sale = []
     sales = self.all
-    sales.each do |found_sale|
-      sale << found_sale if vendor_id == found_sale.vendor_id
+    sales.find_all do |found_sale|
+      # sale <<
+      found_sale if vendor_id == found_sale.vendor_id
     end
-    return sale
+    # return sale
   end
 
   def self.by_product(product_id)
-    sales = []
+    # sales = []
     sale = self.all
-    sale.each do |found_sales|
-      sales << found_sales if product_id == found_sales.product_id
+    sale.find_all do |found_sales|
+      # sales <<
+      found_sales if product_id == found_sales.product_id
     end
-    return sales
+    # return sales
   end
 
   def vendor
