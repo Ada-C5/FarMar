@@ -67,3 +67,13 @@ describe "FarMar::Market#products" do
     FarMar::Market.find(1).products[1].name.must_equal "Fierce Greens"
   end
 end
+
+describe "FarMar::Market#self.search" do
+  it "should return 'Fox School Farmers' for the first element in the returned array" do
+    FarMar::Market.search("ScHoOl")[0].name.must_equal "Fox School Farmers Market"
+  end
+
+  it "should return 'Sassy Pea Market/Good Earth Petting Farm (at The Good Earth Day School' for the last element in the returned array" do
+    FarMar::Market.search("ScHoOl").last.name.must_equal "Sassy Pea Market/Good Earth Petting Farm (at The Good Earth Day School)"
+  end
+end

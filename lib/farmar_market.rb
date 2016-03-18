@@ -50,7 +50,7 @@ class FarMar::Market
     FarMar::Vendor.all.find_all {|vendor| vendor.market_id == id}
   end
 
-  ### optional methods whee
+  ### optional methods below, wheeeeee
 
   def preferred_vendor
     # returns the vendor with the highest revenue
@@ -69,6 +69,20 @@ class FarMar::Market
       vendor.products # this is returning an array
     end
     array_of_product_arrays.flatten
+  end
+
+  def self.search(search_term)
+  # returns a collection of FarMar::Market instances where the market name or
+  # vendor name contain the search_term. For example FarMar::Market.search('school')
+  # would return 3 results, one being the market with id 75 (Fox School Farmers FarMar::Market).
+  markets_with_search_term = FarMar::Market.all.find_all { |market| market.name.downcase.include?(search_term.downcase)}
+  vendors_with_search_term = FarMar::Vendor.all.find_all {|vendor| vendor.name.downcase.include?(search_term.downcase)}
+  markets_of_vendors = vendors_with_search_term.map do |vendor|
+    vendor.markets
+  end
+  all_search_results = markets_with_search_term.push(markets_of_vendors)
+  # to account for the fact that vendors_with_search_term returns an empty array if no results were found
+  all_search_results.delete_if {|result| result == []}
   end
 
 end
