@@ -32,13 +32,7 @@ class FarMar::Vendor
 
   def self.find(id)
     vendors_to_search = FarMar::Vendor.all(FarMar::VENDORS_CSV)
-    vendor_to_return = nil
-
-    if id.to_s <= vendors_to_search[vendors_to_search.length-1].id
-      vendor_to_return = vendors_to_search[vendors_to_search.find_index {|vendor| vendor.id == id.to_s}]
-    end
-    
-    vendor_to_return
+    vendors_to_search.find {|vendor| vendor.id == id.to_s}
   end
 
 # market: returns the FarMar::Market instance that is associated with this vendor using the FarMar::Vendor market_id field

@@ -35,12 +35,7 @@ class FarMar::Sale
 
   def self.find(id)
     sales_to_search = FarMar::Sale.all(FarMar::SALES_CSV)
-
-    sales_to_search.each do |sale|
-      if sale.id == id.to_s
-        return sale
-      end
-    end
+    sales_to_search.find {|sale| sale.id == id.to_s}
   end
 
   # vendor: returns the FarMar::Vendor instance that is associated with this sale using 
