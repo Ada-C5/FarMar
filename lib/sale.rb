@@ -1,4 +1,4 @@
-class FarMar::Sale
+class FarMar::Sale < FarMar::FarMarClass
   attr_reader :id, :purchase_time, :vendor_id, :amount, :product_id
   FILE = './support/sales.csv'
 
@@ -17,10 +17,6 @@ class FarMar::Sale
       sales << self.new(line[0].to_i, line[1].to_i, Time.parse(line[2]), line[3].to_i, line[4].to_i)
     end
     return sales
-  end
-
-  def self.find(id)
-    self.all.find { |sale| sale.id == id }
   end
 
   # method to find sales that happened in a certain range

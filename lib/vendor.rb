@@ -1,4 +1,4 @@
-class FarMar::Vendor
+class FarMar::Vendor < FarMar::FarMarClass
   attr_reader :name, :id, :market_id
   FILE = './support/vendors.csv'
 
@@ -16,12 +16,7 @@ class FarMar::Vendor
       vendors << self.new(line[0].to_i, line[1], line[2].to_i, line[3].to_i)
     end
     return vendors
-  end
-
-  # return one vendor with a specific id
-  def self.find(id)
-    self.all.find { |vendor| vendor.id == id}
-  end  
+  end 
 
   # find all vendors with given market_id
   def self.by_market(market_id)

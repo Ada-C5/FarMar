@@ -1,4 +1,4 @@
-class FarMar::Product
+class FarMar::Product < FarMar::FarMarClass
   attr_reader :name, :id, :vendor_id
   #csv with product info
   FILE = './support/products.csv'
@@ -16,11 +16,6 @@ class FarMar::Product
       products << self.new(line[0].to_i, line[1], line[2].to_i)
     end
     return products
-  end
-
-  # return an instance with same id
-  def self.find(id)
-    self.all.find { |product| product.id == id }
   end
 
   # returns all products sold by certain vendor id

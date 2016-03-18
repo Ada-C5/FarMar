@@ -1,4 +1,4 @@
-class FarMar::Market
+class FarMar::Market < FarMar::FarMarClass
   attr_reader :id, :name
 
   FILE = './support/markets.csv'
@@ -21,10 +21,6 @@ class FarMar::Market
     return markets
   end
 
-  def self.find(id)
-    self.all.find { |market| market.id == id }
-  end
-
   # return array of vendors in a specific market
   def vendors(market_id)
     FarMar::Vendor.all.select { |vendor| vendor.market_id == market_id }
@@ -32,15 +28,11 @@ class FarMar::Market
 
   # returns collection of PRODUCT instances associated to market via Vendor class
   def products(market_id)
-    vendors = FarMar::Vendor.by_market(market_id)
+    vendors = vendors(market_id)
     products = FarMar::Product.all
     product_array = []
     vendors.each do |vendor|
-      products.each do |product|
-        if product.vendor_id == vendor.id
-          product_array << product
-        end
-      end
+      product_array += vendor.products(vendor.id)
     end
     return product_array
   end
@@ -48,9 +40,14 @@ class FarMar::Market
   # returns collection of Market instances where market or vendor name share the same search term
   def self.search(search_term)
     search_term = search_term.upcase
+
     vendors = FarMar::Vendor.all.find_all { |vendor| vendor.name.upcase.include?(search_term)}
+    vendors_market = vendors.collect { |vendor| vendor.market(vendor.market_id)}
+
     markets = self.all.find_all { |market| market.name.upcase.include?(search_term)}
-    markets = markets + vendors
+
+    markets = vendors_market + markets
+    markets = markets.uniq
     return markets
   end
 
