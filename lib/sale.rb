@@ -10,7 +10,7 @@ class FarMar::Sale
   def initialize(sale_id)
     sale_id -= 1
     @sale_id = SALE_CSV[sale_id][0].to_i
-    @amount = SALE_CSV[sale_id][1]
+    @amount = SALE_CSV[sale_id][1].to_f
     @sale_time = SALE_CSV[sale_id][2]
     @vendor_id = SALE_CSV[sale_id][3].to_i
     @product_id = SALE_CSV[sale_id][4].to_i
