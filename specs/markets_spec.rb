@@ -3,7 +3,14 @@ require_relative "../far_mar"
 
 
 describe FarMar::Market do
+	market1 = FarMar::Market.new(id: 1, name: "People's Co-op Farmers Market", address: "30th and Burnside",
+						city: "Portland", county: "Multnomah", state: "Oregon",zip: "97202")
+	market13 = FarMar::Market.new(id: 13, name: "Otsiningo Park Farmers' Market",
+						address: "1 Bevier St", city:"Binghamton",county: "Broome",
+						state: "New York", zip: "13905")
+
  	let (:market15) {FarMar::Market.find(15)}
+
   it "it is an object we have acccess to" do
     FarMar::Market.wont_be_nil
   end
@@ -47,16 +54,34 @@ describe FarMar::Market do
   	end
   end
 
-  describe "Market#vendor" do
-  	market13 = FarMar::Market.new(id: 13, name: "Otsiningo Park Farmers' Market",
-  						address: "1 Bevier St", city:"Binghamton",county: "Broome",
-  						state: "New York", zip: "13905")
+  describe "Market#vendors" do
   	it "should return an array of vendors" do
-  		market13.vendor.must_be_instance_of(Array)
+  		market13.vendors.must_be_instance_of(Array)
   	end
 
   	it "should return vendor count for a market" do
-  		market13.vendor.count.must_equal(7)
+  		market13.vendors.count.must_equal(7)
+  	end
+  end
+
+  describe "Market#products" do
+  	it "should return an array" do
+  		market1.products.must_be_instance_of(Array)
+  	end
+
+  	it "should return the correct size of the array" do
+  	 	market1.products.count.must_equal(13)
+    end
+  end
+
+  describe "Market#search(search_term)" do
+  	it "should return an array" do
+  		FarMar::Market.search("Silverdale Farmers Market").must_be_instance_of(Array)
+  	end
+
+  	it "should return correct size of array" do
+  		FarMar::Market.search("Stracke Group").count.must_equal(1)
+  		FarMar::Market.search("Silverdale Farmers Market").count.must_equal(1)
   	end
   end
 end

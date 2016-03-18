@@ -42,9 +42,44 @@ class FarMar::Market
 
 	#returns a collection of FarMar::Vendor instances that
 	#are associated with the market by the market_id field.
-	def vendor
+	def vendors
 		FarMar::Vendor.all.find_all do |vendor|
 			vendor.market_id == @id
 		end
+	end
+
+	#returns a collection of FarMar::Product instances that
+	#are associated to the market through the FarMar::Vendor class
+	def products
+		products = []
+		FarMar::Vendor.all.each do |vendor|
+			if vendor.market_id == @id
+				find_product = FarMar::Product.by_vendor(vendor.id)
+				find_product.each do |product|
+					products << product
+				end
+			end
+		end
+		return products
+	end
+
+	#returns a collection of FarMar::Market instances where the 
+	#market name or vendor name contain the search_term
+	def self.search(search_term)
+		markets = []
+		FarMar::Vendor.all.each do |vendor|
+			if search_term == vendor.name
+				search_term = vendor.market_id
+			end
+		end
+
+		FarMar::Market.all.each do |market|
+					if market.id == search_term
+						markets << market
+					elsif market.name == search_term
+						markets << market
+					end
+		end
+		return markets
 	end
 end

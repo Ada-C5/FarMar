@@ -63,7 +63,7 @@ class FarMar::Product
 		products = []
 		CSV.foreach(PRODUCT_DATA, "r") do |line|
 			if line[2].to_i == vendor_id
-				products << FarMar::Vendor.new(id: line[0].to_i, name: line[1],
+				products << FarMar::Product.new(id: line[0].to_i, name: line[1],
 			vendor_id: line[2].to_i)
       end
     end
