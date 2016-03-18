@@ -32,51 +32,22 @@ class FarMar::Vendor
     return FarMar::Market.find(@market_id)
   end
 
-  # def products
-  #   vendor_products = []
-  #   products = FarMar::Product::PRODUCT_CSV.find_all { |product| product.last.to_i == @vendor_id }
-  #   products.each do |product|
-  #     vendor_products << FarMar::Product.new(product[0].to_i)
-  #   end
-  #   return vendor_products
-  # end
-
   # products: returns a collection of FarMar::Product instances that are associated by the FarMar::Product vendor_id field.
   def products
     products = FarMar::Product.all
     products.find_all { |product| product.vendor_id == @vendor_id }
   end
 
-  #sales: returns a collection of FarMar::Sale instances that are associated by the vendor_id field.
-  # def sales
-  #   vendor_sales = []
-  #   sales = FarMar::Sale::SALE_CSV.find_all { |sale| sale.last.to_i == vendor_id }
-  #   sales.each do |sale|
-  #     vendor_sales << FarMar::Sale.new(sales.first[0].to_i)
-  #   end
-  #   return vendor_sales
-  # end
-
   def sales
     sales = FarMar::Sale.all
     sales.find_all { |sale| sale.vendor_id == @vendor_id }
   end
 
-  # def revenue
-  #   vendor_sales = []
-  #   sales = FarMar::Sale::SALE_CSV.find_all { |sale| sale.last.to_i == vendor_id }
-  #   sales.each do |sale|
-  #     sale = FarMar::Sale.new(sales.first[0].to_i)
-  #     vendor_sales << sale.amount.to_i
-  #   end
-  #   return vendor_sales.reduce(0, :+)
-  # end
-
   def revenue
     revenue = []
     sales = self.sales
     sales.each do |sale|
-      revenue << sale.amount 
+      revenue << sale.amount
     end
     revenue.reduce(0, :+)
   end

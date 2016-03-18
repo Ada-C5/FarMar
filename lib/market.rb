@@ -23,21 +23,21 @@ class FarMar::Market
     MARKET_CSV.length.times do |index|
       markets << FarMar::Market.new(index)
     end
-    return markets
+    markets
   end
 
   def self.find(market_id)
-    return FarMar::Market.new(market_id)
+    FarMar::Market.new(market_id)
   end
 
   def self.vendors(market_id)
-    vendor_instances = []
-    FarMar::Vendor::VENDOR_CSV.collect do |vendor|
-      vendor_market_id = vendor[-1].to_i
-      if vendor_market_id == market_id
-        vendor_instances << FarMar::Vendor.new(vendor[0].to_i)
-      end
-    end
-    return vendor_instances
+    vendors = FarMar::Vendor.all
+    vendors.find_all { |vendor| market_id == vendor.market_id }
+  end
+
+  # self.search(search_term) returns a collection of FarMar::Market instances where the market name or vendor name contain the search_term. For example FarMar::Market.search('school') would return 3 results, one being the market with id 75 (Fox School Farmers FarMar::Market).
+
+  def self.search(search_term)
+    self.all.find_all()
   end
 end
