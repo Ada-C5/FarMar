@@ -40,12 +40,15 @@ describe "FarMar::Sale" do
   end
 
   # self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where the purchase time is between the two times given as arguments
-  # describe "FarMar::Sale#self.between" do
-  #   it "gives all Sale instances whose time is within a given range" do
-  #     sales = FarMar::Sale.between(beg, end)
-  #     assert beg <= sales.first.time
-  #     assert end >=sales.first.time
-  #   end
-  # end
+  describe "FarMar::Sale#self.between" do
+    sales = FarMar::Sale.between("2013-11-12 12:00:35 -0800", "2013-11-12 12:15:35 -0800")
+    it "gives a collection of Sale instances whose time is within a given range" do
+      sales.must_be_instance_of Array
+    end
+
+    it "returns elements whose sale_time is within given range" do
+      assert (sales[0].sale_time).between?("2013-11-12 12:00:35 -0800", "2013-11-12 12:15:35 -0800")
+    end
+  end
 
 end

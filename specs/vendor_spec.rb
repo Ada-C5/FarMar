@@ -60,7 +60,7 @@ describe "FarMar::Vendor" do
   describe "FarMar::Vendor#revenue" do
     it "totals all the sales a vendor has made" do
       second_vendor = FarMar::Vendor.new(2)
-      assert_equal 572_700, second_vendor.revenue
+      assert_equal 5727, second_vendor.revenue
     end
   end
 

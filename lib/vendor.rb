@@ -76,7 +76,7 @@ class FarMar::Vendor
     revenue = []
     sales = self.sales
     sales.each do |sale|
-      revenue << sale.amount * 100
+      revenue << sale.amount 
     end
     revenue.reduce(0, :+)
   end

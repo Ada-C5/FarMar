@@ -32,4 +32,21 @@ class FarMar::Product
     product.vendor_id
     FarMar::Vendor.find(vendor_id)
   end
+
+  #sales: returns a collection of FarMar::Sale instances that are associated using the FarMar::Sale product_id field.
+  def sales
+    sales = FarMar::Sale.all
+    sales.find_all { |sale| sale.product_id == @product_id }
+  end
+
+  #number_of_sales: returns the number of times this product has been sold.
+  def no_of_sales
+    self.sales.length
+  end
+
+  # self.by_vendor(vendor_id): returns all of the products with the given vendor_id
+  def self.by_vendor(vendor_id)
+    products = FarMar::Product.all
+    products.find_all { |product| product.vendor_id == vendor_id }
+  end
 end
