@@ -16,6 +16,7 @@ class FarMar::Market
   def self.all(file_name = './support/markets.csv')
     market_keys = [:id, :name, :address, :city, :county, :state, :zip]
 
+    # use mixin module FarMar::FarMarMethods#make_all
     make_all(file_name, market_keys)
   end
 
@@ -42,17 +43,17 @@ class FarMar::Market
     end
   end
 
+  # returns a collection of vendor instances related to market through market_id
   def vendors
     FarMar::Vendor.by_market(id)
   end
 
   def products
-    products = []
-    vendors.each do |vendor|
-      products.push *FarMar::Product.by_vendor(vendor.id)
+    products = vendors.map do |vendor|
+      FarMar::Product.by_vendor(vendor.id)
     end
 
-    return products
+    products.flatten
   end
 
   # returns the vendor with the highest revenue (either total or on a specific date)
