@@ -29,8 +29,8 @@ class FarMar::Product
 
   # self.by_vendor(vendor_id): returns all of the products with the given vendor_id
 
-  def self.by_vendor
-    self.all.find_all { |product| product.product_id == @product_id }
+  def self.by_vendor(vendor_id = @vendor_id)
+    self.all.find_all { |product| product.vendor_id == vendor_id }
   end
 
   #vendor: returns the FarMar::Vendor instance that is associated with this vendor using the FarMar::Product vendor_id field

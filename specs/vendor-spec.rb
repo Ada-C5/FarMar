@@ -21,7 +21,6 @@ end
 
 describe "Vendor#find(id)" do
   it "Does it exist?" do
-    new_vendor = FarMar::Vendor.new(vendor_id: 5)
     FarMar::Vendor.find(5).wont_be_nil
   end
 end

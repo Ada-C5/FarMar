@@ -47,7 +47,6 @@ class FarMar::Sale
   def self.between(beginning_time, end_time)
     starting = DateTime.parse(beginning_time)
     ending = DateTime.parse(end_time)
-    time_range = (starting..ending)
     self.all.find_all { |sale| sale.purchase_time.between? starting, ending }
   end
 end
