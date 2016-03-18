@@ -15,6 +15,12 @@ describe FarMar::Market do
     end
   end
 
+  describe "self.search" do
+    it "returns a collection of FarMar::Market instances where the market name or vendor name contain the search_term. For example FarMar::Market.search('school') would return 3 results, one being the market with id 75 (Fox School Farmers FarMar::Market)" do
+    FarMar::Market.search('school').length.must_equal(3)
+    end
+  end
+
   describe "self.find" do
     it "can find a market instance based on ID" do
     FarMar::Market.find(random_market_id).must_be_instance_of(FarMar::Market)

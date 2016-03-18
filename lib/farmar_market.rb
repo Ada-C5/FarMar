@@ -1,13 +1,13 @@
 module FarMar
   class Market < DataClass
 
-    attr_reader :id
+    attr_reader :id, :name
 
     def initialize(initialization_array)
       @id, @name, @street_address, @city, @county, @state, @zip = initialization_array
     end
 
-    def products #this will make A LOT of loops... (if I do it the refactored way)
+    def products #this will make A LOT of loops... (if I do it the refactored way).  Not sure about it.
       vendors = self.vendors
 
       matched_products = vendors.collect do |vendor|
@@ -34,6 +34,35 @@ module FarMar
 
     def vendors
       super('./support/vendors.csv', FarMar::Vendor, id, "market_id")
+    end
+
+    def self.search(search_term)
+
+      all_markets = self.all
+      matched_market_name = all_markets.find_all do |market|
+        market_name = market.name.downcase
+        market_name.include?(search_term.downcase)
+      end
+
+      matched_market_name
+
+      # all_vendors = FarMar::Vendor.all
+      # matched_vendor_name = all_vendors.find_all do |vendor|
+      #   vendor_name = vendor.name.downcase
+      #   vendor_name.include?(search_term.downcase)
+      # end
+      #
+      # market_ids_for_matched_vendor_name = matched_vendor_name.collect do |vendor|
+      #   vendor.market_id
+      # end
+      #
+      # markets_for_matched_vendor_name = all_markets.find_all do |market|
+      #   market_ids_for_matched_vendor_name.include?market.id
+      # end
+      #
+      # matched_market_name << markets_for_matched_vendor_name
+      # matched_market_name.uniq!
+
     end
 
     def self.find(data_file = './support/markets.csv', id)
