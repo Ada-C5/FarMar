@@ -88,3 +88,5 @@ class FarMar::Product
   end
 
 end
+
+#go back and refactor! enumerables! one line comparisons! let at the beginning of tests and only once!

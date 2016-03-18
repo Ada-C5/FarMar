@@ -44,7 +44,7 @@ class FarMar::Market
   end
 
 
-  def vendors(assoc_market_id) 
+  def vendors(assoc_market_id)
     assoc_vendors = []
     FarMar::Vendor.all.each do |vendor|
       if vendor.market_id.to_i == assoc_market_id
@@ -55,3 +55,5 @@ class FarMar::Market
   end
 
 end
+
+#go back and refactor! enumerables! one line comparisons! let at the beginning of tests and only once!

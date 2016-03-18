@@ -76,3 +76,6 @@ attr_reader :sale_id, :amount, :purchase_time, :vendor_id, :product_id
 
 
 end
+
+
+#go back and refactor! enumerables! one line comparisons! let at the beginning of tests and only once!

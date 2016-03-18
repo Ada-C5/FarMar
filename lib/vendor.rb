@@ -102,3 +102,5 @@ attr_reader :vendor_id, :vendor_name, :num_employ, :market_id
 
 
 end
+
+#go back and refactor! enumerables! one line comparisons! let at the beginning of tests and only once!
