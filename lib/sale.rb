@@ -1,6 +1,7 @@
 class FarMar::Sale
   attr_reader :id, :amount, :purchase_time, :vendor_id, :product_id
 
+  # module mixin
   extend FarMar::FarMarMethods
 
   def initialize(info_hash)
@@ -17,6 +18,7 @@ class FarMar::Sale
     make_all(file, sale_keys)
   end
 
+  # returns a list of sales associated to a vendor or product
   def self.get_by(type, id)
     self.all.find_all do |sale|
       if type == "vendor"
@@ -29,7 +31,7 @@ class FarMar::Sale
 
   # return an array of all instances within a certain time range
   def self.between(beginning_time, end_time)
-    # convert strings to Time objects by parsing
+    # convert strings to DateTime objects by parsing
     beginning_time = DateTime.parse(beginning_time) if beginning_time.is_a? String
     end_time = DateTime.parse(end_time) if end_time.is_a? String
 

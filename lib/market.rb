@@ -1,6 +1,7 @@
 class FarMar::Market
   attr_reader :id, :name
 
+  # module mixin
   extend FarMar::FarMarMethods
 
   def initialize(info_hash)
@@ -48,11 +49,13 @@ class FarMar::Market
     FarMar::Vendor.by_market(id)
   end
 
+  # returns a collection of product instances associated to market through the vendor.
   def products
     products = vendors.map do |vendor|
       FarMar::Product.by_vendor(vendor.id)
     end
 
+    # make nested arrays into a single array using array method #flatten
     products.flatten
   end
 

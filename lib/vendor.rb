@@ -1,6 +1,7 @@
 class FarMar::Vendor
   attr_reader :id, :name, :market_id
 
+  # module mixin
   extend FarMar::FarMarMethods
   
   def initialize(info_hash)
@@ -32,6 +33,7 @@ class FarMar::Vendor
     FarMar::Sale.between(date, next_day)
   end
 
+  # gives all revenue on a particular date from all vendors
   def self.revenue(date)
     self.sales_by_date(date).reduce(0) { |sum, sale| sum + sale.amount}
   end
@@ -53,12 +55,15 @@ class FarMar::Vendor
 
   # returns the sum of all sales in cents
   def revenue(date = nil)
+    # if no date is provided, give sum of all sales by a vendor
     return sales.reduce(0) { |sum, sale| sum + sale.amount } if date.nil?
 
+    # if a date is given, get all sales with a matching date from a particular vendor
     sales_on_day = sales.find_all do |sale|
       sale.purchase_time.include? date
     end
 
+    # get the sum of all sales from that date
     sales_on_day.reduce(0) { |sum, sale| sum + sale.amount }
   end
 end
