@@ -54,3 +54,9 @@ describe "FarMar::Market#worst_vendor" do
     FarMar::Market.find(1).worst_vendor.name.must_equal FarMar::Vendor.find(6).name
   end
 end
+
+describe "FarMar::Market#products" do
+  it "should return an array of instances of Product; the first element of the array should be an instance of Product" do
+    FarMar::Market.find(1).products[0].must_be_instance_of FarMar::Product
+  end
+end

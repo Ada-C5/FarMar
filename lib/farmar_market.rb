@@ -62,4 +62,13 @@ class FarMar::Market
     vendors.min_by {|vendor| FarMar::Vendor.find(vendor.id).revenue}
   end
 
+  def products
+    # returns a collection of FarMar::Product instances that are associated to
+    # the market through the FarMar::Vendor class.
+    array_of_product_arrays = vendors.map do |vendor|
+      vendor.products # this is returning an array
+    end
+    array_of_product_arrays.flatten
+  end
+
 end
