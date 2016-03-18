@@ -1,6 +1,6 @@
 class FarMar::Product < FarMar::FarMarClass
   attr_reader :name, :id, :vendor_id
-  #csv with product info
+  
   FILE = './support/products.csv'
 
   def initialize(id, name, ven_id)
@@ -42,5 +42,5 @@ class FarMar::Product < FarMar::FarMarClass
   #   end
   #   return all_products.sort[0..n] 
   # end
-  
+
 end
