@@ -46,22 +46,21 @@ module FarMar
 
       matched_market_name
 
-      # all_vendors = FarMar::Vendor.all
-      # matched_vendor_name = all_vendors.find_all do |vendor|
-      #   vendor_name = vendor.name.downcase
-      #   vendor_name.include?(search_term.downcase)
-      # end
-      #
-      # market_ids_for_matched_vendor_name = matched_vendor_name.collect do |vendor|
-      #   vendor.market_id
-      # end
-      #
-      # markets_for_matched_vendor_name = all_markets.find_all do |market|
-      #   market_ids_for_matched_vendor_name.include?market.id
-      # end
-      #
-      # matched_market_name << markets_for_matched_vendor_name
-      # matched_market_name.uniq!
+      all_vendors = FarMar::Vendor.all
+      matched_vendor_name = all_vendors.find_all do |vendor|
+        vendor_name = vendor.name.downcase
+        vendor_name.include?(search_term.downcase)
+      end
+
+      market_ids_for_matched_vendor_name = matched_vendor_name.collect do |vendor|
+        vendor.market_id
+      end
+
+      markets_for_matched_vendor_name = all_markets.find_all do |market|
+        market_ids_for_matched_vendor_name.include?market.id
+      end
+
+      all_matched_markets = matched_market_name.concat(markets_for_matched_vendor_name)
 
     end
 
