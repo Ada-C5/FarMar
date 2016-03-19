@@ -26,14 +26,21 @@ class FarMar::Market < RepeatMethods
     end
   end
 
-
   # self.search(search_term) returns a collection of FarMar::Market instances
   # where the market name or vendor name contain the search_term.
   def self.search(search_term)
-    matches = CSV.read(MARKET_CSV).select do |line|
-      line[1].downcase.include? search_term
+    #find vendors whose names match the search term and collect their ids
+    vendor_matches = CSV.read(VENDORS_CSV).select do |line|
+      line[1].downcase.include? search_term.downcase
     end
-    matches.collect { |market| FarMar::Market.new(market)}
+    vendor_ids = vendor_matches.collect { |vendor| vendor[3]}
+
+    #iterate through markets to see if any market names match search term
+    market_matches = CSV.read(MARKET_CSV).select do |line|
+      (line[1].downcase.include? search_term.downcase) || (vendor_ids.include? line[0])
+    end
+    market_matches.collect { |market| FarMar::Market.new(market)}
+
   end
 
   # prefered_vendor: returns the vendor with the highest revenue
@@ -48,6 +55,7 @@ class FarMar::Market < RepeatMethods
   #prefered_vendor(date): returns the vendor with the highest revenue for the given date
   def preferred_vendor_on(date)
     date = Chronic.parse(date)
+    #when you give a day it defaults to noon, so i caught the whole day by adding and substracting 11hours 59min
     time_range = ((date - 43199)..(date + 43199))
     vendor_ids = self.vendors.collect { |vendor| vendor.vendor_id }
     vendor_sales = CSV.read(SALE_CSV).select do |line|
@@ -69,40 +77,5 @@ class FarMar::Market < RepeatMethods
     end
     answer = answer.max_by { |vendor, amount| amount}
     return FarMar::Vendor.find(answer[0])
-
   end
-
-  # # worst_vendor(date): returns the vendor with the lowest revenue on the given date
-  # def worst_vendor_on(date)
-  # end
-
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# def vendors_take_1
-#   FarMar::Vendor.all.select { |vendor| vendor.market_id == market_id}
-# end
-
-#products returns a collection of FarMar::Product instances that are associated to the market through the FarMar::Vendor class.
-#self.search(search_term) returns a collection of FarMar::Market instances where the market name or vendor name contain the search_term. For example FarMar::Market.search('school') would return 3 results, one being the market with id 75 (Fox School Farmers FarMar::Market).
-#prefered_vendor: returns the vendor with the highest revenue
-#prefered_vendor(date): returns the vendor with the highest revenue for the given date
-#worst_vendor: returns the vendor with the lowest revenue
-#worst_vendor(date): returns the vendor with the lowest revenue on the given date

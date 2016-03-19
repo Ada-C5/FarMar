@@ -28,9 +28,6 @@ class FarMar::Sale < RepeatMethods
     end
   end
 
-  # self.between(beginning_time, end_time): returns a collection of FarMar::Sale objects where
-  # the purchase time is between the two times given as arguments
-  # user should put each time in quotes and can write times however they like
   def self.between(beginning_time, end_time)
     begin_time = Chronic.parse(beginning_time)
     end_time = Chronic.parse(end_time)

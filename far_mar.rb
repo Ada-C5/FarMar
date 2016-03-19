@@ -8,7 +8,7 @@ module FarMar
 end
 
 class RepeatMethods
-  DATA = "./support/vendors.csv"
+  # DATA = "./support/vendors.csv"
 
   def self.all
     CSV.read(self::DATA).map { |line|  self.new(line) }

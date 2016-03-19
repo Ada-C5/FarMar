@@ -48,11 +48,4 @@ class FarMar::Vendor < RepeatMethods
     vendors.collect { |vendor| FarMar::Vendor.new(vendor)}
   end
 
-  # self.most_revenue(n) returns the top n vendor instances ranked by total revenue
-  # this works but it is breaking my tests because it takes so long
-
-  # def self.most_revenue(n)
-  #   self.all.max_by(n) { |vendor| vendor.revenue }
-  # end
-
 end
