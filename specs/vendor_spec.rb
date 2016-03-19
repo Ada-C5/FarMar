@@ -99,8 +99,8 @@ describe FarMar::Vendor do
 
   describe "FarMar::Vendor.sales_by_vendor" do
     it "returns total sales for each vendor" do
-      # vendor_sales = vendor_11.sales_by_vendor.map{|sales| sales.amount.class}
-      vendor_11.class.must_equal Fixnum
+      vendor_sales = vendor_11.sales_by_vendor.map { |sales| sales.amount.class}
+      vendor_sales.uniq.must_equal [Fixnum]
 
       # vendor_revenue = vendor_12.sales_by_vendor.map {|vendor| vendor.class}
       # vendor_revenue.uniq.class.must_equal Fixnum

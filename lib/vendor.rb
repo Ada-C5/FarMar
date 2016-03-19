@@ -12,12 +12,6 @@ class FarMar::Vendor
     @id, @name, @total_employees, @market_id = vendor_info
     @id = @id.to_i
     @market_id = @market_id.to_i
-
-    #vendor_info
-    # @id               = vendor_info[:id]                # (Fixnum) uniquely identifies the vendor
-    # @name             = vendor_info[:name]              # (String) the name of the vendor (not guaranteed unique)
-    # @total_employees  = vendor_info[:total_employees]   # (Fixnum) How many employees the vendor has at the market
-    # @market_id        = vendor_info[:market_id]         # (Fixnum) a reference to which market the vendor attends
   end
 
   def self.all(file = CSV_FILE)
@@ -63,7 +57,7 @@ class FarMar::Vendor
   end
 
   def sales_by_vendor
-    sales.map {|sale| sale.amount }
+    sales
   end
 
   def self.most_items(n)

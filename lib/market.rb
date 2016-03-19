@@ -13,15 +13,7 @@ class FarMar::Market
 
     @id, @name, @address, @city, @county, @state, @zip = market_info
     @id = @id.to_i
-
-    # market_info
-    # @id       = market_info [ :id ]         # (Fixnum) a unique identifier for that market
-    # @name     = market_info [ :name]        # (String) the name of the market (not guaranteed unique)
-    # @address  = market_info [ :address ]    # (String) street address of the market
-    # @city     = market_info [ :city ]       # (String) city in which the market is located
-    # @county   = market_info [ :county ]     # (String) county in which the market is located
-    # @state    = market_info [ :state ]      # (String) state in which the market is located
-    # @zip      = market_info [ :zip ]        # (String) zipcode in which the market is located
+    
   end
 
 

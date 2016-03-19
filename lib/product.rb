@@ -13,10 +13,6 @@ class FarMar::Product
     @id = @id.to_i
     @vendor_id = @vendor_id.to_i
 
-    #product_info
-    # @id              = product_info [ :id ].to_i             # (Fixnum) uniquely identifies the product
-    # @name            = product_info [ :name ]            # (String) the name of the product (not guaranteed unique)
-    # @vendor_id       = product_info [ :vendor_id   ].to_i # (Fixnum) a reference to which vendor sells this product
   end
 
   def self.all(file = CSV_FILE)

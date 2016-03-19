@@ -20,13 +20,6 @@ class FarMar::Sale
     @purchase_time  = Time.parse(@purchase_time)
     @vendor_id      = @vendor_id.to_i
     @product_id     = @product_id.to_i
-
-    # sales_info
-    # @id             = sale_info[ :id ]            # ((Fixnum) uniquely identifies the product
-    # @amount         = sale_info[ :amount ]        # (Fixnum) the amount of the transaction, in cents (i.e., 150 would be $1.50)
-    # @purchase_time  = Time.parse(sale_info[:purchase_time]) # (Datetime) when the sale was completed
-    # @vendor_id      = sale_info[ :vendor_id ]     # (Fixnum) a reference to which vendor completed the sale
-    # @product_id     = sale_info[ :product_id ]     # (Fixnum) a reference to which product was sold
   end
 
   def self.all(file = CSV_FILE)
