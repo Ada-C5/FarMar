@@ -135,36 +135,36 @@ describe FarMar::Market do
     end
   end
 
-  # describe "FarMar::Market#worst_vendor" do
-  #   it "should return the instance FarMar::Vendor that sales the least in that market" do
-  #     market_test.worst_vendor.must_be_instance_of FarMar::Vendor
-  #   end
-  #
-  #   it "should return the instance FarMar::Vendor that sales the least in that market" do
-  #     market_test2.worst_vendor.must_be_instance_of FarMar::Vendor
-  #   end
-  #
-  #   it "should return a different instances of Vendor when tested with two markets with differents market_id" do
-  #     market_test.worst_vendor.wont_equal market_test2.worst_vendor
-  #   end
-  #
-  #   it "should return an instance FarMar::Vendor" do
-  #     market_test.worst_vendor("2013-11-12 10:13:45 -0800").must_be_instance_of FarMar::Vendor
-  #   end
-  #
-  #   it "instance FarMar::Vendor should have the same market_id than the test" do
-  #   market_test.worst_vendor("2013-11-09 10:13:45 -0800").market_id.must_equal 18
-  #   end
-  #   it "should return an instance FarMar::Vendor" do
-  #     market_test2.worst_vendor("2013-11-09 10:13:45 -0800").must_be_instance_of FarMar::Vendor
-  #   end
-  #
-  #   it "instance FarMar::Vendor should have the same market_id than the test" do
-  #     market_test2.worst_vendor("2013-11-09 10:13:45 -0800").market_id.must_equal 484
-  #   end
-  #
-  #   it "market_test.worst_vendor should be different instances of Vendor if differents market_id" do
-  #     market_test.worst_vendor("2013-11-12 10:13:45 -0800").wont_equal market_test2.worst_vendor("2013-11-09 10:13:45 -0800")
-  #   end
-  # end
+  describe "FarMar::Market#worst_vendor" do
+    it "should return the instance FarMar::Vendor that sales the least in that market" do
+      market_test.worst_vendor.must_be_instance_of FarMar::Vendor
+    end
+
+    it "should return the instance FarMar::Vendor that sales the least in that market" do
+      market_test2.worst_vendor.must_be_instance_of FarMar::Vendor
+    end
+
+    it "should return a different instances of Vendor when tested with two markets with differents market_id" do
+      market_test.worst_vendor.wont_equal market_test2.worst_vendor
+    end
+
+    it "should return an instance FarMar::Vendor" do
+      market_test.worst_vendor("2013-11-12 10:13:45 -0800").must_be_instance_of FarMar::Vendor
+    end
+
+    it "instance FarMar::Vendor should have the same market_id than the test" do
+    market_test.worst_vendor("2013-11-09 10:13:45 -0800").market_id.must_equal 18
+    end
+    it "should return an instance FarMar::Vendor" do
+      market_test2.worst_vendor("2013-11-09 10:13:45 -0800").must_be_instance_of FarMar::Vendor
+    end
+
+    it "instance FarMar::Vendor should have the same market_id than the test" do
+      market_test2.worst_vendor("2013-11-09 10:13:45 -0800").market_id.must_equal 484
+    end
+
+    it "market_test.worst_vendor should be different instances of Vendor if differents market_id" do
+      market_test.worst_vendor("2013-11-12 10:13:45 -0800").wont_equal market_test2.worst_vendor("2013-11-09 10:13:45 -0800")
+    end
+  end
 end

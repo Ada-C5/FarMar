@@ -90,4 +90,36 @@ class FarMar::Market
       FarMar::Vendor.find(best_vendor_day[0])
     end
   end
+
+  def worst_vendor(given_day = false)
+    if given_day == false
+      vendors_id_in_this_market = vendors.collect { |vendor| vendor.vendor_id }
+      # => [82, 83, 84, 85, 86, 87, 88, 89, 90, 91]
+      vendors_hash = FarMar::Sale.all.group_by { |sale| sale.vendor_id }
+      the_sales_of_the_vendors_in_this_market = vendors_hash.select { |key_vendor_id, object_array| vendors_id_in_this_market.include?key_vendor_id }
+      best_vendor = the_sales_of_the_vendors_in_this_market.min_by do |vendor_id, array_sales_info|
+        array_sales_info.collect {|sales_info| sales_info.ammount }.reduce(:+)
+      end
+      FarMar::Vendor.find(best_vendor[0])
+
+    elsif given_day != false
+      given_day = DateTime.parse(given_day)
+    #
+      vendors_id_in_this_market = vendors.collect { |vendor| vendor.vendor_id }
+    # #   # => [82, 83, 84, 85, 86, 87, 88, 89, 90, 91]
+    # =>test2 [2608, 2609, 2610, 2611]
+
+      sales_hash = FarMar::Sale.all.group_by { |sale| sale.purchase_time.day }
+      #returns a hash that the key is the day. the value in an array with Sale objects
+      sales_this_day_hash = sales_hash.select { |key_day_of_sale, object_array| key_day_of_sale == given_day.day }
+
+      sales_this_day_hash_in_this_market = sales_this_day_hash.values[0].group_by { |sales| sales.vendor_id }
+      the_sales_of_the_vendors_in_this_market = sales_this_day_hash_in_this_market.select { |key_vendor_id, object_array| vendors_id_in_this_market.include?key_vendor_id }
+
+      best_vendor_day = the_sales_of_the_vendors_in_this_market.min_by do |vendor_id, array_sales_info|
+        array_sales_info.collect {|sales_info| sales_info.ammount }.reduce(:+)
+      end
+      FarMar::Vendor.find(best_vendor_day[0])
+    end
+  end
 end
