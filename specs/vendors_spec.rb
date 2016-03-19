@@ -21,7 +21,7 @@ describe FarMar::Vendor do
   describe "FarMar::Vendor#self.find" do
     it "should return object. and all its data" do
       FarMar::Vendor.find("2676").vendor_id.must_be_same_as 2676
-      FarMar::Vendor.find("2676").vendor_name.must_equal "Cruickshank Group"
+      FarMar::Vendor.find("2676").vendor_name.must_equal "Cruickshank Group".upcase
       FarMar::Vendor.find("2676").num_employees.must_equal "4"
       FarMar::Vendor.find("2676").market_id.must_be_same_as 498
     end

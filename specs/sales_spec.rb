@@ -37,7 +37,7 @@ describe FarMar::Sale do
 
     it "should return to one instance of Vendor class, and all its info" do
       sale_test.vendor.vendor_id.must_equal 2665
-      sale_test.vendor.vendor_name.must_equal "Morissette Group"
+      sale_test.vendor.vendor_name.must_equal "Morissette Group".upcase
       sale_test.vendor.num_employees.must_equal "3"
       sale_test.vendor.market_id.must_equal 495
     end

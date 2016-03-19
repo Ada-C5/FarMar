@@ -12,7 +12,7 @@ class FarMar::Market
   end
 
   def self.all
-    CSV.read('support/markets.csv').collect { |row| self.new(row[0].to_i,row[1],row[2],row[3],row[4],row[5],row[6]) }
+    CSV.read('support/markets.csv').collect { |row| self.new(row[0].to_i,row[1].upcase,row[2],row[3],row[4],row[5],row[6]) }
   end
 
   def self.find(id)
@@ -46,14 +46,15 @@ class FarMar::Market
     #For example FarMar::Market.search('school') would return 3 results,
     #one being the market with id 75 (Fox School Farmers FarMar::Market).
     # if search_term != false
-    search_term_in_all_vendors = FarMar::Vendor.all.select { |vendor| vendor.vendor_name.include? search_term }
+
+    search_term_in_all_vendors = FarMar::Vendor.all.select { |vendor| vendor.vendor_name.include? search_term.upcase }
 
     if search_term_in_all_vendors.empty? == true
-      search_term_in_all_markets = FarMar::Market.all.select { |market| market.market_name.include? search_term }
-      return search_term_in_all_markets
+      search_term_in_all_markets = FarMar::Market.all.select { |market| market.market_name.include? search_term.upcase }
+      else
+      search_term_in_all_vendors
     end
   end
-
 
   def prefered_vendor(given_day = false)
     if given_day == false
