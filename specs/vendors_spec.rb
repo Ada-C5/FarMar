@@ -107,7 +107,7 @@ describe FarMar::Vendor do
 
   describe "FarMar::Vendor#self.by_market" do
 
-    it "should return an object of the class Vendor" do
+    it "should return an ARRAY" do
       FarMar::Vendor.by_market(12).must_be_instance_of Array
     end
 
@@ -115,7 +115,7 @@ describe FarMar::Vendor do
       FarMar::Vendor.by_market("456").length.must_be :>, 1
     end
 
-    it "should return an object of the class Vendor" do
+    it "each object in the array should be an object of the class Vendor" do
       classes = FarMar::Vendor.by_market("456").map { |m| m.class }
       classes.uniq.must_equal [FarMar::Vendor]
     end

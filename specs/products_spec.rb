@@ -21,8 +21,9 @@ describe FarMar::Product do
   end
 
   describe "FarMar::Product#self.find" do
-    it "should return object's product name equal to Agreeable Beef" do
+    it "should return object's product and accesible to its info" do
       FarMar::Product.find("6676").product_name.must_equal "Agreeable Beef"
+      FarMar::Product.find("6676").vendor_id.must_equal 2195
     end
 
     it "should return an object of the class Product" do
@@ -32,26 +33,18 @@ describe FarMar::Product do
   end
 
   describe "FarMar::Product#vendor" do
-    it "should return object's product name equal to Agreeable Beef" do
-      product_test.vendor.must_be_instance_of Array
+    it "should return an ARRAY" do
+      product_test.vendor.must_be_instance_of FarMar::Vendor
     end
 
-    it "should return to more one only vendor that sells that product" do
-      product_test.vendor.length.must_equal 1
-    end
-
-    it "should return an object of the class Vendor" do
-      classes = product_test.vendor.map { |m| m.class }
-      classes.uniq.must_equal [FarMar::Vendor]
-    end
   end
 
   describe "FarMar::Product#sales" do
-    it "should return object's product name equal to Agreeable Beef" do
+    it "should return an ARRAY of object's" do
       product_test.sales.must_be_instance_of Array
     end
 
-    it "should return an object of the class Vendor" do
+    it "each object in that array should be an instance of the class Sale" do
       classes = product_test.sales.map { |m| m.class }
       classes.uniq.must_equal [FarMar::Sale]
     end
@@ -59,11 +52,11 @@ describe FarMar::Product do
   end
 
   describe "FarMar::Product#number_of_sales" do
-    it "should return object's product name equal to Agreeable Beef" do
+    it "should return a number" do
       product_test.number_of_sales.must_be_kind_of Numeric
     end
 
-    it "should return object's product name equal to Agreeable Beef" do
+    it "should return the number of sales" do
       product_test.number_of_sales.must_equal 10
     end
 

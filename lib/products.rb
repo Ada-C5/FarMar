@@ -17,8 +17,6 @@ class FarMar::Product
     FarMar::Product.all.each do |product|
       if product.product_id == id.to_i
         return product
-      # else
-      #   return nil
       end
     end
   end
@@ -26,7 +24,11 @@ class FarMar::Product
   def vendor
     #returns the FarMar::Vendor instance that is associated with
     #this vendor, using the FarMar::Product vendor_id field
-    FarMar::Vendor.all.select { |vendor| vendor.vendor_id == vendor_id.to_i }
+    FarMar::Vendor.all.each do |vendor|
+      if vendor.vendor_id == vendor_id.to_i
+        return vendor
+      end
+    end
   end
 
   def sales
