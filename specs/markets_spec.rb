@@ -77,25 +77,30 @@ describe FarMar::Market do
     end
   end
 
-  # describe "FarMar::Market#self.search(search_term)" do
-  #   #
-  #   # it "should return an ARRAY" do
-  #   #   FarMar::Market.search("school").must_be_instance_of Array
-  #   # end
-  #
-  #   it "should return I dont know" do
-  #     FarMar::Market.search("Market").length.must_equal 13
-  #   end
-  # #
-  # #   it "should return I dont know" do
-  # #     FarMar::Market.search("Ledner").length.must_equal 9
-  # #   end
-  # #
-  # #   it "returns a collection of FarMar::Product instances" do
-  # #     classes = FarMar::Market.search('Ledner').map { |m| m.class }
-  # #     classes.uniq.must_equal [FarMar::Vendor]
-  # #   end
-  # end
+  describe "FarMar::Market#self.search(search_term)" do
+
+    it "should return an ARRAY" do
+      FarMar::Market.search("Stracke").must_be_instance_of Array
+    end
+
+    it "should return I dont know" do
+      FarMar::Market.search("School").must_equal 13
+    end
+
+    it "should return to 9 results" do
+      FarMar::Market.search("Ledner").length.must_equal 9
+    end
+
+    it "search for worf 'Ledner' returns a collection of FarMar::Vendor instances" do
+      classes = FarMar::Market.search('Ledner').map { |m| m.class }
+      classes.uniq.must_equal [FarMar::Vendor]
+    end
+
+    it "search for worf 'market' returns a collection of FarMar::Market instances" do
+      classes = FarMar::Market.search('market').map { |m| m.class }
+      classes.uniq.must_equal [FarMar::Market]
+    end
+  end
 
   describe "FarMar::Market#prefered_vendor" do
     it "should return the instance FarMar::Vendor that sales the most in that market" do

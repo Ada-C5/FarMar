@@ -46,12 +46,14 @@ class FarMar::Market
     #For example FarMar::Market.search('school') would return 3 results,
     #one being the market with id 75 (Fox School Farmers FarMar::Market).
     # if search_term != false
-    search_term_in_all_vendors = FarMar::Vendor.all.select { |vendor| vendor.vendor_name.include?(search_term.downcase) }
-        # if search_term_in_all_vendors == nil
-        #   search_term_in_all_markets = FarMar::Market.all.select { |market| market.market_name.include?(search_term.downcase) }
-        # end
+    search_term_in_all_vendors = FarMar::Vendor.all.select { |vendor| vendor.vendor_name.include? search_term }
 
+    if search_term_in_all_vendors.empty? == true
+      search_term_in_all_markets = FarMar::Market.all.select { |market| market.market_name.include? search_term }
+      return search_term_in_all_markets
+    end
   end
+
 
   def prefered_vendor(given_day = false)
     if given_day == false
