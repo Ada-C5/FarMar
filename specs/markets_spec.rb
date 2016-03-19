@@ -6,6 +6,7 @@ describe FarMar::Market do
   let(:all_markets) { FarMar::Market.all }
   let (:market) { FarMar::Market.find("142") }
   let(:market_test) { FarMar::Market.new("18", "Grand Valley State University Farmers Market", "1 Campus Drive, Parking Lot F", "Allendale", "Ottawa", "Michigan", "49504") }
+  let(:market_test2) { FarMar::Market.new("484", "Bellingham Farmers Market", "1100 Railroad Avenue", "Bellinhgam", "Whatcom", "Washington", "98225") }
   let (:market_info) { FarMar::Market.search("school") }
 
   it "is an object that isn't empty" do
@@ -96,10 +97,32 @@ describe FarMar::Market do
   #   end
   # end
 
-  describe "FarMar::Market#self.search(search_term)" do
+  describe "FarMar::Market#prefered_vendor" do
+    it "should return the instance FarMar::Vendor that sales the most in that market" do
+      market_test.prefered_vendor.must_be_instance_of FarMar::Vendor
+    end
+
+    it "should return the instance FarMar::Vendor that sales the most in that market" do
+      market_test2.prefered_vendor.must_be_instance_of FarMar::Vendor
+    end
+
+    it "should return a different instances of Vendor when tested with two markets with differents market_id" do
+      market_test.prefered_vendor.wont_equal market_test2.prefered_vendor
+    end
+
+    # let(:market_test) { FarMar::Market.new("18", "Grand Valley State University Farmers Market", "1 Campus Drive, Parking Lot F", "Allendale", "Ottawa", "Michigan", "49504") }
+    # let(:market_test2) { FarMar::Market.new("484", "Bellingham Farmers Market", "1100 Railroad Avenue", "Bellinhgam", "Whatcom", "Washington", "98225") }
 
     it "should return an instance FarMar::Vendor" do
-      market_test.prefered_vendor.must_be_instance_of FarMar::Vendor
+      market_test.prefered_vendor("2013-11-12 10:13:45 -0800").must_be_instance_of FarMar::Vendor
+    end
+
+    it "should return an instance FarMar::Vendor" do
+      market_test2.prefered_vendor("2013-11-09 10:13:45 -0800").must_be_instance_of FarMar::Vendor
+    end
+
+    it "market_test.prefered_vendor('2013-11-12 10:13:45 -0800') should return a different instances of Vendor when tested with two markets with differents market_id" do
+      market_test.prefered_vendor("2013-11-12 10:13:45 -0800").wont_equal market_test2.prefered_vendor("2013-11-09 10:13:45 -0800")
     end
   end
 end

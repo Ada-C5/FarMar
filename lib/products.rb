@@ -17,6 +17,8 @@ class FarMar::Product
     FarMar::Product.all.each do |product|
       if product.product_id == id.to_i
         return product
+      # else
+      #   return nil
       end
     end
   end
