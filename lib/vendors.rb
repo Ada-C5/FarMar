@@ -40,4 +40,23 @@ class FarMar::Vendor
     FarMar::Vendor.all.select { |vendor| vendor.market_id == market_id_given.to_i }
   end
 
+  def self.most_revenue(n)
+    n = n.to_i
+    #returns the top n vendor instances ranked by total revenue
+    vendors_hash = FarMar::Sale.all.group_by { |sale| sale.vendor_id }
+
+    ranking = vendors_hash.values.collect do |array_sales_info|
+      array_sales_info.map {|sales_info| sales_info.ammount }.reduce(:+)
+      # ranking.max.index
+    end
+
+    vendors_and_revenue = vendors_hash.keys.zip ranking
+
+    vendors_and_revenue = vendors_and_revenue.sort { |a, b| b[1] <=> a[1] }
+
+    vendors_ranking = vendors_and_revenue.collect { |pairs| pairs[0] }.first(n)
+
+    vendors_ranking.collect {|vendor_id| FarMar::Vendor.find(vendor_id) }
+  end
+
 end
