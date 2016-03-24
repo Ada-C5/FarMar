@@ -133,7 +133,24 @@ describe FarMar::Vendor do
     end
 
     it "each object in the array should be an object of the class Vendor" do
-      classes = FarMar::Vendor.most_revenue("456").map { |m| m.class }
+      classes = FarMar::Vendor.most_revenue("5").map { |m| m.class }
+      classes.uniq.must_equal [FarMar::Vendor]
+    end
+
+  end
+
+  describe "FarMar::Vendor#self.most_items(n)" do
+
+    it "should return an ARRAY" do
+      FarMar::Vendor.most_items("30").must_be_instance_of Array
+    end
+
+    it "should return to more than one vendor" do
+      FarMar::Vendor.most_items("30").length.must_equal 50
+    end
+
+    it "each object in the array should be an object of the class Vendor" do
+      classes = FarMar::Vendor.most_items("6").map { |m| m.class }
       classes.uniq.must_equal [FarMar::Vendor]
     end
 

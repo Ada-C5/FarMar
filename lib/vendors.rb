@@ -47,16 +47,26 @@ class FarMar::Vendor
 
     ranking = vendors_hash.values.collect do |array_sales_info|
       array_sales_info.map {|sales_info| sales_info.ammount }.reduce(:+)
-      # ranking.max.index
     end
 
     vendors_and_revenue = vendors_hash.keys.zip ranking
 
     vendors_and_revenue = vendors_and_revenue.sort { |a, b| b[1] <=> a[1] }
 
-    vendors_ranking = vendors_and_revenue.collect { |pairs| pairs[0] }.first(n)
+    vendors_and_revenue = vendors_and_revenue.collect { |pairs| pairs[0] }.first(n)
 
-    vendors_ranking.collect {|vendor_id| FarMar::Vendor.find(vendor_id) }
+    vendors_and_revenue.collect {|vendor_id| FarMar::Vendor.find(vendor_id) }
   end
 
+  def self.most_items(n)
+    n = n.to_i
+    #returns the top n vendor instances ranked by total number of items sold
+    vendors_hash = FarMar::Sale.all.group_by { |sale| sale.vendor_id }
+    vendors_items = vendors_hash.values.collect {|array_sales_info| array_sales_info.length}
+    vendors_and_revenue = vendors_hash.keys.zip vendors_items
+    vendors_and_revenue = vendors_and_revenue.sort { |a, b| b[1] <=> a[1] }
+    vendors_and_revenue = vendors_and_revenue.collect { |pairs| pairs[0] }.first(n)
+    vendors_and_revenue.collect {|vendor_id| FarMar::Vendor.find(vendor_id) }
+
+  end
 end
