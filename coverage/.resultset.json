@@ -1,0 +1,87 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/natashaewing/Documents/Ada/farmersmkt/FarMar/Far_Mar.rb": [
+        null,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        1,
+        1,
+        1,
+        1
+      ],
+      "/Users/natashaewing/Documents/Ada/farmersmkt/FarMar/lib/mkt.rb": [
+        null,
+        null,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        null,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/natashaewing/Documents/Ada/farmersmkt/FarMar/lib/vendor.rb": [
+
+      ],
+      "/Users/natashaewing/Documents/Ada/farmersmkt/FarMar/lib/products.rb": [
+        null,
+        1,
+        null,
+        null
+      ],
+      "/Users/natashaewing/Documents/Ada/farmersmkt/FarMar/lib/sales.rb": [
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/natashaewing/Documents/Ada/farmersmkt/FarMar/specs/product_spec.rb": [
+        1,
+        null,
+        null
+      ],
+      "/Users/natashaewing/Documents/Ada/farmersmkt/FarMar/specs/sale_spec.rb": [
+        1,
+        null
+      ],
+      "/Users/natashaewing/Documents/Ada/farmersmkt/FarMar/specs/vendor_spec.rb": [
+        1,
+        null,
+        null
+      ]
+    },
+    "timestamp": 1473191156
+  }
+}
