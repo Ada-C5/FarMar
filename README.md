@@ -84,7 +84,7 @@ Each sale belongs to a vendor __AND__ a product. The `vendor_id` and `product_id
 ### Baseline
 #### Project Setup
 1. You'll be working as an individual on this project.
-1. Fork the Ada-C5 repo to your Github account.
+1. Fork the Ada-C6 repo to your Github account.
 1. Clone your fork to your projects directory, and `cd` into the cloned repo.
 1. Create a _gemset_ for your project
   1. `$ echo 2.3.0 > .ruby-version`
